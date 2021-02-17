@@ -7,3 +7,5 @@ Final Project on Coderscamp2020
 `nodemon ./src/server.ts`
 **TESTS**
 `yarn test`
+
+PS install ts-node globally
