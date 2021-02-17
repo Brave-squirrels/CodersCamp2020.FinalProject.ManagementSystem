@@ -24,7 +24,7 @@ export default class App {
     private initializeMiddlewares(){
         this.app.use(express.json());
         this.app.use(loggerMiddleware);
-        this.app.use(express.urlencoded());
+        this.app.use(express.urlencoded({extended: true}));
     }
 
     private initializeControllers(controllers: Controller[]){
