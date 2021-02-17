@@ -1,11 +1,20 @@
 import { Response, Request } from 'express';
-import commentModel from '../../models/comments.model';
+import CommentModel from '../../models/comments.model';
+import Comment from '../../interfaces/comment.interface';
+import validateComment from './comment.validate';
 
-export default function createComment(req: Request, res: Response){
-    const commentData: Comment = req.body;
-    const createdComment = new commentModel(commentData);
-    createdComment
-        .save()
-        .then(savedComment => {res.send(savedComment)})
-        .catch(err => console.log(err.message));
+// Function for creating a new comment
+export default async function createComment(req: Request, res: Response){
+    const { error } = validateComment(req.body);
+    if(error) return res.status(400).send(error.details[0].message);
+
+    const commentData: Comment = {
+        author: req.body.name,
+        content: req.body.content
+    };
+
+    const createdComment = new CommentModel(commentData);
+    const savedComment = await createdComment.save();
+    
+    return res.status(200).send(savedComment);
 }

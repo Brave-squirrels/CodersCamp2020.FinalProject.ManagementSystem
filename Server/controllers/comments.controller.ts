@@ -1,7 +1,11 @@
 import express, { Request, Response } from 'express';
-import { create } from 'ts-node';
 import createAComment from '../src/comments/createComment';
+import getAllComments from '../src/comments/getAllComments';
 
+/**
+ * CommentsControll Class, 
+ * responsible for managing CRUD operations inside of /comments edpoint
+ */
 export default class ComentsController {  
     public path = '/comments';
     public router = express.Router();
@@ -16,11 +20,10 @@ export default class ComentsController {
     }
 
     getAllComments(req: Request, res: Response){
-        // fetching from DB
+        getAllComments(req,res);
     }
 
     createAComment(req: Request, res: Response){
-        // post to DB
         createAComment(req,res);
     }
 }

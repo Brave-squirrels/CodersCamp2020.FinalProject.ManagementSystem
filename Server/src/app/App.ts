@@ -1,13 +1,19 @@
-import bodyParser, { urlencoded } from 'body-parser';
 import express, { Application } from 'express';
 import loggerMiddleware from '../../middleware/logger';
+import Controller from '../../interfaces/controller.interface';
 import mongoose from 'mongoose';
+
+
+/**
+ * Main App class, responsible for initializing middlewares,
+ * connecting to database, running local server
+ */
 
 export default class App {
     public app: Application;
     private port = process.env.PORT || 3000;
 
-    constructor(controllers: any){
+    constructor(controllers: Controller[]){
         this.app = express();
 
         this.connectToDatabase();
@@ -16,12 +22,12 @@ export default class App {
     }
 
     private initializeMiddlewares(){
-        this.app.use(bodyParser.json());
+        this.app.use(express.json());
         this.app.use(loggerMiddleware);
     }
 
-    private initializeControllers(controllers: any){
-        controllers.forEach((controller: any) => {
+    private initializeControllers(controllers: Controller[]){
+        controllers.forEach((controller) => {
             this.app.use('/', controller.router);
         })
     }
@@ -34,11 +40,11 @@ export default class App {
         } = process.env;
 
         mongoose.connect(
-            `mongodb+srv://admin:admin@managmentsystem.zz0bx.mongodb.net/ManagmentSystem?retryWrites=true&w=majority`,
+            `mongodb+srv://@managmentsystem.zz0bx.mongodb.net/`,
             { 
-                // dbName: MONGO_DB_NAME,
-                // user: MONGO_USER,
-                // pass: MONGO_PASSWORD,
+                dbName: MONGO_DB_NAME,
+                user: MONGO_USER,
+                pass: MONGO_PASSWORD,
                 useNewUrlParser: true, 
                 useUnifiedTopology: true 
             })
@@ -47,7 +53,7 @@ export default class App {
     }
 
     public listen() {
-        this.app.listen(() => {
+        this.app.listen(this.port, () => {
           console.log(`App listening on the port ${this.port}`);
         });
       }
