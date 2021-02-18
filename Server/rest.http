@@ -1,12 +1,31 @@
 
-GET http://localhost:3000/comments HTTP/1.1
+GET http://localhost:4000/comments HTTP/1.1
 
 ###
 
-POST http://localhost:3000/comments HTTP/1.1
+POST http://localhost:4000/comments HTTP/1.1
 content-type: application/json
 
 {
     "author": "Michal",
     "content": "check2" 
 }
+
+
+############################ PROJECTS ##############################
+
+GET http://localhost:4000/projects/602daad612d3182dc04f8050 HTTP/1.1 
+
+###
+
+POST http://localhost:4000/projects/602daad612d3182dc04f8050 HTTP/1.1
+content-type: application/json
+
+{
+    "name": "through middleware"
+}
+
+###
+
+DELETE http://localhost:4000/projects/602daad612d3182dc04f8050/602e7a0c3eb4c40fcb405ec5 HTTP/1.1
+
