@@ -5,7 +5,7 @@ WORKDIR /usr/src/backend
 COPY package.json ./
 COPY yarn.lock ./
 
-RUN yarn  install
+RUN yarn install
 
 COPY . .
 
