@@ -1,0 +1,13 @@
+version: '3'
+services:
+  backend:
+    container_name: management-system_backend
+    restart: always
+    build:
+      context: ../backend
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    volumes:
+      - "../backend:/backend"
+            
