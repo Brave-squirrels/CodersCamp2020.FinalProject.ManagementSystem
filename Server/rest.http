@@ -22,10 +22,11 @@ POST http://localhost:4000/projects/602daad612d3182dc04f8050 HTTP/1.1
 content-type: application/json
 
 {
-    "name": "through middleware"
+    "projectName": "through middleware",
+    "ownerId": "602e41a034644bbf940bea0b"
 }
 
 ###
 
-DELETE http://localhost:4000/projects/602daad612d3182dc04f8050/602e7a0c3eb4c40fcb405ec5 HTTP/1.1
+DELETE http://localhost:4000/projects/602daad612d3182dc04f8050/602ef936240d301b346f3697 HTTP/1.1
 

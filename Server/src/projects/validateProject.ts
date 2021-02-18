@@ -1,10 +1,13 @@
 const Joi = require('joi');
-import Project from '../../interfaces/project.interface';
+import { Project } from '../../interfaces/project.interface';
 
-export default function validateProject(project: Project){
+ const validateProject = (project: Project) => {
     const schema = Joi.object({
-        name: Joi.string().required()
+        projectName: Joi.string().min(3).max(24).required(), 
+        ownerId: Joi.string().min(24).max(24).required(), 
     });
 
     return schema.validate(project);
 }
+
+export default validateProject;

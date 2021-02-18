@@ -1,9 +1,8 @@
 import { Request, Response } from 'express';
-import teamModel from '../../models/teams.model';
 import projectModel from '../../models/projects.model';
 import { StatusCodes } from 'http-status-codes';
 
-export default async function deleteProject(req: Request, res: Response){
+const deleteProject = async(req: Request, res: Response) => {
     const team = res.locals.team;
 
     const deletedProject = await projectModel.findByIdAndDelete(req.params.id);
@@ -11,3 +10,5 @@ export default async function deleteProject(req: Request, res: Response){
 
     return res.status(StatusCodes.OK).send(deletedProject);
 }
+
+export default deleteProject;

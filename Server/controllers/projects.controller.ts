@@ -1,4 +1,4 @@
-import express, { request, Request, Response } from 'express';
+import express, { Request, Response } from 'express';
 import getAllProjectsFromTeam from '../src/projects/getAllProjectsFromTeam';
 import createNewProject from '../src/projects/createNewProject';
 import deleteProject from '../src/projects/deleteProject';
@@ -15,7 +15,7 @@ export default class ProjectsController{
     initializeRoutes(){
         this.router.get(`${this.path}/:teamId`, findTeam, this.getAllProjectsFromTeam);
 
-        this.router.post(`${this.path}/:teamId`, findTeam, createNewProject);
+        this.router.post(`${this.path}/:teamId`, findTeam, this.createNewProject);
 
         this.router.delete(`${this.path}/:teamId/:id`, findTeam, this.deleteProject);
     }
