@@ -42,6 +42,7 @@ export default class App {
         pass: MONGO_PASSWORD,
         useNewUrlParser: true,
         useUnifiedTopology: true,
+        useFindAndModify: false,
       })
       .then(() => console.log("Connected to MongoDB..."))
       .catch((err) => console.log(err.message));

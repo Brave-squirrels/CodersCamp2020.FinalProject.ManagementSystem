@@ -1,6 +1,9 @@
 import express, { Request, Response } from "express";
 import createUser from "../src/users/createUser";
 import getAllUsers from "../src/users/getAllUsers";
+import getUser from "../src/users/getUser";
+import updateUser from "../src/users/updateUser";
+import deleteUser from "../src/users/deleteUser";
 
 /**
  * UserControll Class,
@@ -15,19 +18,30 @@ export default class UserController {
   }
 
   public initializeRoutes() {
-    this.router.get(this.path, this.getAllComments);
-    this.router.post(this.path, this.createAComment);
+    this.router.get(this.path, this.getAllUsers);
+    this.router.get(`${this.path}/:id`, this.getUser);
+    this.router.post(this.path, this.createUser);
+    this.router.put(`${this.path}/:id`, this.updateUser);
+    this.router.delete(`${this.path}/:id`, this.deleteUser);
   }
 
-  createAComment(req: Request, res: Response) {
+  createUser(req: Request, res: Response) {
     createUser(req, res);
   }
 
-  getAllComments(req: Request, res: Response) {
+  getAllUsers(req: Request, res: Response) {
     getAllUsers(req, res);
   }
 
-  updateUser(req: Request, res: Response) {}
+  getUser(req: Request, res: Response) {
+    getUser(req, res);
+  }
 
-  deleteUser(req: Request, res: Response) {}
+  updateUser(req: Request, res: Response) {
+    updateUser(req, res);
+  }
+
+  deleteUser(req: Request, res: Response) {
+    deleteUser(req, res);
+  }
 }

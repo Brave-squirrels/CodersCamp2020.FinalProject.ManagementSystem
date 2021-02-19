@@ -5,8 +5,8 @@ interface User {
   name: string;
   password: string;
   email: string;
-  teamsId?: number[];
-  projectsId?: number[];
+  teamsId?: string[];
+  projectsId?: string[];
   date?: Date;
 }
 

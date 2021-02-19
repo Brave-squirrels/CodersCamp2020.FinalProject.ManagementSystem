@@ -18,7 +18,11 @@ content-type: application/json
 GET http://localhost:3000/users HTTP/1.1
 
 ###
-# get users
+# get user
+GET http://localhost:3000/users/602e41a034644bbf940bea0b HTTP/1.1
+
+###
+# create users
 POST http://localhost:3000/users HTTP/1.1
 Content-Type: application/json
 
@@ -27,3 +31,18 @@ Content-Type: application/json
     "password": "1234",
     "email": "john@poczta.pl"
 }
+
+###
+# update users
+PUT http://localhost:3000/users/602fc0ba056f2f1db0507a08 HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Jack",
+    "password": "1234",
+    "email": "jack@mail.pl"
+}
+
+###
+# delete users
+DELETE  http://localhost:3000/users/602fa8f934b88330c80fa35b HTTP/1.1

@@ -22,13 +22,16 @@ const userSchema = new mongoose.Schema({
     maxLength: 50,
   },
   teamsId: {
-    type: Number,
+    type: mongoose.Schema.Types.ObjectId,
+    default: [],
   },
   projectsId: {
-    type: Number,
+    type: mongoose.Schema.Types.ObjectId,
+    default: [],
   },
   date: {
     type: Date,
+    default: Date.now,
   },
 });
 
