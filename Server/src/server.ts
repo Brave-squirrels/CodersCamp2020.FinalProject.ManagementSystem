@@ -1,20 +1,20 @@
-import App from './app/App';
-import validateEnv from './app/validateEnv';
-import ComentsController from '../controllers/comments.controller';
+import App from "./app/App";
+import validateEnv from "./app/validateEnv";
+import ComentsController from "../controllers/comments.controller";
+import UserController from "../controllers/users";
 
 // Creating environment variables
-import 'dotenv/config';
+import "dotenv/config";
 
 // Validatin enivronmental variables
 validateEnv();
 
 // Starting app
-const app = new App(
-    [
-        // Adding all controllers
-        new ComentsController(),
-    ]
-);
+const app = new App([
+  // Adding all controllers
+  new ComentsController(),
+  new UserController(),
+]);
 
 // Express app listen
 app.listen();
