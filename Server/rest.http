@@ -16,7 +16,7 @@ content-type: application/json
 
 
 # GET SPECIFIC PROJECT FROM TEAM
-GET http://localhost:4000/teams/602daad612d3182dc04f8050/projects/602fb91319a2530dcbb61abb HTTP/1.1 
+GET http://localhost:4000/teams/602daad612d3182dc04f8050/projects/602fbc54ab20ca0f66248ef0 HTTP/1.1 
 
 ###
 
