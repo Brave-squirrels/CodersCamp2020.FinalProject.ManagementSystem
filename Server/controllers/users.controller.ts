@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
-import createUser from "../../src/users/create";
-import getAllUsers from "../../src/users/getAll";
+import createUser from "../src/users/createUser";
+import getAllUsers from "../src/users/getAllUsers";
 
 /**
  * UserControll Class,

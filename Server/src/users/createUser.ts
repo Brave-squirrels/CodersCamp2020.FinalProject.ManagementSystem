@@ -1,7 +1,7 @@
 import { Response, Request } from "express";
-import UserModel from "../../models/user";
-import User from "../../interfaces/user";
-import validateUser from "./validate";
+import UserModel from "../../models/user.model";
+import User from "../../interfaces/user.interface";
+import validateUser from "./user.validate";
 import { StatusCodes } from "http-status-codes";
 
 // Function for creating a new user

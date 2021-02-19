@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import userModel from "../../models/user";
+import userModel from "../../models/user.model";
 import { StatusCodes } from "http-status-codes";
 
 const getAllUsers = async (req: Request, res: Response) => {

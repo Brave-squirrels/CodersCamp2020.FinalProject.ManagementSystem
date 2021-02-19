@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import User from "../../interfaces/user";
+import User from "../interfaces/user.interface";
 
 // Creating commentSchema
 const userSchema = new mongoose.Schema({

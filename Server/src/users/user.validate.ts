@@ -1,5 +1,5 @@
 const Joi = require("joi");
-import User from "../../interfaces/user";
+import User from "../../interfaces/user.interface";
 
 // Validating new user
 export default function validateUser(user: User) {
