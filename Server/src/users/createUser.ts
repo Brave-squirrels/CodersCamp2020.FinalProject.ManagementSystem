@@ -1,5 +1,5 @@
 import { Response, Request } from "express";
-import validateUser from "./user.validate";
+import validateUser from "./validateUser";
 import UserModel from "../../models/user.model";
 import { StatusCodes } from "http-status-codes";
 
