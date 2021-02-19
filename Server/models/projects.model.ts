@@ -35,7 +35,7 @@ const projectSchema = new mongoose.Schema({
     },
     designersId: {
         type: [{ type: mongoose.Schema.Types.ObjectId /*add ref to user*/}],
-        default: []
+        default: [""]
     },
     frontendDevsId: {
         type: [{ type: mongoose.Schema.Types.ObjectId /*add ref to user*/}],

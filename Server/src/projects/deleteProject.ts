@@ -3,8 +3,6 @@ import projectModel from '../../models/projects.model';
 import { StatusCodes } from 'http-status-codes';
 
 const deleteProject = async(req: Request, res: Response) => {
-    const team = res.locals.team;
-
     const deletedProject = await projectModel.findByIdAndDelete(req.params.id);
     if(!deletedProject) return res.status(StatusCodes.BAD_REQUEST).send('No project found');
 

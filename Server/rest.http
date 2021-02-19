@@ -18,6 +18,10 @@ GET http://localhost:4000/projects/602daad612d3182dc04f8050 HTTP/1.1
 
 ###
 
+GET http://localhost:4000/projects/602daad612d3182dc04f8050/602f0132dd22021ef37bfe16 HTTP/1.1 
+
+###
+
 POST http://localhost:4000/projects/602daad612d3182dc04f8050 HTTP/1.1
 content-type: application/json
 
@@ -28,5 +32,14 @@ content-type: application/json
 
 ###
 
-DELETE http://localhost:4000/projects/602daad612d3182dc04f8050/602ef936240d301b346f3697 HTTP/1.1
+# PUT http://localhost:4000/projects/602f03fb6112d220e63bccbd HTTP/1.1
+# content-type: application/json
+
+# {
+#     "scrumMasterId": "602e41a034644bbf940bea0b"
+# }
+
+###
+
+DELETE http://localhost:4000/projects/602f03948e921a209e7fbccb HTTP/1.1
 
