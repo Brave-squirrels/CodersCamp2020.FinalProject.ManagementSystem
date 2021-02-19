@@ -3,10 +3,7 @@ import userModel from "../../models/user";
 import { StatusCodes } from "http-status-codes";
 
 const getAllUsers = async (req: Request, res: Response) => {
-  const user = res.locals.user;
-
-  const users = await userModel.find({ userId: user._id });
-
+  const users = await userModel.find();
   return res.status(StatusCodes.OK).send(users);
 };
 
