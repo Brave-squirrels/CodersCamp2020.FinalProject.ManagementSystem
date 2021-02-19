@@ -1,6 +1,5 @@
 import mongoose from 'mongoose';
 import { Project, STATUS } from '../interfaces/project.interface';
-import teamModel from '../models/teams.model';
 
 const projectSchema = new mongoose.Schema({
     projectName: {
@@ -9,10 +8,15 @@ const projectSchema = new mongoose.Schema({
         maxlength: 24,
         required: true,
     },
-    teamId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: teamModel,
-        required: true,
+    team: {
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            required: true,
+        },
+        name: {
+            type: String,
+            required: true,
+        },
     },
     date: {
         type: Date,
@@ -24,33 +28,64 @@ const projectSchema = new mongoose.Schema({
         required: true,
         default: STATUS.INPROGRESS
     },
-    ownerId: {
-        type: mongoose.Schema.Types.ObjectId, 
-        // add ref to user
-        required: true,
-    },
-    normalUsersId: {
-        type: [{ type: mongoose.Schema.Types.ObjectId  /*add ref to user*/}],
-        default: []
-    },
-    designersId: {
-        type: [{ type: mongoose.Schema.Types.ObjectId /*add ref to user*/}],
-        default: [""]
-    },
-    frontendDevsId: {
-        type: [{ type: mongoose.Schema.Types.ObjectId /*add ref to user*/}],
-        default: []
-    },
-    backendDevsId: {
-        type: [{ type: mongoose.Schema.Types.ObjectId /*add ref to user*/}],
-        default: []
-    },
-    scrumMasterId: {
-        type: mongoose.Schema.Types.ObjectId,
+    owner: {
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            required: true,
+        },
+        name: {
+            type: String,
+            required: true,
+        },
         // add ref to user
     },
-    qaEngineerId: {
-        type: mongoose.Schema.Types.ObjectId,
+    designers: [{
+        _id: false,
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+        },
+        name: {
+            type: String
+        }
+    }],
+    frontendDevs: [{
+        _id: false,
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+        },
+        name: {
+            type: String
+        }
+    }],
+    backendDevs: [{
+        _id: false,
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+        },
+        name: {
+            type: String
+        }
+    }],
+    scrumMaster: {
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            default: null
+        },
+        name: {
+            type: String,
+            default: null
+        }
+        // add ref to user
+    },
+    qaEngineer: {
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            default: null
+        },
+        name: {
+            type: String,
+            default: null
+        }
         // add ref to user
     }
 });

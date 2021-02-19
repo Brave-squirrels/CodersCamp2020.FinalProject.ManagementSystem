@@ -1,19 +1,19 @@
 export enum STATUS {
     INPROGRESS = "InProgress",
     DONE = "Done",
-    ABANDONED = "ABANDONED"
+    ABANDONED = "Abandoned"
 }
 
 export interface Project {
     projectName: string,
-    teamId: string,
-    ownerId: string,
+    team: string,
+    owner: string,
     date?: Date,
     status?: STATUS,
-    normalUsersId?: string[],
-    designersId?: string[],
-    backendDevsId?: string[],
-    frontendDevsId?: string[]
-    scrumMasterId?: string,
-    qaEngineerId?: string
+    normalUsers?: string[],
+    designers?: string[],
+    backendDevs?: string[],
+    frontendDevs?: string[]
+    scrumMaster?: string,
+    qaEngineer?: string
 }
