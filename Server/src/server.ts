@@ -1,6 +1,7 @@
 import App from "./app/App";
 import validateEnv from "./app/validateEnv";
 import ComentsController from "../controllers/comments.controller";
+import ProjectsController from "../controllers/projects.controller";
 import UserController from "../controllers/users.controller";
 
 // Creating environment variables
@@ -13,6 +14,7 @@ validateEnv();
 const app = new App([
   // Adding all controllers
   new ComentsController(),
+  new ProjectsController(),
   new UserController(),
 ]);
 

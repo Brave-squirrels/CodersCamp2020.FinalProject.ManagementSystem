@@ -1,9 +1,9 @@
 
-GET http://localhost:3000/comments HTTP/1.1
+GET http://localhost:4000/comments HTTP/1.1
 
 ###
 
-POST http://localhost:3000/comments HTTP/1.1
+POST http://localhost:4000/comments HTTP/1.1
 content-type: application/json
 
 {
@@ -46,3 +46,37 @@ Content-Type: application/json
 ###
 # delete users
 DELETE  http://localhost:3000/users/602fa8f934b88330c80fa35b HTTP/1.1
+
+
+############################ PROJECTS ##############################
+
+# GET SPECIFIC PROJECT FROM TEAM
+GET http://localhost:4000/teams/602daad612d3182dc04f8050/projects/602fbc54ab20ca0f66248ef0 HTTP/1.1 
+
+###
+
+# CREATE NEW PROJECT IN TEAM
+POST http://localhost:4000/teams/602daad612d3182dc04f8050/projects HTTP/1.1
+content-type: application/json
+
+{
+    "projectName": "nowy testowy projekt",
+    "owner": {
+        "id": "602e41a034644bbf940bea0b",
+        "name": "Michauuu"
+    }
+}
+
+###
+
+PUT http://localhost:4000/teams/602daad612d3182dc04f8050/projects/602fbc54ab20ca0f66248ef0 HTTP/1.1
+content-type: application/json
+
+{
+    "status": "niepoprawny"
+}
+
+###
+
+DELETE http://localhost:4000/teams/602faee3cc18aa0b4d0d974b/projects/602fb91319a2530dcbb61abb HTTP/1.1
+
