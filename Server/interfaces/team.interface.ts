@@ -1,7 +1,8 @@
 
 export default interface Team {
+    teamName: string,
     ownerId : string,
-    userId: string[],
-    projectId: string,
+    usersId: string[],
+    projectsId: string[],
     usersWithPermissions: string[]
 }

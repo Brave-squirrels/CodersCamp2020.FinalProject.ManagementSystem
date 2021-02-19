@@ -1,7 +1,11 @@
 import mongoose from 'mongoose';
-import Team from '../interfaces/teams.interface';
+import Team from '../interfaces/team.interface';
 
 const teamSchema = new mongoose.Schema({
+    teamName: {
+        type: String,
+        required: true
+    },
     ownerId: {
         type: String,
         required: true
@@ -10,8 +14,8 @@ const teamSchema = new mongoose.Schema({
         type: [String],
         required: true,
     },
-    projectId: {
-        type: String,
+    projectsId: {
+        type: [String],
         required: true,
     },
     usersWithPermissions: {
