@@ -12,8 +12,8 @@ content-type: application/json
 }
 
 ###
-# __________ USERS __________
-
+# ____________________________ USERS ____________________________
+  
 # get users
 GET http://localhost:3000/users HTTP/1.1
 
@@ -27,9 +27,9 @@ POST http://localhost:3000/users HTTP/1.1
 Content-Type: application/json
 
 {
-    "name": "John",
+    "name": "User12",
     "password": "1234",
-    "email": "john@poczta.pl"
+    "email": "user12@mail.pl"
 }
 
 ###
@@ -48,7 +48,7 @@ Content-Type: application/json
 DELETE  http://localhost:3000/users/602fa8f934b88330c80fa35b HTTP/1.1
 
 
-############################ PROJECTS ##############################
+# ____________________________ PROJECTS ____________________________
 
 # GET SPECIFIC PROJECT FROM TEAM
 GET http://localhost:4000/teams/602daad612d3182dc04f8050/projects/602fbc54ab20ca0f66248ef0 HTTP/1.1 
@@ -79,4 +79,3 @@ content-type: application/json
 ###
 
 DELETE http://localhost:4000/teams/602faee3cc18aa0b4d0d974b/projects/602fb91319a2530dcbb61abb HTTP/1.1
-

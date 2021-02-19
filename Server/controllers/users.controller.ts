@@ -4,6 +4,8 @@ import getAllUsers from "../src/users/getAllUsers";
 import getUser from "../src/users/getUser";
 import updateUser from "../src/users/updateUser";
 import deleteUser from "../src/users/deleteUser";
+import findTeam from "../middleware/findTeam";
+import findProject from "../middleware/findProject";
 
 /**
  * UserControll Class,

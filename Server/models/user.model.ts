@@ -21,7 +21,7 @@ const userSchema = new mongoose.Schema({
     minlength: 4,
     maxLength: 50,
   },
-  teamsId: {
+  team: {
     type: [
       {
         _id: false,
@@ -31,7 +31,7 @@ const userSchema = new mongoose.Schema({
     ],
     default: [],
   },
-  projectsId: {
+  project: {
     type: [
       {
         _id: false,
