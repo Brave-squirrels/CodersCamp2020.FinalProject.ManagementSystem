@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express';
 import getNotesFromProject from '../src/notes/getNotesFromProject';
 import createNewNote from '../src/notes/createNewNote';
 
+
 export default class NotesController {
     public path = '/teams/:teamId/projects/:projectId/notes';
     public router = express.Router();

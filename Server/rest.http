@@ -61,7 +61,5 @@ Content-Type: application/json
 
 {
     "name": "Test Note",
-    "author": "test author",
-    "content": "napewno nie test content",
-    "projectId": "602fbc54ab20ca0f66248ef0"
+    "author": "Michal"
 }
