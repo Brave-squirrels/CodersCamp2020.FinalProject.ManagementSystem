@@ -1,7 +1,10 @@
-import express, { Request, Response } from 'express';
 import getNotesFromProject from '../src/notes/getNotesFromProject';
 import createNewNote from '../src/notes/createNewNote';
-
+import express, { Request, Response } from 'express';
+import findProject from '../middleware/findProject';
+import updateNote from '../src/notes/updateNote';
+import deleteNote from '../src/notes/deleteNote';
+import findTeam from '../middleware/findTeam';
 
 export default class NotesController {
     public path = '/teams/:teamId/projects/:projectId/notes';
@@ -12,9 +15,13 @@ export default class NotesController {
     }
 
     initializeRoutes(){
-        this.router.get(this.path, this.getNotesFromProject)
+        this.router.get(this.path, findTeam, findProject, this.getNotesFromProject)
 
-        this.router.post(this.path, this.createNewNote);
+        this.router.post(this.path, findTeam, findProject, this.createNewNote);
+
+        this.router.put(`${this.path}/:noteId`, findTeam, findProject, this.updateNote);
+
+        this.router.delete(`${this.path}/:noteId`, findTeam, findProject, this.deleteNote);
     }
 
     getNotesFromProject(req: Request,res: Response){
@@ -23,5 +30,13 @@ export default class NotesController {
 
     createNewNote(req: Request, res: Response){
         createNewNote(req,res);
+    }
+
+    updateNote(req: Request, res: Response){
+        updateNote(req,res);
+    }
+
+    deleteNote(req: Request, res: Response){
+        deleteNote(req,res);
     }
 }
