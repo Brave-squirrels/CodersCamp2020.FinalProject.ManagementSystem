@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
-import { Project, STATUS } from '../interfaces/project.interface';
+import { Project } from '../interfaces/project.interface';
+import STATUS from '../enums/projectStatus';
+import ROLES from '../enums/projectRoles';
 
 const projectSchema = new mongoose.Schema({
     projectName: {
@@ -8,6 +10,12 @@ const projectSchema = new mongoose.Schema({
         maxlength: 24,
         required: true,
     },
+    content: {
+        type: String,
+        minlength: 0,
+        maxlength: 254,
+        default: null
+    },
     team: {
         id: {
             type: mongoose.Schema.Types.ObjectId,
@@ -15,6 +23,8 @@ const projectSchema = new mongoose.Schema({
         },
         name: {
             type: String,
+            minlength: 3,
+            maxlength: 24,
             required: true,
         },
     },
@@ -35,59 +45,31 @@ const projectSchema = new mongoose.Schema({
         },
         name: {
             type: String,
+            minlength: 3,
+            maxlength: 24,
             required: true,
         },
         // add ref to user
     },
-    designers: [{
-        _id: false,
-        id: {
-            type: mongoose.Schema.Types.ObjectId,
-        },
-        name: {
-            type: String
+    members: [
+        {
+            _id: false,
+            name: {
+                type: String,
+                minlength: 3,
+                maxlength: 24,
+                required: true,
+            },
+            id: {
+                type: mongoose.Schema.Types.ObjectId,
+                requried: true,
+            },
+            role: {
+                type: ROLES,
+                required: true,
+            }
         }
-    }],
-    frontendDevs: [{
-        _id: false,
-        id: {
-            type: mongoose.Schema.Types.ObjectId,
-        },
-        name: {
-            type: String
-        }
-    }],
-    backendDevs: [{
-        _id: false,
-        id: {
-            type: mongoose.Schema.Types.ObjectId,
-        },
-        name: {
-            type: String
-        }
-    }],
-    scrumMaster: {
-        id: {
-            type: mongoose.Schema.Types.ObjectId,
-            default: null
-        },
-        name: {
-            type: String,
-            default: null
-        }
-        // add ref to user
-    },
-    qaEngineer: {
-        id: {
-            type: mongoose.Schema.Types.ObjectId,
-            default: null
-        },
-        name: {
-            type: String,
-            default: null
-        }
-        // add ref to user
-    }
+    ],
 });
 
 const projectModel = mongoose.model<Project & mongoose.Document>('Project', projectSchema);
