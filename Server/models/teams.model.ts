@@ -18,9 +18,18 @@ const teamSchema = new mongoose.Schema({
         type: [String],
         required: true,
     },
-    usersWithPermissions: {
+    moderatorsId: {
         type: [String],
         required: true,
+    },
+    description: {
+        type: String,
+        required: true,
+    },
+    startDate: {
+        type: Date,
+        required: true,
+        default: Date.now,
     }
 });
 

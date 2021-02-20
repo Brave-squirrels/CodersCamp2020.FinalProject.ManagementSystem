@@ -8,10 +8,10 @@ const removePermissions = async(req: Request, res: Response) => {
     if(error) return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
 
     const {user, team}  = res.locals
-    const userIndex = team.usersWithPermissions.find(user.id)
-    const usersWithPermissions = team.usersWithPermissions.splice(userIndex, 1)
+    const userIndex = team.moderators.find(user.id)
+    const usersWithPermissions = team.moderators.splice(userIndex, 1)
     
-    team.set({members: usersWithPermissions})
+    team.set({moderators: usersWithPermissions})
 
     await team.save();
     

@@ -3,7 +3,7 @@ import createNewTeam from '../src/teams/createNewTeam';
 import deleteTeam from '../src/teams/deleteTeam';
 import findTeam from '../middleware/findTeam';
 import findUser from '../middleware/findUser';
-import deleteUser from '../src/teams/removeUser';
+import removeUser from '../src/teams/removeUser';
 import addUser from '../src/teams/addUser';
 import removePermissions from '../src/teams/removePermissions';
 import addPermissions from '../src/teams/addPermissions';
@@ -24,15 +24,30 @@ export default class ProjectsController{
         
         this.router.delete(`${this.path}/:teamId`, findTeam, this.deleteTeam);
        
-        this.router.get(`${this.path}/:teamId`, findTeam, this.getTeam);
+        this.router.get(`${this.path}/:teamId`, findTeam, this.getTeam); 
 
-        this.router.put(`${this.path}/:teamId/:userId`, findUser, this.addUser);
+        this.router.put(`${this.path}/:teamId/:userId`, findUser, findTeam, this.addUser); //CHANGE IT
        
-        this.router.delete(`${this.path}/:teamId/:userId`, findUser, this.deleteUser);
+        this.router.put(`${this.path}/:teamId/:userId/remove-user`, findUser, findTeam, this.removeUser); //FIX BUG HERE
         
-        this.router.put(`${this.path}/add-permissions/:teamId/:userId`, findUser, findTeam, this.addPermissions);
+        this.router.put(`${this.path}/:teamId/:userId/add-permissions`, findUser, findTeam, this.addPermissions);
        
-        this.router.put(`${this.path}/remove-permissions/:teamId/:userId`, findUser, findTeam, this.removePermissions);
+        this.router.put(`${this.path}/:teamId/:userId/remove-permissions`, findUser, findTeam, this.removePermissions);
+
+        //________________________________________________________________
+
+        this.router.put(`${this.path}/:teamId/:projectId`, findProject, findTeam, this.addProject);
+
+        this.router.put(`${this.path}/:teamId/:projectId/remove-project`, findProject, findTeam, this.removeProject);
+
+        this.router.put(`${this.path}/:teamId/change-description`, findTeam, this.changeDescription);
+
+        this.router.put(`${this.path}/:teamId/change-name`, findTeam, this.changeName);
+
+        this.router.put(`${this.path}/:teamId/:userId/add-pending`, findTeam, findUser, this.addPending);
+
+        this.router.put(`${this.path}/:teamId/:userId/remove-pending`, findTeam, findUser, this.removePending);
+
     }
 
     createNewTeam(req: Request, res: Response){
@@ -51,8 +66,8 @@ export default class ProjectsController{
         addUser(req,res);
     }
 
-    deleteUser(req: Request, res: Response){
-        deleteUser(req,res);
+    removeUser(req: Request, res: Response){
+        removeUser(req,res);
     }
     addPermissions(req: Request, res: Response){
         addPermissions(req,res);

@@ -1,8 +1,6 @@
 import { Request, Response } from 'express';
 import validateTeam from './validateTeam';
-import teamModel from '../../models/teams.model';
 import { StatusCodes } from 'http-status-codes';
-import Team from '../../interfaces/team.interface';
 
 
 const addUser = async(req: Request, res: Response) => {

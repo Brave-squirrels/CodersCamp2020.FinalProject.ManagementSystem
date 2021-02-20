@@ -4,5 +4,7 @@ export default interface Team {
     ownerId : string,
     members: object,
     projects: object,
-    usersWithPermissions: string[]
+    moderatorsId: string[],
+    description: string,
+    startDate: Date
 }
