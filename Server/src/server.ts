@@ -14,7 +14,7 @@ validateEnv();
 const app = new App([
   // Adding all controllers
   new ComentsController(),
-      new ProjectsController(),
+  new ProjectsController(),
   new UserController(),
 ]);
 
