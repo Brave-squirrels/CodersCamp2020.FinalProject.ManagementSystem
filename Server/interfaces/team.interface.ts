@@ -2,7 +2,7 @@
 export default interface Team {
     teamName: string,
     ownerId : string,
-    usersId: string[],
-    projectsId: string[],
+    members: object,
+    projects: object,
     usersWithPermissions: string[]
 }

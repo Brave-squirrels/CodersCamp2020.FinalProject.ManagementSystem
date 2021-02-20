@@ -10,24 +10,14 @@ const addPermissions = async(req: Request, res: Response) => {
     const { error } = validateTeam(req.body);
     if(error) return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
 
-    const user  = res.locals.user;
-    const team = res.locals.team
-
-    const usersWithPermissions = team.usersWithPermissions.push(user._id)
+    const {user, team}  = res.locals
+    const usersWithPermissions = team.usersWithPermissions.push(user.id)
     
-    const teamData: Team = {
-        teamName: team.teamName,
-        ownerId : team.ownerId,
-        usersId: team.usersId,
-        projectsId: team.projectsId,
-        usersWithPermissions: usersWithPermissions
-    }
+    team.set({members: usersWithPermissions})
 
-    const newTeam = new teamModel(teamData);
-
-    await newTeam.save();
+    await team.save();
     
-    return res.status(StatusCodes.OK).send(newTeam);
+    return res.status(StatusCodes.OK).send(team);
 }
 
 export default addPermissions;

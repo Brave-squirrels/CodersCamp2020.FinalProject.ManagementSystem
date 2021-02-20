@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
 import validateTeam from './validateTeam';
 import teamModel from '../../models/teams.model';
-import findTeam from '../../middleware/findTeam';
 import { StatusCodes } from 'http-status-codes';
 import Team from '../../interfaces/team.interface';
 
@@ -14,10 +13,10 @@ const createNewTeam = async(req: Request, res: Response) => {
 
     const teamData: Team = {
         teamName: req.body.teamName,
-        ownerId : user._id,
-        usersId: [user._id],
-        projectsId: [],
-        usersWithPermissions: [user._id]
+        ownerId : user.id,
+        members: [{_id: false, userId : user.id, userName : user.name}],
+        projects: [],
+        usersWithPermissions: [user.id]
     }
 
     const newTeam = new teamModel(teamData);
