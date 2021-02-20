@@ -39,7 +39,7 @@ PUT http://localhost:4000/teams/602daad612d3182dc04f8050/projects/60312464300a9f
 content-type: application/json
 
 {
-    "members": [{"name": "Michal"}]
+    "members": []
 }
 
 ###

@@ -7,7 +7,7 @@ import ROLES from '../../enums/projectRoles';
     const schema = Joi.object({
         projectName: Joi.string().min(3).max(24).required(), 
         owner: Joi.object({
-            id: Joi.string().min(24).max(24).required(), 
+            id: Joi.objectId(), 
             name: Joi.string().min(3).max(24).required(),
         }),
         team: Joi.object({
