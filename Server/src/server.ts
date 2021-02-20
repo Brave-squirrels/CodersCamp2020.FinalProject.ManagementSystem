@@ -13,7 +13,7 @@ validateEnv();
 // Starting app
 const app = new App([
   // Adding all controllers
-     new ComentsController(),
+  new ComentsController(),
   new ProjectsController(),
   new UserController(),
 ]);
