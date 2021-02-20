@@ -50,7 +50,7 @@ Content-Type: application/json
 
 ###
 # update users
-PUT http://localhost:3000/users/60300584d40f49419830e729 HTTP/1.1
+PUT http://localhost:3000/users/60315c18b282ab0780ca79dd HTTP/1.1
 Content-Type: application/json
 
 {
