@@ -1,5 +1,4 @@
 import Joi from "joi";
-import userModel from "../../models/user.model";
 
 export default function validate(req: string) {
   const schema = Joi.object({
