@@ -9,6 +9,7 @@ import deleteUser from "../src/users/deleteUser";
 import findTeam from "../middleware/findTeam";
 import findProject from "../middleware/findProject";
 import findUser from "../middleware/findUser";
+import changePassword from "../src/users/changePassword";
 
 /**
  * UserControll Class,
@@ -27,8 +28,9 @@ export default class UserController {
     this.router.get(this.path, this.getAllUsers);
     this.router.get(`${this.path}/:id`, findUser, this.getUser);
     this.router.post(this.path, this.createUser);
-    this.router.put(`${this.path}/:id`, this.updateUser);
+    // this.router.put(`${this.path}/:id`, this.updateUser);
     this.router.delete(`${this.path}/:id`, this.deleteUser);
+    this.router.put(`${this.path}/password`, auth, this.changePassword);
   }
 
   createUser(req: Request, res: Response) {
@@ -53,5 +55,9 @@ export default class UserController {
 
   deleteUser(req: Request, res: Response) {
     deleteUser(req, res);
+  }
+
+  changePassword(req: Request, res: Response) {
+    changePassword(req, res);
   }
 }
