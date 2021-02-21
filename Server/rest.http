@@ -110,7 +110,7 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDMyMjcxZGJjMmM1N
 # ____________________________ PROJECTS ____________________________
 
 # GET SPECIFIC PROJECT FROM TEAM
-GET http://localhost:3000/teams/602daad612d3182dc04f8050/projects/60320e1348b544024a5dbfa2 HTTP/1.1 
+GET http://localhost:3000/teams/602daad612d3182dc04f8050/projects/60321a53a20b560b1ec1591f HTTP/1.1 
 
 ###
 # CREATE NEW PROJECT IN TEAM
@@ -129,23 +129,22 @@ content-type: application/json
 
 
 # UPDATE MEMBERS IN PROJECT
-PUT http://localhost:3000/teams/602daad612d3182dc04f8050/projects/603215b9a0356b0924c94bdc/members HTTP/1.1
-
+PUT http://localhost:3000/teams/602daad612d3182dc04f8050/projects/60322dad45e83a100382c5a3/members HTTP/1.1
 content-type: application/json
 
 {
-    "members": []
+    "member": {"id": "60324aea104714127c8f418b", "role": "Designer", "name": "asda"},
+    "delete": true
 }
 
 ###
 
 # UPDATE PROJECT STATUS
-PUT http://localhost:3000/teams/602daad612d3182dc04f8050/projects/603215b9a0356b0924c94bdc/status HTTP/1.1
+PUT http://localhost:3000/teams/602daad612d3182dc04f8050/projects/60321a53a20b560b1ec1591f/status HTTP/1.1
 content-type: application/json
 
 {
-    "status": "Done",
-    "name": "nowa name"
+    "status": "Done"
 }
 
 
@@ -174,7 +173,7 @@ GET http://localhost:3000/teams/602daad612d3182dc04f8050/projects/60321601a0356b
 ###
 
 # CREATE NEW NOTE
-POST http://localhost:3000/teams/602daad612d3182dc04f8050/projects/60321601a0356b0924c94bde/notes HTTP/1.1
+POST http://localhost:3000/teams/602daad612d3182dc04f8050/projects/60321a53a20b560b1ec1591f/notes HTTP/1.1
 Content-Type: application/json
 
 {
@@ -196,6 +195,6 @@ Content-Type: application/json
 
 
 # DELETE NOTE
-DELETE http://localhost:3000/teams/602daad612d3182dc04f8050/projects/60321601a0356b0924c94bde/notes/6032160da0356b0924c94bdf HTTP/1.1
+DELETE http://localhost:3000/teams/602daad612d3182dc04f8050/projects/60321a53a20b560b1ec1591f/notes/6032cab3c9b9c91bc1408a5d HTTP/1.1
 
 

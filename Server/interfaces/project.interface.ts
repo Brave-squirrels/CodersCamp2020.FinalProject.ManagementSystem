@@ -7,5 +7,7 @@ export interface Project {
   team: string;
   members?: Member[];
   status?: STATUS;
+  tasks?: string[];
+  notes?: string[];
   date?: Date;
 }
