@@ -11,17 +11,69 @@ content-type: application/json
     "content": "check2" 
 }
 
-
-############################ PROJECTS ##############################
-
-
-# GET SPECIFIC PROJECT FROM TEAM
-GET http://localhost:4000/teams/602daad612d3182dc04f8050/projects/60312ffa73acc426af9fe0bf HTTP/1.1 
+###
+# ____________________________ USERS ____________________________
 
 ###
+# login
+POST http://localhost:3000/users/auth HTTP/1.1
+Content-Type: application/json
 
+{
+    "email": "admin@mail.com",
+    "password": "12345"
+}
+  
+###
+# get users
+GET http://localhost:3000/users HTTP/1.1
+
+
+###
+# get user
+GET http://localhost:3000/users/60300584d40f49419830e729 HTTP/1.1
+
+
+###
+# get me
+GET http://localhost:3000/users/me HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDMxNWMxOGIyODJhYjA3ODBjYTc5ZGQiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2MTM4NDkzMDV9.awUM1x-oKEsyfYX3qp2dwt6eY_g4KUrsPQz5FtMkh6A
+
+###
+# create users
+POST http://localhost:3000/users HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "testUser",
+    "email": "test@mail.com",
+    "password": "12345"
+}
+
+###
+# update users
+PUT http://localhost:3000/users/60300584d40f49419830e729 HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Updated",
+    "password": "1234",
+    "email": "jack@mail.pl"
+}
+
+###
+# delete users
+DELETE  http://localhost:3000/users/60315ae1f32fb93f2075ea4e HTTP/1.1
+
+###
+# ____________________________ PROJECTS ____________________________
+
+# GET SPECIFIC PROJECT FROM TEAM
+GET http://localhost:3000/teams/602daad612d3182dc04f8050/projects/603215b9a0356b0924c94bdc HTTP/1.1 
+
+###
 # CREATE NEW PROJECT IN TEAM
-POST http://localhost:4000/teams/602daad612d3182dc04f8050/projects HTTP/1.1
+POST http://localhost:3000/teams/602daad612d3182dc04f8050/projects HTTP/1.1
 content-type: application/json
 
 {
@@ -36,7 +88,7 @@ content-type: application/json
 
 
 # UPDATE MEMBERS IN PROJECT
-PUT http://localhost:4000/teams/602daad612d3182dc04f8050/projects/60312464300a9f211f95c8f8/members HTTP/1.1
+PUT http://localhost:3000/teams/602daad612d3182dc04f8050/projects/603215b9a0356b0924c94bdc/members HTTP/1.1
 
 content-type: application/json
 
@@ -47,7 +99,7 @@ content-type: application/json
 ###
 
 # UPDATE PROJECT STATUS
-PUT http://localhost:4000/teams/602daad612d3182dc04f8050/projects/60312464300a9f211f95c8f8/status HTTP/1.1
+PUT http://localhost:3000/teams/602daad612d3182dc04f8050/projects/603215b9a0356b0924c94bdc/status HTTP/1.1
 content-type: application/json
 
 {
@@ -59,7 +111,7 @@ content-type: application/json
 ###
 
 # UPDATE PROJECT INFO
-PUT http://localhost:4000/teams/602daad612d3182dc04f8050/projects/60320e1348b544024a5dbfa2/info HTTP/1.1
+PUT http://localhost:3000/teams/602daad612d3182dc04f8050/projects/603215b9a0356b0924c94bdc/info HTTP/1.1
 content-type: application/json
 
 {
@@ -70,18 +122,18 @@ content-type: application/json
 ###
 
 # DELETE PROJECT 
-DELETE http://localhost:4000/teams/602faee3cc18aa0b4d0d974b/projects/60310726d9b3e01ea2566110 HTTP/1.1
+DELETE http://localhost:3000/teams/602daad612d3182dc04f8050/projects/603215b9a0356b0924c94bdc HTTP/1.1
 
 
 #################################### NOTES ##############################################
 
 # GET ALL NOTES FROM PROJECT
-GET http://localhost:4000/teams/602daad612d3182dc04f8050/projects/60312ffa73acc426af9fe0bf/notes HTTP/1.1
+GET http://localhost:3000/teams/602daad612d3182dc04f8050/projects/60321601a0356b0924c94bde/notes HTTP/1.1
 
 ###
 
 # CREATE NEW NOTE
-POST http://localhost:4000/teams/602daad612d3182dc04f8050/projects/60312ffa73acc426af9fe0bf/notes HTTP/1.1
+POST http://localhost:3000/teams/602daad612d3182dc04f8050/projects/60321601a0356b0924c94bde/notes HTTP/1.1
 Content-Type: application/json
 
 {
@@ -92,7 +144,7 @@ Content-Type: application/json
 ###
 
 # UPDATE NOTE
-PUT http://localhost:4000/teams/602daad612d3182dc04f8050/projects/60312ffa73acc426af9fe0bf/notes/603133d3bd68ce281747ac30 HTTP/1.1
+PUT http://localhost:3000/teams/602daad612d3182dc04f8050/projects/60321601a0356b0924c94bde/notes/6032160da0356b0924c94bdf HTTP/1.1
 Content-Type: application/json
 
 {
@@ -101,6 +153,8 @@ Content-Type: application/json
 
 ###
 
+
 # DELETE NOTE
-DELETE http://localhost:4000/teams/602daad612d3182dc04f8050/projects/60312ffa73acc426af9fe0bf/notes/603133d3bd68ce281747ac30 HTTP/1.1
+DELETE http://localhost:3000/teams/602daad612d3182dc04f8050/projects/60321601a0356b0924c94bde/notes/6032160da0356b0924c94bdf HTTP/1.1
+
 
