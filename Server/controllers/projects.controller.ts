@@ -8,6 +8,7 @@ import deleteProject from '../src/projects/deleteProject';
 
 import updateProjectMembers from '../src/projects/updateProjectMembers';
 import updateProjectStatus from '../src/projects/updateProejctStatus';
+import updateProjectInfo from '../src/projects/updateProjectInfo';
 
 import findProject from '../middleware/findProject';
 import findTeam from '../middleware/findTeam';
@@ -27,8 +28,9 @@ export default class ProjectsController{
 
         this.router.put(`${this.path}/:projectId/members`, findTeam, this.updateProjectMembers);
         this.router.put(`${this.path}/:projectId/status`, findTeam, this.updateProjectStatus);
+        this.router.put(`${this.path}/:projectId/info`, findTeam, this.updateProjectInfo);
 
-        this.router.delete(`${this.path}/:projectId`, findProject, this.deleteProject);
+        this.router.delete(`${this.path}/:projectId`, findTeam, findProject, this.deleteProject);
     }
 
     getSpecifiedProjectFromTeam(req: Request, res: Response){
@@ -49,5 +51,9 @@ export default class ProjectsController{
 
     deleteProject(req: Request, res: Response){
         deleteProject(req,res);
+    }
+
+    updateProjectInfo(req: Request, res: Response){
+        updateProjectInfo(req,res);
     }
 }

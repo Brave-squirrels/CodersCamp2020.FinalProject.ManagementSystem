@@ -58,6 +58,17 @@ content-type: application/json
 
 ###
 
+# UPDATE PROJECT INFO
+PUT http://localhost:4000/teams/602daad612d3182dc04f8050/projects/60320e1348b544024a5dbfa2/info HTTP/1.1
+content-type: application/json
+
+{
+    "projectName": "Changed name",
+    "content": "added content"
+}
+
+###
+
 # DELETE PROJECT 
 DELETE http://localhost:4000/teams/602faee3cc18aa0b4d0d974b/projects/60310726d9b3e01ea2566110 HTTP/1.1
 
