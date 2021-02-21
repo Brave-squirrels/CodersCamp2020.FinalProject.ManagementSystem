@@ -3,18 +3,19 @@ import validateTeam from './validateTeam';
 import { StatusCodes } from 'http-status-codes';
 
 
-const addUser = async(req: Request, res: Response) => {
+
+const changeTeamName = async(req: Request, res: Response) => {
     const { error } = validateTeam(req.body);
     if(error) return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
 
-    const {user, team}  = res.locals
-
-    const newMember = team.members.push({_id: false, userId : user.id, userName : user.name})
-    team.set({members: newMember})
+    const team  = res.locals.team
+    const changedName = req.body.newTeamName
     
+    team.set({teamName: changedName})
+
     await team.save();
     
     return res.status(StatusCodes.OK).send(team);
 }
 
-export default addUser;
+export default changeTeamName;

@@ -1,5 +1,4 @@
 import { Request, Response } from 'express';
-import userModel from '../../models/users.model';
 import { StatusCodes } from 'http-status-codes';
 
 const removeUser = async(req: Request, res: Response) => {

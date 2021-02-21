@@ -15,6 +15,7 @@ const createNewTeam = async(req: Request, res: Response) => {
         teamName: req.body.teamName,
         ownerId : user.id,
         members: [{_id: false, userId : user.id, userName : user.name}],
+        pendingUsers: [],
         projects: [],
         moderatorsId: [user.id],
         description: req.body.description,

@@ -3,7 +3,8 @@ export default interface Team {
     teamName: string,
     ownerId : string,
     members: object,
-    projects: object,
+    pendingUsers: [],
+    projects: [],
     moderatorsId: string[],
     description: string,
     startDate: Date

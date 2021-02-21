@@ -4,32 +4,42 @@ import Team from '../interfaces/team.interface';
 const teamSchema = new mongoose.Schema({
     teamName: {
         type: String,
-        required: true
+        required: true,
+        default: 'Team Name'
     },
     ownerId: {
         type: String,
         required: true
     },
-    usersId: {
-        type: [String],
+    members: {
+        type: [],
         required: true,
+        default: {}
     },
-    projectsId: {
+    pendingUsers: {
         type: [String],
         required: true,
+        default: []
+    },
+    projects: {
+        type: [],
+        required: true,
+        default: []
     },
     moderatorsId: {
         type: [String],
         required: true,
+        default: []
     },
     description: {
         type: String,
         required: true,
+        default: ' '
     },
     startDate: {
         type: Date,
         required: true,
-        default: Date.now,
+        default: Date.now
     }
 });
 
