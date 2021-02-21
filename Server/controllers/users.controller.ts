@@ -4,10 +4,11 @@ import createUser from "../src/users/createUser";
 import getAllUsers from "../src/users/getAllUsers";
 import getUser from "../src/users/getUser";
 import getUserMe from "../src/users/getUserMe";
-import updateUser from "../src/users/updateUser";
 import deleteUser from "../src/users/deleteUser";
 import changePassword from "../src/users/changePassword";
+import changeName from "../src/users/changeName";
 import addProject from "../src/users/addProject";
+import deleteProject from "../src/users/deleteProject";
 import findTeam from "../middleware/findTeam";
 import findProject from "../middleware/findProject";
 import findUser from "../middleware/findUser";
@@ -29,10 +30,11 @@ export default class UserController {
     this.router.get(this.path, this.getAllUsers);
     this.router.get(`${this.path}/:id`, findUser, this.getUser);
     this.router.post(this.path, this.createUser);
-    // this.router.put(`${this.path}/:id`, this.updateUser);
-    this.router.delete(`${this.path}/:id`, this.deleteUser);
+    this.router.post(`${this.path}/project`, auth, this.addProject);
     this.router.put(`${this.path}/password`, auth, this.changePassword);
-    this.router.put(`${this.path}/project`, auth, this.addProject);
+    this.router.put(`${this.path}/name`, auth, this.changeName);
+    this.router.delete(`${this.path}/:id`, this.deleteUser);
+    this.router.delete(`${this.path}/project/:id`, auth, this.deleteProject);
   }
 
   createUser(req: Request, res: Response) {
@@ -51,10 +53,6 @@ export default class UserController {
     getUserMe(req, res);
   }
 
-  updateUser(req: Request, res: Response) {
-    updateUser(req, res);
-  }
-
   deleteUser(req: Request, res: Response) {
     deleteUser(req, res);
   }
@@ -63,7 +61,15 @@ export default class UserController {
     changePassword(req, res);
   }
 
+  changeName(req: Request, res: Response) {
+    changeName(req, res);
+  }
+
   addProject(req: Request, res: Response) {
     addProject(req, res);
+  }
+
+  deleteProject(req: Request, res: Response) {
+    deleteProject(req, res);
   }
 }
