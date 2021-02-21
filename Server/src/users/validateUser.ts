@@ -1,4 +1,4 @@
-const Joi = require("joi");
+import Joi from "joi";
 import User from "../../interfaces/user.interface";
 
 // Validating new user

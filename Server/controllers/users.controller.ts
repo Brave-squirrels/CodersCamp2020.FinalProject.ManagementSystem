@@ -9,7 +9,6 @@ import deleteUser from "../src/users/deleteUser";
 import findTeam from "../middleware/findTeam";
 import findProject from "../middleware/findProject";
 import findUser from "../middleware/findUser";
-import authUser from "../src/auth/authUser";
 
 /**
  * UserControll Class,
@@ -24,17 +23,12 @@ export default class UserController {
   }
 
   public initializeRoutes() {
-    this.router.post(`${this.path}/auth`, this.authUser);
     this.router.get(`${this.path}/me`, auth, this.getUserMe);
     this.router.get(this.path, this.getAllUsers);
     this.router.get(`${this.path}/:id`, findUser, this.getUser);
     this.router.post(this.path, this.createUser);
     this.router.put(`${this.path}/:id`, this.updateUser);
     this.router.delete(`${this.path}/:id`, this.deleteUser);
-  }
-
-  authUser(req: Request, res: Response) {
-    authUser(req, res);
   }
 
   createUser(req: Request, res: Response) {

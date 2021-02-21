@@ -17,7 +17,10 @@ export default async function authUser(req: Request, res: Response) {
       .send("Invalid email or password.");
 
   const validPassword = await bcrypt.compare(req.body.password, user.password);
-  if (!validPassword) return res.status(400).send("Invalid email or password.");
+  if (!validPassword)
+    return res
+      .status(StatusCodes.BAD_REQUEST)
+      .send("Invalid email or password.");
 
   const token = user.generateAuthToken();
   res.send(token);

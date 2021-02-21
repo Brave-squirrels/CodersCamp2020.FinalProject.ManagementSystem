@@ -12,18 +12,21 @@ content-type: application/json
 }
 
 ###
-# ____________________________ USERS ____________________________
+# ____________________________ Authentication ____________________________
 
 ###
 # login
-POST http://localhost:3000/users/auth HTTP/1.1
+POST http://localhost:3000/auth HTTP/1.1
 Content-Type: application/json
 
 {
-    "email": "admin@mail.com",
+    "email": "test@mail.com",
     "password": "12345"
 }
-  
+
+###
+# ____________________________ USERS ____________________________
+ 
 ###
 # get users
 GET http://localhost:3000/users HTTP/1.1
