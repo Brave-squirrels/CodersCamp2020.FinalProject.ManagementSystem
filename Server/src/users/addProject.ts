@@ -6,11 +6,11 @@ import userModel from "../../models/user.model";
 import projectModel from "../../models/projects.model";
 
 const addProject = async (req: Request, res: Response) => {
-  const { error } = validateUser(req.body);
-  if (error)
-    return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
+  // const { error } = validateUser(req.body);
+  // if (error)
+  //   return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
 
-  let user = await userModel.findById(req.params.id);
+  let user = await userModel.findById(req.user._id);
   if (!user) return res.status(StatusCodes.NOT_FOUND).send("User not found");
 
   const project = await projectModel.findById(req.body.projectId);
@@ -18,10 +18,10 @@ const addProject = async (req: Request, res: Response) => {
     return res.status(StatusCodes.NOT_FOUND).send("Project not found");
 
   const projectsArray = user.projects!;
-  let projectExist = projectsArray.includes(req.body.projects);
+  const projectExist = projectsArray.includes(req.body.projects);
   if (projectExist)
     return res
-      .status(StatusCodes.NOT_FOUND)
+      .status(StatusCodes.BAD_REQUEST)
       .send("The project with given ID already exist");
   else projectsArray.push(req.body.projects);
 

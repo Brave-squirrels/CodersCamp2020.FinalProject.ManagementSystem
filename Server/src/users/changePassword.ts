@@ -6,7 +6,6 @@ import validatePassword from "./validatePassword";
 import userModel from "../../models/user.model";
 
 const changePassword = async (req: Request, res: Response) => {
-  console.log("test");
   const { error } = validatePassword(req.body);
   if (error)
     return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
