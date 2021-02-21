@@ -26,7 +26,7 @@ const app = new App([
   new ProjectsController(),
   new UserController(),
   new NotesController(),
-  new AuthController(),
+    new AuthController(),
 ]);
 
 // Express app listen
