@@ -63,7 +63,7 @@ POST http://localhost:3000/users/email HTTP/1.1
 Content-Type: application/json
 
 {
-    "email": "olo.a@wp.pl",
+    "email": "zdvmdstrjlmkestgjr@mhzayt.online",
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDMyMjcxZGJjMmM1NjAxOTA5NmIyMTciLCJpYXQiOjE2MTM5MDc2MzF9.c-rfYIqw-jXZL9834jtusjtSpQq5yeHWXZ_73aQdxX4"
 }
 
