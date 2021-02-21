@@ -6,6 +6,7 @@ import ProjectsController from "../controllers/projects.controller";
 import UserController from "../controllers/users.controller";
 import AuthController from "../controllers/auth.controller";
 
+
 // Creating environment variables
 import "dotenv/config";
 import NotesController from "../controllers/notes.controller";
