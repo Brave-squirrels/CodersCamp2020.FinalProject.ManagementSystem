@@ -69,7 +69,7 @@ DELETE  http://localhost:3000/users/60315ae1f32fb93f2075ea4e HTTP/1.1
 # ____________________________ PROJECTS ____________________________
 
 # GET SPECIFIC PROJECT FROM TEAM
-GET http://localhost:3000/teams/602daad612d3182dc04f8050/projects/603215b9a0356b0924c94bdc HTTP/1.1 
+GET http://localhost:3000/teams/602daad612d3182dc04f8050/projects/60321a53a20b560b1ec1591f HTTP/1.1 
 
 ###
 # CREATE NEW PROJECT IN TEAM
@@ -88,23 +88,21 @@ content-type: application/json
 
 
 # UPDATE MEMBERS IN PROJECT
-PUT http://localhost:3000/teams/602daad612d3182dc04f8050/projects/603215b9a0356b0924c94bdc/members HTTP/1.1
-
+PUT http://localhost:3000/teams/602daad612d3182dc04f8050/projects/60322dad45e83a100382c5a3/members HTTP/1.1
 content-type: application/json
 
 {
-    "members": []
+    "member": {"id": "602e41a034644bbf940bea0b", "role": "Designer", "name": "asda"}
 }
 
 ###
 
 # UPDATE PROJECT STATUS
-PUT http://localhost:3000/teams/602daad612d3182dc04f8050/projects/603215b9a0356b0924c94bdc/status HTTP/1.1
+PUT http://localhost:3000/teams/602daad612d3182dc04f8050/projects/60321a53a20b560b1ec1591f/status HTTP/1.1
 content-type: application/json
 
 {
-    "status": "Done",
-    "name": "nowa name"
+    "status": "Done"
 }
 
 

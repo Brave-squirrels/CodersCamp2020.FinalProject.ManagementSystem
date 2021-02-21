@@ -5,7 +5,6 @@ import ComentsController from "../controllers/comments.controller";
 import ProjectsController from "../controllers/projects.controller";
 import UserController from "../controllers/users.controller";
 
-
 // Creating environment variables
 import "dotenv/config";
 import NotesController from "../controllers/notes.controller";
@@ -27,7 +26,6 @@ const app = new App([
   new UserController(),
   new NotesController(),
 ]);
-
 
 // Express app listen
 app.listen();

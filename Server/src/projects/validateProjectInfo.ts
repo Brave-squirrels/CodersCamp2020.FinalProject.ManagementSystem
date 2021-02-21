@@ -1,12 +1,12 @@
-import Joi from 'joi';
+import Joi from "joi";
 
 const validateProjectInfo = (project: Object) => {
-    const schema = Joi.object({
-        projectName: Joi.string().min(3).max(24),
-        content: Joi.string().max(254)
-    });
+  const schema = Joi.object({
+    projectName: Joi.string().min(3).max(24),
+    content: Joi.string().max(254),
+  });
 
-    return schema.validate(project);
-}
+  return schema.validate(project);
+};
 
 export default validateProjectInfo;
