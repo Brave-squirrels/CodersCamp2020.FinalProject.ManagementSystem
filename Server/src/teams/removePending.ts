@@ -8,8 +8,9 @@ const removePending = async(req: Request, res: Response) => {
     if(error) return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
 
     const {user, team}  = res.locals
+    const pendingArr : [] =  team.pendingUsers
 
-    const userIndex = team.pendingUsers.find(user.id)
+    const userIndex = pendingArr.findIndex(pendingId => pendingId === user.id)
     const pendingUsers = team.pendingUsers.splice(userIndex, 1)
 
     team.set({pendingUsers: pendingUsers})
