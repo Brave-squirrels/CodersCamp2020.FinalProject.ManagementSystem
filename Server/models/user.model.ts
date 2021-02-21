@@ -48,6 +48,10 @@ const userSchema = new mongoose.Schema<User>({
     default: Date.now,
   },
   isAdmin: Boolean,
+  isVerified: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 userSchema.methods.generateAuthToken = function () {

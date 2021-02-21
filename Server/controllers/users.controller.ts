@@ -9,6 +9,8 @@ import changePassword from "../src/users/changePassword";
 import changeName from "../src/users/changeName";
 import addProject from "../src/users/addProject";
 import deleteProject from "../src/users/deleteProject";
+import confirmation from "../src/users/confirmation";
+import sendEmailToUser from "../src/users/sendEmail";
 import findTeam from "../middleware/findTeam";
 import findProject from "../middleware/findProject";
 import findUser from "../middleware/findUser";
@@ -29,7 +31,9 @@ export default class UserController {
     this.router.get(`${this.path}/me`, auth, this.getUserMe);
     this.router.get(this.path, this.getAllUsers);
     this.router.get(`${this.path}/:id`, findUser, this.getUser);
-    this.router.post(this.path, this.createUser);
+    this.router.get(`${this.path}/confirmation/:token`, this.confirmation);
+    this.router.post(`${this.path}/create`, this.createUser);
+    this.router.post(`${this.path}/email`, this.sendEmailToUser);
     this.router.post(`${this.path}/project`, auth, this.addProject);
     this.router.put(`${this.path}/password`, auth, this.changePassword);
     this.router.put(`${this.path}/name`, auth, this.changeName);
@@ -71,5 +75,13 @@ export default class UserController {
 
   deleteProject(req: Request, res: Response) {
     deleteProject(req, res);
+  }
+
+  confirmation(req: Request, res: Response) {
+    confirmation(req, res);
+  }
+
+  sendEmailToUser(req: Request, res: Response) {
+    sendEmailToUser(req, res);
   }
 }
