@@ -10,6 +10,11 @@
     "format": "prettier --write .",
     "test": "jest"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
   "dependencies": {
     "bcrypt": "^5.0.0",
     "config": "^3.3.3",
