@@ -13,8 +13,8 @@ export const validateProjectMembers = (member: Object) => {
             ROLES.NORMAL
           )
           .required(),
-      delete: Joi.boolean(),
-    })
+        }),
+        delete: Joi.boolean(),
   })
   return schema.validate(member);
 };
@@ -30,9 +30,9 @@ export const firstPartAuth = (member: Object) => {
           ROLES.NORMAL
         )
         .required(),
+        name: Joi.string().min(3).max(24)
+      }),
       delete: Joi.boolean(),
-      name: Joi.string().min(3).max(24)
-    })
   })
     
   return schema.validate(member);

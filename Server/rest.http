@@ -92,7 +92,8 @@ PUT http://localhost:3000/teams/602daad612d3182dc04f8050/projects/60322dad45e83a
 content-type: application/json
 
 {
-    "member": {"id": "602e41a034644bbf940bea0b", "role": "Designer", "name": "asda"}
+    "member": {"id": "60324aea104714127c8f418b", "role": "Designer", "name": "asda"},
+    "delete": true
 }
 
 ###

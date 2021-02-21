@@ -6,12 +6,10 @@ import userModel from '../../models/user.model';
 const updateProjectMembers = async (req: Request, res: Response) => {
   const { error } = firstPartAuth(req.body);
   if(error) return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
-
-  const user = userModel.findById(req.body.member.id);
+  
+  const user = await userModel.findById(req.body.member.id);
   if(!user)
     return res.status(StatusCodes.BAD_REQUEST).send('Invalid user');
-  user.name;
-  const destructUser: any = user;
 
   const project = res.locals.project;
 
@@ -19,27 +17,36 @@ const updateProjectMembers = async (req: Request, res: Response) => {
   if(!req.body.delete){
     // Check if member already exists
     project.members.forEach((member: any) => {
-      if(member.id === destructUser.id) return res.status(StatusCodes.BAD_REQUEST).send('Member already exists');
+      if(member.id == user.id) 
+        return res.status(StatusCodes.BAD_REQUEST).send('Member already exists');
     })
 
-    const newMember = req.body.member;
-    newMember.name = destructUser.name;
-    console.log(newMember)
-    const { error } = validateProjectMembers(newMember);
+    req.body.member.name = user.name;
+
+    const { error } = validateProjectMembers(req.body);
     if(error) return res.status(StatusCodes.BAD_REQUEST).send('Invalid user');
 
-    project.members.push(newMember);
+    // Update User Projects Array
+    user.projects?.push({ id: project.id, name: project.projectName});
+
+    project.members.push(req.body.member);
   }
   // Delete Member
   else{
     project.members.forEach((member: any, i: number) => {
-      if(member.id === destructUser.id){
-        project.splice(i, 1);
-      }
+      if(member.id == user.id)
+        project.members.splice(i, 1);
+    })
+
+    // Delete project from users projects array
+    user.projects?.forEach((userProject: any, i: number) => {
+      if(userProject.id == project.id)
+        user.projects?.splice(i, 1);
     })
   }
 
   await project.save();
+  await user.save();
   return res.status(StatusCodes.OK).send(project);
 };
 
