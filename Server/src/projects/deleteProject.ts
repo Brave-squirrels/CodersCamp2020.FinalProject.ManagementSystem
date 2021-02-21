@@ -1,13 +1,13 @@
-import { Request, Response } from 'express';
-import projectModel from '../../models/projects.model';
-import { StatusCodes } from 'http-status-codes';
+import { Request, Response } from "express";
+import projectModel from "../../models/projects.model";
+import { StatusCodes } from "http-status-codes";
 
-const deleteProject = async(req: Request, res: Response) => {
-    const project = new projectModel(res.locals.project);
+const deleteProject = async (req: Request, res: Response) => {
+  const project = new projectModel(res.locals.project);
 
-    await project.delete();
+  await project.delete();
 
-    return res.status(StatusCodes.OK).send(project);
-}
+  return res.status(StatusCodes.OK).send(project);
+};
 
 export default deleteProject;

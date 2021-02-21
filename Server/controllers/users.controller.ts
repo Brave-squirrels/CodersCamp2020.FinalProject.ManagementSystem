@@ -6,10 +6,11 @@ import getUser from "../src/users/getUser";
 import getUserMe from "../src/users/getUserMe";
 import updateUser from "../src/users/updateUser";
 import deleteUser from "../src/users/deleteUser";
+import changePassword from "../src/users/changePassword";
+import addProject from "../src/users/addProject";
 import findTeam from "../middleware/findTeam";
 import findProject from "../middleware/findProject";
 import findUser from "../middleware/findUser";
-import changePassword from "../src/users/changePassword";
 
 /**
  * UserControll Class,
@@ -31,6 +32,7 @@ export default class UserController {
     // this.router.put(`${this.path}/:id`, this.updateUser);
     this.router.delete(`${this.path}/:id`, this.deleteUser);
     this.router.put(`${this.path}/password`, auth, this.changePassword);
+    this.router.put(`${this.path}/project`, auth, this.addProject);
   }
 
   createUser(req: Request, res: Response) {
@@ -59,5 +61,9 @@ export default class UserController {
 
   changePassword(req: Request, res: Response) {
     changePassword(req, res);
+  }
+
+  addProject(req: Request, res: Response) {
+    addProject(req, res);
   }
 }
