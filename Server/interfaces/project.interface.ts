@@ -1,11 +1,12 @@
-enum STATUS {
-    INPROGRESS = "InProgress",
-    DONE = "Done",
-    ABANDONED = "ABANDONED"
-}
+import STATUS from '../enums/projectStatus';
+import Member from './projectMember.interface';
 
-export default interface Project {
-    name: string,
-    teamId: string,
+
+export interface Project {
+    projectName: string,
+    owner: string,
+    team: string,
+    members?: Member[]
+    status?: STATUS,
     date?: Date,
 }

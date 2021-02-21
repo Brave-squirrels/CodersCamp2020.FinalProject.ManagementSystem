@@ -1,21 +1,19 @@
 import { Request, Response } from 'express';
-import validateProject from './validateProject';
-import teamModel from '../../models/teams.model';
-import findTeam from '../../middleware/findTeam';
 import projectModel from '../../models/projects.model';
 import { StatusCodes } from 'http-status-codes';
-import Project from '../../interfaces/project.interface';
+import { Project } from '../../interfaces/project.interface';
+import validateProject from './validateProject';
 
 const createNewProject = async(req: Request, res: Response) => {
-    const { error } = validateProject(req.body);
-    if(error) return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
-
     const team = res.locals.team;
 
-    const projectData: Project = {
-        name: req.body.name,
-        teamId: team._id
-    }
+    const projectData: Project = { 
+        team: { id: team._id, name: team.name},
+        ...req.body
+    };
+
+    const { error } = validateProject(projectData);
+    if(error) return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
 
     const newProject = new projectModel(projectData);
 

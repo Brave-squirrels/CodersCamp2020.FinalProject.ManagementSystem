@@ -11,20 +11,157 @@ content-type: application/json
     "content": "check2" 
 }
 
-
-############################ PROJECTS ##############################
-
-GET http://localhost:4000/projects/602daad612d3182dc04f8050 HTTP/1.1 
+###
+# ____________________________ Authentication ____________________________
 
 ###
+# login
+POST http://localhost:3000/auth HTTP/1.1
+Content-Type: application/json
 
-POST http://localhost:4000/projects/602daad612d3182dc04f8050 HTTP/1.1
+{
+    "email": "test@mail.com",
+    "password": "12345"
+}
+
+###
+# ____________________________ USERS ____________________________
+ 
+###
+# get users
+GET http://localhost:3000/users HTTP/1.1
+
+
+###
+# get user
+GET http://localhost:3000/users/60300584d40f49419830e729 HTTP/1.1
+
+
+###
+# get me
+GET http://localhost:3000/users/me HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDMxNWMxOGIyODJhYjA3ODBjYTc5ZGQiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2MTM4NDkzMDV9.awUM1x-oKEsyfYX3qp2dwt6eY_g4KUrsPQz5FtMkh6A
+
+###
+# create users
+POST http://localhost:3000/users HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "testUser",
+    "email": "test@mail.com",
+    "password": "12345"
+}
+
+###
+# update users
+PUT http://localhost:3000/users/60315c18b282ab0780ca79dd HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Updated",
+    "password": "1234",
+    "email": "jack@mail.pl"
+}
+
+###
+# delete users
+DELETE  http://localhost:3000/users/60315ae1f32fb93f2075ea4e HTTP/1.1
+
+###
+# ____________________________ PROJECTS ____________________________
+
+# GET SPECIFIC PROJECT FROM TEAM
+GET http://localhost:3000/teams/602daad612d3182dc04f8050/projects/603215b9a0356b0924c94bdc HTTP/1.1 
+
+###
+# CREATE NEW PROJECT IN TEAM
+POST http://localhost:3000/teams/602daad612d3182dc04f8050/projects HTTP/1.1
 content-type: application/json
 
 {
-    "name": "through middleware"
+    "projectName": "nowy testowy projekt",
+    "owner": {
+        "id": "602e41a034644bbf940bea0b",
+        "name": "Michauuu"
+    }
 }
 
 ###
 
+
+# UPDATE MEMBERS IN PROJECT
+PUT http://localhost:3000/teams/602daad612d3182dc04f8050/projects/603215b9a0356b0924c94bdc/members HTTP/1.1
+
+content-type: application/json
+
+{
+    "members": []
+}
+
+###
+
+<<<<<<< HEAD
 DELETE http://localhost:4000/projects/602daad612d3182dc04f8050/602e7a0c3eb4c40fcb405ec5 HTTP/1.1
+=======
+# UPDATE PROJECT STATUS
+PUT http://localhost:3000/teams/602daad612d3182dc04f8050/projects/603215b9a0356b0924c94bdc/status HTTP/1.1
+content-type: application/json
+
+{
+    "status": "Done",
+    "name": "nowa name"
+}
+
+
+###
+
+# UPDATE PROJECT INFO
+PUT http://localhost:3000/teams/602daad612d3182dc04f8050/projects/603215b9a0356b0924c94bdc/info HTTP/1.1
+content-type: application/json
+
+{
+    "projectName": "Changed name",
+    "content": "added content"
+}
+
+###
+
+# DELETE PROJECT 
+DELETE http://localhost:3000/teams/602daad612d3182dc04f8050/projects/603215b9a0356b0924c94bdc HTTP/1.1
+
+
+#################################### NOTES ##############################################
+
+# GET ALL NOTES FROM PROJECT
+GET http://localhost:3000/teams/602daad612d3182dc04f8050/projects/60321601a0356b0924c94bde/notes HTTP/1.1
+
+###
+
+# CREATE NEW NOTE
+POST http://localhost:3000/teams/602daad612d3182dc04f8050/projects/60321601a0356b0924c94bde/notes HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Test Note",
+    "author": {"name": "Michal", "id": "602e41a034644bbf940bea0b"}
+}
+
+###
+
+# UPDATE NOTE
+PUT http://localhost:3000/teams/602daad612d3182dc04f8050/projects/60321601a0356b0924c94bde/notes/6032160da0356b0924c94bdf HTTP/1.1
+Content-Type: application/json
+
+{
+    "content": "updated contentasdwegsdgfg"
+}
+
+###
+
+
+# DELETE NOTE
+DELETE http://localhost:3000/teams/602daad612d3182dc04f8050/projects/60321601a0356b0924c94bde/notes/6032160da0356b0924c94bdf HTTP/1.1
+
+
+>>>>>>> a4005086b105f8b1d97734240e3d563234ee5c2f
