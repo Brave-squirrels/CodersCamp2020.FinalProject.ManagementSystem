@@ -176,7 +176,7 @@ Content-Type: application/json
 
 #GET TEAM
 
-GET http://localhost:3000/teams/603294d738676a34d8bc7625 HTTP/1.1
+GET http://localhost:3000/teams/60337d457703b81ee85fd5ed HTTP/1.1
 
 ###
 
@@ -194,7 +194,7 @@ Content-Type: application/json
 
 #ADDING USER TO TEAM
 
-PUT http://localhost:3000/teams/6032eecc794fc326b4861e43/adduser HTTP/1.1
+PUT http://localhost:3000/teams/60337d457703b81ee85fd5ed/adduser HTTP/1.1
 Content-Type: application/json
 
 {
@@ -207,7 +207,7 @@ Content-Type: application/json
 
 #ADDING USER TO PENDING
 
-PUT http://localhost:3000/teams/6032eecc794fc326b4861e43/addpending HTTP/1.1
+PUT http://localhost:3000/teams/60337d457703b81ee85fd5ed/addpending HTTP/1.1
 Content-Type: application/json
 
 {
