@@ -1,47 +1,82 @@
-import express, { Request, Response } from 'express';
-import getSpecifiedProjectFromTeam from '../src/projects/getSpecifiedProjectFromTeam';
-import getAllProjectsFromTeam from '../src/projects/getAllProjectsFromTeam';
-import createNewProject from '../src/projects/createNewProject';
-import deleteProject from '../src/projects/deleteProject';
-// import updateProject from '../src/projects/updateProject';
-import findTeam from '../middleware/findTeam';
+import express, { Request, Response } from "express";
 
-export default class ProjectsController{
-    public path = '/projects';
-    public router = express.Router();
+import getSpecifiedProjectFromTeam from "../src/projects/getSpecifiedProjectFromTeam";
 
-    constructor(){
-        this.initializeRoutes();
-    }
+import createNewProject from "../src/projects/createNewProject";
 
-    initializeRoutes(){
-        this.router.get(`${this.path}/:teamId`, findTeam, this.getAllProjectsFromTeam);
-        this.router.get(`${this.path}/:teamId/:id`, findTeam, this.getSpecifiedProjectFromTeam);
+import deleteProject from "../src/projects/deleteProject";
 
-        this.router.post(`${this.path}/:teamId`, findTeam, this.createNewProject);
+import updateProjectMembers from "../src/projects/updateProjectMembers";
+import updateProjectStatus from "../src/projects/updateProjectStatus";
+import updateProjectInfo from "../src/projects/updateProjectInfo";
 
-        // this.router.put(`${this.path}/:id`, this.updateProject)
+import findProject from "../middleware/findProject";
+import findTeam from "../middleware/findTeam";
 
-        this.router.delete(`${this.path}/:id`, this.deleteProject);
-    }
+export default class ProjectsController {
+  public path = "/teams/:teamId/projects";
+  public router = express.Router();
 
-    getAllProjectsFromTeam(req: Request, res: Response){
-        getAllProjectsFromTeam(req,res);
-    }
+  constructor() {
+    this.initializeRoutes();
+  }
 
-    getSpecifiedProjectFromTeam(req: Request, res: Response){
-        getSpecifiedProjectFromTeam(req,res);
-    }
+  initializeRoutes() {
+    this.router.get(
+      `${this.path}/:projectId`,
+      findTeam,
+      findProject,
+      this.getSpecifiedProjectFromTeam
+    );
 
-    createNewProject(req: Request, res: Response){
-        createNewProject(req,res);
-    }
+    this.router.post(`${this.path}`, findTeam, this.createNewProject);
 
-    // updateProject(req: Request, res: Response){
-    //     updateProject(req,res);
-    // }
+    this.router.put(
+      `${this.path}/:projectId/members`,
+      findTeam,
+      findProject,
+      this.updateProjectMembers
+    );
+    this.router.put(
+      `${this.path}/:projectId/status`,
+      findTeam,
+      this.updateProjectStatus
+    );
+    this.router.put(
+      `${this.path}/:projectId/info`,
+      findTeam,
+      this.updateProjectInfo
+    );
 
-    deleteProject(req: Request, res: Response){
-        deleteProject(req,res);
-    }
+    this.router.delete(
+      `${this.path}/:projectId`,
+      findTeam,
+      findProject,
+      this.deleteProject
+    );
+  }
+
+  getSpecifiedProjectFromTeam(req: Request, res: Response) {
+    getSpecifiedProjectFromTeam(req, res);
+  }
+
+  createNewProject(req: Request, res: Response) {
+    createNewProject(req, res);
+  }
+
+  updateProjectMembers(req: Request, res: Response) {
+    updateProjectMembers(req, res);
+  }
+
+  updateProjectStatus(req: Request, res: Response) {
+    updateProjectStatus(req, res);
+  }
+
+  deleteProject(req: Request, res: Response) {
+    deleteProject(req, res);
+  }
+
+  updateProjectInfo(req: Request, res: Response) {
+    updateProjectInfo(req, res);
+  }
 }

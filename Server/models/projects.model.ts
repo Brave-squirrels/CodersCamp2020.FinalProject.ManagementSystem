@@ -1,60 +1,98 @@
-import mongoose from 'mongoose';
-import { Project, STATUS } from '../interfaces/project.interface';
-import teamModel from '../models/teams.model';
+import mongoose from "mongoose";
+import { Project } from "../interfaces/project.interface";
+import STATUS from "../enums/projectStatus";
+import ROLES from "../enums/projectRoles";
 
 const projectSchema = new mongoose.Schema({
-    projectName: {
+  projectName: {
+    type: String,
+    minlength: 3,
+    maxlength: 24,
+    required: true,
+  },
+  content: {
+    type: String,
+    minlength: 0,
+    maxlength: 254,
+    default: null,
+  },
+  team: {
+    id: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+    },
+    name: {
+      type: String,
+      minlength: 3,
+      maxlength: 24,
+      required: true,
+    },
+  },
+  date: {
+    type: Date,
+    required: true,
+    default: Date.now,
+  },
+  status: {
+    type: STATUS,
+    required: true,
+    default: STATUS.INPROGRESS,
+  },
+  owner: {
+    id: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+    },
+    name: {
+      type: String,
+      minlength: 3,
+      maxlength: 24,
+      required: true,
+    },
+    // add ref to user
+  },
+  members: [
+    {
+      _id: false,
+      name: {
         type: String,
         minlength: 3,
         maxlength: 24,
         required: true,
-    },
-    teamId: {
+      },
+      id: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: teamModel,
+        requried: true,
+      },
+      role: {
+        type: ROLES,
         required: true,
+      },
     },
-    date: {
-        type: Date,
-        required: true,
-        default: Date.now,
-    },
-    status: {
-        type: STATUS,
-        required: true,
-        default: STATUS.INPROGRESS
-    },
-    ownerId: {
-        type: mongoose.Schema.Types.ObjectId, 
-        // add ref to user
-        required: true,
-    },
-    normalUsersId: {
-        type: [{ type: mongoose.Schema.Types.ObjectId  /*add ref to user*/}],
-        default: []
-    },
-    designersId: {
-        type: [{ type: mongoose.Schema.Types.ObjectId /*add ref to user*/}],
-        default: [""]
-    },
-    frontendDevsId: {
-        type: [{ type: mongoose.Schema.Types.ObjectId /*add ref to user*/}],
-        default: []
-    },
-    backendDevsId: {
-        type: [{ type: mongoose.Schema.Types.ObjectId /*add ref to user*/}],
-        default: []
-    },
-    scrumMasterId: {
+  ],
+  tasks: [
+    {
+      _id: false,
+      id: {
         type: mongoose.Schema.Types.ObjectId,
-        // add ref to user
+        required: true,
+      },
     },
-    qaEngineerId: {
+  ],
+  notes: [
+    {
+      _id: false,
+      id: {
         type: mongoose.Schema.Types.ObjectId,
-        // add ref to user
-    }
+        required: true,
+      },
+    },
+  ],
 });
 
-const projectModel = mongoose.model<Project & mongoose.Document>('Project', projectSchema);
+const projectModel = mongoose.model<Project & mongoose.Document>(
+  "Project",
+  projectSchema
+);
 
 export default projectModel;
