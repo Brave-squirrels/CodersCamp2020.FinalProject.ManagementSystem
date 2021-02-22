@@ -8,20 +8,16 @@ const addUserToTeam = async (req: Request, res: Response) => {
 
   const { user, team } = res.locals;
 
-  const pendingUsers: string[] = team.pendingUsers;
+  //Remove user from pending
+  team.pendingUsers.forEach((pendingUser: any, i: number) => {
+    if (pendingUser === req.body.id) team.pendingUsers.splice(i, 1);
+  });
 
-  const userIndex = pendingUsers.findIndex((n) => n === req.body.id);
-  pendingUsers.splice(userIndex, 1);
+  //Add user to team
+  team.members.push({ _id: false, userId: user.id, userName: user.name });
 
-  const teamMembers = team.members;
-  teamMembers.push({ _id: false, userId: user.id, userName: user.name });
-  team.set({ members: teamMembers });
-  team.set({ pendingUsers: pendingUsers });
-
-  const userTeams = user.teams;
-  userTeams.push({ _id: false, id: team.id, name: team.teamName });
-
-  user.set({ teams: userTeams });
+  //Add team to user array
+  user.teams.push({ _id: false, id: team.id, name: team.teamName });
 
   await team.save();
   await user.save();

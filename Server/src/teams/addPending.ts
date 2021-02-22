@@ -1,17 +1,12 @@
 import { Request, Response } from "express";
-import validateTeam from "./validateTeam";
 import { StatusCodes } from "http-status-codes";
 
 const addPending = async (req: Request, res: Response) => {
-  // console.log(req.body.id)
-
   // const { error } = validateTeam(req.body);
   // if(error) return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
-  const team = res.locals.team;
-  const pendingUsers = team.pendingUsers;
-  pendingUsers.push(req.body.id);
 
-  team.set({ pendingUsers: pendingUsers });
+  const team = res.locals.team;
+  team.pendingUsers.push(req.body.id);
 
   await team.save();
 

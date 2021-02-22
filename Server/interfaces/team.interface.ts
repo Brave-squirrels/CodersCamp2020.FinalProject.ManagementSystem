@@ -1,8 +1,10 @@
-export type members = [{
-  _id: boolean;
-  userId: string;
-  userName: string;
-}];
+export type members = [
+  {
+    _id: boolean;
+    userId: string;
+    userName: string;
+  }
+];
 
 export default interface Team {
   teamName: string;

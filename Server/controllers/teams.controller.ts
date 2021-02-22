@@ -4,7 +4,7 @@ import deleteTeam from "../src/teams/deleteTeam";
 import findTeam from "../middleware/findTeam";
 import findUser from "../middleware/findUser";
 import findUserByBody from "../middleware/findUserByBody";
-import removeUser from '../src/teams/removeUser';
+import removeUser from "../src/teams/removeUser";
 import addUserToTeam from "../src/teams/addUserToTeam";
 import removePermissions from "../src/teams/removePermissions";
 import addPermissions from "../src/teams/addPermissions";
@@ -25,7 +25,7 @@ export default class TeamController {
   public initializeRoutes() {
     this.router.post(`${this.path}/:id`, findUser, this.createNewTeam); //WORKING
 
-    this.router.delete(`${this.path}/:teamId`, findTeam, this.deleteTeam); 
+    this.router.delete(`${this.path}/:teamId`, findTeam, this.deleteTeam); // IT WOULD BE LAST
 
     this.router.get(`${this.path}/:teamId`, findTeam, this.getTeam); //WORKING
 
@@ -42,39 +42,41 @@ export default class TeamController {
       this.addPending
     ); //WORKING
 
-    this.router.put(`${this.path}/:teamId/remove/user`, findUserByBody, findTeam, this.removeUser); //WORKING
+    this.router.put(
+      `${this.path}/:teamId/removeUser`,
+      findUserByBody,
+      findTeam,
+      this.removeUser
+    ); //WORKING
 
     this.router.put(
-      `${this.path}/:teamId/:userId/add-permissions`,
-      findUser,
+      `${this.path}/:teamId/addPermissions`,
       findTeam,
-      this.addPermissions
+      this.addPermissions //WORKING
     );
 
     this.router.put(
-      `${this.path}/:teamId/:userId/remove-permissions`,
-      findUser,
+      `${this.path}/:teamId/removePermissions`,
       findTeam,
-      this.removePermissions
+      this.removePermissions //WORKING
     );
 
     this.router.put(
-      `${this.path}/:teamId/change-description`,
+      `${this.path}/:teamId/changeDescription`,
       findTeam,
-      this.changeDescription
+      this.changeDescription //WORKING
     );
 
     this.router.put(
-      `${this.path}/:teamId/change-name`,
+      `${this.path}/:teamId/changeTeamName`,
       findTeam,
-      this.changeTeamName
+      this.changeTeamName //WORKING
     );
 
     this.router.put(
-      `${this.path}/:teamId/remove-pending`,
+      `${this.path}/:teamId/removePending`,
       findTeam,
-      findUser,
-      this.removePending
+      this.removePending //WORKING
     );
   }
 
@@ -94,8 +96,8 @@ export default class TeamController {
     addUserToTeam(req, res);
   }
 
-  removeUser(req: Request, res: Response){
-      removeUser(req,res);
+  removeUser(req: Request, res: Response) {
+    removeUser(req, res);
   }
   addPermissions(req: Request, res: Response) {
     addPermissions(req, res);

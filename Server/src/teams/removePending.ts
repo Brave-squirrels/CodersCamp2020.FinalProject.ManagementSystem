@@ -1,19 +1,17 @@
 import { Request, Response } from "express";
-import validateTeam from "./validateTeam";
 import { StatusCodes } from "http-status-codes";
 
 const removePending = async (req: Request, res: Response) => {
-  const { error } = validateTeam(req.body);
-  if (error)
-    return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
+  // const { error } = validateTeam(req.body);
+  // if (error)
+  //   return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
 
-  const { user, team } = res.locals;
-  const pendingArr: [] = team.pendingUsers;
+  const team = res.locals.team;
 
-  const userIndex = pendingArr.findIndex((pendingId) => pendingId === user.id);
-  const pendingUsers = team.pendingUsers.splice(userIndex, 1);
-
-  team.set({ pendingUsers: pendingUsers });
+  //Remove user from pending
+  team.pendingUsers.forEach((pendingUser: any, i: number) => {
+    if (pendingUser == req.body.id) team.pendingUsers.splice(i, 1);
+  });
 
   await team.save();
 

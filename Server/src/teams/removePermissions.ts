@@ -3,19 +3,16 @@ import validateTeam from "./validateTeam";
 import { StatusCodes } from "http-status-codes";
 
 const removePermissions = async (req: Request, res: Response) => {
-  const { error } = validateTeam(req.body);
-  if (error)
-    return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
+  // const { error } = validateTeam(req.body);
+  // if (error)
+  //   return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
 
-  const { user, team } = res.locals;
+  const team = res.locals.team;
 
-  const permissionsArr: [] = team.moderators;
-  const userIndex = permissionsArr.findIndex(
-    (moderatorId) => moderatorId === user.id
-  );
-  const usersWithPermissions = team.moderators.splice(userIndex, 1);
-
-  team.set({ moderators: usersWithPermissions });
+  //Remove user from pending
+  team.moderatorsId.forEach((moderator: any, i: number) => {
+    if (moderator == req.body.id) team.moderatorsId.splice(i, 1);
+  });
 
   await team.save();
 
