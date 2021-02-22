@@ -6,7 +6,7 @@ const deleteTask = async (req: Request, res: Response) => {
     const task = await new taskModel(res.locals.task);
 
     const project = res.locals.project;
-
+ 
     const index = project.tasks.map((el:any) => {return el.id}).indexOf(task._id);
 
     project.tasks.splice(index,1);
@@ -17,5 +17,5 @@ const deleteTask = async (req: Request, res: Response) => {
     
     return res.status(StatusCodes.OK).send([task, project]);
 }
-
+ 
 export default deleteTask;
