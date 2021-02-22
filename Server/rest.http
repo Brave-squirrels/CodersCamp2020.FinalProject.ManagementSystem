@@ -205,7 +205,7 @@ POST http://localhost:3000/teams/6033a1b028500c3c309e919e/projects/60320e1348b54
 content-type: application/json
 
 {
-    "name": "TestTask",
+    "name": "TestTask2",
     "content": "TestContent",
     "deadlineDate": "12/12/2001"
 }
@@ -215,5 +215,23 @@ content-type: application/json
 # DELETE TASK
 
 DELETE http://localhost:3000/teams/6033a1b028500c3c309e919e/projects/60320e1348b544024a5dbfa2/tasks/6033c3271a688a07c41cc1da HTTP/1.1
+
+### GET ONE TASK
+
+GET http://localhost:3000/teams/6033a1b028500c3c309e919e/projects/60320e1348b544024a5dbfa2/tasks/6033f024a11c782e84460b0b HTTP/1.1
+
+
+### GET ALL TASKS IN CURRENT PROJECT
+
+GET http://localhost:3000/teams/6033a1b028500c3c309e919e/projects/60320e1348b544024a5dbfa2/tasks HTTP/1.1
+
+### UPDATE TASK INFO
+
+PUT http://localhost:3000/teams/6033a1b028500c3c309e919e/projects/60320e1348b544024a5dbfa2/tasks/6033fc44dfe9d63898d79bae HTTP/1.1
+content-type: application/json
+
+{
+    "name": "TestTask2Updated2"
+}
 
 #
