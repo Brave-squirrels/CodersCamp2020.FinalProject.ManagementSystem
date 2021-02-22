@@ -8,8 +8,8 @@ const addPermissions = async(req: Request, res: Response) => {
     const { error } = validateTeam(req.body);
     if(error) return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
 
-    const {user, team}  = res.locals
-    const usersWithPermissions = team.moderators.push(user.id)
+    const team  = res.locals
+    const usersWithPermissions = team.moderators.push(req.body.id)
     
     team.set({moderators: usersWithPermissions})
 

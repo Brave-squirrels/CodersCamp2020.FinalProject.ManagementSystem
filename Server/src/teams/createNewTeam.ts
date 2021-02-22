@@ -6,18 +6,20 @@ import Team from '../../interfaces/team.interface';
 
 
 const createNewTeam = async(req: Request, res: Response) => {
+    console.log(res.locals.user)
     const { error } = validateTeam(req.body);
     if(error) return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
 
+    
     const user = res.locals.user;
 
     const teamData: Team = {
         teamName: req.body.teamName,
-        ownerId : user.id,
+        ownerId : user._id,
         members: [{_id: false, userId : user.id, userName : user.name}],
         pendingUsers: [],
         projects: [],
-        moderatorsId: [user.id],
+        moderatorsId: [user._id],
         description: req.body.description,
         startDate: req.body.date
     }

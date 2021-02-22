@@ -3,7 +3,7 @@ import createNewTeam from '../src/teams/createNewTeam';
 import deleteTeam from '../src/teams/deleteTeam';
 import findTeam from '../middleware/findTeam';
 import findUser from '../middleware/findUser';
-import removeUser from '../src/teams/removeUser';
+// import removeUser from '../src/teams/removeUser';
 import addUserToTeam from '../src/teams/addUserToTeam';
 import removePermissions from '../src/teams/removePermissions';
 import addPermissions from '../src/teams/addPermissions';
@@ -14,7 +14,7 @@ import addPending from '../src/teams/addPending';
 import removePending from '../src/teams/removePending';
 
 
-export default class TeamController{
+export default class TeamController {
     public path = '/teams';
     public router = express.Router();
 
@@ -22,17 +22,17 @@ export default class TeamController{
         this.initializeRoutes();
     }
 
-    initializeRoutes(){
+    public initializeRoutes(){
         
-        this.router.post(`${this.path}/:userId`, findUser, this.createNewTeam);
+        this.router.post(`${this.path}/:id`, findUser, this.createNewTeam);
         
         this.router.delete(`${this.path}/:teamId`, findTeam, this.deleteTeam);
        
         this.router.get(`${this.path}/:teamId`, findTeam, this.getTeam); 
 
-        this.router.put(`${this.path}/:teamId/:userId`, findUser, findTeam, this.addUserToTeam);
-       
-        this.router.put(`${this.path}/:teamId/:userId/remove-user`, findUser, findTeam, this.removeUser); //FIX BUG HERE
+        this.router.put(`${this.path}/:teamId/adduser`, findTeam, findUser,  this.addUserToTeam);
+        this.router.put(`${this.path}/:teamId/addpending`, findTeam, this.addPending);
+        // this.router.put(`${this.path}/:teamId/:userId/remove-user`, findUser, findTeam, this.removeUser); //FIX BUG HERE
         
         this.router.put(`${this.path}/:teamId/:userId/add-permissions`, findUser, findTeam, this.addPermissions);
        
@@ -43,10 +43,9 @@ export default class TeamController{
         this.router.put(`${this.path}/:teamId/change-name`, findTeam, this.changeTeamName);
                 
 
-        this.router.put(`${this.path}/:teamId/:userId/add-pending`, findTeam, findUser, this.addPending);
-//________________________________________________________________
+        
 
-        this.router.put(`${this.path}/:teamId/:userId/remove-pending`, findTeam, findUser, this.removePending);
+        this.router.put(`${this.path}/:teamId/remove-pending`, findTeam, findUser, this.removePending);
 
     }
 
@@ -66,9 +65,9 @@ export default class TeamController{
         addUserToTeam(req,res);
     }
 
-    removeUser(req: Request, res: Response){
-        removeUser(req,res);
-    }
+    // removeUser(req: Request, res: Response){
+    //     removeUser(req,res);
+    // }
     addPermissions(req: Request, res: Response){
         addPermissions(req,res);
     }
