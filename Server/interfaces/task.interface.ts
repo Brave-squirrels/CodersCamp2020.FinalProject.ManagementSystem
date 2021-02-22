@@ -7,5 +7,5 @@ export interface Task {
   startDate?: Date;
   status?: string;
   commentsId?: string[];
-  usersID?: Member[];
+  members?: Member[];
 }

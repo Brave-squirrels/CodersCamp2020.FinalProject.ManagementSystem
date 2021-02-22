@@ -38,7 +38,7 @@ const taskSchema = new mongoose.Schema({
     required: true,
     default: [],
   },
-  usersId: [
+  members: [
     {
       _id: false,
       name: {

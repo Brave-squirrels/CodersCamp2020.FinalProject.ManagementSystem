@@ -198,6 +198,8 @@ Content-Type: application/json
 # DELETE NOTE
 DELETE http://localhost:3000/teams/602daad612d3182dc04f8050/projects/60321a53a20b560b1ec1591f/notes/6032cab3c9b9c91bc1408a5d HTTP/1.1
 
+
+
 ############################## TASKS ######################################
 
 # CREATE NEW TASK IN PROJECT
@@ -232,6 +234,26 @@ content-type: application/json
 
 {
     "name": "TestTask2Updated2"
+}
+
+### UPDATE TASK USERS
+
+PUT http://localhost:3000/teams/6033a1b028500c3c309e919e/projects/60320e1348b544024a5dbfa2/tasks/6033fc44dfe9d63898d79bae/members
+content-type: application/json
+
+{
+    "member": {"id": "60324aea104714127c8f418b", "role": "Designer", "name": "asda"},
+    "delete": false
+}
+
+### DELETE TASK USERS
+
+PUT http://localhost:3000/teams/6033a1b028500c3c309e919e/projects/60320e1348b544024a5dbfa2/tasks/6033fc44dfe9d63898d79bae/members
+content-type: application/json
+
+{
+    "member": {"id": "60324aea104714127c8f418b", "role": "Designer", "name": "asda"},
+    "delete": true
 }
 
 #

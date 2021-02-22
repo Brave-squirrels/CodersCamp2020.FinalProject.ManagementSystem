@@ -1,4 +1,6 @@
+import ROLE from '../enums/projectRoles';
 export default interface Member {
-  name: string;
   id: string;
+  role: ROLE;
+  name: string;
 }
