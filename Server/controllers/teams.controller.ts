@@ -4,7 +4,7 @@ import deleteTeam from "../src/teams/deleteTeam";
 import findTeam from "../middleware/findTeam";
 import findUser from "../middleware/findUser";
 import findUserByBody from "../middleware/findUserByBody";
-// import removeUser from '../src/teams/removeUser';
+import removeUser from '../src/teams/removeUser';
 import addUserToTeam from "../src/teams/addUserToTeam";
 import removePermissions from "../src/teams/removePermissions";
 import addPermissions from "../src/teams/addPermissions";
@@ -25,7 +25,7 @@ export default class TeamController {
   public initializeRoutes() {
     this.router.post(`${this.path}/:id`, findUser, this.createNewTeam); //WORKING
 
-    this.router.delete(`${this.path}/:teamId`, findTeam, this.deleteTeam);
+    this.router.delete(`${this.path}/:teamId`, findTeam, this.deleteTeam); 
 
     this.router.get(`${this.path}/:teamId`, findTeam, this.getTeam); //WORKING
 
@@ -41,7 +41,8 @@ export default class TeamController {
       findTeam,
       this.addPending
     ); //WORKING
-    // this.router.put(`${this.path}/:teamId/:userId/remove-user`, findUser, findTeam, this.removeUser); //FIX BUG HERE
+
+    this.router.put(`${this.path}/:teamId/remove/user`, findUserByBody, findTeam, this.removeUser); //WORKING
 
     this.router.put(
       `${this.path}/:teamId/:userId/add-permissions`,
@@ -93,9 +94,9 @@ export default class TeamController {
     addUserToTeam(req, res);
   }
 
-  // removeUser(req: Request, res: Response){
-  //     removeUser(req,res);
-  // }
+  removeUser(req: Request, res: Response){
+      removeUser(req,res);
+  }
   addPermissions(req: Request, res: Response) {
     addPermissions(req, res);
   }

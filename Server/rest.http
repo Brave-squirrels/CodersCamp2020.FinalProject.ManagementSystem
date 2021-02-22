@@ -214,3 +214,15 @@ Content-Type: application/json
     "id": "60322621bc2c56019096b216"
 }
 
+###
+
+#REMOVING USER FROM TEAM
+
+PUT http://localhost:3000/teams/6033a1b028500c3c309e919e/remove/user HTTP/1.1
+Content-Type: application/json
+
+{
+    "id": "60322621bc2c56019096b216"
+}
+
+###

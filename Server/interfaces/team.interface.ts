@@ -1,13 +1,13 @@
-export type members = {
+export type members = [{
   _id: boolean;
   userId: string;
   userName: string;
-};
+}];
 
 export default interface Team {
   teamName: string;
   ownerId: string;
-  members: Array<members>;
+  members: Array<any>;
   pendingUsers: string[];
   projects: Array<any>;
   moderatorsId: string[];
