@@ -6,7 +6,6 @@ import Team from '../../interfaces/team.interface';
 
 
 const createNewTeam = async(req: Request, res: Response) => {
-    console.log(res.locals.user)
     const { error } = validateTeam(req.body);
     if(error) return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
 
@@ -26,9 +25,14 @@ const createNewTeam = async(req: Request, res: Response) => {
 
     const newTeam = new teamModel(teamData);
 
+    const userTeams = user.teams
+    userTeams.push({_id: false, id : newTeam.id , name : newTeam.teamName})
+    user.set({teams: userTeams})
+
     await newTeam.save();
+    await user.save();
     
-    return res.status(StatusCodes.OK).send(newTeam);
+    return res.status(StatusCodes.OK).send({newTeam, user});
 }
 
 export default createNewTeam;

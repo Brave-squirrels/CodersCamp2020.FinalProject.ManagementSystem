@@ -3,6 +3,7 @@ import createNewTeam from '../src/teams/createNewTeam';
 import deleteTeam from '../src/teams/deleteTeam';
 import findTeam from '../middleware/findTeam';
 import findUser from '../middleware/findUser';
+import findUserByBody from '../middleware/findUserByBody';
 // import removeUser from '../src/teams/removeUser';
 import addUserToTeam from '../src/teams/addUserToTeam';
 import removePermissions from '../src/teams/removePermissions';
@@ -24,21 +25,22 @@ export default class TeamController {
 
     public initializeRoutes(){
         
-        this.router.post(`${this.path}/:id`, findUser, this.createNewTeam);
+        this.router.post(`${this.path}/:id`, findUser, this.createNewTeam); //WORKING
         
-        this.router.delete(`${this.path}/:teamId`, findTeam, this.deleteTeam);
+        this.router.delete(`${this.path}/:teamId`, findTeam, this.deleteTeam); 
        
-        this.router.get(`${this.path}/:teamId`, findTeam, this.getTeam); 
+        this.router.get(`${this.path}/:teamId`, findTeam, this.getTeam); //WORKING 
 
-        this.router.put(`${this.path}/:teamId/adduser`, findTeam, findUser,  this.addUserToTeam);
-        this.router.put(`${this.path}/:teamId/addpending`, findTeam, this.addPending);
+        this.router.put(`${this.path}/:teamId/adduser`, findTeam, findUserByBody,  this.addUserToTeam); //WORKING
+
+        this.router.put(`${this.path}/:teamId/addpending`, findTeam, this.addPending); //WORKING 
         // this.router.put(`${this.path}/:teamId/:userId/remove-user`, findUser, findTeam, this.removeUser); //FIX BUG HERE
         
         this.router.put(`${this.path}/:teamId/:userId/add-permissions`, findUser, findTeam, this.addPermissions);
        
         this.router.put(`${this.path}/:teamId/:userId/remove-permissions`, findUser, findTeam, this.removePermissions);
         
-        this.router.put(`${this.path}/:teamId/change-description`, findTeam, this.changeDescription);
+        this.router.put(`${this.path}/:teamId/change-description`, findTeam, this.changeDescription); 
         
         this.router.put(`${this.path}/:teamId/change-name`, findTeam, this.changeTeamName);
                 
