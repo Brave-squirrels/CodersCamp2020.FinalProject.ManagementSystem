@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import createNewTask from "../src/tasks/createNewTask";
 
 import findProject from "../middleware/findProject";
+import findTeam from '../middleware/findTeam';
 
 export default class TaskController {
   public path = "/teams/:teamId/projects/:projectId/tasks";
@@ -12,7 +13,7 @@ export default class TaskController {
   }
 
   initializeRoutes() {
-    this.router.post(`${this.path}`, findProject, this.createNewTask);
+    this.router.post(`${this.path}`, findTeam, findProject, this.createNewTask);
   }
 
   createNewTask(req: Request, res: Response) {
