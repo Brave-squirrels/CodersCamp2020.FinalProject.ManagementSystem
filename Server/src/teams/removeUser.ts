@@ -1,7 +1,7 @@
-import { Request, Response } from 'express';
-import { StatusCodes } from 'http-status-codes';
-import validateUser from '../users/validateUser';
-import Team from '../../interfaces/team.interface';
+import { Request, Response } from "express";
+import { StatusCodes } from "http-status-codes";
+import validateUser from "../users/validateUser";
+import Team from "../../interfaces/team.interface";
 
 // const removeUser = async(req: Request, res: Response) => {
 //     const { error } = validateUser(req.body);
@@ -13,11 +13,11 @@ import Team from '../../interfaces/team.interface';
 
 //     const userIndex = membersArr.findIndex(memberId => memberId.userId === user.id)
 //     const updatedMembers = team.members.splice(userIndex, 1)
-    
+
 //     team.set({members: updatedMembers})
 
 //     await team.save();
-    
+
 //     return res.status(StatusCodes.OK).send(team);
 // }
 
