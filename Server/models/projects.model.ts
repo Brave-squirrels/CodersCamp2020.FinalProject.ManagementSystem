@@ -62,7 +62,7 @@ const projectSchema = new mongoose.Schema({
       },
       id: {
         type: mongoose.Schema.Types.ObjectId,
-        requried: true,
+        required: true,
       },
       role: {
         type: ROLES,

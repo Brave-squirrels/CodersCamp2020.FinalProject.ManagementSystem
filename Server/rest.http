@@ -127,6 +127,7 @@ content-type: application/json
 
 ###
 
+###
 
 # UPDATE MEMBERS IN PROJECT
 PUT http://localhost:3000/teams/602daad612d3182dc04f8050/projects/60322dad45e83a100382c5a3/members HTTP/1.1
@@ -197,4 +198,16 @@ Content-Type: application/json
 # DELETE NOTE
 DELETE http://localhost:3000/teams/602daad612d3182dc04f8050/projects/60321a53a20b560b1ec1591f/notes/6032cab3c9b9c91bc1408a5d HTTP/1.1
 
+############################## TASKS ######################################
 
+# CREATE NEW TASK IN PROJECT
+POST http://localhost:3000/teams/6033a1b028500c3c309e919e/projects/60320e1348b544024a5dbfa2/tasks HTTP/1.1
+content-type: application/json
+
+{
+    "name": "TestTask",
+    "content": "TestContent",
+    "deadlineDate": "12/12/2001"
+}
+
+#
