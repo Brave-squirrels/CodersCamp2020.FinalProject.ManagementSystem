@@ -6,9 +6,9 @@ import validateTask from "./validateTask";
 
 const createNewTask = async (req: Request, res: Response) => {
   const project = res.locals.project;
-  console.log(project);
+
   const taskData: Task = {
-    projectID: project._id,
+    projectId: project._id,
     ...req.body,
   };
 
@@ -19,9 +19,12 @@ const createNewTask = async (req: Request, res: Response) => {
 
   const newTask = new taskModel(taskData);
 
-  await newTask.save();
+  project.tasks.push({id: newTask._id});
 
-  return res.status(StatusCodes.OK).send(newTask);
+  
+  await newTask.save();
+  await project.save();
+  return res.status(StatusCodes.OK).send([newTask, project]);
 };
 
 export default createNewTask;

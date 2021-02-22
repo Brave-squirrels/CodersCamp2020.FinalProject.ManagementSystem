@@ -3,7 +3,7 @@ import { Task } from "../interfaces/task.interface";
 import ROLES from "../enums/projectRoles";
 
 const taskSchema = new mongoose.Schema({
-  projectID: {
+  projectId: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
   },
@@ -33,12 +33,12 @@ const taskSchema = new mongoose.Schema({
     required: true,
     default: "New",
   },
-  commentsID: {
+  commentsId: {
     type: [String],
     required: true,
     default: [],
   },
-  usersID: [
+  usersId: [
     {
       _id: false,
       name: {

@@ -214,6 +214,6 @@ content-type: application/json
 
 # DELETE TASK
 
-DELETE http://localhost:3000/teams/6033a1b028500c3c309e919e/projects/60320e1348b544024a5dbfa2/tasks/6033ace20301781238047649 HTTP/1.1
+DELETE http://localhost:3000/teams/6033a1b028500c3c309e919e/projects/60320e1348b544024a5dbfa2/tasks/6033bf0140077c1b24de7e83 HTTP/1.1
 
 #

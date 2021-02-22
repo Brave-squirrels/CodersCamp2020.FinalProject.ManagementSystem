@@ -1,11 +1,11 @@
 import Member from "../interfaces/projectMember.interface";
 export interface Task {
-  projectID: string;
+  projectId: string;
   name: string;
   content: string;
   deadlineDate: Date;
   startDate?: Date;
   status?: string;
-  commentsID?: string[];
+  commentsId?: string[];
   usersID?: Member[];
 }
