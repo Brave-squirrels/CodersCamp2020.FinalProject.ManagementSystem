@@ -11,7 +11,6 @@ const deleteTask = async (req: Request, res: Response) => {
 
     project.tasks.splice(index,1);
 
-
     await task.delete();
     await project.save();
     

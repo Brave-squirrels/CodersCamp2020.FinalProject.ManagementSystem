@@ -1,16 +1,3 @@
-
-GET http://localhost:4000/comments HTTP/1.1
-
-###
-
-POST http://localhost:4000/comments HTTP/1.1
-content-type: application/json
-
-{
-    "author": "Michal",
-    "content": "check2" 
-}
-
 ###
 # ____________________________ Authentication ____________________________
 
@@ -114,7 +101,7 @@ GET http://localhost:3000/teams/602daad612d3182dc04f8050/projects/60321a53a20b56
 
 ###
 # CREATE NEW PROJECT IN TEAM
-POST http://localhost:3000/teams/602daad612d3182dc04f8050/projects HTTP/1.1
+POST http://localhost:3000/teams/603442956288812dfc56128d/projects HTTP/1.1
 content-type: application/json
 
 {
@@ -203,7 +190,7 @@ DELETE http://localhost:3000/teams/602daad612d3182dc04f8050/projects/60321a53a20
 ############################## TASKS ######################################
 
 # CREATE NEW TASK IN PROJECT
-POST http://localhost:3000/teams/6033a1b028500c3c309e919e/projects/60320e1348b544024a5dbfa2/tasks HTTP/1.1
+POST http://localhost:3000/teams/603442956288812dfc56128d/projects/60320e1348b544024a5dbfa2/tasks HTTP/1.1
 content-type: application/json
 
 {
@@ -216,11 +203,11 @@ content-type: application/json
 
 # DELETE TASK
 
-DELETE http://localhost:3000/teams/6033a1b028500c3c309e919e/projects/60320e1348b544024a5dbfa2/tasks/6033c3271a688a07c41cc1da HTTP/1.1
+DELETE http://localhost:3000/teams/603442956288812dfc56128d/projects/60320e1348b544024a5dbfa2/tasks/6034470b0842ca1f20fe237e HTTP/1.1
 
 ### GET ONE TASK
 
-GET http://localhost:3000/teams/6033a1b028500c3c309e919e/projects/60320e1348b544024a5dbfa2/tasks/6033f024a11c782e84460b0b HTTP/1.1
+GET http://localhost:3000/teams/6033a1b028500c3c309e919e/projects/60320e1348b544024a5dbfa2/tasks/6033f3d53d896f48901a74e7 HTTP/1.1
 
 
 ### GET ALL TASKS IN CURRENT PROJECT
@@ -256,4 +243,15 @@ content-type: application/json
     "delete": true
 }
 
-#
+################################ COMMENTS ###############################
+
+### Create new comment
+
+POST http://localhost:3000/teams/603442956288812dfc56128d/projects/60320e1348b544024a5dbfa2/tasks/6033fc44dfe9d63898d79bae/comments HTTP/1.1
+content-type: application/json
+
+{
+    "content": "First crazy comment",
+    "creatorId": "60324aea104714127c8f418b",
+    "creatorName": "sampleName"
+}

@@ -1,5 +1,7 @@
-// Comment interface
-export default interface Comment {
-  author: string;
-  content: string;
+export interface Comment {
+    taskId: string[],
+    content: string,
+    creatorId: string,
+    creatorName: string,
+    date?: Date
 }
