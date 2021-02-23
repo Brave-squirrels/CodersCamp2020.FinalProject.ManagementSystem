@@ -12,7 +12,7 @@ const addUserToTeam = async (req: Request, res: Response) => {
   if (!team.pendingUsers.includes(req.body.id)) return res.status(StatusCodes.BAD_REQUEST).send("User don't have invnite")
   
   //Check if user is already in team
-  const membersIdArr : any = []
+  const membersIdArr : string[]  = []
   team.members.forEach((member: any) => membersIdArr.push(member.userId));
   if (membersIdArr.includes(req.body.id)) return res.status(StatusCodes.BAD_REQUEST).send("User is already in team")
  

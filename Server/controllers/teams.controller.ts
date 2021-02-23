@@ -2,6 +2,7 @@ import express, { request, Request, Response } from "express";
 import createNewTeam from "../src/teams/createNewTeam";
 import deleteTeam from "../src/teams/deleteTeam";
 import findTeam from "../middleware/findTeam";
+import findAllTeams from "../middleware/findAllTeams";
 import findUser from "../middleware/findUser";
 import findUserByBody from "../middleware/findUserByBody";
 import removeUser from "../src/teams/removeUser";
@@ -69,7 +70,7 @@ export default class TeamController {
 
     this.router.put(
       `${this.path}/:teamId/changeTeamName`,
-      findTeam,
+      findTeam, findAllTeams,
       this.changeTeamName //WORKING
     );
 
