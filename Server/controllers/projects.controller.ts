@@ -7,7 +7,7 @@ import createNewProject from "../src/projects/createNewProject";
 import deleteProject from "../src/projects/deleteProject";
 
 import updateProjectMembers from "../src/projects/updateProjectMembers";
-import updateProjectStatus from "../src/projects/updateProejctStatus";
+import updateProjectStatus from "../src/projects/updateProjectStatus";
 import updateProjectInfo from "../src/projects/updateProjectInfo";
 
 import findProject from "../middleware/findProject";
@@ -34,6 +34,7 @@ export default class ProjectsController {
     this.router.put(
       `${this.path}/:projectId/members`,
       findTeam,
+      findProject,
       this.updateProjectMembers
     );
     this.router.put(

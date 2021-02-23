@@ -2,11 +2,11 @@ import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
 import _ from "lodash";
 import bcrypt from "bcrypt";
-import validateUser from "./validateUser";
+import validatePassword from "./validatePassword";
 import userModel from "../../models/user.model";
 
 const changePassword = async (req: Request, res: Response) => {
-  const { error } = validateUser(req.body);
+  const { error } = validatePassword(req.body);
   if (error)
     return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
 

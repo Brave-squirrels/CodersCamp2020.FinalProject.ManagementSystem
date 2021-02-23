@@ -2,24 +2,29 @@ import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
 import _ from "lodash";
 import userModel from "../../models/user.model";
-import projectModel from "../../models/projects.model";
 
 const deleteProject = async (req: Request, res: Response) => {
-  let user = await userModel.findById(req.params.id);
-  if (!user) return res.status(StatusCodes.NOT_FOUND).send("User not found");
+  const projectsArray = (
+    await userModel.findById(req.user._id, "projects", {
+      lean: true,
+    })
+  )?.projects;
 
-  const array = user.projects!;
-  let check = false;
-  array.forEach((elem) => {
-    if (elem.toString() === req.params.projectsId.toString()) check = true;
+  const find = projectsArray?.some((project, index) => {
+    if (project.id.toString() === req.params.id.toString()) {
+      projectsArray?.splice(index, 1);
+      return true;
+    }
+    return false;
   });
-  if (!check)
-    res.status(404).send(`Project with id ${req.params.projectsId} not found`);
-  else {
-    // const index = array.indexOf(req.params.projectsId);
-    // array.splice(index, 1);
-    // await user.save();
-  }
+  if (!find) return res.status(StatusCodes.NOT_FOUND).send("Project not found");
+
+  const user = await userModel.findByIdAndUpdate(
+    req.user._id,
+    { projects: projectsArray },
+    { new: true }
+  );
+  if (!user) return res.status(StatusCodes.NOT_FOUND).send("User not found");
 
   res.status(StatusCodes.OK).send(user);
 };
