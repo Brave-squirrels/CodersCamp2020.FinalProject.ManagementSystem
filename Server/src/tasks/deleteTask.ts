@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import taskModel from "../../models/tasks.model";
 import { StatusCodes } from "http-status-codes";
+import commentModel from '../../models/comment.model';
 
 const deleteTask = async (req: Request, res: Response) => {
     const task = await new taskModel(res.locals.task);
@@ -10,6 +11,11 @@ const deleteTask = async (req: Request, res: Response) => {
     const index = project.tasks.map((el:any) => {return el.id}).indexOf(task._id);
 
     project.tasks.splice(index,1);
+
+    await commentModel.deleteMany({
+        taskId: task._id
+    });
+
 
     await task.delete();
     await project.save();

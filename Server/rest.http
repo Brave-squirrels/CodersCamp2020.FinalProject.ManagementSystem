@@ -203,7 +203,7 @@ content-type: application/json
 
 # DELETE TASK
 
-DELETE http://localhost:3000/teams/603442956288812dfc56128d/projects/60320e1348b544024a5dbfa2/tasks/6034470b0842ca1f20fe237e HTTP/1.1
+DELETE http://localhost:3000/teams/603442956288812dfc56128d/projects/60320e1348b544024a5dbfa2/tasks/6034e6d156fc832fdc9c3fca HTTP/1.1
 
 ### GET ONE TASK
 
@@ -212,7 +212,7 @@ GET http://localhost:3000/teams/6033a1b028500c3c309e919e/projects/60320e1348b544
 
 ### GET ALL TASKS IN CURRENT PROJECT
 
-GET http://localhost:3000/teams/6033a1b028500c3c309e919e/projects/60320e1348b544024a5dbfa2/tasks HTTP/1.1
+GET http://localhost:3000/teams/603442956288812dfc56128d/projects/60320e1348b544024a5dbfa2/tasks HTTP/1.1
 
 ### UPDATE TASK INFO
 
@@ -247,11 +247,31 @@ content-type: application/json
 
 ### Create new comment
 
-POST http://localhost:3000/teams/603442956288812dfc56128d/projects/60320e1348b544024a5dbfa2/tasks/6033fc44dfe9d63898d79bae/comments HTTP/1.1
+POST http://localhost:3000/teams/603442956288812dfc56128d/projects/60320e1348b544024a5dbfa2/tasks/6034e8e29bd824329483ea9a/comments HTTP/1.1
 content-type: application/json
 
 {
-    "content": "First crazy comment",
+    "content": "Test2 crazy comment",
     "creatorId": "60324aea104714127c8f418b",
     "creatorName": "sampleName"
+}
+
+
+### DELETE COMMENT
+
+DELETE http://localhost:3000/teams/603442956288812dfc56128d/projects/60320e1348b544024a5dbfa2/tasks/6034e6d156fc832fdc9c3fca/comments/6034e6da56fc832fdc9c3fcb HTTP/1.1
+
+
+### GET TASKS
+
+GET http://localhost:3000/teams/603442956288812dfc56128d/projects/60320e1348b544024a5dbfa2/tasks/6034e8e29bd824329483ea9a/comments/ HTTP/1.1
+
+
+### EDIT COMMENT
+
+PUT http://localhost:3000/teams/603442956288812dfc56128d/projects/60320e1348b544024a5dbfa2/tasks/6034e8e29bd824329483ea9a/comments/6034e8ee9bd824329483ea9b HTTP/1.1
+content-type: application/json
+
+{
+    "content": "XDD edited"
 }

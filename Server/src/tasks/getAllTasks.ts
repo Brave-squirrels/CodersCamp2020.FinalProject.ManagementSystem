@@ -8,8 +8,9 @@ const getAllTasks = async (req: Request, res: Response) => {
         projectId: req.params.projectId
     });
 
-    res.status(StatusCodes.OK).send(tasks);
+    if(!tasks) return res.status(StatusCodes.NOT_FOUND).send('No tasks found');
 
+    res.status(StatusCodes.OK).send(tasks);
 }
 
 export default getAllTasks;
