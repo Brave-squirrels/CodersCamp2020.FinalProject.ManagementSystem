@@ -24,7 +24,7 @@ export default class TeamController {
   }
 
   public initializeRoutes() {
-    this.router.post(`${this.path}/:id`, findUser, this.createNewTeam); //WORKING
+    this.router.post(`${this.path}/:id`, findUser, findAllTeams, this.createNewTeam); //WORKING
 
     this.router.delete(`${this.path}/:teamId`, findTeam, this.deleteTeam); // IT WOULD BE LAST
 
