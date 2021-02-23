@@ -101,7 +101,7 @@ GET http://localhost:3000/teams/602daad612d3182dc04f8050/projects/60321a53a20b56
 
 ###
 # CREATE NEW PROJECT IN TEAM
-POST http://localhost:3000/teams/603442956288812dfc56128d/projects HTTP/1.1
+POST http://localhost:3000/teams/602daad612d3182dc04f8050/projects HTTP/1.1
 content-type: application/json
 
 {
