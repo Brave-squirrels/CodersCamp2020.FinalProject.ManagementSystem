@@ -6,7 +6,7 @@ const validateTask = (task: Task) => {
     projectId: Joi.objectId().required(),
     content: Joi.string().min(3).max(255).required(),
     name: Joi.string().min(3).max(24).required(),
-    deadlineDate: Joi.date().required(),
+    deadlineDate: Joi.date().min(new Date()).required(),
   });
 
   return schema.validate(task);
