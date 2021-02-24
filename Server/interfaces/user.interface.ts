@@ -6,10 +6,11 @@ interface User extends mongoose.Document {
   name: string;
   password: string;
   email: string;
-  teamsId?: TeamArr[];
+  teams?: TeamArr[];
   projects?: ProjectArr[];
   date?: Date;
   isAdmin?: boolean;
+  isVerified?: boolean;
   generateAuthToken(): string;
 }
 

@@ -1,4 +1,3 @@
-import Joi from "joi";
 import mongoose from "mongoose";
 import config from "config";
 import jwt from "jsonwebtoken";
@@ -51,6 +50,10 @@ const userSchema = new mongoose.Schema<User>({
     default: Date.now,
   },
   isAdmin: Boolean,
+  isVerified: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 userSchema.methods.generateAuthToken = function () {

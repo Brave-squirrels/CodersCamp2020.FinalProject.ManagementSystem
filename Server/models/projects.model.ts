@@ -71,26 +71,23 @@ const projectSchema = new mongoose.Schema({
     },
   ],
   tasks: [
-      {
-          _id: false,
-          id: {
-            type: mongoose.Schema.Types.ObjectId,
-            required: true,
-        },
+    {
+      _id: false,
+      id: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
       },
+    },
   ],
   notes: [
-        {
-            _id: false,
-            id: {
-                type: mongoose.Schema.Types.ObjectId,
-                required: true,
-            },
-        },
-    ],
-    deadline: {
-      type: Date
-    }
+    {
+      _id: false,
+      id: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+      },
+    },
+  ],
 });
 
 const projectModel = mongoose.model<Project & mongoose.Document>(

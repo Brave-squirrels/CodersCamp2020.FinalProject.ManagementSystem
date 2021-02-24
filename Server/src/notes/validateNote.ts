@@ -3,10 +3,10 @@ const Joi = require("joi-oid");
 
 const validateNote = (note: Note) => {
   const schema = Joi.object({
-    projectId: Joi.string().min(24).max(24).required(),
+    projectId: Joi.objectId(),
     author: Joi.object({
       name: Joi.string().min(3).max(24).required(),
-      id: Joi.objectId(),
+      id: Joi.objectId().required(),
     }),
     name: Joi.string().min(3).max(24).required(),
     content: Joi.string().min(0).max(254),

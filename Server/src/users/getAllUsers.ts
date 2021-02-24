@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
-import userModel from "../../models/user.model";
 import { StatusCodes } from "http-status-codes";
+import userModel from "../../models/user.model";
+import User from "../../interfaces/user.interface";
 
 const getAllUsers = async (req: Request, res: Response) => {
   const users = await userModel.find().select("-password");

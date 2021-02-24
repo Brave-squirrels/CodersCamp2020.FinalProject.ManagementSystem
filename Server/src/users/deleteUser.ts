@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import userModel from "../../models/user.model";
 import { StatusCodes } from "http-status-codes";
+import userModel from "../../models/user.model";
 
 const deleteUser = async (req: Request, res: Response) => {
   const user = await userModel.findByIdAndDelete(req.params.id);

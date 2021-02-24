@@ -13,7 +13,11 @@ const createNewNote = async (req: Request, res: Response) => {
 
   const newNote = new noteModel(noteData);
 
+  const project = res.locals.project;
+  project.notes.push({ id: newNote._id });
+
   await newNote.save();
+  await project.save();
 
   return res.status(StatusCodes.OK).send(newNote);
 };

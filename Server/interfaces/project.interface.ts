@@ -15,7 +15,7 @@ export interface Project {
   members?: Member[];
   content?: string;
   status?: STATUS;
-  tasks?: string[],
-  notes?: string[]
+  tasks?: string[];
+  notes?: string[];
   date?: Date;
 }
