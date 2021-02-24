@@ -196,7 +196,7 @@ content-type: application/json
 {
     "name": "TestTask2",
     "content": "TestContent",
-    "deadlineDate": "12/12/2001"
+    "deadlineDate": "03/24/2021"
 }
 
 ###
