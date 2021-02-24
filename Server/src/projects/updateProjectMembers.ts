@@ -12,6 +12,7 @@ const updateProjectMembers = async (req: Request, res: Response) => {
     return res.status(StatusCodes.BAD_REQUEST).send('Invalid user');
 
   const project = res.locals.project;
+  const team = res.locals.team;
 
   // Add Member
   if(!req.body.delete){
@@ -27,7 +28,14 @@ const updateProjectMembers = async (req: Request, res: Response) => {
     if(error) return res.status(StatusCodes.BAD_REQUEST).send('Invalid user');
 
     // Update User Projects Array
-    user.projects?.push({ id: project.id, name: project.projectName});
+    user.projects?.push(
+      { 
+        id: project.id, 
+        name: project.projectName,
+        teamId: team._id,
+        teamName: team.name,
+      }
+    );
 
     project.members.push(req.body.member);
   }

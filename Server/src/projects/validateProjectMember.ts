@@ -10,7 +10,10 @@ export const validateProjectMembers = (member: Object) => {
             ROLES.BACKENDDEV,
             ROLES.DESIGNER,
             ROLES.FRONTENDDEV,
-            ROLES.NORMAL
+            ROLES.NORMAL,
+            ROLES.QAENGINEER,
+            ROLES.SCRUMMASTER,
+            ROLES.OWNER
           )
           .required(),
         }),
@@ -24,10 +27,13 @@ export const firstPartAuth = (member: Object) => {
     member: Joi.object({
       id: Joi.objectId().required(),
       role: Joi.string().valid(
-          ROLES.BACKENDDEV,
-          ROLES.DESIGNER,
-          ROLES.FRONTENDDEV,
-          ROLES.NORMAL
+        ROLES.BACKENDDEV,
+        ROLES.DESIGNER,
+        ROLES.FRONTENDDEV,
+        ROLES.NORMAL,
+        ROLES.QAENGINEER,
+        ROLES.SCRUMMASTER,
+        ROLES.OWNER
         )
         .required(),
         name: Joi.string().min(3).max(24)

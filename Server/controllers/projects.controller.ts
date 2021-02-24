@@ -12,6 +12,7 @@ import updateProjectInfo from "../src/projects/updateProjectInfo";
 
 import findProject from "../middleware/findProject";
 import findTeam from "../middleware/findTeam";
+import auth from '../middleware/auth';
 
 export default class ProjectsController {
   public path = "/teams/:teamId/projects";
@@ -29,27 +30,31 @@ export default class ProjectsController {
       this.getSpecifiedProjectFromTeam
     );
 
-    this.router.post(`${this.path}`, findTeam, this.createNewProject);
+    this.router.post(`${this.path}`, auth, findTeam, this.createNewProject);
 
     this.router.put(
       `${this.path}/:projectId/members`,
+      auth,
       findTeam,
       findProject,
       this.updateProjectMembers
     );
     this.router.put(
       `${this.path}/:projectId/status`,
+      auth,
       findTeam,
       this.updateProjectStatus
     );
     this.router.put(
       `${this.path}/:projectId/info`,
+      auth,
       findTeam,
       this.updateProjectInfo
     );
 
     this.router.delete(
       `${this.path}/:projectId`,
+      auth,
       findTeam,
       findProject,
       this.deleteProject

@@ -20,7 +20,7 @@ POST http://localhost:3000/users/auth HTTP/1.1
 Content-Type: application/json
 
 {
-    "email": "admin@mail.com",
+    "email": "MichalTest@mail.com",
     "password": "12345"
 }
   
@@ -37,7 +37,7 @@ GET http://localhost:3000/users/60300584d40f49419830e729 HTTP/1.1
 ###
 # get me
 GET http://localhost:3000/users/me HTTP/1.1
-x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDMxNWMxOGIyODJhYjA3ODBjYTc5ZGQiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2MTM4NDkzMDV9.awUM1x-oKEsyfYX3qp2dwt6eY_g4KUrsPQz5FtMkh6A
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDM2Y2E1Yzk3YWE3YTAyMTZmZTNkMjciLCJpYXQiOjE2MTQyMDM1NDV9.Hxgz5MVYDsvZh-QOhHrjwiTX7JkaECAhG2HbzuBFy2I
 
 ###
 # create users
@@ -45,8 +45,8 @@ POST http://localhost:3000/users HTTP/1.1
 Content-Type: application/json
 
 {
-    "name": "testUser",
-    "email": "test@mail.com",
+    "name": "MichalTest",
+    "email": "MichalTest@mail.com",
     "password": "12345"
 }
 
@@ -69,19 +69,17 @@ DELETE  http://localhost:3000/users/60315ae1f32fb93f2075ea4e HTTP/1.1
 # ____________________________ PROJECTS ____________________________
 
 # GET SPECIFIC PROJECT FROM TEAM
-GET http://localhost:3000/teams/602daad612d3182dc04f8050/projects/60321a53a20b560b1ec1591f HTTP/1.1 
+GET http://localhost:3000/teams/602daad612d3182dc04f8050/projects/6036dc433f90340a788e3487 HTTP/1.1 
 
 ###
 # CREATE NEW PROJECT IN TEAM
 POST http://localhost:3000/teams/602daad612d3182dc04f8050/projects HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDM2Y2E1Yzk3YWE3YTAyMTZmZTNkMjciLCJpYXQiOjE2MTQyMDM1NDV9.Hxgz5MVYDsvZh-QOhHrjwiTX7JkaECAhG2HbzuBFy2I
 content-type: application/json
 
 {
-    "projectName": "nowy testowy projekt",
-    "owner": {
-        "id": "602e41a034644bbf940bea0b",
-        "name": "Michauuu"
-    }
+    "projectName": "blablalb",
+    "deadline": "2021-03-21T08:31:15.926Z"
 }
 
 ###
@@ -89,10 +87,11 @@ content-type: application/json
 
 # UPDATE MEMBERS IN PROJECT
 PUT http://localhost:3000/teams/602daad612d3182dc04f8050/projects/60322dad45e83a100382c5a3/members HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDM2Y2E1Yzk3YWE3YTAyMTZmZTNkMjciLCJpYXQiOjE2MTQyMDM1NDV9.Hxgz5MVYDsvZh-QOhHrjwiTX7JkaECAhG2HbzuBFy2I
 content-type: application/json
 
 {
-    "member": {"id": "60324aea104714127c8f418b", "role": "Designer", "name": "asda"},
+    "member": {"id": "6036ca5c97aa7a0216fe3d27", "role": "Owner", "name": "MichalTest"},
     "delete": true
 }
 
@@ -110,7 +109,8 @@ content-type: application/json
 ###
 
 # UPDATE PROJECT INFO
-PUT http://localhost:3000/teams/602daad612d3182dc04f8050/projects/603215b9a0356b0924c94bdc/info HTTP/1.1
+PUT http://localhost:3000/teams/602daad612d3182dc04f8050/projects/6036d88548a76008930e8f69/info HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDM2Y2E1Yzk3YWE3YTAyMTZmZTNkMjciLCJpYXQiOjE2MTQyMDM1NDV9.Hxgz5MVYDsvZh-QOhHrjwiTX7JkaECAhG2HbzuBFy2I
 content-type: application/json
 
 {
@@ -121,22 +121,23 @@ content-type: application/json
 ###
 
 # DELETE PROJECT 
-DELETE http://localhost:3000/teams/602daad612d3182dc04f8050/projects/603215b9a0356b0924c94bdc HTTP/1.1
+DELETE http://localhost:3000/teams/602daad612d3182dc04f8050/projects/6036dc0c3f90340a788e3486 HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDM2Y2E1Yzk3YWE3YTAyMTZmZTNkMjciLCJpYXQiOjE2MTQyMDM1NDV9.Hxgz5MVYDsvZh-QOhHrjwiTX7JkaECAhG2HbzuBFy2I
 
 
 #################################### NOTES ##############################################
 
 # GET ALL NOTES FROM PROJECT
-GET http://localhost:3000/teams/602daad612d3182dc04f8050/projects/60321601a0356b0924c94bde/notes HTTP/1.1
+GET http://localhost:3000/teams/602daad612d3182dc04f8050/projects/6036d88548a76008930e8f69/notes HTTP/1.1
 
 ###
 
 # CREATE NEW NOTE
-POST http://localhost:3000/teams/602daad612d3182dc04f8050/projects/60321601a0356b0924c94bde/notes HTTP/1.1
+POST http://localhost:3000/teams/602daad612d3182dc04f8050/projects/6036d88548a76008930e8f69/notes HTTP/1.1
 Content-Type: application/json
 
 {
-    "name": "Test Note",
+    "name": "TEAM DO USUNIECIA",
     "author": {"name": "Michal", "id": "602e41a034644bbf940bea0b"}
 }
 

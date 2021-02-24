@@ -88,6 +88,9 @@ const projectSchema = new mongoose.Schema({
             },
         },
     ],
+    deadline: {
+      type: Date
+    }
 });
 
 const projectModel = mongoose.model<Project & mongoose.Document>(
