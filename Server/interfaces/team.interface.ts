@@ -1,15 +1,10 @@
-export type members = [
-  {
-    _id: boolean;
-    userId: string;
-    userName: string;
-  }
-];
+import members from "./teamMembers.interface"
+
 
 export default interface Team {
   teamName: string;
   ownerId: string;
-  members: Array<any>;
+  members: members[];
   pendingUsers: string[];
   projects: Array<any>;
   moderatorsId: string[];

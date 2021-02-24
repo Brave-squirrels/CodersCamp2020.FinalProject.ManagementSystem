@@ -10,7 +10,7 @@ const removePermissions = async (req: Request, res: Response) => {
   const team = res.locals.team;
 
   //Remove user from pending
-  team.moderatorsId.forEach((moderator: any, i: number) => {
+  team.moderatorsId.forEach((moderator: string, i: number) => {
     if (moderator == req.body.id) team.moderatorsId.splice(i, 1);
   });
 

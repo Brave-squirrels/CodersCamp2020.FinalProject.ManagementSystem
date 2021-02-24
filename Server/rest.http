@@ -169,7 +169,7 @@ POST http://localhost:3000/teams/60324aea104714127c8f418b HTTP/1.1
 Content-Type: application/json
 
 {
-    "teamName": "Team Asd"
+    "teamName": "Team aaa"
 }
 
 ###
@@ -263,7 +263,7 @@ PUT http://localhost:3000/teams/603443536288812dfc56128e/changeTeamName HTTP/1.1
 Content-Type: application/json
 
 {
-    "newTeamName" : "Do Testowania"
+    "newTeamName" : "Team A"
 }
 
 ###

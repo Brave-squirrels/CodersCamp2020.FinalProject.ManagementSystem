@@ -9,7 +9,7 @@ const removePending = async (req: Request, res: Response) => {
   const team = res.locals.team;
 
   //Remove user from pending
-  team.pendingUsers.forEach((pendingUser: any, i: number) => {
+  team.pendingUsers.forEach((pendingUser: string, i: number) => {
     if (pendingUser == req.body.id) team.pendingUsers.splice(i, 1);
   });
 

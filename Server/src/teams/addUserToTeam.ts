@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import validateTeam from "./validateTeam";
 import { StatusCodes } from "http-status-codes";
+import members from '../../interfaces/teamMembers.interface'
 
 const addUserToTeam = async (req: Request, res: Response) => {
   // const { error } = validateTeam(req.body);
@@ -13,11 +14,11 @@ const addUserToTeam = async (req: Request, res: Response) => {
   
   //Check if user is already in team
   const membersIdArr : string[]  = []
-  team.members.forEach((member: any) => membersIdArr.push(member.userId));
+  team.members.forEach((member: members) => membersIdArr.push(member.userId));
   if (membersIdArr.includes(req.body.id)) return res.status(StatusCodes.BAD_REQUEST).send("User is already in team")
  
   //Remove user from pending
-  team.pendingUsers.forEach((pendingUser: any, i: number) => {
+  team.pendingUsers.forEach((pendingUser: string, i: number) => {
     if (pendingUser === req.body.id) team.pendingUsers.splice(i, 1);
   });
 

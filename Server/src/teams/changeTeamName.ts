@@ -1,18 +1,19 @@
 import { Request, Response } from "express";
-import validateTeam from "./validateTeam";
+import validateTeamName from "./validateTeamName";
 import { StatusCodes } from "http-status-codes";
 import userModel from "../../models/user.model";
-
+import Team from '../../interfaces/team.interface'
+import members from '../../interfaces/teamMembers.interface'
 
 const changeTeamName = async (req: Request, res: Response) => {
-  // const { error } = validateTeam(req.body);
-  // if (error)
-  //   return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
+  const { error } = validateTeamName(req.body);
+  if (error)
+    return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
 
   //Check if new team name is unique
   const teams = res.locals.teams
   const teamNames : string[]  = []
-  teams.forEach((team : any) => teamNames.push(team.teamName));
+  teams.forEach((team : Team) => teamNames.push(team.teamName));
   if (teamNames.includes(req.body.newTeamName)) return res.status(StatusCodes.BAD_REQUEST).send("New team name have to be unique")
 
   //changing team name
@@ -32,7 +33,7 @@ const changeTeamName = async (req: Request, res: Response) => {
   };
 
   //changing team name in user array
-  team.members.forEach((member: any) => {
+  team.members.forEach((member: members) => {
     getUser(member.userId, req.body.newTeamName);
   });
 
