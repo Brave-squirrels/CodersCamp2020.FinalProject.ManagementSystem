@@ -22,7 +22,7 @@ const addUserToTeam = async (req: Request, res: Response) => {
 
   //Remove user from pending
   team.pendingUsers.forEach((pendingUser: string, i: number) => {
-    if (pendingUser === req.body.id) team.pendingUsers.splice(i, 1);
+    if (pendingUser == req.body.id) team.pendingUsers.splice(i, 1);
   });
 
   //Add user to team
