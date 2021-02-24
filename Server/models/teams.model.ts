@@ -5,29 +5,33 @@ const teamSchema = new mongoose.Schema({
   teamName: {
     type: String,
     required: true,
-    default: "Team Name",
   },
   ownerId: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
     required: true,
   },
   members: {
-    type: [],
+    type: [mongoose.Schema.Types.ObjectId],
     required: true,
-    default: {},
   },
   pendingUsers: {
-    type: [String],
+    type: [mongoose.Schema.Types.ObjectId],
     required: true,
     default: [],
   },
   projects: {
-    type: [],
+    type: [
+      {
+        _id: false,
+        id: mongoose.Schema.Types.ObjectId,
+        name: String,
+      },
+    ],
     required: true,
     default: [],
   },
   moderatorsId: {
-    type: [String],
+    type: [mongoose.Schema.Types.ObjectId],
     required: true,
     default: [],
   },

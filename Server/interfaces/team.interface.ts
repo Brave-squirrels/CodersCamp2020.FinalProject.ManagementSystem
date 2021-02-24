@@ -1,5 +1,4 @@
-import members from "./teamMembers.interface"
-
+import members from "./teamMembers.interface";
 
 export default interface Team {
   teamName: string;

@@ -3,9 +3,9 @@ import teamModel from "../../models/teams.model";
 import { StatusCodes } from "http-status-codes";
 
 export default async function deleteTeam(req: Request, res: Response) {
-  const deletedTeam = await teamModel.findByIdAndDelete(req.params.teamId);
-  if (!deletedTeam)
-    return res.status(StatusCodes.BAD_REQUEST).send("Team not found");
+  const team = new teamModel(res.locals.team);
 
-  return res.status(StatusCodes.OK).send(deletedTeam);
+  await team.delete();
+
+  return res.status(StatusCodes.OK).send(team);
 }

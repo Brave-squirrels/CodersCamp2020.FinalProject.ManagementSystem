@@ -7,14 +7,16 @@ import Team from "../../interfaces/team.interface";
 const createNewTeam = async (req: Request, res: Response) => {
   const user = res.locals.user;
 
-
   //Check if team name is unique
-  const teams = res.locals.teams
-  const teamNamesArr : string[]  = []
-  teams.forEach((team : Team) => teamNamesArr.push(team.teamName));
-  if (teamNamesArr.includes(req.body.teamName)) return res.status(StatusCodes.BAD_REQUEST).send("Team name have to be unique")
+  const teams = res.locals.teams;
+  const teamNamesArr: string[] = [];
+  teams.forEach((team: Team) => teamNamesArr.push(team.teamName));
+  if (teamNamesArr.includes(req.body.teamName))
+    return res
+      .status(StatusCodes.BAD_REQUEST)
+      .send("Team name have to be unique");
 
-//Create new team
+  //Create new team
   const teamData: Team = {
     teamName: req.body.teamName,
     ownerId: user._id,
