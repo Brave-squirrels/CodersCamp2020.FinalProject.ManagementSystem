@@ -21,8 +21,8 @@ const createNewTeam = async (req: Request, res: Response) => {
     teamName: req.body.teamName,
     ownerId: user._id,
     members: [{ _id: false, userId: user.id, userName: user.name }],
-    pendingUsers: [],
-    projects: [],
+    pendingUsers: [], // remove
+    projects: [], //remove
     moderatorsId: [user._id],
     description: req.body.description,
     startDate: req.body.date,

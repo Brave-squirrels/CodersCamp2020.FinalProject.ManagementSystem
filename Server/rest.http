@@ -176,13 +176,13 @@ Content-Type: application/json
 
 #GET TEAM
 
-GET http://localhost:3000/teams/603643ac32bb793448ea914a HTTP/1.1
+GET http://localhost:3000/teams/6036880b541bf01c78164856 HTTP/1.1
 
 ###
 
 #ADDING USER TO PENDING
 
-PUT http://localhost:3000/teams/6036582db6d9693920009409/addpending HTTP/1.1
+PUT http://localhost:3000/teams/6036880b541bf01c78164856/addpending HTTP/1.1
 Content-Type: application/json
 
 {
@@ -193,7 +193,7 @@ Content-Type: application/json
 
 #REMOVING USER FROM PENDING
 
-PUT http://localhost:3000/teams/6036582db6d9693920009409/removePending HTTP/1.1
+PUT http://localhost:3000/teams/6036880b541bf01c78164856/removePending HTTP/1.1
 Content-Type: application/json
 
 {
@@ -204,7 +204,7 @@ Content-Type: application/json
 
 #ADDING USER TO TEAM
 
-PUT http://localhost:3000/teams/6036582db6d9693920009409/adduser HTTP/1.1
+PUT http://localhost:3000/teams/6036880b541bf01c78164856/adduser HTTP/1.1
 Content-Type: application/json
 
 {
@@ -215,7 +215,7 @@ Content-Type: application/json
 
 #REMOVING USER FROM TEAM
 
-PUT http://localhost:3000/teams/6036582db6d9693920009409/removeUser HTTP/1.1
+PUT http://localhost:3000/teams/6036880b541bf01c78164856/removeUser HTTP/1.1
 Content-Type: application/json
 
 {
@@ -248,7 +248,7 @@ Content-Type: application/json
 
 #CHANGE TEAM DESCRIPTIOM
 
-PUT http://localhost:3000/teams/603643ac32bb793448ea914a/changeDescription HTTP/1.1
+PUT http://localhost:3000/teams/6036880b541bf01c78164856/changeDescription HTTP/1.1
 Content-Type: application/json
 
 {
@@ -259,16 +259,16 @@ Content-Type: application/json
 
 #CHANGE TEAM NAME
 
-PUT http://localhost:3000/teams/603643ac32bb793448ea914a/changeTeamName HTTP/1.1
+PUT http://localhost:3000/teams/6036880b541bf01c78164856/changeTeamName HTTP/1.1
 Content-Type: application/json
 
 {
-    "newTeamName" : "Team Aaa"
+    "newTeamName" : "Team Asd"
 }
 
 ###
 
 # DELETE TEAM
-DELETE  http://localhost:3000/teams/6036582db6d9693920009409 HTTP/1.1
+DELETE  http://localhost:3000/teams/6036880b541bf01c78164856 HTTP/1.1
 
 ###
