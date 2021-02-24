@@ -12,13 +12,16 @@ const commentSchema = new mongoose.Schema({
         maxlength: 255,
         required: true
     },
-    creatorId: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-    },
-    creatorName: {
-        type: String,
-        required: true
+    creator: {
+        _id: false,
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            required: true
+        },
+        name: {
+            type: String,
+            required: true
+        }
     },
     date: {
         type: Date,

@@ -203,11 +203,11 @@ content-type: application/json
 
 # DELETE TASK
 
-DELETE http://localhost:3000/teams/603442956288812dfc56128d/projects/60320e1348b544024a5dbfa2/tasks/6034e6d156fc832fdc9c3fca HTTP/1.1
+DELETE http://localhost:3000/teams/603442956288812dfc56128d/projects/60320e1348b544024a5dbfa2/tasks/6034e8e29bd824329483ea9a HTTP/1.1
 
 ### GET ONE TASK
 
-GET http://localhost:3000/teams/6033a1b028500c3c309e919e/projects/60320e1348b544024a5dbfa2/tasks/6033f3d53d896f48901a74e7 HTTP/1.1
+GET http://localhost:3000/teams/603442956288812dfc56128d/projects/60320e1348b544024a5dbfa2/tasks/60368ff8246f711710048fce HTTP/1.1
 
 
 ### GET ALL TASKS IN CURRENT PROJECT
@@ -216,30 +216,30 @@ GET http://localhost:3000/teams/603442956288812dfc56128d/projects/60320e1348b544
 
 ### UPDATE TASK INFO
 
-PUT http://localhost:3000/teams/6033a1b028500c3c309e919e/projects/60320e1348b544024a5dbfa2/tasks/6033fc44dfe9d63898d79bae HTTP/1.1
+PUT http://localhost:3000/teams/603442956288812dfc56128d/projects/60320e1348b544024a5dbfa2/tasks/60368ff8246f711710048fce HTTP/1.1
 content-type: application/json
 
 {
-    "name": "TestTask2Updated2"
+    "name": "TestTask2Updasdated2",
+    "content": "xDD"
 }
 
 ### UPDATE TASK USERS
 
-PUT http://localhost:3000/teams/6033a1b028500c3c309e919e/projects/60320e1348b544024a5dbfa2/tasks/6033fc44dfe9d63898d79bae/members
+PUT http://localhost:3000/teams/603442956288812dfc56128d/projects/60320e1348b544024a5dbfa2/tasks/60368ff8246f711710048fce/members
 content-type: application/json
 
 {
-    "member": {"id": "60324aea104714127c8f418b", "role": "Designer", "name": "asda"},
-    "delete": false
+    "member": {"id": "66324aea104714127c8f418b", "role": "Designer", "name": "asda"}
 }
 
 ### DELETE TASK USERS
 
-PUT http://localhost:3000/teams/6033a1b028500c3c309e919e/projects/60320e1348b544024a5dbfa2/tasks/6033fc44dfe9d63898d79bae/members
+PUT http://localhost:3000/teams/603442956288812dfc56128d/projects/60320e1348b544024a5dbfa2/tasks/60368ff8246f711710048fce/members
 content-type: application/json
 
 {
-    "member": {"id": "60324aea104714127c8f418b", "role": "Designer", "name": "asda"},
+    "member": {"id": "60324aea104714127c8f418b", "role": "Designer", "name": "testName"},
     "delete": true
 }
 
@@ -247,29 +247,28 @@ content-type: application/json
 
 ### Create new comment
 
-POST http://localhost:3000/teams/603442956288812dfc56128d/projects/60320e1348b544024a5dbfa2/tasks/6034e8e29bd824329483ea9a/comments HTTP/1.1
+POST http://localhost:3000/teams/603442956288812dfc56128d/projects/60320e1348b544024a5dbfa2/tasks/60368ff8246f711710048fce/comments HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDMyMjcyOGJjMmM1NjAxOTA5NmIyMTgiLCJpYXQiOjE2MTM4OTk2MTB9.o0jJa82-vmzRIJMrjBJovUB1qcXfetO-cf12WNNwWt4
 content-type: application/json
 
 {
-    "content": "Test2 crazy comment",
-    "creatorId": "60324aea104714127c8f418b",
-    "creatorName": "sampleName"
+    "content": "Test2 crazy comment"
 }
 
 
 ### DELETE COMMENT
 
-DELETE http://localhost:3000/teams/603442956288812dfc56128d/projects/60320e1348b544024a5dbfa2/tasks/6034e6d156fc832fdc9c3fca/comments/6034e6da56fc832fdc9c3fcb HTTP/1.1
+DELETE http://localhost:3000/teams/603442956288812dfc56128d/projects/60320e1348b544024a5dbfa2/tasks/60368ff8246f711710048fce/comments/60369151246f711710048fd1 HTTP/1.1
 
 
 ### GET TASKS
 
-GET http://localhost:3000/teams/603442956288812dfc56128d/projects/60320e1348b544024a5dbfa2/tasks/6034e8e29bd824329483ea9a/comments/ HTTP/1.1
+GET http://localhost:3000/teams/603442956288812dfc56128d/projects/60320e1348b544024a5dbfa2/tasks/60368ff8246f711710048fce/comments/ HTTP/1.1
 
 
 ### EDIT COMMENT
 
-PUT http://localhost:3000/teams/603442956288812dfc56128d/projects/60320e1348b544024a5dbfa2/tasks/6034e8e29bd824329483ea9a/comments/6034e8ee9bd824329483ea9b HTTP/1.1
+PUT http://localhost:3000/teams/603442956288812dfc56128d/projects/60320e1348b544024a5dbfa2/tasks/60368ff8246f711710048fce/comments/6034e8ee9bd824329483ea9b HTTP/1.1
 content-type: application/json
 
 {

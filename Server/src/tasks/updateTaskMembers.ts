@@ -8,12 +8,21 @@ const updateTaskMembers = async (req: Request, res: Response) => {
     const {error} = firstPartAuth(req.body);
     if(error) return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
 
+    //Check if user already exist variable
+    let check = false;
     //Add user
     if(!req.body.delete){
 
         const {error} = validateTaskUsers(req.body);
 
         if(error) return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
+
+        //Check if user is already in team
+        task.members.forEach((el:any)=>{
+            if(el.id==req.body.member.id){
+                check = true; 
+            }
+        })
 
         task.members.push(req.body.member);
     }
@@ -24,8 +33,9 @@ const updateTaskMembers = async (req: Request, res: Response) => {
                 task.members.splice(index,1);
             }
         })
-    }   
-
+    } 
+    //return if users exists in task
+    if(check) return res.status(StatusCodes.BAD_REQUEST).send('User already exists');
     await task.save();
     return res.status(StatusCodes.OK).send(task);
 }   

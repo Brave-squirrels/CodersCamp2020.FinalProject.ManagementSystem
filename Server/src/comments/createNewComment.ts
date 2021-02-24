@@ -9,6 +9,10 @@ const createNewComment = async (req: Request, res: Response) => {
 
     const commentData : Comment = {
         taskId: task._id,
+        creator: {
+            id: req.user._id,
+            name: req.user.name
+        },
         ...req.body
     }
 
