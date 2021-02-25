@@ -28,21 +28,15 @@ const createNewTeam = async (req: Request, res: Response) => {
     startDate: req.body.date,
   };
 
-  // console.log(teamData)
-
   const { error } = validateTeam(teamData);
   if (error)
     return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
 
   const newTeam = new teamModel(teamData);
 
-  //Add team to user array
-  const userTeams = user.teams;
-
+  //Add team to user array 
+  user.teams.push({ _id: false, id: newTeam.id, name: newTeam.teamName });
   
-  userTeams.push({ _id: false, id: newTeam.id, name: newTeam.teamName });
-  user.set({ teams: userTeams });
-
   await newTeam.save();
   await user.save();
 

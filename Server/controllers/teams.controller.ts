@@ -51,6 +51,7 @@ export default class TeamController {
     this.router.put(
       `${this.path}/:teamId/addpending`,
       findTeam,
+      findUserByBody,
       this.addPending
     ); //WORKING
 
@@ -89,6 +90,7 @@ export default class TeamController {
     this.router.put(
       `${this.path}/:teamId/removePending`,
       findTeam,
+      findUserByBody,
       this.removePending //WORKING
     );
   }
