@@ -13,16 +13,21 @@ const updateProjectMembers = async (req: Request, res: Response) => {
 
   const project = res.locals.project;
   const team = res.locals.team;
+  let stop = false;
 
   // Add Member
   if (!req.body.delete) {
     // Check if member already exists
     project.members.forEach((member: any) => {
       if (member.id == user.id)
-        return res
-          .status(StatusCodes.BAD_REQUEST)
-          .send("Member already exists");
+        stop = true;
     });
+
+    if(stop) 
+      return res
+        .status(StatusCodes.BAD_REQUEST)
+        .send("Member already exists")
+        .end();
 
     req.body.member.name = user.name;
 

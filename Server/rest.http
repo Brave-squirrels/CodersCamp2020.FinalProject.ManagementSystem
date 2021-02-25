@@ -59,7 +59,7 @@ DELETE  http://localhost:3000/users/60315ae1f32fb93f2075ea4e HTTP/1.1
 # ____________________________ PROJECTS ____________________________
 
 # GET SPECIFIC PROJECT FROM TEAM
-GET http://localhost:3000/teams/602daad612d3182dc04f8050/projects/603767298b1176034d43066e HTTP/1.1 
+GET http://localhost:3000/teams/602daad612d3182dc04f8050/projects/60376a46cc7a0506003a2e16 HTTP/1.1 
 
 ###
 # CREATE NEW PROJECT IN TEAM
@@ -76,12 +76,12 @@ content-type: application/json
 
 
 # UPDATE MEMBERS IN PROJECT
-PUT http://localhost:3000/teams/602daad612d3182dc04f8050/projects/603215b9a0356b0924c94bdc/members HTTP/1.1
-
+PUT http://localhost:3000/teams/602daad612d3182dc04f8050/projects/60376a46cc7a0506003a2e16/members HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDMyNGFlYTEwNDcxNDEyN2M4ZjQxOGIiLCJpYXQiOjE2MTQyMTAyNjF9.aEtJSVJ0Qwr8sZs-wBz3fAE2Lf1oep5VvhfB2W-O608
 content-type: application/json
 
 {
-    "members": []
+    "member": {"id": "60324aea104714127c8f418b", "name": "testUser", "role": "ScrumMaster"}
 }
 
 ###
