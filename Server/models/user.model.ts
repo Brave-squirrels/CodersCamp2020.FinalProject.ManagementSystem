@@ -29,6 +29,16 @@ const userSchema = new mongoose.Schema<User>({
     minlength: 4,
     maxLength: 50,
   },
+  teamInvitation: {
+    type: [
+      {
+        _id: false,
+        teamId: mongoose.Schema.Types.ObjectId,
+        teamName: String,
+      },
+    ],
+    default: [],
+  },
   teams: {
     type: [
       {

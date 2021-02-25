@@ -1,5 +1,6 @@
 import ProjectArr from "./projectArr.interface";
 import TeamArr from "./teamArr.interface";
+import InviteArr from "./inviteArr.interface";
 import mongoose from "mongoose";
 // User interface
 interface User extends mongoose.Document {
@@ -7,6 +8,7 @@ interface User extends mongoose.Document {
   password: string;
   confirmPassword: string;
   email: string;
+  teamInvitation?: InviteArr[];
   teams?: TeamArr[];
   projects?: ProjectArr[];
   date?: Date;
