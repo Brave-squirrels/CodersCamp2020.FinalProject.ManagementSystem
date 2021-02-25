@@ -17,6 +17,12 @@ const userSchema = new mongoose.Schema<User>({
     minlength: 4,
     maxLength: 255,
   },
+  confirmPassword: {
+    type: String,
+    required: true,
+    minlength: 4,
+    maxLength: 255,
+  },
   email: {
     type: String,
     required: true,
@@ -39,7 +45,7 @@ const userSchema = new mongoose.Schema<User>({
         _id: false,
         id: mongoose.Schema.Types.ObjectId,
         teamId: mongoose.Schema.Types.ObjectId,
-        teamName: String, 
+        teamName: String,
         name: String,
       },
     ],

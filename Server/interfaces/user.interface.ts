@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 interface User extends mongoose.Document {
   name: string;
   password: string;
+  confirmPassword: string;
   email: string;
   teams?: TeamArr[];
   projects?: ProjectArr[];

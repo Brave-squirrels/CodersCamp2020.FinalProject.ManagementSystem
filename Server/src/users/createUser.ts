@@ -17,6 +17,11 @@ export default async function createUser(req: Request, res: Response) {
     return res.status(StatusCodes.BAD_REQUEST).send("User already registered.");
 
   user = new userModel({ ...req.body });
+  if (user.password === user.confirmPassword)
+    return res
+      .status(StatusCodes.BAD_REQUEST)
+      .send("Password are not matching.");
+
   const salt = await bcrypt.genSalt(10);
   user.password = await bcrypt.hash(user.password, salt);
   user = await user.save();
