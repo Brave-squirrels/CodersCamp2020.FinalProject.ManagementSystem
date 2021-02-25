@@ -35,7 +35,7 @@ const updateProjectMembers = async (req: Request, res: Response) => {
         id: project.id, 
         name: project.projectName,
         teamId: team._id,
-        teamName: team.name,
+        teamName: team.teamName,
       }
     );
 

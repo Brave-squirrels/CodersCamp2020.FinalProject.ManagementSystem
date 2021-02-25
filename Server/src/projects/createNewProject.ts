@@ -12,7 +12,7 @@ const createNewProject = async (req: Request, res: Response) => {
   if(!user) return res.status(StatusCodes.NOT_FOUND).send('user not found')
 
   const projectData: Project = {
-    team: { id: team._id, name: team.name },
+    team: { id: team._id, name: team.teamName },
     owner: { id: user._id, name: user.name },
     ...req.body,
   };
@@ -29,13 +29,21 @@ const createNewProject = async (req: Request, res: Response) => {
       { 
         id: newProject._id, 
         name: newProject.projectName,
-        teamName: team.name,
+        teamName: team.teamName,
         teamId: team._id,
+      }
+    );
+
+    team.projects?.push(
+      { 
+        id: newProject._id, 
+        name: newProject.projectName,
       }
     );
 
   await newProject.save();
   await user.save();
+  await team.save();
   return res.status(StatusCodes.OK).send(newProject);
 };
 

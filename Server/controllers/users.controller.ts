@@ -7,7 +7,6 @@ import getUserMe from "../src/users/getUserMe";
 import deleteUser from "../src/users/deleteUser";
 import changePassword from "../src/users/changePassword";
 import changeName from "../src/users/changeName";
-import addProject from "../src/users/addProject";
 import deleteProject from "../src/users/deleteProject";
 import confirmation from "../src/users/confirmation";
 import sendEmailToUser from "../src/users/sendEmail";
@@ -34,7 +33,6 @@ export default class UserController {
     this.router.get(`${this.path}/confirmation/:token`, this.confirmation);
     this.router.post(`${this.path}/create`, this.createUser);
     this.router.post(`${this.path}/email`, this.sendEmailToUser);
-    this.router.post(`${this.path}/project`, auth, this.addProject);
     this.router.put(`${this.path}/password`, auth, this.changePassword);
     this.router.put(`${this.path}/name`, auth, this.changeName);
     this.router.delete(`${this.path}/:id`, this.deleteUser);
@@ -67,10 +65,6 @@ export default class UserController {
 
   changeName(req: Request, res: Response) {
     changeName(req, res);
-  }
-
-  addProject(req: Request, res: Response) {
-    addProject(req, res);
   }
 
   deleteProject(req: Request, res: Response) {

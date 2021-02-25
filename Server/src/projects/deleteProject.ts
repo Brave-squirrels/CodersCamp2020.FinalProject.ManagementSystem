@@ -8,7 +8,7 @@ const deleteProject = async (req: Request, res: Response) => {
   if(!user) return res.status(StatusCodes.NOT_FOUND).send('User not found');
 
   const project = res.locals.project;
-  // const team = res.locals.team;
+  const team = res.locals.team;
 
   await notesModel.deleteMany({ projectId: project._id });
 
@@ -17,11 +17,11 @@ const deleteProject = async (req: Request, res: Response) => {
       user.projects?.splice(i, 1);
   })
 
-  // team.projects?.forEach((teamProject, i) => {
-  //   if(teamProject.id == project._id) teamProject.projects.splice(i,1);
-  // })
+  team.projects?.forEach((teamProject: any, i: number) => {
+    if(teamProject.id == project._id) team.projects.splice(i,1);
+  })
 
-  // await team.save();
+  await team.save();
   await user.save();
   await project.delete();
 };
