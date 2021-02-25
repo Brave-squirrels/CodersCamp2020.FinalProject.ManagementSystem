@@ -13,8 +13,8 @@ const changeTeamName = async (req: Request, res: Response) => {
   //Check if new team name is unique
   const teams = res.locals.teams;
   const teamNames: string[] = [];
-  teams.forEach((team: Team) => teamNames.push(team.teamName));
-  if (teamNames.includes(req.body.newTeamName))
+  teams.forEach((team: Team) => teamNames.push((team.teamName).toString()));
+  if (teamNames.includes((req.body.newTeamName).toString()))
     return res
       .status(StatusCodes.BAD_REQUEST)
       .send("New team name have to be unique");
