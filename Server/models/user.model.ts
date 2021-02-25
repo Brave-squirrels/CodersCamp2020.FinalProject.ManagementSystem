@@ -17,12 +17,6 @@ const userSchema = new mongoose.Schema<User>({
     minlength: 4,
     maxLength: 255,
   },
-  confirmPassword: {
-    type: String,
-    required: true,
-    minlength: 4,
-    maxLength: 255,
-  },
   email: {
     type: String,
     required: true,

@@ -7,7 +7,7 @@ POST http://localhost:3000/auth HTTP/1.1
 Content-Type: application/json
 
 {
-    "email": "olo@mail.com",
+    "email": "olo6@email.com",
     "password": "12345"
 }
 
@@ -42,7 +42,7 @@ Content-Type: application/json
 
 {
     "name": "Olek1234",
-    "email": "olo5@email.com",
+    "email": "olo7@email.com",
     "password": "12345",
     "confirmPassword": "12345"
 }
@@ -171,7 +171,7 @@ DELETE http://localhost:3000/teams/602daad612d3182dc04f8050/projects/6036e58865e
 
 #CREATE TEAM
 
-POST http://localhost:3000/teams/60324aea104714127c8f418b HTTP/1.1
+POST http://localhost:3000/teams/6038124c69876844f01ff2b4 HTTP/1.1
 Content-Type: application/json
 
 {

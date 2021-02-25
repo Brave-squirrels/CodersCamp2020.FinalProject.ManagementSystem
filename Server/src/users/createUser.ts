@@ -18,7 +18,7 @@ export default async function createUser(req: Request, res: Response) {
     return res.status(StatusCodes.BAD_REQUEST).send("User already registered.");
 
   user = new userModel({ ...req.body });
-  if (user.password !== user.confirmPassword)
+  if (user.password !== req.body.confirmPassword)
     return res
       .status(StatusCodes.BAD_REQUEST)
       .send("Password are not matching.");
