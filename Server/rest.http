@@ -110,7 +110,7 @@ content-type: application/json
 ###
 
 # DELETE PROJECT 
-DELETE http://localhost:3000/teams/602daad612d3182dc04f8050/projects/6036e7a56af21b1325b5bec0 HTTP/1.1
+DELETE http://localhost:3000/teams/602daad612d3182dc04f8050/projects/6036ea1c0c7f5715c90f26bb HTTP/1.1
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDMyNGFlYTEwNDcxNDEyN2M4ZjQxOGIiLCJpYXQiOjE2MTQyMTAyNjF9.aEtJSVJ0Qwr8sZs-wBz3fAE2Lf1oep5VvhfB2W-O608
 
 
