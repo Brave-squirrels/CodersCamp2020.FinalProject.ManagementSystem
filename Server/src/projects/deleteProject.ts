@@ -9,20 +9,23 @@ const deleteProject = async (req: Request, res: Response) => {
 
   const project = res.locals.project;
   const team = res.locals.team;
-
+  
   await notesModel.deleteMany({ projectId: project._id });
-
+  
   user.projects?.forEach((userProject: any, i: number) => {
-    if(userProject.id == project.id)
+    if(userProject.id == project.id){
       user.projects?.splice(i, 1);
+    }
   })
 
   team.projects?.forEach((teamProject: any, i: number) => {
-    if(teamProject.id == project._id) team.projects.splice(i,1);
+    if(teamProject.id == project.id){
+      team.projects?.splice(i,1);
+    } 
   })
 
-  await team.save();
   await user.save();
+  await team.save();
   await project.delete();
 };
 

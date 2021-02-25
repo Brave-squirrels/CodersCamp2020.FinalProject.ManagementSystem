@@ -59,7 +59,7 @@ DELETE  http://localhost:3000/users/60315ae1f32fb93f2075ea4e HTTP/1.1
 # ____________________________ PROJECTS ____________________________
 
 # GET SPECIFIC PROJECT FROM TEAM
-GET http://localhost:3000/teams/602daad612d3182dc04f8050/projects/6036e7a56af21b1325b5bec0 HTTP/1.1 
+GET http://localhost:3000/teams/602daad612d3182dc04f8050/projects/603767298b1176034d43066e HTTP/1.1 
 
 ###
 # CREATE NEW PROJECT IN TEAM
@@ -68,7 +68,7 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDMyNGFlYTEwNDcxN
 content-type: application/json
 
 {
-    "projectName": "nowy testowy projekt",
+    "projectName": "totalnie unikatowa nazwa",
     "deadline" : "2021-03-24T17:06:34.928+00:00"
 }
 
@@ -99,7 +99,8 @@ content-type: application/json
 ###
 
 # UPDATE PROJECT INFO
-PUT http://localhost:3000/teams/602daad612d3182dc04f8050/projects/603215b9a0356b0924c94bdc/info HTTP/1.1
+PUT http://localhost:3000/teams/6036e228d89ea8116e149bf9/projects/60376250d4b2bf01cbb1fc37/info HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDMyNGFlYTEwNDcxNDEyN2M4ZjQxOGIiLCJpYXQiOjE2MTQyMTAyNjF9.aEtJSVJ0Qwr8sZs-wBz3fAE2Lf1oep5VvhfB2W-O608
 content-type: application/json
 
 {
@@ -110,19 +111,19 @@ content-type: application/json
 ###
 
 # DELETE PROJECT 
-DELETE http://localhost:3000/teams/602daad612d3182dc04f8050/projects/6036ea1c0c7f5715c90f26bb HTTP/1.1
+DELETE http://localhost:3000/teams/6036e228d89ea8116e149bf9/projects/603767298b1176034d43066e HTTP/1.1
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDMyNGFlYTEwNDcxNDEyN2M4ZjQxOGIiLCJpYXQiOjE2MTQyMTAyNjF9.aEtJSVJ0Qwr8sZs-wBz3fAE2Lf1oep5VvhfB2W-O608
 
 
 #################################### NOTES ##############################################
 
 # GET ALL NOTES FROM PROJECT
-GET http://localhost:3000/teams/602daad612d3182dc04f8050/projects/6036e58865ee6e1273ca7237/notes HTTP/1.1
+GET http://localhost:3000/teams/602daad612d3182dc04f8050/projects/603767298b1176034d43066e/notes HTTP/1.1
 
 ###
 
 # CREATE NEW NOTE
-POST http://localhost:3000/teams/602daad612d3182dc04f8050/projects/6036e58865ee6e1273ca7237/notes HTTP/1.1
+POST http://localhost:3000/teams/602daad612d3182dc04f8050/projects/603767298b1176034d43066e/notes HTTP/1.1
 Content-Type: application/json
 
 {
@@ -155,7 +156,7 @@ POST http://localhost:3000/teams/60324aea104714127c8f418b HTTP/1.1
 Content-Type: application/json
 
 {
-    "teamName": "Teeeeeeeeeeeeeam"
+    "teamName": "totalnie unikatowa nazwa"
 }
 
 ###
