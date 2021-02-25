@@ -1,10 +1,11 @@
 import App from "./app/App";
 import config from "config";
 import validateEnv from "./app/validateEnv";
-import ComentsController from "../controllers/comments.controller";
 import ProjectsController from "../controllers/projects.controller";
 import UserController from "../controllers/users.controller";
 import AuthController from "../controllers/auth.controller";
+import TaskController from "../controllers/tasks.controller";
+import CommentController from '../controllers/comment.controller';
 import TeamController from "../controllers/teams.controller";
 
 // Creating environment variables
@@ -23,11 +24,12 @@ validateEnv();
 // Starting app
 const app = new App([
   // Adding all controllers
-  new ComentsController(),
   new ProjectsController(),
   new UserController(),
   new NotesController(),
   new AuthController(),
+  new TaskController(),
+  new CommentController(),
   new TeamController(),
 ]);
 

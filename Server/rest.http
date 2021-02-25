@@ -74,6 +74,7 @@ content-type: application/json
 
 ###
 
+###
 
 # UPDATE MEMBERS IN PROJECT
 PUT http://localhost:3000/teams/602daad612d3182dc04f8050/projects/60376a46cc7a0506003a2e16/members HTTP/1.1
@@ -257,3 +258,88 @@ Content-Type: application/json
 
 # DELETE TEAM
 DELETE  http://localhost:3000/teams/6036880b541bf01c78164856 HTTP/1.1
+
+
+############################## TASKS ######################################
+
+# CREATE NEW TASK IN PROJECT
+POST http://localhost:3000/teams/603442956288812dfc56128d/projects/60376a46cc7a0506003a2e16/tasks HTTP/1.1
+content-type: application/json
+
+{
+    "name": "TestTdfsaask2",
+    "content": "TestContent",
+    "deadlineDate": "03/24/2021"
+}
+
+###
+
+# DELETE TASK
+
+DELETE http://localhost:3000/teams/603442956288812dfc56128d/projects/60376a46cc7a0506003a2e16/tasks/6034e8e29bd824329483ea9a HTTP/1.1
+
+### GET ONE TASK
+
+GET http://localhost:3000/teams/603442956288812dfc56128d/projects/60376a46cc7a0506003a2e16/tasks/60368ff8246f711710048fce HTTP/1.1
+
+
+### GET ALL TASKS IN CURRENT PROJECT
+
+GET http://localhost:3000/teams/603442956288812dfc56128d/projects/60376a46cc7a0506003a2e16/tasks HTTP/1.1
+
+### UPDATE TASK INFO
+
+PUT http://localhost:3000/teams/603442956288812dfc56128d/projects/603781028a3f941ce4069a6d/tasks/60368ff8246f711710048fce HTTP/1.1
+content-type: application/json
+
+{
+    "name": "TestTask2dasUpdasdated2",
+    "content": "xDD"
+}
+
+### UPDATE/DELETE TASK USERS
+
+PUT http://localhost:3000/teams/603442956288812dfc56128d/projects/60320e1348b544024a5dbfa2/tasks/60368ff8246f711710048fce/members
+content-type: application/json
+
+{
+    "member": {"id": "66324aea104714127c8f418b", "role": "Designer", "name": "asda"},
+    "delete": true
+}
+
+################################ COMMENTS ###############################
+
+### Create new comment
+
+POST http://localhost:3000/teams/603442956288812dfc56128d/projects/603781028a3f941ce4069a6d/tasks/60368ff8246f711710048fce/comments HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDMyMjcyOGJjMmM1NjAxOTA5NmIyMTgiLCJpYXQiOjE2MTM4OTk2MTB9.o0jJa82-vmzRIJMrjBJovUB1qcXfetO-cf12WNNwWt4
+content-type: application/json
+
+{
+    "content": "Test2 crazy comment"
+}
+
+
+### DELETE COMMENT
+
+DELETE http://localhost:3000/teams/603442956288812dfc56128d/projects/603781028a3f941ce4069a6d/tasks/60368ff8246f711710048fce/comments/60369151246f711710048fd1 HTTP/1.1
+
+
+### GET COMMENTS FROM TASK
+
+GET http://localhost:3000/teams/603442956288812dfc56128d/projects/603781028a3f941ce4069a6d/tasks/60368ff8246f711710048fce/comments/ HTTP/1.1
+
+
+### GET ONE COMMENT
+
+GET http://localhost:3000/teams/603442956288812dfc56128d/projects/603781028a3f941ce4069a6d/tasks/60368ff8246f711710048fce/comments/6036a5239cff91245c0ada4c HTTP/1.1
+
+### EDIT COMMENT
+
+PUT http://localhost:3000/teams/603442956288812dfc56128d/projects/603781028a3f941ce4069a6d/tasks/60368ff8246f711710048fce/comments/6036a5239cff91245c0ada4c HTTP/1.1
+content-type: application/json
+
+{
+    "content": "XDD edited"
+}
+
