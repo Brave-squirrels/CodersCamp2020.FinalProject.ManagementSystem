@@ -6,13 +6,12 @@ import validateComment from './validateNewComment';
 
 const createNewComment = async (req: Request, res: Response) => {
     const task = res.locals.task;
-
     //Create new comment base on current logged user
     const commentData : Comment = {
         taskId: task._id,
         creator: {
-            id: req.user._id,
-            name: req.user.name
+            id: req.userInfo._id,
+            name: req.userInfo.name
         },
         ...req.body
     }
