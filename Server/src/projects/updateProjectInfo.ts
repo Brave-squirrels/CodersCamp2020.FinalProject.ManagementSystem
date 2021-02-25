@@ -10,7 +10,7 @@ const updateProjectInfo = async (req: Request, res: Response) => {
   if (error)
     return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
 
-  const user = await userModel.findById(req.user._id);
+  const user = await userModel.findById(req.userInfo._id);
   if(!user) return res.status(StatusCodes.NOT_FOUND).send('User not found');
 
   const team = res.locals.team;

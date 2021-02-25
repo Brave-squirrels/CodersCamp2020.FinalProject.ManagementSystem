@@ -329,7 +329,7 @@ content-type: application/json
 ### Create new comment
 
 POST http://localhost:3000/teams/603442956288812dfc56128d/projects/603781028a3f941ce4069a6d/tasks/60368ff8246f711710048fce/comments HTTP/1.1
-x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDMyMjcyOGJjMmM1NjAxOTA5NmIyMTgiLCJpYXQiOjE2MTM4OTk2MTB9.o0jJa82-vmzRIJMrjBJovUB1qcXfetO-cf12WNNwWt4
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDM3ZWQ4YmM3N2VjNDEwZjgwMjM0MzYiLCJuYW1lIjoiT2xvMTIzIiwiaWF0IjoxNjE0Mjc4MDM5fQ.zBgWpOLzOzosesbj6JYlc1XsVsU1Lbctp-Z_ZEw62cc
 content-type: application/json
 
 {

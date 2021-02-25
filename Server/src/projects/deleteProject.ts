@@ -4,7 +4,7 @@ import notesModel from '../../models/notes.model';
 import { StatusCodes } from "http-status-codes";
 
 const deleteProject = async (req: Request, res: Response) => {
-  const user = await userModel.findById(req.user._id);
+  const user = await userModel.findById(req.userInfo._id);
   if(!user) return res.status(StatusCodes.NOT_FOUND).send('User not found');
 
   const project = res.locals.project;
