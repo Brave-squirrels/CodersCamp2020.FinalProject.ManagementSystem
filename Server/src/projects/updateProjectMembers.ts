@@ -12,16 +12,22 @@ const updateProjectMembers = async (req: Request, res: Response) => {
   if (!user) return res.status(StatusCodes.BAD_REQUEST).send("Invalid user");
 
   const project = res.locals.project;
+  const team = res.locals.team;
+  let stop = false;
 
   // Add Member
   if (!req.body.delete) {
     // Check if member already exists
     project.members.forEach((member: any) => {
       if (member.id == user.id)
-        return res
-          .status(StatusCodes.BAD_REQUEST)
-          .send("Member already exists");
+        stop = true;
     });
+
+    if(stop) 
+      return res
+        .status(StatusCodes.BAD_REQUEST)
+        .send("Member already exists")
+        .end();
 
     req.body.member.name = user.name;
 
@@ -29,7 +35,15 @@ const updateProjectMembers = async (req: Request, res: Response) => {
     if (error) return res.status(StatusCodes.BAD_REQUEST).send("Invalid user");
 
     // Update User Projects Array
-    user.projects?.push({ id: project.id, name: project.projectName });
+    user.projects?.push(
+      { 
+        id: project.id, 
+        name: project.projectName,
+        teamId: team._id,
+        teamName: team.teamName,
+      }
+    );
+
 
     project.members.push(req.body.member);
   }

@@ -38,6 +38,8 @@ const userSchema = new mongoose.Schema<User>({
       {
         _id: false,
         id: mongoose.Schema.Types.ObjectId,
+        teamId: mongoose.Schema.Types.ObjectId,
+        teamName: String, 
         name: String,
       },
     ],

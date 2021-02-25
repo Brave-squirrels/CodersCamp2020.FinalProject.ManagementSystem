@@ -7,8 +7,8 @@ POST http://localhost:3000/auth HTTP/1.1
 Content-Type: application/json
 
 {
-    "email": "olek@mail.com",
-    "password": "123456"
+    "email": "test@mail.com",
+    "password": "12345"
 }
 
 ###
@@ -21,95 +21,55 @@ GET http://localhost:3000/users HTTP/1.1
 
 ###
 # get user
-GET http://localhost:3000/users/60322728bc2c56019096b218 HTTP/1.1
+GET http://localhost:3000/users/60324aea104714127c8f418b HTTP/1.1
 
 
 ###
 # get me
 GET http://localhost:3000/users/me HTTP/1.1
-x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDMyMjcyOGJjMmM1NjAxOTA5NmIyMTgiLCJpYXQiOjE2MTM4OTk2MTB9.o0jJa82-vmzRIJMrjBJovUB1qcXfetO-cf12WNNwWt4
-
-###
-# confirm user
-GET http://localhost:3000/users/confirmation/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDMyMjcxZGJjMmM1NjAxOTA5NmIyMTciLCJpYXQiOjE2MTM5MDc2MzF9.c-rfYIqw-jXZL9834jtusjtSpQq5yeHWXZ_73aQdxX4 HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDMyNGFlYTEwNDcxNDEyN2M4ZjQxOGIiLCJpYXQiOjE2MTQyMTAyNjF9.aEtJSVJ0Qwr8sZs-wBz3fAE2Lf1oep5VvhfB2W-O608
 
 ###
 # create users
-POST http://localhost:3000/users/create HTTP/1.1
+POST http://localhost:3000/users HTTP/1.1
 Content-Type: application/json
 
 {
-    "name": "admin",
-    "email": "admin@mail.com",
+    "name": "testownik",
+    "email": "testownik@mail.com",
     "password": "12345"
 }
 
 ###
-# send email
-POST http://localhost:3000/users/email HTTP/1.1
+# update users
+PUT http://localhost:3000/users/60315c18b282ab0780ca79dd HTTP/1.1
 Content-Type: application/json
 
 {
-    "email": "zdvmdstrjlmkestgjr@mhzayt.online",
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDMyMjcxZGJjMmM1NjAxOTA5NmIyMTciLCJpYXQiOjE2MTM5MDc2MzF9.c-rfYIqw-jXZL9834jtusjtSpQq5yeHWXZ_73aQdxX4"
-}
-
-###
-# add project
-POST http://localhost:3000/users/project HTTP/1.1
-x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDMyMjcxZGJjMmM1NjAxOTA5NmIyMTciLCJpYXQiOjE2MTM5MDc2MzF9.c-rfYIqw-jXZL9834jtusjtSpQq5yeHWXZ_73aQdxX4
-Content-Type: application/json
-
-{
-    "projectId": "60321601a0356b0924c94bde"
-}
-
-###
-# change name
-PUT http://localhost:3000/users/name HTTP/1.1
-x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDMyMjcxZGJjMmM1NjAxOTA5NmIyMTciLCJpYXQiOjE2MTM5MDc2MzF9.c-rfYIqw-jXZL9834jtusjtSpQq5yeHWXZ_73aQdxX4
-Content-Type: application/json
-
-{
-    "name": "Aleksander"
-}
-
-###
-# change password
-PUT http://localhost:3000/users/password HTTP/1.1
-x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDMyMjcxZGJjMmM1NjAxOTA5NmIyMTciLCJpYXQiOjE2MTM5MDc2MzF9.c-rfYIqw-jXZL9834jtusjtSpQq5yeHWXZ_73aQdxX4
-Content-Type: application/json
-
-{
-    "password": "123456"
+    "name": "Updated",
+    "password": "1234",
+    "email": "jack@mail.pl"
 }
 
 ###
 # delete users
-DELETE  http://localhost:3000/users/6032273fbc2c56019096b219 HTTP/1.1
-
-###
-# delete project from users
-DELETE  http://localhost:3000/users/project/60321601a0356b0924c94bde HTTP/1.1
-x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDMyMjcxZGJjMmM1NjAxOTA5NmIyMTciLCJpYXQiOjE2MTM5MDc2MzF9.c-rfYIqw-jXZL9834jtusjtSpQq5yeHWXZ_73aQdxX4
+DELETE  http://localhost:3000/users/60315ae1f32fb93f2075ea4e HTTP/1.1
 
 ###
 # ____________________________ PROJECTS ____________________________
 
 # GET SPECIFIC PROJECT FROM TEAM
-GET http://localhost:3000/teams/602daad612d3182dc04f8050/projects/60321a53a20b560b1ec1591f HTTP/1.1 
+GET http://localhost:3000/teams/602daad612d3182dc04f8050/projects/60376a46cc7a0506003a2e16 HTTP/1.1 
 
 ###
 # CREATE NEW PROJECT IN TEAM
-POST http://localhost:3000/teams/602daad612d3182dc04f8050/projects HTTP/1.1
+POST http://localhost:3000/teams/6036e228d89ea8116e149bf9/projects HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDMyNGFlYTEwNDcxNDEyN2M4ZjQxOGIiLCJpYXQiOjE2MTQyMTAyNjF9.aEtJSVJ0Qwr8sZs-wBz3fAE2Lf1oep5VvhfB2W-O608
 content-type: application/json
 
 {
-    "projectName": "nowy testowy projekt",
-    "owner": {
-        "id": "602e41a034644bbf940bea0b",
-        "name": "Michauuu"
-    }
+    "projectName": "totalnie unikatowa nazwa",
+    "deadline" : "2021-03-24T17:06:34.928+00:00"
 }
 
 ###
@@ -117,29 +77,31 @@ content-type: application/json
 ###
 
 # UPDATE MEMBERS IN PROJECT
-PUT http://localhost:3000/teams/602daad612d3182dc04f8050/projects/60322dad45e83a100382c5a3/members HTTP/1.1
+PUT http://localhost:3000/teams/602daad612d3182dc04f8050/projects/60376a46cc7a0506003a2e16/members HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDMyNGFlYTEwNDcxNDEyN2M4ZjQxOGIiLCJpYXQiOjE2MTQyMTAyNjF9.aEtJSVJ0Qwr8sZs-wBz3fAE2Lf1oep5VvhfB2W-O608
 content-type: application/json
 
 {
-    "member": {"id": "60324aea104714127c8f418b", "role": "Designer", "name": "asda"},
-    "delete": true
+    "member": {"id": "60324aea104714127c8f418b", "name": "testUser", "role": "ScrumMaster"}
 }
 
 ###
 
 # UPDATE PROJECT STATUS
-PUT http://localhost:3000/teams/602daad612d3182dc04f8050/projects/60321a53a20b560b1ec1591f/status HTTP/1.1
+PUT http://localhost:3000/teams/602daad612d3182dc04f8050/projects/603215b9a0356b0924c94bdc/status HTTP/1.1
 content-type: application/json
 
 {
-    "status": "Done"
+    "status": "Done",
+    "name": "nowa name"
 }
 
 
 ###
 
 # UPDATE PROJECT INFO
-PUT http://localhost:3000/teams/602daad612d3182dc04f8050/projects/603215b9a0356b0924c94bdc/info HTTP/1.1
+PUT http://localhost:3000/teams/6036e228d89ea8116e149bf9/projects/60376250d4b2bf01cbb1fc37/info HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDMyNGFlYTEwNDcxNDEyN2M4ZjQxOGIiLCJpYXQiOjE2MTQyMTAyNjF9.aEtJSVJ0Qwr8sZs-wBz3fAE2Lf1oep5VvhfB2W-O608
 content-type: application/json
 
 {
@@ -150,18 +112,19 @@ content-type: application/json
 ###
 
 # DELETE PROJECT 
-DELETE http://localhost:3000/teams/602daad612d3182dc04f8050/projects/603215b9a0356b0924c94bdc HTTP/1.1
+DELETE http://localhost:3000/teams/6036e228d89ea8116e149bf9/projects/603767298b1176034d43066e HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDMyNGFlYTEwNDcxNDEyN2M4ZjQxOGIiLCJpYXQiOjE2MTQyMTAyNjF9.aEtJSVJ0Qwr8sZs-wBz3fAE2Lf1oep5VvhfB2W-O608
 
 
 #################################### NOTES ##############################################
 
 # GET ALL NOTES FROM PROJECT
-GET http://localhost:3000/teams/602daad612d3182dc04f8050/projects/60321601a0356b0924c94bde/notes HTTP/1.1
+GET http://localhost:3000/teams/602daad612d3182dc04f8050/projects/603767298b1176034d43066e/notes HTTP/1.1
 
 ###
 
 # CREATE NEW NOTE
-POST http://localhost:3000/teams/602daad612d3182dc04f8050/projects/60321a53a20b560b1ec1591f/notes HTTP/1.1
+POST http://localhost:3000/teams/602daad612d3182dc04f8050/projects/603767298b1176034d43066e/notes HTTP/1.1
 Content-Type: application/json
 
 {
@@ -183,8 +146,118 @@ Content-Type: application/json
 
 
 # DELETE NOTE
-DELETE http://localhost:3000/teams/602daad612d3182dc04f8050/projects/60321a53a20b560b1ec1591f/notes/6032cab3c9b9c91bc1408a5d HTTP/1.1
+DELETE http://localhost:3000/teams/602daad612d3182dc04f8050/projects/6036e58865ee6e1273ca7237/notes/6036e5c265ee6e1273ca7238 HTTP/1.1
 
+
+#################################### TEAMS ##############################################
+
+#CREATE TEAM
+
+POST http://localhost:3000/teams/60324aea104714127c8f418b HTTP/1.1
+Content-Type: application/json
+
+{
+    "teamName": "totalnie unikatowa nazwa"
+}
+
+###
+
+#GET TEAM
+
+GET http://localhost:3000/teams/6036e228d89ea8116e149bf9 HTTP/1.1
+
+###
+
+#ADDING USER TO PENDING
+
+PUT http://localhost:3000/teams/6036880b541bf01c78164856/addpending HTTP/1.1
+Content-Type: application/json
+
+{
+    "id": "60322621bc2c56019096b216"
+}
+
+###
+
+#REMOVING USER FROM PENDING
+
+PUT http://localhost:3000/teams/6036880b541bf01c78164856/removePending HTTP/1.1
+Content-Type: application/json
+
+{
+   "id": "60322621bc2c56019096b216" 
+}
+
+###
+
+#ADDING USER TO TEAM
+
+PUT http://localhost:3000/teams/6036880b541bf01c78164856/adduser HTTP/1.1
+Content-Type: application/json
+
+{
+    "id": "60322621bc2c56019096b216"
+}
+
+###
+
+#REMOVING USER FROM TEAM
+
+PUT http://localhost:3000/teams/6036880b541bf01c78164856/removeUser HTTP/1.1
+Content-Type: application/json
+
+{
+    "id": "60322621bc2c56019096b216"
+}
+
+###
+
+#ADDING USER PERMISSIONS 
+
+PUT http://localhost:3000/teams/603643ac32bb793448ea914a/addPermissions HTTP/1.1
+Content-Type: application/json
+
+{
+    "id": "60322621bc2c56019096b216"
+}
+
+###
+
+#REMOVING USER PERMISSIONS 
+
+PUT http://localhost:3000/teams/603643ac32bb793448ea914a/removePermissions HTTP/1.1
+Content-Type: application/json
+
+{
+    "id": "60322621bc2c56019096b216"
+}
+
+###
+
+#CHANGE TEAM DESCRIPTIOM
+
+PUT http://localhost:3000/teams/6036880b541bf01c78164856/changeDescription HTTP/1.1
+Content-Type: application/json
+
+{
+    "newDescription" : "Trolololo"
+}
+
+###
+
+#CHANGE TEAM NAME
+
+PUT http://localhost:3000/teams/6036880b541bf01c78164856/changeTeamName HTTP/1.1
+Content-Type: application/json
+
+{
+    "newTeamName" : "Team Asd"
+}
+
+###
+
+# DELETE TEAM
+DELETE  http://localhost:3000/teams/6036880b541bf01c78164856 HTTP/1.1
 
 
 ############################## TASKS ######################################
@@ -203,7 +276,7 @@ content-type: application/json
 
 # DELETE TASK
 
-DELETE http://localhost:3000/teams/603442956288812dfc56128d/projects/60320e1348b544024a5dbfa2/tasks/6034e8e29bd824329483ea9a HTTP/1.1
+DELETE http://localhost:3000/teams/603442956288812dfc56128d/projects/60376a46cc7a0506003a2e16/tasks/6034e8e29bd824329483ea9a HTTP/1.1
 
 ### GET ONE TASK
 
@@ -220,7 +293,7 @@ PUT http://localhost:3000/teams/603442956288812dfc56128d/projects/603781028a3f94
 content-type: application/json
 
 {
-    "name": "TestTask2Updasdated2",
+    "name": "TestTask2dasUpdasdated2",
     "content": "xDD"
 }
 
@@ -263,9 +336,10 @@ GET http://localhost:3000/teams/603442956288812dfc56128d/projects/603781028a3f94
 
 ### EDIT COMMENT
 
-PUT http://localhost:3000/teams/603442956288812dfc56128d/projects/60320e1348b544024a5dbfa2/tasks/60368ff8246f711710048fce/comments/6034e8ee9bd824329483ea9b HTTP/1.1
+PUT http://localhost:3000/teams/603442956288812dfc56128d/projects/603781028a3f941ce4069a6d/tasks/60368ff8246f711710048fce/comments/6036a5239cff91245c0ada4c HTTP/1.1
 content-type: application/json
 
 {
     "content": "XDD edited"
 }
+
