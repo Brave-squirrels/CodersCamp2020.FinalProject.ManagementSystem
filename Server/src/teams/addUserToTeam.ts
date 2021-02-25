@@ -31,6 +31,11 @@ const addUserToTeam = async (req: Request, res: Response) => {
   //Add team to user array
   user.teams.push({ _id: false, id: team.id, name: team.teamName });
 
+  //Remove team from user's invitation array
+  user.teamInvitation.forEach((teamsId: any, i: number) => {
+    if (teamsId.teamId == team.id) user.teamInvitation.splice(i, 1);
+  });
+  
   await team.save();
   await user.save();
 
