@@ -9,6 +9,10 @@ const deleteProject = async (req: Request, res: Response) => {
 
   const project = res.locals.project;
   const team = res.locals.team;
+
+  if(user._id == project.owner.id && project.members.length > 1){
+    return res.status(StatusCodes.BAD_REQUEST).send('You cannot delete project as its owner while other members are in, please choose another owner or delete every other member first')
+  }
   
   await notesModel.deleteMany({ projectId: project._id });
   
