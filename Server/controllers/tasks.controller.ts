@@ -10,6 +10,7 @@ import updateTaskUsers from '../src/tasks/updateTaskMembers';
 import findProject from "../middleware/findProject";
 import findTeam from '../middleware/findTeam';
 import findTask from '../middleware/findTask';
+import findTasks from '../middleware/findTasks';
 
 export default class TaskController {
   public path = "/teams/:teamId/projects/:projectId/tasks";
@@ -23,7 +24,7 @@ export default class TaskController {
     this.router.post(`${this.path}`, findTeam, findProject, this.createNewTask);
     this.router.delete(`${this.path}/:taskId`, findTeam, findProject, findTask, this.deleteTask);
     this.router.get(`${this.path}/:taskId`, findTeam, findProject, findTask, this.getFullTask)
-    this.router.get(this.path, findTeam, findProject, this.getAllTasks);
+    this.router.get(this.path, findTeam, findProject, findTasks, this.getAllTasks);
     this.router.put(`${this.path}/:taskId`, findTeam, findProject, findTask,  this.updateTaskContent);
     this.router.put(`${this.path}/:taskId/members`, findTeam, findProject, findTask, this.updateTaskUsers)
   }

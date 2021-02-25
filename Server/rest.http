@@ -190,11 +190,11 @@ DELETE http://localhost:3000/teams/602daad612d3182dc04f8050/projects/60321a53a20
 ############################## TASKS ######################################
 
 # CREATE NEW TASK IN PROJECT
-POST http://localhost:3000/teams/603442956288812dfc56128d/projects/60320e1348b544024a5dbfa2/tasks HTTP/1.1
+POST http://localhost:3000/teams/603442956288812dfc56128d/projects/60376a46cc7a0506003a2e16/tasks HTTP/1.1
 content-type: application/json
 
 {
-    "name": "TestTask2",
+    "name": "TestTdfsaask2",
     "content": "TestContent",
     "deadlineDate": "03/24/2021"
 }
@@ -207,16 +207,16 @@ DELETE http://localhost:3000/teams/603442956288812dfc56128d/projects/60320e1348b
 
 ### GET ONE TASK
 
-GET http://localhost:3000/teams/603442956288812dfc56128d/projects/60320e1348b544024a5dbfa2/tasks/60368ff8246f711710048fce HTTP/1.1
+GET http://localhost:3000/teams/603442956288812dfc56128d/projects/60376a46cc7a0506003a2e16/tasks/60368ff8246f711710048fce HTTP/1.1
 
 
 ### GET ALL TASKS IN CURRENT PROJECT
 
-GET http://localhost:3000/teams/603442956288812dfc56128d/projects/60320e1348b544024a5dbfa2/tasks HTTP/1.1
+GET http://localhost:3000/teams/603442956288812dfc56128d/projects/60376a46cc7a0506003a2e16/tasks HTTP/1.1
 
 ### UPDATE TASK INFO
 
-PUT http://localhost:3000/teams/603442956288812dfc56128d/projects/60320e1348b544024a5dbfa2/tasks/60368ff8246f711710048fce HTTP/1.1
+PUT http://localhost:3000/teams/603442956288812dfc56128d/projects/603781028a3f941ce4069a6d/tasks/60368ff8246f711710048fce HTTP/1.1
 content-type: application/json
 
 {
@@ -238,7 +238,7 @@ content-type: application/json
 
 ### Create new comment
 
-POST http://localhost:3000/teams/603442956288812dfc56128d/projects/60320e1348b544024a5dbfa2/tasks/60368ff8246f711710048fce/comments HTTP/1.1
+POST http://localhost:3000/teams/603442956288812dfc56128d/projects/603781028a3f941ce4069a6d/tasks/60368ff8246f711710048fce/comments HTTP/1.1
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDMyMjcyOGJjMmM1NjAxOTA5NmIyMTgiLCJpYXQiOjE2MTM4OTk2MTB9.o0jJa82-vmzRIJMrjBJovUB1qcXfetO-cf12WNNwWt4
 content-type: application/json
 
@@ -249,13 +249,17 @@ content-type: application/json
 
 ### DELETE COMMENT
 
-DELETE http://localhost:3000/teams/603442956288812dfc56128d/projects/60320e1348b544024a5dbfa2/tasks/60368ff8246f711710048fce/comments/60369151246f711710048fd1 HTTP/1.1
+DELETE http://localhost:3000/teams/603442956288812dfc56128d/projects/603781028a3f941ce4069a6d/tasks/60368ff8246f711710048fce/comments/60369151246f711710048fd1 HTTP/1.1
 
 
-### GET TASKS
+### GET COMMENTS FROM TASK
 
-GET http://localhost:3000/teams/603442956288812dfc56128d/projects/60320e1348b544024a5dbfa2/tasks/60368ff8246f711710048fce/comments/ HTTP/1.1
+GET http://localhost:3000/teams/603442956288812dfc56128d/projects/603781028a3f941ce4069a6d/tasks/60368ff8246f711710048fce/comments/ HTTP/1.1
 
+
+### GET ONE COMMENT
+
+GET http://localhost:3000/teams/603442956288812dfc56128d/projects/603781028a3f941ce4069a6d/tasks/60368ff8246f711710048fce/comments/6036a5239cff91245c0ada4c HTTP/1.1
 
 ### EDIT COMMENT
 

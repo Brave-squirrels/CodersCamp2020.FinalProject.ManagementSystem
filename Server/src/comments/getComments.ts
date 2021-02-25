@@ -3,9 +3,7 @@ import {StatusCodes} from 'http-status-codes';
 import commentModel from '../../models/comment.model';
 
 const getComments = async (req: Request, res: Response) => {
-    const comments = await commentModel.find({
-        taskId: req.params.taskId
-    })
+    const comments = res.locals.comments;
 
     if(!comments) return res.status(StatusCodes.NOT_FOUND).send('No comments found');
 

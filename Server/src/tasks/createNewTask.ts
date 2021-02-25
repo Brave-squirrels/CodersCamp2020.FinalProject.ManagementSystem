@@ -7,15 +7,7 @@ import validateTask from "./validateTask";
 const createNewTask = async (req: Request, res: Response) => {
   const project = res.locals.project;
   
- /*  //Check if date is correct
-
-  const userDate = new Date(req.body.deadlineDate);
-  const currentDate = new Date();
-
-  if(userDate < currentDate){
-    return res.status(StatusCodes.BAD_REQUEST).send('Wrong deadline date');
-  } */
-
+  //Creating new task
   const taskData: Task = {
     projectId: project._id,
     ...req.body,
@@ -28,6 +20,7 @@ const createNewTask = async (req: Request, res: Response) => {
 
   const newTask = new taskModel(taskData);
 
+  //Adding task ID to current project
   project.tasks.push({id: newTask._id});
 
   
