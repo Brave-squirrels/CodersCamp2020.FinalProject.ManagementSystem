@@ -8,7 +8,6 @@ import deleteUser from "../src/users/deleteUser";
 import changePassword from "../src/users/changePassword";
 import changeName from "../src/users/changeName";
 import confirmation from "../src/users/confirmation";
-import invitation from "../src/users/invitation";
 import sendEmailToUser from "../src/users/sendEmail";
 import findUser from "../middleware/findUser";
 
@@ -31,7 +30,6 @@ export default class UserController {
     this.router.get(`${this.path}/confirmation/:token`, this.confirmation);
     this.router.post(`${this.path}/create`, this.createUser);
     this.router.post(`${this.path}/email`, this.sendEmailToUser);
-    this.router.post(`${this.path}/invite`, this.invitation);
     this.router.put(`${this.path}/password`, auth, this.changePassword);
     this.router.put(`${this.path}/name`, auth, this.changeName);
     this.router.delete(`${this.path}/:id`, this.deleteUser);
@@ -59,10 +57,6 @@ export default class UserController {
 
   sendEmailToUser(req: Request, res: Response) {
     sendEmailToUser(req, res);
-  }
-
-  invitation(req: Request, res: Response) {
-    invitation(req, res);
   }
 
   changePassword(req: Request, res: Response) {
