@@ -9,7 +9,6 @@ interface User extends mongoose.Document {
   teams?: TeamArr[];
   projects?: ProjectArr[];
   date?: Date;
-  isAdmin?: boolean;
   isVerified?: boolean;
   generateAuthToken(): string;
 }

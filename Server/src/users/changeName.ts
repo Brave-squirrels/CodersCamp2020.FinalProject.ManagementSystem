@@ -10,7 +10,7 @@ const changeName = async (req: Request, res: Response) => {
     return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
 
   const user = await userModel.findByIdAndUpdate(
-    req.user._id,
+    req.userInfo._id,
     { name: req.body.name },
     { new: true }
   );

@@ -47,7 +47,6 @@ const userSchema = new mongoose.Schema<User>({
     type: Date,
     default: Date.now,
   },
-  isAdmin: Boolean,
   isVerified: {
     type: Boolean,
     default: false,
@@ -56,7 +55,7 @@ const userSchema = new mongoose.Schema<User>({
 
 userSchema.methods.generateAuthToken = function () {
   const token = jwt.sign(
-    { _id: this._id, isAdmin: this.isAdmin },
+    { _id: this._id, name: this.name },
     config.get("jwtPrivateKey")
   );
   return token;

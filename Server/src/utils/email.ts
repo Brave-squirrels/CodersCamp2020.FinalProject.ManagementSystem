@@ -1,7 +1,7 @@
 import nodemailer from "nodemailer";
 import "dotenv/config";
 
-export default async function sednEmail(email: string, url: string) {
+export default async function sendEmail(email: string, url: string) {
   const transporter = nodemailer.createTransport({
     host: "smtp.mail.yahoo.com",
     port: 465,

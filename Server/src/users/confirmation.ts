@@ -6,7 +6,7 @@ import "dotenv/config";
 import userModel from "../../models/user.model";
 import User from "../../interfaces/user.interface";
 
-const confimrUser = async (req: Request, res: Response) => {
+const confirmUser = async (req: Request, res: Response) => {
   let user = (await jwt.verify(
     req.params.token,
     process.env.MANAGEMENT_SYSTEM_JWT_PRIVATE_KEY!.toString()
@@ -23,4 +23,4 @@ const confimrUser = async (req: Request, res: Response) => {
   res.status(StatusCodes.OK).send("User verified!");
 };
 
-export default confimrUser;
+export default confirmUser;

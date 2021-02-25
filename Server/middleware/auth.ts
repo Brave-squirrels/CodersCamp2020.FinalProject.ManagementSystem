@@ -12,7 +12,7 @@ export default function auth(req: Request, res: Response, next: NextFunction) {
 
   try {
     const decoded = jwt.verify(token, config.get("jwtPrivateKey"));
-    req.user = decoded;
+    req.userInfo = decoded;
     next();
   } catch (ex) {
     res.status(StatusCodes.BAD_REQUEST).send("Invalid token.");
