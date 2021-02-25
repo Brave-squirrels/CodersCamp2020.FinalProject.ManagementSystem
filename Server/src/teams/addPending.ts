@@ -13,11 +13,11 @@ const addPending = async (req: Request, res: Response) => {
 
   //Check if user is already in team
   const membersIdArr: string[] = [];
-  team.members.forEach((member: members) => membersIdArr.push(member.userId));
+  team.members.forEach((member: members) => membersIdArr.push((member.userId).toString()));
   if (membersIdArr.includes(req.body.id))
     return res.status(StatusCodes.BAD_REQUEST).send("User is already in team");
 
-  //check if user is already in pending (add to pending if not)
+  //check if user is already in pending 
   if (!team.pendingUsers.includes(req.body.id)) {
     team.pendingUsers.push(req.body.id);
 
