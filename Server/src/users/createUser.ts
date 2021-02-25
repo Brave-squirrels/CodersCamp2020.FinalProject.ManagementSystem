@@ -1,5 +1,6 @@
 import { Response, Request } from "express";
 import _ from "lodash";
+import "dotenv/config";
 import bcrypt from "bcrypt";
 import { StatusCodes } from "http-status-codes";
 import validateUser from "./validateUser";
@@ -17,7 +18,7 @@ export default async function createUser(req: Request, res: Response) {
     return res.status(StatusCodes.BAD_REQUEST).send("User already registered.");
 
   user = new userModel({ ...req.body });
-  if (user.password === user.confirmPassword)
+  if (user.password !== user.confirmPassword)
     return res
       .status(StatusCodes.BAD_REQUEST)
       .send("Password are not matching.");
@@ -27,7 +28,7 @@ export default async function createUser(req: Request, res: Response) {
   user = await user.save();
 
   const token = user.generateAuthToken();
-  const url = `http://127.0.0.1:8080/api/users/confirmation/${token}`;
+  const url = `http://${process.env.ADDRESS}:${process.env.PORT}/users/confirmation/${token}`;
   sendEmail(req.body.email, url);
 
   res.header("x-auth-token", token).send(_.pick(user, ["id", "name", "email"]));
