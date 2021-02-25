@@ -1,6 +1,5 @@
 const Joi = require("joi-oid");
 import { Project } from "../../interfaces/project.interface";
-import STATUS from "../../enums/projectStatus";
 
 const validateProject = (project: Project) => {
   const schema = Joi.object({
@@ -13,6 +12,7 @@ const validateProject = (project: Project) => {
       id: Joi.objectId().required(),
       name: Joi.string().min(3).max(24).required(),
     }),
+    deadline: Joi.date().min(new Date()).required(),
     content: Joi.string().min(0).max(254),
   });
 

@@ -5,6 +5,7 @@ enum ROLES {
   QAENGINEER = "QAEngineer",
   DESIGNER = "Designer",
   NORMAL = "Normal",
+  OWNER = 'Owner',
 }
 
 export default ROLES;
