@@ -9,21 +9,30 @@ const addPending = async (req: Request, res: Response) => {
     return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
 
   const team = res.locals.team;
+  const user = res.locals.user;
 
   //Check if user is already in team
   const membersIdArr: string[] = [];
-  team.members.forEach((member: members) => membersIdArr.push(member.userId));
+  team.members.forEach((member: members) => membersIdArr.push((member.userId).toString()));
   if (membersIdArr.includes(req.body.id))
     return res.status(StatusCodes.BAD_REQUEST).send("User is already in team");
 
-  //check if user is already in pending (add to pending if not)
+  //check if user is already in pending 
   if (!team.pendingUsers.includes(req.body.id)) {
     team.pendingUsers.push(req.body.id);
+
+    //Add team to user invitation array 
+    user.teamInvitation.push({ _id: false, teamId: team.id, teamName: team.teamName });
+    
+
+    await user.save();
     await team.save();
     return res.status(StatusCodes.OK).send(team);
   } else {
     return res.status(StatusCodes.BAD_REQUEST).send("User already in pending");
   }
 };
+
+
 
 export default addPending;

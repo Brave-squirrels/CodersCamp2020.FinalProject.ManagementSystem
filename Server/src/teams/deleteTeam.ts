@@ -13,7 +13,6 @@ export default async function deleteTeam(req: Request, res: Response) {
 
   //Find user by Id
   const getUser = async (member: members) => {
-    console.log(member);
     const user = await userModel.findById(member).select("-password");
     if (!user) return res.status(StatusCodes.NOT_FOUND).send("User not found");
     return user;

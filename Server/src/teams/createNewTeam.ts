@@ -5,12 +5,14 @@ import { StatusCodes } from "http-status-codes";
 import Team from "../../interfaces/team.interface";
 
 const createNewTeam = async (req: Request, res: Response) => {
+  
   const user = res.locals.user;
-
+  
+  
   //Check if team name is unique
   const teams = res.locals.teams;
   const teamNamesArr: string[] = [];
-  teams.forEach((team: Team) => teamNamesArr.push(team.teamName));
+  teams.forEach((team: Team) => teamNamesArr.push((team.teamName).toString()));
   if (teamNamesArr.includes(req.body.teamName))
     return res
       .status(StatusCodes.BAD_REQUEST)
@@ -20,9 +22,7 @@ const createNewTeam = async (req: Request, res: Response) => {
   const teamData: Team = {
     teamName: req.body.teamName,
     ownerId: user._id,
-    members: [{ _id: false, userId: user.id, userName: user.name }],
-    pendingUsers: [], // remove
-    projects: [], //remove
+    members: [{ _id: false, userId: user._id, userName: user.name }],
     moderatorsId: [user._id],
     description: req.body.description,
     startDate: req.body.date,
@@ -34,15 +34,13 @@ const createNewTeam = async (req: Request, res: Response) => {
 
   const newTeam = new teamModel(teamData);
 
-  //Add team to user array
-  const userTeams = user.teams;
-  userTeams.push({ _id: false, id: newTeam.id, name: newTeam.teamName });
-  user.set({ teams: userTeams });
-
+  //Add team to user array 
+  user.teams.push({ _id: false, id: newTeam.id, name: newTeam.teamName });
+  
   await newTeam.save();
   await user.save();
 
-  return res.status(StatusCodes.OK).send(newTeam);
+  return res.status(StatusCodes.OK).send(newTeam);  
 };
 
 export default createNewTeam;

@@ -1,10 +1,14 @@
 import express, { request, Request, Response } from "express";
-import createNewTeam from "../src/teams/createNewTeam";
-import deleteTeam from "../src/teams/deleteTeam";
+
 import findTeam from "../middleware/findTeam";
 import findAllTeams from "../middleware/findAllTeams";
 import findUser from "../middleware/findUser";
 import findUserByBody from "../middleware/findUserByBody";
+import auth from '../middleware/auth';
+import findUserByAuth from '../middleware/findUserByAuth';
+
+import createNewTeam from "../src/teams/createNewTeam";
+import deleteTeam from "../src/teams/deleteTeam";
 import removeUser from "../src/teams/removeUser";
 import addUserToTeam from "../src/teams/addUserToTeam";
 import removePermissions from "../src/teams/removePermissions";
@@ -24,10 +28,12 @@ export default class TeamController {
   }
 
   public initializeRoutes() {
+
     this.router.post(
-      `${this.path}/:id`,
-      findUser,
+      `${this.path}`,
       findAllTeams,
+      auth,
+      findUserByAuth,
       this.createNewTeam
     ); //WORKING
 
@@ -45,6 +51,7 @@ export default class TeamController {
     this.router.put(
       `${this.path}/:teamId/addpending`,
       findTeam,
+      findUserByBody,
       this.addPending
     ); //WORKING
 
@@ -83,6 +90,7 @@ export default class TeamController {
     this.router.put(
       `${this.path}/:teamId/removePending`,
       findTeam,
+      findUserByBody,
       this.removePending //WORKING
     );
   }
