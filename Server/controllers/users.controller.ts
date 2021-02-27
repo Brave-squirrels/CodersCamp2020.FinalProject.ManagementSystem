@@ -34,7 +34,7 @@ export default class UserController {
     this.router.put(`${this.path}/password`, auth, this.changePassword);
     this.router.put(`${this.path}/name`, auth, this.changeName);
     this.router.delete(`${this.path}/:id`, this.deleteUser);
-    this.router.get(`${this.path}/search/:tags?`, this.searchUser);
+    this.router.get(`${this.path}/search/:email?`, this.searchUser);
   }
 
   getAllUsers(req: Request, res: Response) {

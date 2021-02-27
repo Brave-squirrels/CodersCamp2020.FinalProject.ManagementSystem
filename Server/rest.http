@@ -37,7 +37,7 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDMyNGFlYTEwNDcxN
 
 ###
 # search user by email
-GET http://localhost:3000/users/search/olo HTTP/1.1
+GET http://localhost:3000/users/search/test@mail.com HTTP/1.1
 
 ###
 # create users
