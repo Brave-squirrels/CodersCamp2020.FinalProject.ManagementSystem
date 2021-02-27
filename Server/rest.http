@@ -64,9 +64,18 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDMyMjcxZGJjMmM1N
 Content-Type: application/json
 
 {
-    "name": "Updated",
-    "password": "1234",
-    "email": "jack@mail.pl"
+    "name": "Aleksander"
+}
+
+###
+# change password
+PUT http://localhost:3000/users/password HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDMyMjcxZGJjMmM1NjAxOTA5NmIyMTciLCJpYXQiOjE2MTM5MDc2MzF9.c-rfYIqw-jXZL9834jtusjtSpQq5yeHWXZ_73aQdxX4
+Content-Type: application/json
+
+{
+    "password": "123456",
+    "confirmPassword": "123456"
 }
 
 ###
