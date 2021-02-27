@@ -36,6 +36,10 @@ GET http://localhost:3000/users/confirmation/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDMyNGFlYTEwNDcxNDEyN2M4ZjQxOGIiLCJpYXQiOjE2MTQyMTAyNjF9.aEtJSVJ0Qwr8sZs-wBz3fAE2Lf1oep5VvhfB2W-O608
 
 ###
+# search user by email
+GET http://localhost:3000/users/search/olo HTTP/1.1
+
+###
 # create users
 POST http://localhost:3000/users/create HTTP/1.1
 Content-Type: application/json

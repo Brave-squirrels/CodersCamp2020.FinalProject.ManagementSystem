@@ -9,6 +9,7 @@ import changePassword from "../src/users/changePassword";
 import changeName from "../src/users/changeName";
 import confirmation from "../src/users/confirmation";
 import sendEmailToUser from "../src/users/sendEmail";
+import searchUser from "../src/users/searchUser";
 import findUser from "../middleware/findUser";
 
 /**
@@ -33,6 +34,7 @@ export default class UserController {
     this.router.put(`${this.path}/password`, auth, this.changePassword);
     this.router.put(`${this.path}/name`, auth, this.changeName);
     this.router.delete(`${this.path}/:id`, this.deleteUser);
+    this.router.get(`${this.path}/search/:tags?`, this.searchUser);
   }
 
   getAllUsers(req: Request, res: Response) {
@@ -69,5 +71,9 @@ export default class UserController {
 
   deleteUser(req: Request, res: Response) {
     deleteUser(req, res);
+  }
+
+  searchUser(req: Request, res: Response) {
+    searchUser(req, res);
   }
 }
