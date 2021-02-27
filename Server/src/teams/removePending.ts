@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
 import validateUserId from "./validateUserId";
-import TeamArr from "../../interfaces/teamArr.interface";
 
 const removePending = async (req: Request, res: Response) => {
   const { error } = validateUserId(req.body);
