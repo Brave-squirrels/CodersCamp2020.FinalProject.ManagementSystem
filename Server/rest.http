@@ -7,7 +7,7 @@ POST http://localhost:3000/auth HTTP/1.1
 Content-Type: application/json
 
 {
-    "email": "test@mail.com",
+    "email": "olo8@email.com",
     "password": "12345"
 }
 
@@ -32,8 +32,7 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDMyNGFlYTEwNDcxN
 
 ###
 # confirm user
-GET http://localhost:3000/users/confirmation/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDMyMjcxZGJjMmM1NjAxOTA5NmIyMTciLCJpYXQiOjE2MTM5MDc2MzF9.c-rfYIqw-jXZL9834jtusjtSpQq5yeHWXZ_73aQdxX4 HTTP/1.1
-x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDMyNGFlYTEwNDcxNDEyN2M4ZjQxOGIiLCJpYXQiOjE2MTQyMTAyNjF9.aEtJSVJ0Qwr8sZs-wBz3fAE2Lf1oep5VvhfB2W-O608
+GET http://localhost:3000/users/confirmation/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDNkMmYyNzk4OGY5OTBkNzhkMTk3OGEiLCJuYW1lIjoiT2xlayIsImlhdCI6MTYxNDYyMjUxM30.6JafoHcl4KxQ8GFY_dVwEoyKcC3ed6FROug8DpBkyqQ HTTP/1.1
 
 ###
 # search user by email
@@ -84,7 +83,7 @@ Content-Type: application/json
 
 ###
 # delete users
-DELETE  http://localhost:3000/users/603cfd5df28ed90e1c744aec HTTP/1.1
+DELETE  http://localhost:3000/users/603d2f27988f990d78d1978a HTTP/1.1
 
 ###
 # ____________________________ PROJECTS ____________________________

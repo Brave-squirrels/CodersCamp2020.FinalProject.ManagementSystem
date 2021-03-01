@@ -68,6 +68,83 @@ describe("/users", () => {
     });
   });
 
+  describe("GET /me", () => {
+    let token: string;
+    let user: User & mongoose.Document<any>;
+
+    const exec = async () => {
+      return await request(server).get("/users/me").set("x-auth-token", token);
+    };
+
+    beforeEach(async () => {
+      user = new userModel({
+        name: "user1",
+        email: "user@mail.com",
+        password: "12345",
+      });
+      await user.save();
+
+      token = user.generateAuthToken();
+    });
+
+    it("should return 401 if user is not logged in", async () => {
+      token = "";
+
+      const res = await exec();
+
+      expect(res.status).toBe(401);
+    });
+
+    it("should return a user if valid it is logged", async () => {
+      const res = await exec();
+
+      expect(res.status).toBe(200);
+      expect(res.body).toHaveProperty("name", user.name);
+    });
+  });
+
+  describe("GET /me", () => {
+    let token: string;
+    let user: User & mongoose.Document<any>;
+
+    const exec = async () => {
+      return await request(server).get("/users/confirmation/" + token);
+    };
+
+    beforeEach(async () => {
+      user = new userModel({
+        name: "user1",
+        email: "user@mail.com",
+        password: "12345",
+      });
+      await user.save();
+
+      token = user.generateAuthToken();
+    });
+
+    it("should return 400 if user not found", async () => {
+      token = new userModel().generateAuthToken();
+
+      const res = await exec();
+
+      expect(res.status).toBe(404);
+    });
+
+    it("should return 400 if invalid token is passed", async () => {
+      token = "1";
+
+      const res = await exec();
+
+      expect(res.status).toBe(400);
+    });
+
+    it("should return 200 if valid token is passed", async () => {
+      const res = await exec();
+
+      expect(res.status).toBe(200);
+    });
+  });
+
   describe("POST /", () => {
     let token: string;
     let body: Body | {} = {};
@@ -109,9 +186,35 @@ describe("/users", () => {
         password: "12345",
         confirmPassword: "12345",
       };
-      new Array(52).join("a");
 
       const res = await exec();
+
+      expect(res.status).toBe(400);
+    });
+
+    it("should return 400 if user already registered", async () => {
+      body = {
+        name: "user1",
+        email: "user@mail.com",
+        password: "12345",
+        confirmPassword: "12345",
+      };
+      await exec();
+
+      let res = await exec();
+
+      expect(res.status).toBe(400);
+    });
+
+    it("should return 400 if password are not matching", async () => {
+      body = {
+        name: "user1",
+        email: "user@mail.com",
+        password: "12345",
+        confirmPassword: "1234",
+      };
+
+      let res = await exec();
 
       expect(res.status).toBe(400);
     });
@@ -131,7 +234,7 @@ describe("/users", () => {
     });
   });
 
-  describe("PUT /", () => {
+  describe("PUT /name", () => {
     let token: string;
     let newName: string;
     let user: User & mongoose.Document<any>;
@@ -161,6 +264,14 @@ describe("/users", () => {
       const res = await exec();
 
       expect(res.status).toBe(401);
+    });
+
+    it("should return 400 if user not found", async () => {
+      token = new userModel().generateAuthToken();
+
+      const res = await exec();
+
+      expect(res.status).toBe(404);
     });
 
     it("should return 400 if user name is less than 4 characters", async () => {
@@ -195,8 +306,74 @@ describe("/users", () => {
     });
   });
 
-  describe("DELETE /:id", () => {
+  describe("PUT /password", () => {
     let token: string;
+    let newPassword: string;
+    let confirmPassword: string;
+    let user: User & mongoose.Document<any>;
+
+    const exec = async () => {
+      return await request(server)
+        .put("/users/password")
+        .set("x-auth-token", token)
+        .send({ password: newPassword, confirmPassword: confirmPassword });
+    };
+
+    beforeEach(async () => {
+      user = new userModel({
+        name: "user1",
+        email: "user@mail.com",
+        password: "12345",
+      });
+      await user.save();
+
+      token = user.generateAuthToken();
+      newPassword = "123456";
+      confirmPassword = "123456";
+    });
+
+    it("should return 401 if user is not logged in", async () => {
+      token = "";
+
+      const res = await exec();
+
+      expect(res.status).toBe(401);
+    });
+
+    it("should return 400 if user not found", async () => {
+      token = new userModel().generateAuthToken();
+
+      const res = await exec();
+
+      expect(res.status).toBe(404);
+    });
+
+    it("should return 400 if user password is less than 4 characters", async () => {
+      newPassword = "123";
+      confirmPassword = "123";
+
+      const res = await exec();
+
+      expect(res.status).toBe(400);
+    });
+
+    it("should update the user if input is valid", async () => {
+      const res = await exec();
+
+      const updatedUser = await userModel.findById(user._id);
+
+      expect(res.status).toBe(200);
+    });
+
+    it("should return the updated user if it is valid", async () => {
+      const res = await exec();
+
+      expect(res.body).toHaveProperty("_id");
+      expect(res.body).toHaveProperty("name");
+    });
+  });
+
+  describe("DELETE /:id", () => {
     let user: User & mongoose.Document<any>;
     let id: mongoose.Types.ObjectId;
 
