@@ -1,7 +1,7 @@
 import nodemailer from "nodemailer";
 import "dotenv/config";
 
-export default function sendEmail(email: string, url: string) {
+export default async function sendEmail(email: string, url: string) {
   const transporter = nodemailer.createTransport({
     host: "smtp.mail.yahoo.com",
     port: 465,
@@ -21,8 +21,9 @@ export default function sendEmail(email: string, url: string) {
     html: `Please click this link to confirm your email: <a href="${url}">${url}</a>`,
   };
 
-  transporter.sendMail(mailOptions, function (err, data) {
-    if (err) console.log("Error Occurs: ", err);
-    // else console.log("Email sent!!!");
-  });
+  try {
+    return await transporter.sendMail(mailOptions);
+  } catch (ex) {
+    return ex;
+  }
 }

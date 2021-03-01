@@ -1,8 +1,12 @@
 import request from "supertest";
 import mongoose from "mongoose";
 import { Server } from "http";
-import userModel from "../../../models/user.model";
 import User from "../../../interfaces/user.interface";
+import userModel from "../../../models/user.model";
+import projectModel from "../../../models/projects.model";
+import teamsModel from "../../../models/teams.model";
+import tasksModel from "../../../models/tasks.model";
+import commentsModel from "../../../models/comment.model";
 
 let server: Server;
 
@@ -21,6 +25,10 @@ describe("/users", () => {
   });
   afterEach(async () => {
     await userModel.deleteMany({});
+    await projectModel.deleteMany({});
+    await teamsModel.deleteMany({});
+    await tasksModel.deleteMany({});
+    await commentsModel.deleteMany({});
     await server.close();
   });
 
@@ -103,7 +111,7 @@ describe("/users", () => {
     });
   });
 
-  describe("GET /me", () => {
+  describe("GET /confirmation/:token", () => {
     let token: string;
     let user: User & mongoose.Document<any>;
 
@@ -145,19 +153,49 @@ describe("/users", () => {
     });
   });
 
-  describe("POST /", () => {
-    let token: string;
+  describe("GET /search/:email?", () => {
+    let email: string;
+    let user: User & mongoose.Document<any>;
+
+    const exec = async () => {
+      return await request(server).get("/users/search/" + email);
+    };
+
+    beforeEach(async () => {
+      user = new userModel({
+        name: "user1",
+        email: "user@mail.com",
+        password: "12345",
+      });
+      await user.save();
+
+      email = user.email;
+    });
+
+    it("should return 400 if user not found", async () => {
+      email = "wrong@email.com";
+
+      const res = await exec();
+
+      expect(res.status).toBe(404);
+    });
+
+    it("should return 200 if valid email is passed", async () => {
+      const res = await exec();
+
+      expect(res.status).toBe(200);
+      expect(res.body).toHaveProperty("email", user.email);
+    });
+  });
+
+  describe("POST /create", () => {
     let body: Body | {} = {};
 
     const exec = async () => {
-      return await request(server)
-        .post("/users/create")
-        .set("x-auth-token", token)
-        .send(body);
+      return await request(server).post("/users/create").send(body);
     };
 
     beforeEach(() => {
-      token = new userModel().generateAuthToken();
       body = {
         name: "user1",
         email: "user@mail.com",
@@ -231,6 +269,45 @@ describe("/users", () => {
       const res = await exec();
       expect(res.body).toHaveProperty("id");
       expect(res.body).toHaveProperty("name", "user1");
+    });
+  });
+
+  describe("POST /email", () => {
+    let token: string;
+    let body: { email: string; token: string } | {} = {};
+
+    const exec = async () => {
+      return await request(server)
+        .post("/users/email")
+        .set("x-auth-token", token)
+        .send(body);
+    };
+
+    beforeEach(() => {
+      token = new userModel().generateAuthToken();
+      body = {
+        email: "test@mail.com",
+        token: token,
+      };
+    });
+
+    it("should ", () => {});
+
+    it("should return 400 if email is less than 5 characters", async () => {
+      body = {
+        email: "a@b.c",
+        token: token,
+      };
+
+      const res = await exec();
+
+      expect(res.status).toBe(400);
+    });
+
+    it("should send the email if it is valid", async () => {
+      const res = await exec();
+
+      expect(res.status).toBe(200);
     });
   });
 
