@@ -185,7 +185,7 @@ DELETE http://localhost:3000/teams/602daad612d3182dc04f8050/projects/6036e58865e
 #CREATE TEAM
 
 POST http://localhost:3000/teams HTTP/1.1
-x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDNhNTQ0Yjg3M2YzZDEwY2M3YzBlOGIiLCJuYW1lIjoiT2xlazEyMzQiLCJpYXQiOjE2MTQ2OTI2MzV9.5mOXncGoKCNqbRR4PSejelmU2t5O6icwo4SEqP5-AaI
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDM4MTg4ZDkwZGZhODFkYTg3NDlhODMiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0NjkxNzA3fQ.PItnGrEwgb2FJUsRHyExjQZ3IXH9DCvrzyL-D791aOA
 content-type: application/json
 
 {
@@ -196,13 +196,13 @@ content-type: application/json
 
 #GET TEAM
 
-GET http://localhost:3000/teams/603e3db2e76d441bb4a4b734 HTTP/1.1
+GET http://localhost:3000/teams/603e5baec26c9f2ce88007e2 HTTP/1.1
 
 ###
 
 #ADDING USER TO PENDING
 
-PUT http://localhost:3000/teams/603e3db2e76d441bb4a4b734/addpending HTTP/1.1
+PUT http://localhost:3000/teams/603e5baec26c9f2ce88007e2/addpending HTTP/1.1
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDM4MTg4ZDkwZGZhODFkYTg3NDlhODMiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0NjkxNzA3fQ.PItnGrEwgb2FJUsRHyExjQZ3IXH9DCvrzyL-D791aOA
 content-type: application/json
 
@@ -214,7 +214,7 @@ content-type: application/json
 
 #REMOVING USER FROM PENDING
 
-PUT http://localhost:3000/teams/603e3db2e76d441bb4a4b734/removePending HTTP/1.1
+PUT http://localhost:3000/teams/603e5baec26c9f2ce88007e2/removePending HTTP/1.1
 Content-type: application/json
 
 {
@@ -225,7 +225,7 @@ Content-type: application/json
 
 #ADDING USER TO TEAM
 
-PUT http://localhost:3000/teams/603e3db2e76d441bb4a4b734/adduser HTTP/1.1
+PUT http://localhost:3000/teams/603e5baec26c9f2ce88007e2/adduser HTTP/1.1
 Content-Type: application/json
 
 {
@@ -236,7 +236,7 @@ Content-Type: application/json
 
 #REMOVING USER FROM TEAM
 
-PUT http://localhost:3000/teams/603e3db2e76d441bb4a4b734/removeUser HTTP/1.1
+PUT http://localhost:3000/teams/603e5baec26c9f2ce88007e2/removeUser HTTP/1.1
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDM4MTg4ZDkwZGZhODFkYTg3NDlhODMiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0NjkxNzA3fQ.PItnGrEwgb2FJUsRHyExjQZ3IXH9DCvrzyL-D791aOA
 content-type: application/json
 
@@ -248,7 +248,7 @@ content-type: application/json
 
 #LEAVE TEAM
 
-PUT http://localhost:3000/teams/603e3db2e76d441bb4a4b734/leaveTeam HTTP/1.1
+PUT http://localhost:3000/teams/603e5baec26c9f2ce88007e2/leaveTeam HTTP/1.1
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDM4MTg4ZDkwZGZhODFkYTg3NDlhODMiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0NjkxNzA3fQ.PItnGrEwgb2FJUsRHyExjQZ3IXH9DCvrzyL-D791aOA
 content-type: application/json
 
@@ -260,7 +260,7 @@ content-type: application/json
 
 #ADDING USER PERMISSIONS 
 
-PUT http://localhost:3000/teams/603e3db2e76d441bb4a4b734/addPermissions HTTP/1.1
+PUT http://localhost:3000/teams/603e5baec26c9f2ce88007e2/addPermissions HTTP/1.1
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDM4MTg4ZDkwZGZhODFkYTg3NDlhODMiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0NjkxNzA3fQ.PItnGrEwgb2FJUsRHyExjQZ3IXH9DCvrzyL-D791aOA
 content-type: application/json
 
@@ -272,7 +272,7 @@ content-type: application/json
 
 #REMOVING USER PERMISSIONS 
 
-PUT http://localhost:3000/teams/603e3db2e76d441bb4a4b734/removePermissions HTTP/1.1
+PUT http://localhost:3000/teams/603e5baec26c9f2ce88007e2/removePermissions HTTP/1.1
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDM4MTg4ZDkwZGZhODFkYTg3NDlhODMiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0NjkxNzA3fQ.PItnGrEwgb2FJUsRHyExjQZ3IXH9DCvrzyL-D791aOA
 content-type: application/json
 
@@ -284,7 +284,7 @@ content-type: application/json
 
 #CHANGE TEAM DESCRIPTIOM
 
-PUT http://localhost:3000/teams/603e3db2e76d441bb4a4b734/changeDescription HTTP/1.1
+PUT http://localhost:3000/teams/603e5baec26c9f2ce88007e2/changeDescription HTTP/1.1
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDM4MTg4ZDkwZGZhODFkYTg3NDlhODMiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0NjkxNzA3fQ.PItnGrEwgb2FJUsRHyExjQZ3IXH9DCvrzyL-D791aOA
 content-type: application/json
 
@@ -296,18 +296,18 @@ content-type: application/json
 
 #CHANGE TEAM NAME
 
-PUT http://localhost:3000/teams/603e3db2e76d441bb4a4b734/changeTeamName HTTP/1.1
+PUT http://localhost:3000/teams/603e5baec26c9f2ce88007e2/changeTeamName HTTP/1.1
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDM4MTg4ZDkwZGZhODFkYTg3NDlhODMiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0NjkxNzA3fQ.PItnGrEwgb2FJUsRHyExjQZ3IXH9DCvrzyL-D791aOA
 content-type: application/json
 
 {
-    "newTeamName" : "Team 2 marca vol 3"
+    "newTeamName" : "Team 2 marca vol 1"
 }
 
 ###
 
 # DELETE TEAM
-DELETE  http://localhost:3000/teams/603e3db2e76d441bb4a4b734 HTTP/1.1
+DELETE  http://localhost:3000/teams/603e5baec26c9f2ce88007e2 HTTP/1.1
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDM4MTg4ZDkwZGZhODFkYTg3NDlhODMiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0NjkxNzA3fQ.PItnGrEwgb2FJUsRHyExjQZ3IXH9DCvrzyL-D791aOA
 content-type: application/json
 
