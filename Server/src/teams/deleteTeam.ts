@@ -7,6 +7,13 @@ import members from "../../interfaces/teamMembers.interface";
 
 export default async function deleteTeam(req: Request, res: Response) {
   const teamObj = res.locals.team;
+  const authId = req.userInfo._id
+
+  //Checking if user have permissions 
+  if (authId != teamObj.ownerId)
+  return res.status(StatusCodes.BAD_REQUEST).send("You are not team owner");
+
+
 
   //Array of users in team
   const memberArr = teamObj.members;

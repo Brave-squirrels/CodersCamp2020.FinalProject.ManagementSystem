@@ -3,7 +3,7 @@ import { StatusCodes } from "http-status-codes";
 import members from "../../interfaces/teamMembers.interface";
 import TeamArr from "../../interfaces/teamArr.interface";
 
-const removeUser = async (req: Request, res: Response) => {
+const leaveTeam = async (req: Request, res: Response) => {
   
   const user = res.locals.user;
   const team = res.locals.team;
@@ -31,4 +31,4 @@ const removeUser = async (req: Request, res: Response) => {
   return res.status(StatusCodes.OK).send(team); 
 };
 
-export default removeUser;
+export default leaveTeam;

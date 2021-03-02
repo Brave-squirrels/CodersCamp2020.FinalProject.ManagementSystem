@@ -7,7 +7,7 @@ POST http://localhost:3000/auth HTTP/1.1
 Content-Type: application/json
 
 {
-    "email": "olo7@email.com",
+    "email": "olo8@email.com",
     "password": "12345"
 }
 
@@ -185,7 +185,7 @@ DELETE http://localhost:3000/teams/602daad612d3182dc04f8050/projects/6036e58865e
 #CREATE TEAM
 
 POST http://localhost:3000/teams HTTP/1.1
-x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDM4MTg4ZDkwZGZhODFkYTg3NDlhODMiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0NjkxNzA3fQ.PItnGrEwgb2FJUsRHyExjQZ3IXH9DCvrzyL-D791aOA
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDNhNTQ0Yjg3M2YzZDEwY2M3YzBlOGIiLCJuYW1lIjoiT2xlazEyMzQiLCJpYXQiOjE2MTQ2OTI2MzV9.5mOXncGoKCNqbRR4PSejelmU2t5O6icwo4SEqP5-AaI
 content-type: application/json
 
 {
@@ -207,7 +207,7 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDM4MTg4ZDkwZGZhO
 content-type: application/json
 
 {
-    "id": "6037ed8bc77ec410f8023436"
+    "id": "603a544b873f3d10cc7c0e8b"
 }
 
 ###
@@ -215,11 +215,10 @@ content-type: application/json
 #REMOVING USER FROM PENDING
 
 PUT http://localhost:3000/teams/603e3db2e76d441bb4a4b734/removePending HTTP/1.1
-x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDM4MTg4ZDkwZGZhODFkYTg3NDlhODMiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0NjkxNzA3fQ.PItnGrEwgb2FJUsRHyExjQZ3IXH9DCvrzyL-D791aOA
-content-type: application/json
+Content-type: application/json
 
 {
-   "id": "603e3db2e76d441bb4a4b734" 
+   "id": "603a544b873f3d10cc7c0e8b" 
 }
 
 ###
@@ -230,7 +229,7 @@ PUT http://localhost:3000/teams/603e3db2e76d441bb4a4b734/adduser HTTP/1.1
 Content-Type: application/json
 
 {
-    "id": "6037ed8bc77ec410f8023436"
+    "id": "603a544b873f3d10cc7c0e8b"
 }
 
 ###
@@ -240,8 +239,9 @@ Content-Type: application/json
 PUT http://localhost:3000/teams/603e3db2e76d441bb4a4b734/removeUser HTTP/1.1
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDM4MTg4ZDkwZGZhODFkYTg3NDlhODMiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0NjkxNzA3fQ.PItnGrEwgb2FJUsRHyExjQZ3IXH9DCvrzyL-D791aOA
 content-type: application/json
+
 {
-    "id": "60380317f27e722cb0338c32"
+    "id": "603a544b873f3d10cc7c0e8b"
 }
 
 ###
@@ -265,7 +265,7 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDM4MTg4ZDkwZGZhO
 content-type: application/json
 
 {
-    "id": "60380317f27e722cb0338c32"
+    "id": "603a544b873f3d10cc7c0e8b"
 }
 
 ###
@@ -277,7 +277,7 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDM4MTg4ZDkwZGZhO
 content-type: application/json
 
 {
-    "id": "60380317f27e722cb0338c32"
+    "id": "603a544b873f3d10cc7c0e8b"
 }
 
 ###
@@ -289,7 +289,7 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDM4MTg4ZDkwZGZhO
 content-type: application/json
 
 {
-    "newDescription" : "Troldasdadsololo"
+    "newDescription" : "adasdasdasdasdasd sfada dsa adad"
 }
 
 ###
@@ -301,7 +301,7 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDM4MTg4ZDkwZGZhO
 content-type: application/json
 
 {
-    "newTeamName" : "Dobra, chyba dziala"
+    "newTeamName" : "Team 2 marca vol 3"
 }
 
 ###

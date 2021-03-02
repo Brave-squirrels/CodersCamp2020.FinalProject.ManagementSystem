@@ -8,8 +8,13 @@ const addPending = async (req: Request, res: Response) => {
   if (error)
     return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
 
+  const authId = req.userInfo._id
   const team = res.locals.team;
   const user = res.locals.user;
+  
+  //Checking if user have permissions 
+  if (!team.moderatorsId.includes(authId))
+  return res.status(StatusCodes.BAD_REQUEST).send("You don't have permission to invite new members");
 
   //Check if user is already in team
   const membersIdArr: string[] = [];

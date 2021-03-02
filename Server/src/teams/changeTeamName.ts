@@ -10,9 +10,17 @@ const changeTeamName = async (req: Request, res: Response) => {
   if (error)
     return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
 
+  const team = res.locals.team;
+  const authId = req.userInfo._id
+
+  //Checking if user have permissions 
+  if (!team.moderatorsId.includes(authId))
+  return res.status(StatusCodes.BAD_REQUEST).send("You don't have permission to change team name");
+
   //Check if new team name is unique
   const teams = res.locals.teams;
   const teamNames: string[] = [];
+
   teams.forEach((team: Team) => teamNames.push((team.teamName).toString()));
   if (teamNames.includes((req.body.newTeamName).toString()))
     return res
@@ -20,8 +28,7 @@ const changeTeamName = async (req: Request, res: Response) => {
       .send("New team name have to be unique");
 
   //changing team name
-  const team = res.locals.team;
-  team.teamName = req.body.newTeamName;
+   team.teamName = req.body.newTeamName;
 
   await team.save();
 

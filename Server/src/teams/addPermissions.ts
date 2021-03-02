@@ -10,6 +10,11 @@ const addPermissions = async (req: Request, res: Response) => {
     return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
 
   const team = res.locals.team;
+  const authId = req.userInfo._id
+
+  //Checking if user have permissions 
+  if (authId != team.ownerId)
+  return res.status(StatusCodes.BAD_REQUEST).send("You are not team owner");
 
   //Check if user is team member
   const membersIdArr: string[] = [];
