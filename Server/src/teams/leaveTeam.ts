@@ -2,20 +2,13 @@ import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
 import members from "../../interfaces/teamMembers.interface";
 import TeamArr from "../../interfaces/teamArr.interface";
-import validateUserId from "./validateUserId";
 
-const removeUser = async (req: Request, res: Response) => {
-  const { error } = validateUserId(req.body);
-  if (error)
-    return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
-
+const leaveTeam = async (req: Request, res: Response) => {
+  
   const user = res.locals.user;
   const team = res.locals.team;
-  const authId = req.userInfo._id
-
-  //Checking if user have permissions 
-  if (!team.moderatorsId.includes(authId))
-  return res.status(StatusCodes.BAD_REQUEST).send("You don't have permission to remove user from team");
+  if (user.id==team.ownerId)
+    return res.status(StatusCodes.BAD_REQUEST).send("You are team owner. You can't leave team");
 
   //Remove user from team
   team.members.forEach((member: members, i: number) => {
@@ -35,7 +28,7 @@ const removeUser = async (req: Request, res: Response) => {
   await team.save();
   await user.save();
 
-  return res.status(StatusCodes.OK).send(team);
+  return res.status(StatusCodes.OK).send(team); 
 };
 
-export default removeUser;
+export default leaveTeam;

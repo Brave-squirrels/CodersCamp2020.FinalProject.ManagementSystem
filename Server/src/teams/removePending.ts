@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
 import validateUserId from "./validateUserId";
-import TeamArr from "../../interfaces/teamArr.interface";
 
 const removePending = async (req: Request, res: Response) => {
   const { error } = validateUserId(req.body);
@@ -10,6 +9,7 @@ const removePending = async (req: Request, res: Response) => {
 
   const team = res.locals.team;
   const user = res.locals.user;
+  
 
   //Remove user from pending
   team.pendingUsers.forEach((pendingUser: string, i: number) => {

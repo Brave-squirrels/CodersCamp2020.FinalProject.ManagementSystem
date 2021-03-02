@@ -1,6 +1,7 @@
+import CommentCreator from './commentCreatorInterface.interface';
 export interface Comment {
     taskId: string[],
     content: string,
-    creator: any,
+    creator: CommentCreator,
     date?: Date
 }

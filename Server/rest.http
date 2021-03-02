@@ -21,7 +21,7 @@ GET http://localhost:3000/users HTTP/1.1
 
 ###
 # get user
-GET http://localhost:3000/users/60324aea104714127c8f418b HTTP/1.1
+GET http://localhost:3000/users/6037ed8bc77ec410f8023436 HTTP/1.1
 
 
 ###
@@ -184,112 +184,131 @@ DELETE http://localhost:3000/teams/602daad612d3182dc04f8050/projects/6036e58865e
 #CREATE TEAM
 
 POST http://localhost:3000/teams HTTP/1.1
-x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDM3ZWQ4YmM3N2VjNDEwZjgwMjM0MzYiLCJuYW1lIjoiT2xvMTIzIiwiaWF0IjoxNjE0Mjc4MDM5fQ.zBgWpOLzOzosesbj6JYlc1XsVsU1Lbctp-Z_ZEw62cc
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDM4MTg4ZDkwZGZhODFkYTg3NDlhODMiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0NjkxNzA3fQ.PItnGrEwgb2FJUsRHyExjQZ3IXH9DCvrzyL-D791aOA
 content-type: application/json
 
 {
-    "teamName": "Nie wiem która to ostatnia próba123"
+    "teamName": "Team 2 marca"
 }
 
 ###
 
 #GET TEAM
 
-GET http://localhost:3000/teams/603822665dff5c1e60071ece HTTP/1.1
+GET http://localhost:3000/teams/603e5baec26c9f2ce88007e2 HTTP/1.1
 
 ###
 
 #ADDING USER TO PENDING
 
-PUT http://localhost:3000/teams/603822665dff5c1e60071ece/addpending HTTP/1.1
-Content-Type: application/json
+PUT http://localhost:3000/teams/603e5baec26c9f2ce88007e2/addpending HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDM4MTg4ZDkwZGZhODFkYTg3NDlhODMiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0NjkxNzA3fQ.PItnGrEwgb2FJUsRHyExjQZ3IXH9DCvrzyL-D791aOA
+content-type: application/json
 
 {
-    "id": "60380317f27e722cb0338c32"
+    "id": "603a544b873f3d10cc7c0e8b"
 }
 
 ###
 
 #REMOVING USER FROM PENDING
 
-PUT http://localhost:3000/teams/603822665dff5c1e60071ece/removePending HTTP/1.1
-Content-Type: application/json
+PUT http://localhost:3000/teams/603e5baec26c9f2ce88007e2/removePending HTTP/1.1
+Content-type: application/json
 
 {
-   "id": "603822665dff5c1e60071ece" 
+   "id": "603a544b873f3d10cc7c0e8b" 
 }
 
 ###
 
 #ADDING USER TO TEAM
 
-PUT http://localhost:3000/teams/603822665dff5c1e60071ece/adduser HTTP/1.1
+PUT http://localhost:3000/teams/603e5baec26c9f2ce88007e2/adduser HTTP/1.1
 Content-Type: application/json
 
 {
-    "id": "60380317f27e722cb0338c32"
+    "id": "603a544b873f3d10cc7c0e8b"
 }
 
 ###
 
 #REMOVING USER FROM TEAM
 
-PUT http://localhost:3000/teams/603822665dff5c1e60071ece/removeUser HTTP/1.1
-Content-Type: application/json
+PUT http://localhost:3000/teams/603e5baec26c9f2ce88007e2/removeUser HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDM4MTg4ZDkwZGZhODFkYTg3NDlhODMiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0NjkxNzA3fQ.PItnGrEwgb2FJUsRHyExjQZ3IXH9DCvrzyL-D791aOA
+content-type: application/json
 
 {
-    "id": "60380317f27e722cb0338c32"
+    "id": "603a544b873f3d10cc7c0e8b"
+}
+
+###
+
+#LEAVE TEAM
+
+PUT http://localhost:3000/teams/603e5baec26c9f2ce88007e2/leaveTeam HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDM4MTg4ZDkwZGZhODFkYTg3NDlhODMiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0NjkxNzA3fQ.PItnGrEwgb2FJUsRHyExjQZ3IXH9DCvrzyL-D791aOA
+content-type: application/json
+
+{
+
 }
 
 ###
 
 #ADDING USER PERMISSIONS 
 
-PUT http://localhost:3000/teams/603822665dff5c1e60071ece/addPermissions HTTP/1.1
-Content-Type: application/json
+PUT http://localhost:3000/teams/603e5baec26c9f2ce88007e2/addPermissions HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDM4MTg4ZDkwZGZhODFkYTg3NDlhODMiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0NjkxNzA3fQ.PItnGrEwgb2FJUsRHyExjQZ3IXH9DCvrzyL-D791aOA
+content-type: application/json
 
 {
-    "id": "60380317f27e722cb0338c32"
+    "id": "603a544b873f3d10cc7c0e8b"
 }
 
 ###
 
 #REMOVING USER PERMISSIONS 
 
-PUT http://localhost:3000/teams/603822665dff5c1e60071ece/removePermissions HTTP/1.1
-Content-Type: application/json
+PUT http://localhost:3000/teams/603e5baec26c9f2ce88007e2/removePermissions HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDM4MTg4ZDkwZGZhODFkYTg3NDlhODMiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0NjkxNzA3fQ.PItnGrEwgb2FJUsRHyExjQZ3IXH9DCvrzyL-D791aOA
+content-type: application/json
 
 {
-    "id": "60380317f27e722cb0338c32"
+    "id": "603a544b873f3d10cc7c0e8b"
 }
 
 ###
 
 #CHANGE TEAM DESCRIPTIOM
 
-PUT http://localhost:3000/teams/603822665dff5c1e60071ece/changeDescription HTTP/1.1
-Content-Type: application/json
+PUT http://localhost:3000/teams/603e5baec26c9f2ce88007e2/changeDescription HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDM4MTg4ZDkwZGZhODFkYTg3NDlhODMiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0NjkxNzA3fQ.PItnGrEwgb2FJUsRHyExjQZ3IXH9DCvrzyL-D791aOA
+content-type: application/json
 
 {
-    "newDescription" : "Trolololo"
+    "newDescription" : "adasdasdasdasdasd sfada dsa adad"
 }
 
 ###
 
 #CHANGE TEAM NAME
 
-PUT http://localhost:3000/teams/603822665dff5c1e60071ece/changeTeamName HTTP/1.1
-Content-Type: application/json
+PUT http://localhost:3000/teams/603e5baec26c9f2ce88007e2/changeTeamName HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDM4MTg4ZDkwZGZhODFkYTg3NDlhODMiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0NjkxNzA3fQ.PItnGrEwgb2FJUsRHyExjQZ3IXH9DCvrzyL-D791aOA
+content-type: application/json
 
 {
-    "newTeamName" : "Dobra, chyba dziala"
+    "newTeamName" : "Team 2 marca vol 1"
 }
 
 ###
 
 # DELETE TEAM
-DELETE  http://localhost:3000/teams/603822665dff5c1e60071ece HTTP/1.1
-
+DELETE  http://localhost:3000/teams/603e5baec26c9f2ce88007e2 HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDM4MTg4ZDkwZGZhODFkYTg3NDlhODMiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0NjkxNzA3fQ.PItnGrEwgb2FJUsRHyExjQZ3IXH9DCvrzyL-D791aOA
+content-type: application/json
 
 ############################## TASKS ######################################
 
@@ -342,8 +361,8 @@ content-type: application/json
 
 ### Create new comment
 
-POST http://localhost:3000/teams/603442956288812dfc56128d/projects/603781028a3f941ce4069a6d/tasks/60368ff8246f711710048fce/comments HTTP/1.1
-x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDMyNGFlYTEwNDcxNDEyN2M4ZjQxOGIiLCJuYW1lIjoidGVzdFVzZXIyIiwiaWF0IjoxNjE0NDM5Nzk4fQ.CrBfFZSLBlThZ-07PYy4FbegUflVBtAq8Er4gQZuUV4
+POST http://localhost:3000/teams/603643ac32bb793448ea914a/projects/60376a46cc7a0506003a2e16/tasks/60368ff8246f711710048fce/comments HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDMyNGFlYTEwNDcxNDEyN2M4ZjQxOGIiLCJuYW1lIjoidGVzdFVzZXIzIiwiaWF0IjoxNjE0NjE0MjE3fQ._5QIRsQi_bj-OIAvd-wYRTircZOCQ797OIPRGXApFz8
 content-type: application/json
 
 {
