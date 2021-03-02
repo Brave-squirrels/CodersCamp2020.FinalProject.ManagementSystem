@@ -1,15 +1,13 @@
-import App from "./app/App";
+import "dotenv/config";
 import config from "config";
+import App from "./app/App";
 import validateEnv from "./app/validateEnv";
 import ProjectsController from "../controllers/projects.controller";
 import UserController from "../controllers/users.controller";
 import AuthController from "../controllers/auth.controller";
 import TaskController from "../controllers/tasks.controller";
-import CommentController from '../controllers/comment.controller';
+import CommentController from "../controllers/comment.controller";
 import TeamController from "../controllers/teams.controller";
-
-// Creating environment variables
-import "dotenv/config";
 import NotesController from "../controllers/notes.controller";
 
 // Check if private key exist
@@ -34,4 +32,6 @@ const app = new App([
 ]);
 
 // Express app listen
-app.listen();
+const server = app.listen();
+
+module.exports = server;

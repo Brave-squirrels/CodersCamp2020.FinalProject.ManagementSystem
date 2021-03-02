@@ -9,7 +9,7 @@ import User from "../../interfaces/user.interface";
 const confirmUser = async (req: Request, res: Response) => {
   let user = (await jwt.verify(
     req.params.token,
-    process.env.MANAGEMENT_SYSTEM_JWT_PRIVATE_KEY!.toString()
+    process.env.JWT_PRIVATE_KEY!.toString()
   )) as (User & mongoose.Document<any>) | null;
 
   user = await userModel.findByIdAndUpdate(

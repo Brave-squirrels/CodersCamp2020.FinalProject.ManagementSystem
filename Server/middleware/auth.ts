@@ -7,7 +7,7 @@ export default function auth(req: Request, res: Response, next: NextFunction) {
   const token = req.header("x-auth-token") as string;
   if (!token)
     return res
-      .status(StatusCodes.NOT_FOUND)
+      .status(StatusCodes.UNAUTHORIZED)
       .send("Access denied. No token provided.");
 
   try {

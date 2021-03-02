@@ -1,3 +1,4 @@
 {
-  "jwtPrivateKey": "mySecureKey"
+  "jwtPrivateKey": "",
+  "dbName": ""
 }

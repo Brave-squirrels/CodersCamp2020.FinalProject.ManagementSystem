@@ -37,7 +37,7 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDMyNGFlYTEwNDcxN
 
 ###
 # search user by email
-GET http://localhost:3000/users/search/olo HTTP/1.1
+GET http://localhost:3000/users/search/test@mail.com HTTP/1.1
 
 ###
 # create users
@@ -361,8 +361,8 @@ content-type: application/json
 
 ### Create new comment
 
-POST http://localhost:3000/teams/603442956288812dfc56128d/projects/603781028a3f941ce4069a6d/tasks/60368ff8246f711710048fce/comments HTTP/1.1
-x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDMyNGFlYTEwNDcxNDEyN2M4ZjQxOGIiLCJuYW1lIjoidGVzdFVzZXIyIiwiaWF0IjoxNjE0NDM5Nzk4fQ.CrBfFZSLBlThZ-07PYy4FbegUflVBtAq8Er4gQZuUV4
+POST http://localhost:3000/teams/603643ac32bb793448ea914a/projects/60376a46cc7a0506003a2e16/tasks/60368ff8246f711710048fce/comments HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDMyNGFlYTEwNDcxNDEyN2M4ZjQxOGIiLCJuYW1lIjoidGVzdFVzZXIzIiwiaWF0IjoxNjE0NjE0MjE3fQ._5QIRsQi_bj-OIAvd-wYRTircZOCQ797OIPRGXApFz8
 content-type: application/json
 
 {
