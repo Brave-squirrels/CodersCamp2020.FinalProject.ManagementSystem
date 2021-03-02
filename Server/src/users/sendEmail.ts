@@ -11,7 +11,7 @@ export default async function sendEmailToUser(req: Request, res: Response) {
     return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
 
   const url = `http://${process.env.ADDRESS}:${process.env.PORT}/users/confirmation/${req.body.token}`;
-  sendEmail(req.body.email, url);
+  const message = await sendEmail(req.body.email, url);
 
-  res.status(StatusCodes.OK).send("Email sent");
+  res.status(StatusCodes.OK).send(message);
 }

@@ -22,7 +22,8 @@ export default async function sendEmail(email: string, url: string) {
   };
 
   try {
-    return await transporter.sendMail(mailOptions);
+    await transporter.sendMail(mailOptions);
+    return "Mail Send!";
   } catch (ex) {
     return ex;
   }

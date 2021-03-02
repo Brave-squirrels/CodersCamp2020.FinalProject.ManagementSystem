@@ -29,7 +29,8 @@ export default async function createUser(req: Request, res: Response) {
 
   const token = user.generateAuthToken();
   const url = `http://${process.env.ADDRESS}:${process.env.PORT}/users/confirmation/${token}`;
-  sendEmail(req.body.email, url);
+  const message = await sendEmail(req.body.email, url);
+  console.log(message);
 
   res.header("x-auth-token", token).send(_.pick(user, ["id", "name", "email"]));
 }
