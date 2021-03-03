@@ -2,6 +2,7 @@ import {StatusCodes} from 'http-status-codes';
 import {Request, Response, NextFunction} from 'express';
 
 const authCommentsTasks = (req: Request,res: Response,next : NextFunction)=>{
+    //Let display the data only for project member, project owner, team owner or team moderator
     const project = res.locals.project;
     const team = res.locals.team;
     let usr = false;

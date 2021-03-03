@@ -5,11 +5,13 @@ import {validateTaskUsers, firstPartAuth} from './validateTaskUsers';
 const updateTaskMembers = async (req: Request, res: Response) => {
     const task = res.locals.task;
 
+    //Validate task members
     const {error} = firstPartAuth(req.body);
     if(error) return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
 
     //Check if user already exist variable
     let check = false;
+
     //Add user
     if(!req.body.delete){
 

@@ -16,15 +16,18 @@ const createNewComment = async (req: Request, res: Response) => {
         ...req.body
     }
     
+    //Validate data
     const {error} = validateComment(commentData);
 
     if(error) return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
 
+    //Create new comment
     const newComment = new commentModel(commentData);
 
     //Add comment ID to task
     task.commentsId.push(newComment._id);
     
+    //Save data
     await newComment.save();
     await task.save();
     return res.status(StatusCodes.OK).send([newComment,task]);

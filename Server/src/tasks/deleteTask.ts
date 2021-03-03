@@ -4,13 +4,14 @@ import { StatusCodes } from "http-status-codes";
 import commentModel from '../../models/comment.model';
 
 const deleteTask = async (req: Request, res: Response) => {
+
+    //Get current task
     const task = await new taskModel(res.locals.task);
 
     const project = res.locals.project;
     
     //Remove task ID from project
     const index = project.tasks.map((el:any) => {return el.id}).indexOf(task._id);
-
     project.tasks.splice(index,1);
 
     //Remove comments assigned to task
@@ -18,7 +19,7 @@ const deleteTask = async (req: Request, res: Response) => {
         taskId: task._id
     });
 
-    //Remove task
+    //Remove task and save data
     await task.delete();
     await project.save();
     

@@ -3,6 +3,7 @@ import {StatusCodes} from 'http-status-codes';
 import commentModel from '../models/comment.model';;
 
 const getComments = async (req: Request, res: Response, next: NextFunction) => {
+    //Get all comments assigned to specific task and store in res.locals
     const comments = await commentModel.find({
         taskId: req.params.taskId
     });

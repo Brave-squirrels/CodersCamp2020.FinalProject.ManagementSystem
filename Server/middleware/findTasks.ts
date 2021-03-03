@@ -3,6 +3,7 @@ import taskModel from '../models/tasks.model';
 import {StatusCodes} from 'http-status-codes';
 
 const findTasks = async(req: Request, res: Response, next: NextFunction) => {
+    //Get all tasks assigned to specific project
     const tasks = await taskModel.find({
         projectId: req.params.projectId
     })
