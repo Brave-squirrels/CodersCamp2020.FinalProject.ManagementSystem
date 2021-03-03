@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import { Task } from "../interfaces/task.interface";
 import ROLES from "../enums/projectRoles";
+import TaskSTATUS from '../enums/taskStatus';
 
 const taskSchema = new mongoose.Schema({
   projectId: {
@@ -31,7 +32,7 @@ const taskSchema = new mongoose.Schema({
   status: {
     type: String,
     required: true,
-    default: "New",
+    default: TaskSTATUS.NEW,
   },
   commentsId: {
     type: [String],
