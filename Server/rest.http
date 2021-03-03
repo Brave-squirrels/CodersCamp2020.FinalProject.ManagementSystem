@@ -7,7 +7,7 @@ POST http://localhost:3000/auth HTTP/1.1
 Content-Type: application/json
 
 {
-    "email": "olo8@email.com",
+    "email": "testMainAdmin@email.com",
     "password": "12345"
 }
 
@@ -44,8 +44,8 @@ POST http://localhost:3000/users/create HTTP/1.1
 Content-Type: application/json
 
 {
-    "name": "Olek",
-    "email": "olo8@email.com",
+    "name": "TestMainAdmin",
+    "email": "testMainAdmin@email.com",
     "password": "12345",
     "confirmPassword": "12345"
 }
@@ -63,7 +63,7 @@ Content-Type: application/json
 ###
 # change name
 PUT http://localhost:3000/users/name HTTP/1.1
-x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDMyNGFlYTEwNDcxNDEyN2M4ZjQxOGIiLCJuYW1lIjoidGVzdFVzZXIiLCJpYXQiOjE2MTQ0MzY1NTh9.F4DKjGn4zpmVsnU7ipJL22_4IchkzPjeMBr1adkTZDQ
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDNlOGUxY2UwNmJiYzBmMzBkNTdlMzMiLCJuYW1lIjoiT2xlayIsImlhdCI6MTYxNDc3OTYwNH0.yCGN6HTHIa91ZivXOscS5JF2xGxoVewLPAQ9X-eIGX0
 Content-Type: application/json
 
 {
@@ -93,12 +93,12 @@ GET http://localhost:3000/teams/602daad612d3182dc04f8050/projects/60376a46cc7a05
 
 ###
 # CREATE NEW PROJECT IN TEAM
-POST http://localhost:3000/teams/6036e228d89ea8116e149bf9/projects HTTP/1.1
-x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDMyNGFlYTEwNDcxNDEyN2M4ZjQxOGIiLCJpYXQiOjE2MTQyMTAyNjF9.aEtJSVJ0Qwr8sZs-wBz3fAE2Lf1oep5VvhfB2W-O608
+POST http://localhost:3000/teams/603f9b4d3dca282a50db1b9b/projects HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDNmOWE3MDNkY2EyODJhNTBkYjFiOWEiLCJuYW1lIjoiVGVzdE1haW5BZG1pbiIsImlhdCI6MTYxNDc4MTA1Mn0.iLQiM2qzfErtr5tYG3iDK9M-PbjSH4IO7XshLEU5zpQ
 content-type: application/json
 
 {
-    "projectName": "totalnie unikatowa nazwa",
+    "projectName": "Test Project",
     "deadline" : "2021-03-24T17:06:34.928+00:00"
 }
 
@@ -184,11 +184,11 @@ DELETE http://localhost:3000/teams/602daad612d3182dc04f8050/projects/6036e58865e
 #CREATE TEAM
 
 POST http://localhost:3000/teams HTTP/1.1
-x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDM4MTg4ZDkwZGZhODFkYTg3NDlhODMiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0NjkxNzA3fQ.PItnGrEwgb2FJUsRHyExjQZ3IXH9DCvrzyL-D791aOA
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDNmOWE3MDNkY2EyODJhNTBkYjFiOWEiLCJuYW1lIjoiVGVzdE1haW5BZG1pbiIsImlhdCI6MTYxNDc4MTA1Mn0.iLQiM2qzfErtr5tYG3iDK9M-PbjSH4IO7XshLEU5zpQ
 content-type: application/json
 
 {
-    "teamName": "Team 2 marca"
+    "teamName": "Test Team"
 }
 
 ###
@@ -313,11 +313,12 @@ content-type: application/json
 ############################## TASKS ######################################
 
 # CREATE NEW TASK IN PROJECT
-POST http://localhost:3000/teams/603442956288812dfc56128d/projects/60376a46cc7a0506003a2e16/tasks HTTP/1.1
+POST http://localhost:3000/teams/603f9b4d3dca282a50db1b9b/projects/603f9b743dca282a50db1b9c/tasks HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDNmOWE0MDNkY2EyODJhNTBkYjFiOTkiLCJuYW1lIjoiVGVzdE1haW4iLCJpYXQiOjE2MTQ3ODEwMDh9.qRvScYt3cg_fEmo99jPk8TfGHEsGQB6cxefnziBigyg
 content-type: application/json
 
 {
-    "name": "TestTdfsaask2",
+    "name": "Test Task",
     "content": "TestContent",
     "deadlineDate": "03/24/2021"
 }
@@ -327,6 +328,7 @@ content-type: application/json
 # DELETE TASK
 
 DELETE http://localhost:3000/teams/603442956288812dfc56128d/projects/60376a46cc7a0506003a2e16/tasks/6034e8e29bd824329483ea9a HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDNmOWE3MDNkY2EyODJhNTBkYjFiOWEiLCJuYW1lIjoiVGVzdE1haW5BZG1pbiIsImlhdCI6MTYxNDc4MTg1NH0.aK5Tf3IcKjmTWN6528o_8_bfhErJgAXQkWNi4EbRtoc
 
 ### GET ONE TASK
 
@@ -335,12 +337,14 @@ GET http://localhost:3000/teams/603442956288812dfc56128d/projects/60376a46cc7a05
 
 ### GET ALL TASKS IN CURRENT PROJECT
 
-GET http://localhost:3000/teams/603442956288812dfc56128d/projects/60376a46cc7a0506003a2e16/tasks HTTP/1.1
+GET http://localhost:3000/teams/603442956288812dfc56128d/projects/603f9b743dca282a50db1b9c/tasks HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDNmOWE0MDNkY2EyODJhNTBkYjFiOTkiLCJuYW1lIjoiVGVzdE1haW4iLCJpYXQiOjE2MTQ3ODEwMDh9.qRvScYt3cg_fEmo99jPk8TfGHEsGQB6cxefnziBigyg
 
 ### UPDATE TASK INFO
 
 PUT http://localhost:3000/teams/603442956288812dfc56128d/projects/603781028a3f941ce4069a6d/tasks/60368ff8246f711710048fce HTTP/1.1
 content-type: application/json
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDNmOWE3MDNkY2EyODJhNTBkYjFiOWEiLCJuYW1lIjoiVGVzdE1haW5BZG1pbiIsImlhdCI6MTYxNDc4MTg1NH0.aK5Tf3IcKjmTWN6528o_8_bfhErJgAXQkWNi4EbRtoc
 
 {
     "name": "TestTask2dasUpdasdated2",
@@ -351,6 +355,7 @@ content-type: application/json
 
 PUT http://localhost:3000/teams/603442956288812dfc56128d/projects/60320e1348b544024a5dbfa2/tasks/60368ff8246f711710048fce/members
 content-type: application/json
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDNmOWE3MDNkY2EyODJhNTBkYjFiOWEiLCJuYW1lIjoiVGVzdE1haW5BZG1pbiIsImlhdCI6MTYxNDc4MTg1NH0.aK5Tf3IcKjmTWN6528o_8_bfhErJgAXQkWNi4EbRtoc
 
 {
     "member": {"id": "66324aea104714127c8f418b", "role": "Designer", "name": "asda"},
@@ -361,8 +366,8 @@ content-type: application/json
 
 ### Create new comment
 
-POST http://localhost:3000/teams/603643ac32bb793448ea914a/projects/60376a46cc7a0506003a2e16/tasks/60368ff8246f711710048fce/comments HTTP/1.1
-x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDMyNGFlYTEwNDcxNDEyN2M4ZjQxOGIiLCJuYW1lIjoidGVzdFVzZXIzIiwiaWF0IjoxNjE0NjE0MjE3fQ._5QIRsQi_bj-OIAvd-wYRTircZOCQ797OIPRGXApFz8
+POST http://localhost:3000/teams/603f9b4d3dca282a50db1b9b/projects/603f9b743dca282a50db1b9c/tasks/603f9f55142d622d34433d09/comments HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDNmOWE3MDNkY2EyODJhNTBkYjFiOWEiLCJuYW1lIjoiVGVzdE1haW5BZG1pbiIsImlhdCI6MTYxNDc4MTg1NH0.aK5Tf3IcKjmTWN6528o_8_bfhErJgAXQkWNi4EbRtoc
 content-type: application/json
 
 {
@@ -372,21 +377,25 @@ content-type: application/json
 
 ### DELETE COMMENT
 
-DELETE http://localhost:3000/teams/603442956288812dfc56128d/projects/603781028a3f941ce4069a6d/tasks/60368ff8246f711710048fce/comments/60369151246f711710048fd1 HTTP/1.1
+DELETE http://localhost:3000/teams/603f9b4d3dca282a50db1b9b/projects/603f9b743dca282a50db1b9c/tasks/603f9f55142d622d34433d09/comments/603fa01a3b743c15b04e5622 HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDNmOWE3MDNkY2EyODJhNTBkYjFiOWEiLCJuYW1lIjoiVGVzdE1haW5BZG1pbiIsImlhdCI6MTYxNDc4MTg1NH0.aK5Tf3IcKjmTWN6528o_8_bfhErJgAXQkWNi4EbRtoc
 
 
 ### GET COMMENTS FROM TASK
 
 GET http://localhost:3000/teams/603442956288812dfc56128d/projects/603781028a3f941ce4069a6d/tasks/60368ff8246f711710048fce/comments/ HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDNmOWE3MDNkY2EyODJhNTBkYjFiOWEiLCJuYW1lIjoiVGVzdE1haW5BZG1pbiIsImlhdCI6MTYxNDc4MTg1NH0.aK5Tf3IcKjmTWN6528o_8_bfhErJgAXQkWNi4EbRtoc
 
 
 ### GET ONE COMMENT
 
 GET http://localhost:3000/teams/603442956288812dfc56128d/projects/603781028a3f941ce4069a6d/tasks/60368ff8246f711710048fce/comments/6036a5239cff91245c0ada4c HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDNmOWE3MDNkY2EyODJhNTBkYjFiOWEiLCJuYW1lIjoiVGVzdE1haW5BZG1pbiIsImlhdCI6MTYxNDc4MTg1NH0.aK5Tf3IcKjmTWN6528o_8_bfhErJgAXQkWNi4EbRtoc
 
 ### EDIT COMMENT
 
 PUT http://localhost:3000/teams/603442956288812dfc56128d/projects/603781028a3f941ce4069a6d/tasks/60368ff8246f711710048fce/comments/6036a5239cff91245c0ada4c HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDNmOWE3MDNkY2EyODJhNTBkYjFiOWEiLCJuYW1lIjoiVGVzdE1haW5BZG1pbiIsImlhdCI6MTYxNDc4MTg1NH0.aK5Tf3IcKjmTWN6528o_8_bfhErJgAXQkWNi4EbRtoc
 content-type: application/json
 
 {

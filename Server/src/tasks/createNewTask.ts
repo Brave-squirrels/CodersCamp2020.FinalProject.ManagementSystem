@@ -6,7 +6,7 @@ import validateTask from "./validateTask";
 
 const createNewTask = async (req: Request, res: Response) => {
   const project = res.locals.project;
-  
+
   //Creating new task
   const taskData: Task = {
     projectId: project._id,

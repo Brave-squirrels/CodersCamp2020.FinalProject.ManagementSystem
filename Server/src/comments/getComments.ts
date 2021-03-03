@@ -1,6 +1,5 @@
 import {Request, Response} from 'express';
 import {StatusCodes} from 'http-status-codes';
-import commentModel from '../../models/comment.model';
 
 const getComments = async (req: Request, res: Response) => {
     const comments = res.locals.comments;
