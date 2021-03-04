@@ -7,8 +7,8 @@ POST http://localhost:3000/auth HTTP/1.1
 Content-Type: application/json
 
 {
-    "email": "testMainAdmin@email.com",
-    "password": "12345"
+    "email": "testMichal@test.com",
+    "password": "teest"
 }
 
 ###
@@ -21,13 +21,13 @@ GET http://localhost:3000/users HTTP/1.1
 
 ###
 # get user
-GET http://localhost:3000/users/6037ed8bc77ec410f8023436 HTTP/1.1
+GET http://localhost:3000/users/603ff5f7a7e58805f6daa31f HTTP/1.1
 
 
 ###
 # get me
 GET http://localhost:3000/users/me HTTP/1.1
-x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDMyNGFlYTEwNDcxNDEyN2M4ZjQxOGIiLCJuYW1lIjoidGVzdFVzZXIyIiwiaWF0IjoxNjE0NDM5Nzk4fQ.CrBfFZSLBlThZ-07PYy4FbegUflVBtAq8Er4gQZuUV4
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDNmZjVmN2E3ZTU4ODA1ZjZkYWEzMWYiLCJuYW1lIjoiTWljaGFsIiwiaWF0IjoxNjE0ODA0NDk0fQ.iXhX7CyHE2aWX-ie3i9E-ZppAiZyfqKksxYjEC6vq7g
 
 
 ###
@@ -44,10 +44,10 @@ POST http://localhost:3000/users/create HTTP/1.1
 Content-Type: application/json
 
 {
-    "name": "TestMainAdmin",
-    "email": "testMainAdmin@email.com",
-    "password": "12345",
-    "confirmPassword": "12345"
+    "name": "Michal",
+    "email": "testMichal@test.com",
+    "password": "teest",
+    "confirmPassword": "teest"
 }
 
 ###
@@ -89,16 +89,16 @@ DELETE  http://localhost:3000/users/6037f60a43b97526f011af6f HTTP/1.1
 # ____________________________ PROJECTS ____________________________
 
 # GET SPECIFIC PROJECT FROM TEAM
-GET http://localhost:3000/teams/602daad612d3182dc04f8050/projects/60376a46cc7a0506003a2e16 HTTP/1.1 
+GET http://localhost:3000/teams/603ff6c5a7e58805f6daa320/projects/6040c166773cd70129a201e5 HTTP/1.1 
 
 ###
 # CREATE NEW PROJECT IN TEAM
-POST http://localhost:3000/teams/603f9b4d3dca282a50db1b9b/projects HTTP/1.1
-x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDNmOWE3MDNkY2EyODJhNTBkYjFiOWEiLCJuYW1lIjoiVGVzdE1haW5BZG1pbiIsImlhdCI6MTYxNDc4MTA1Mn0.iLQiM2qzfErtr5tYG3iDK9M-PbjSH4IO7XshLEU5zpQ
+POST http://localhost:3000/teams/603ff6c5a7e58805f6daa320/projects HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDNmZjVmN2E3ZTU4ODA1ZjZkYWEzMWYiLCJuYW1lIjoiTWljaGFsIiwiaWF0IjoxNjE0ODA0NDk0fQ.iXhX7CyHE2aWX-ie3i9E-ZppAiZyfqKksxYjEC6vq7g
 content-type: application/json
 
 {
-    "projectName": "Test Project",
+    "projectName": "Michal project",
     "deadline" : "2021-03-24T17:06:34.928+00:00"
 }
 
@@ -118,32 +118,32 @@ content-type: application/json
 ###
 
 # UPDATE PROJECT STATUS
-PUT http://localhost:3000/teams/602daad612d3182dc04f8050/projects/603215b9a0356b0924c94bdc/status HTTP/1.1
+PUT http://localhost:3000/teams/603ff6c5a7e58805f6daa320/projects/6040c166773cd70129a201e5/status HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDNmZjVmN2E3ZTU4ODA1ZjZkYWEzMWYiLCJuYW1lIjoiTWljaGFsIiwiaWF0IjoxNjE0ODA0NDk0fQ.iXhX7CyHE2aWX-ie3i9E-ZppAiZyfqKksxYjEC6vq7g
 content-type: application/json
 
 {
-    "status": "Done",
-    "name": "nowa name"
+    "status": "Done"
 }
 
 
 ###
 
 # UPDATE PROJECT INFO
-PUT http://localhost:3000/teams/6036e228d89ea8116e149bf9/projects/60376250d4b2bf01cbb1fc37/info HTTP/1.1
-x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDMyNGFlYTEwNDcxNDEyN2M4ZjQxOGIiLCJpYXQiOjE2MTQyMTAyNjF9.aEtJSVJ0Qwr8sZs-wBz3fAE2Lf1oep5VvhfB2W-O608
+PUT http://localhost:3000/teams/603ff6c5a7e58805f6daa320/projects/6040c166773cd70129a201e5/info HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDNmZjVmN2E3ZTU4ODA1ZjZkYWEzMWYiLCJuYW1lIjoiTWljaGFsIiwiaWF0IjoxNjE0ODA0NDk0fQ.iXhX7CyHE2aWX-ie3i9E-ZppAiZyfqKksxYjEC6vq7g
 content-type: application/json
 
 {
-    "projectName": "Changed name",
+    "projectName": "michal changed name",
     "content": "added content"
 }
 
 ###
 
 # DELETE PROJECT 
-DELETE http://localhost:3000/teams/6036e228d89ea8116e149bf9/projects/603767298b1176034d43066e HTTP/1.1
-x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDMyNGFlYTEwNDcxNDEyN2M4ZjQxOGIiLCJpYXQiOjE2MTQyMTAyNjF9.aEtJSVJ0Qwr8sZs-wBz3fAE2Lf1oep5VvhfB2W-O608
+DELETE http://localhost:3000/teams/603ff6c5a7e58805f6daa320/projects/6040c2cf1e78e201bc1b392d HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDNmZjVmN2E3ZTU4ODA1ZjZkYWEzMWYiLCJuYW1lIjoiTWljaGFsIiwiaWF0IjoxNjE0ODA0NDk0fQ.iXhX7CyHE2aWX-ie3i9E-ZppAiZyfqKksxYjEC6vq7g
 
 
 #################################### NOTES ##############################################
@@ -184,18 +184,18 @@ DELETE http://localhost:3000/teams/602daad612d3182dc04f8050/projects/6036e58865e
 #CREATE TEAM
 
 POST http://localhost:3000/teams HTTP/1.1
-x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDNmOWE3MDNkY2EyODJhNTBkYjFiOWEiLCJuYW1lIjoiVGVzdE1haW5BZG1pbiIsImlhdCI6MTYxNDc4MTA1Mn0.iLQiM2qzfErtr5tYG3iDK9M-PbjSH4IO7XshLEU5zpQ
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDNmZjVmN2E3ZTU4ODA1ZjZkYWEzMWYiLCJuYW1lIjoiTWljaGFsIiwiaWF0IjoxNjE0ODA0NDk0fQ.iXhX7CyHE2aWX-ie3i9E-ZppAiZyfqKksxYjEC6vq7g
 content-type: application/json
 
 {
-    "teamName": "Test Team"
+    "teamName": "Michal Team"
 }
 
 ###
 
 #GET TEAM
 
-GET http://localhost:3000/teams/603e5baec26c9f2ce88007e2 HTTP/1.1
+GET http://localhost:3000/teams/603ff6c5a7e58805f6daa320 HTTP/1.1
 
 ###
 

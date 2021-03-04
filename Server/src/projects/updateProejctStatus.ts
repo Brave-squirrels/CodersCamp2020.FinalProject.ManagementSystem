@@ -8,6 +8,11 @@ const updateProjectStatus = async (req: Request, res: Response) => {
   if (error)
     return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
 
+  const projectO = await projectModel.findById(req.params.projectId);
+  if(projectO?.owner.id != req.userInfo._id){
+    return res.status(StatusCodes.BAD_REQUEST).send('You are not allowed to do that!');
+  } 
+
   const project = await projectModel.findByIdAndUpdate(
     req.params.projectId,
     { ...req.body },

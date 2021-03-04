@@ -12,6 +12,11 @@ const updateProjectMembers = async (req: Request, res: Response) => {
   if (!user) return res.status(StatusCodes.BAD_REQUEST).send("Invalid user");
 
   const project = res.locals.project;
+
+  if(project.owner.id != req.userInfo._id){
+    return res.status(StatusCodes.BAD_REQUEST).send('You are not allowed to do that!');
+  } 
+
   const team = res.locals.team;
   let stop = false;
 

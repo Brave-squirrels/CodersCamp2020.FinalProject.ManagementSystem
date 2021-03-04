@@ -16,7 +16,7 @@ const createNewProject = async (req: Request, res: Response) => {
     owner: { id: user._id, name: user.name },
     ...req.body,
   };
-  console.log(projectData)
+
   const { error } = validateProject(projectData);
   if (error)
     return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);

@@ -13,6 +13,11 @@ const updateProjectInfo = async (req: Request, res: Response) => {
   const user = await userModel.findById(req.userInfo._id);
   if(!user) return res.status(StatusCodes.NOT_FOUND).send('User not found');
 
+  const projectO = await projectModel.findById(req.params.projectId);
+  if(projectO?.owner.id != req.userInfo._id){
+    return res.status(StatusCodes.BAD_REQUEST).send('You are not allowed to do that!');
+  } 
+
   const team = res.locals.team;
 
   const project = await projectModel.findByIdAndUpdate(
