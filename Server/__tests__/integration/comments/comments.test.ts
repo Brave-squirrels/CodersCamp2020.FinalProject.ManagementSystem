@@ -119,6 +119,15 @@ describe('/comments',()=>{
             expect(res.status).toBe(200);
             expect(res.body.content).toEqual('Test2');    
         })
+        it('Should return 404 if comments are not found', async()=>{
+            const data = await prepareData();
+            const token = data.user.generateAuthToken();
+        
+            const res = await request(server).get(`/teams/${data.team._id}/projects/${data.project._id}/tasks/604145f820549639ac1f17b2/comments`).set('x-auth-token', token);
+        
+            expect(res.status).toBe(404);
+            })
+        })
     })
 
     describe('/POST ', ()=>{
@@ -216,6 +225,14 @@ describe('/comments',()=>{
             const res = await request(server).put(`/teams/${data.team._id}/projects/${data.project._id}/tasks/${data.task._id}/comments/${data.comment._id}`).set('x-auth-token', token).send({content: 'ChangedContent'});
 
             expect(res.status).toBe(401);
+        })
+        it('Should return 404 if comment is not found', async()=>{
+            const data = await prepareData();
+            const token = data.unAuthorizedUser.generateAuthToken();
+
+            const res = await request(server).put(`/teams/${data.team._id}/projects/${data.project._id}/tasks/${data.task._id}/comments/604145f820549639ac1f17b2`).set('x-auth-token', token).send({content: 'ChangedContent'});
+
+            expect(res.status).toBe(404);
         })
     })
 })
