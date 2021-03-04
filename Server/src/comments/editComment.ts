@@ -9,8 +9,8 @@ const editComment = async(req: Request, res: Response) => {
     const commentCheck = res.locals.comment;
 
     //Allow to edit comment only for comment creator
-    if(commentCheck?.creator.id !== req.userInfo._id){
-        return res.send(StatusCodes.UNAUTHORIZED).send('Access denied');
+    if(commentCheck?.creator.id != req.userInfo._id){
+        return res.status(StatusCodes.UNAUTHORIZED).send('Access denied');
     }
 
     //Validate data
@@ -24,8 +24,6 @@ const editComment = async(req: Request, res: Response) => {
         {...req.body},
         {new: true}
     );
-
-    if(!comment) return res.status(StatusCodes.NOT_FOUND).send('Comment not found');
 
     return res.status(StatusCodes.OK).send(comment);
 }
