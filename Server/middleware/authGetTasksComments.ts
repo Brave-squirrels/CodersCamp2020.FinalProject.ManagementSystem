@@ -11,7 +11,7 @@ const authCommentsTasks = (req: Request,res: Response,next : NextFunction)=>{
             usr = true;
         }
     })
-    if(!usr && !team.moderatorsId.includes(req.userInfo._id) && team.ownerId !== req.userInfo._id){
+    if(!usr && !team.moderatorsId.includes(req.userInfo._id) && team.ownerId != req.userInfo._id){
         return res.status(StatusCodes.UNAUTHORIZED).send('Access denied');
     }
     next();
