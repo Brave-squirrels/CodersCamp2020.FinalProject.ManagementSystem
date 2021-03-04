@@ -25,8 +25,6 @@ const editComment = async(req: Request, res: Response) => {
         {new: true}
     );
 
-    if(!comment) return res.status(StatusCodes.NOT_FOUND).send('Comment not found');
-
     return res.status(StatusCodes.OK).send(comment);
 }
 
