@@ -4,8 +4,12 @@ import { StatusCodes } from "http-status-codes";
 import TeamArr from "../../interfaces/teamArr.interface";
 import userModel from "../../models/user.model";
 import members from "../../interfaces/teamMembers.interface";
+import commentModel from '../../models/comment.model'
+import taskModel from '../../models/tasks.model'
+import projectModel from '../../models/projects.model'
+import noteModel from '../../models/notes.model'
 
-export default async function deleteTeam(req: Request, res: Response) {
+const deleteTeam = async (req: Request, res: Response) => {
   const teamObj = res.locals.team;
   const authId = req.userInfo._id
 
@@ -34,11 +38,41 @@ export default async function deleteTeam(req: Request, res: Response) {
         });
         return user;
       })
-      .then((user) => user.save());
+      // .then((user) => user.save());
   });
+
+  
+  //Array of projects in team
+  const projArr = teamObj.projects;
+  
+  //Remove all team tasks
+  projArr.forEach( async(project : any) => {
+    await taskModel.deleteMany({
+      projectId: project.id
+    })
+
+    //Remove all team comments
+    // await commentModel.deleteMany({
+    //   projectId: project.id
+    // })
+
+    //Remove all team notes
+    await noteModel.deleteMany({
+      projectId: project.id
+    })
+  })
+
+   //Remove all team projects
+   projArr.forEach( async(project : any) => {
+    await projectModel.deleteMany({
+      _id: project.id
+    })
+  })
 
   // Delete team
   const team = new teamModel(teamObj);
-  await team.delete();
+  // await team.delete();
   return res.status(StatusCodes.OK).send(team);
 }
+
+export default deleteTeam

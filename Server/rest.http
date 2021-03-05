@@ -152,14 +152,14 @@ content-type: application/json
 GET http://localhost:3000/teams/602daad612d3182dc04f8050/projects/603767298b1176034d43066e/notes HTTP/1.1
 
 ###
-
 # CREATE NEW NOTE
-POST http://localhost:3000/teams/602daad612d3182dc04f8050/projects/603767298b1176034d43066e/notes HTTP/1.1
+
+POST http://localhost:3000/teams/604141fe20549639ac1f17b1/projects/6041777454241319000d4039/notes HTTP/1.1
 Content-Type: application/json
 
 {
     "name": "Test Note",
-    "author": {"name": "Michal", "id": "60368ff8246f711710048fce"}
+    "author": {"name": "Maciek", "id": "604140a320549639ac1f17b0"}
 }
 
 ###
@@ -306,14 +306,14 @@ content-type: application/json
 ###
 
 # DELETE TEAM
-DELETE  http://localhost:3000/teams/603e5baec26c9f2ce88007e2 HTTP/1.1
+DELETE  http://localhost:3000/teams/604141fe20549639ac1f17b1 HTTP/1.1
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQxNDBhMzIwNTQ5NjM5YWMxZjE3YjAiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0ODg5MjE5fQ.KjL5teIwOhCncPtGiA7y5kkOLDyA_IIglNsAm5FGXms
 content-type: application/json
 
 ############################## TASKS ######################################
 
 # CREATE NEW TASK IN PROJECT
-POST http://localhost:3000/teams/604141fe20549639ac1f17b1/projects/604145f820549639ac1f17b2/tasks HTTP/1.1
+POST http://localhost:3000/teams/604141fe20549639ac1f17b1/projects/6041777454241319000d4039/tasks HTTP/1.1
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQxNDBhMzIwNTQ5NjM5YWMxZjE3YjAiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0ODg5MjE5fQ.KjL5teIwOhCncPtGiA7y5kkOLDyA_IIglNsAm5FGXms
 content-type: application/json
 
@@ -340,6 +340,7 @@ GET http://localhost:3000/teams/603442956288812dfc56128d/projects/60376a46cc7a05
 GET http://localhost:3000/teams/603442956288812dfc56128d/projects/603f9b743dca282a50db1b9c/tasks HTTP/1.1
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQxNDBhMzIwNTQ5NjM5YWMxZjE3YjAiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0ODg5MjE5fQ.KjL5teIwOhCncPtGiA7y5kkOLDyA_IIglNsAm5FGXms
 content-type: application/json
+
 ### UPDATE TASK INFO
 
 PUT http://localhost:3000/teams/603442956288812dfc56128d/projects/603781028a3f941ce4069a6d/tasks/60368ff8246f711710048fce HTTP/1.1
@@ -366,12 +367,12 @@ content-type: application/json
 
 ### Create new comment
 
-POST http://localhost:3000/teams/603f9b4d3dca282a50db1b9b/projects/603f9b743dca282a50db1b9c/tasks/603f9f55142d622d34433d09/comments HTTP/1.1
+POST http://localhost:3000/teams/604141fe20549639ac1f17b1/projects/6041777454241319000d4039/tasks/604177d554241319000d403b/comments HTTP/1.1
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQxNDBhMzIwNTQ5NjM5YWMxZjE3YjAiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0ODg5MjE5fQ.KjL5teIwOhCncPtGiA7y5kkOLDyA_IIglNsAm5FGXms
 content-type: application/json
 
 {
-    "content": "Test2 crazy comment"
+    "content": "Komentarz do usunięcia"
 }
 
 
