@@ -154,7 +154,7 @@ GET http://localhost:3000/teams/602daad612d3182dc04f8050/projects/603767298b1176
 ###
 # CREATE NEW NOTE
 
-POST http://localhost:3000/teams/604141fe20549639ac1f17b1/projects/6042146cd1d5441eb8f56e4c/notes HTTP/1.1
+POST http://localhost:3000/teams/604141fe20549639ac1f17b1/projects/604224e1481c8838943fa855/notes HTTP/1.1
 Content-Type: application/json
 
 {
@@ -313,7 +313,7 @@ content-type: application/json
 ############################## TASKS ######################################
 
 # CREATE NEW TASK IN PROJECT
-POST http://localhost:3000/teams/604141fe20549639ac1f17b1/projects/604219b84d4cba28ac909505/tasks HTTP/1.1
+POST http://localhost:3000/teams/604141fe20549639ac1f17b1/projects/6042282955246a17307e21b0/tasks HTTP/1.1
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQxNDBhMzIwNTQ5NjM5YWMxZjE3YjAiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0ODg5MjE5fQ.KjL5teIwOhCncPtGiA7y5kkOLDyA_IIglNsAm5FGXms
 content-type: application/json
 
@@ -367,7 +367,7 @@ content-type: application/json
 
 ### Create new comment
 
-POST http://localhost:3000/teams/604141fe20549639ac1f17b1/projects/604219b84d4cba28ac909505/tasks/604219dc4d4cba28ac909506/comments HTTP/1.1
+POST http://localhost:3000/teams/604141fe20549639ac1f17b1/projects/6042282955246a17307e21b0/tasks/6042285f55246a17307e21b1/comments HTTP/1.1
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQxNDBhMzIwNTQ5NjM5YWMxZjE3YjAiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0ODg5MjE5fQ.KjL5teIwOhCncPtGiA7y5kkOLDyA_IIglNsAm5FGXms
 content-type: application/json
 
