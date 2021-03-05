@@ -13,7 +13,7 @@ const prepareData = async ()=> {
     const user = new userModel({
         name: 'user',
         email: 'user@gmail.com',
-        password: '12345'
+        password: '12345678'
     })
     const unAuthorizedUser = new userModel({
         name: 'userUnauthorized',
@@ -128,10 +128,13 @@ describe('/comments',()=>{
         })
 
     describe('/POST ', ()=>{
+        const exec = async(data : any, newComment: any, token: any)=>{
+            return await request(server).post(`/teams/${data.team._id}/projects/${data.project._id}/tasks/${data.task._id}/comments/`).send(newComment).set('x-auth-token', token);
+        }
+
         it('Should create new comment for valid data', async()=>{
             const data = await prepareData();
             const token = data.user.generateAuthToken();
-
             const newComment = {
                 creator: {
                     name: data.user.name,
@@ -141,7 +144,7 @@ describe('/comments',()=>{
                 taskId: data.task._id
             }
 
-            const res = await request(server).post(`/teams/${data.team._id}/projects/${data.project._id}/tasks/${data.task._id}/comments/`).send(newComment).set('x-auth-token', token);
+            const res = await exec(data, newComment, token);
 
             expect(res.status).toBe(200);
 
@@ -158,7 +161,7 @@ describe('/comments',()=>{
                 taskId: data.task._id
             }
 
-            const res = await request(server).post(`/teams/${data.team._id}/projects/${data.project._id}/tasks/${data.task._id}/comments/`).send(newComment).set('x-auth-token', token);
+            const res = await exec(data, newComment, token);
 
             expect(res.status).toBe(400);
         })
@@ -175,7 +178,7 @@ describe('/comments',()=>{
                 taskId: data.task._id
             }
 
-            const res = await request(server).post(`/teams/${data.team._id}/projects/${data.project._id}/tasks/${data.task._id}/comments/`).send(newComment).set('x-auth-token', token);
+            const res = await exec(data, newComment, token);
 
             expect(res.status).toBe(401);
         })
@@ -198,11 +201,16 @@ describe('/comments',()=>{
         })
     })
     describe('/PUT ', ()=>{
+
+        const exec = async(data : any, token: any, changed: any)=>{
+            return await await request(server).put(`/teams/${data.team._id}/projects/${data.project._id}/tasks/${data.task._id}/comments/${data.comment._id}`).set('x-auth-token', token).send(changed);
+        }
+
         it('Should return edited comment', async()=>{
             const data = await prepareData();
             const token = data.user.generateAuthToken();
 
-            const res = await request(server).put(`/teams/${data.team._id}/projects/${data.project._id}/tasks/${data.task._id}/comments/${data.comment._id}`).set('x-auth-token', token).send({content: 'ChangedContent'});
+            const res = await exec(data, token, {content: 'ChangedContent'});
 
             expect(res.status).toBe(200);
             expect(res.body.content).toEqual('ChangedContent');
@@ -211,15 +219,14 @@ describe('/comments',()=>{
             const data = await prepareData();
             const token = data.user.generateAuthToken();
 
-            const res = await request(server).put(`/teams/${data.team._id}/projects/${data.project._id}/tasks/${data.task._id}/comments/${data.comment._id}`).set('x-auth-token', token).send({name: 'changedNamechangedNamechangedNamechangedNamechangedName'});
-
+            const res = await exec(data, token, {content: Array(300).join('a')});
             expect(res.status).toBe(400);
         })
         it('Should return 401 if user is unauthorized', async()=>{
             const data = await prepareData();
             const token = data.unAuthorizedUser.generateAuthToken();
 
-            const res = await request(server).put(`/teams/${data.team._id}/projects/${data.project._id}/tasks/${data.task._id}/comments/${data.comment._id}`).set('x-auth-token', token).send({content: 'ChangedContent'});
+            const res = await exec(data, token, {content: 'ChangedContent'});
 
             expect(res.status).toBe(401);
         })
