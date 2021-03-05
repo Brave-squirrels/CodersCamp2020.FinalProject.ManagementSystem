@@ -126,7 +126,6 @@ describe('/comments',()=>{
             expect(res.status).toBe(404);
             })
         })
-    })
 
     describe('/POST ', ()=>{
         it('Should create new comment for valid data', async()=>{
