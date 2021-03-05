@@ -185,7 +185,7 @@ describe('/tasks', ()=>{
             expect(res.status).toBe(404);
         })
     })
-    describe('/PUT ', async()=>{
+    describe('/PUT ', ()=>{
         const exec = async(data: any, token: any, changed: any, taskId: any, path='')=>{
             return await request(server).put(`/teams/${data.team._id}/projects/${data.project._id}/tasks/${taskId}${path}`).set('x-auth-token', token).send(changed);
         }
