@@ -21,7 +21,6 @@ const addPermissions = async (req: Request, res: Response) => {
   team.members.forEach((member: members) => membersIdArr.push((member.userId).toString()));
   
   if (!(membersIdArr.includes(req.body.id))){
-    console.log(req.body.id)
       return res
       .status(StatusCodes.BAD_REQUEST)
       .send("User is not a team member");}
