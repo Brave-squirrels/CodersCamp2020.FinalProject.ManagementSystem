@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
 import projectModel from "../../models/projects.model";
-import validateStatus from "./validateProejctStatus";
+import validateStatus from "./validateProjectStatus";
 
 const updateProjectStatus = async (req: Request, res: Response) => {
   const { error } = validateStatus(req.body);
@@ -13,8 +13,6 @@ const updateProjectStatus = async (req: Request, res: Response) => {
     { ...req.body },
     { new: true, useFindAndModify: false }
   );
-  if (!project)
-    return res.status(StatusCodes.BAD_REQUEST).send("Project not found");
 
   return res.status(StatusCodes.OK).send(project);
 };
