@@ -10,6 +10,10 @@ const projectSchema = new mongoose.Schema({
     maxlength: 24,
     required: true,
   },
+  deadline: {
+    type: Date,
+    required: true
+  },
   content: {
     type: String,
     minlength: 0,
