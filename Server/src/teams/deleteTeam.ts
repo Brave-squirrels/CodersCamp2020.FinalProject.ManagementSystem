@@ -21,6 +21,9 @@ const deleteTeam = async (req: Request, res: Response) => {
 
   //Array of users in team
   const memberArr = teamObj.members;
+  
+  //Array of projects in team     
+  const projectsArr : any = teamObj.projects;
 
   //Find user by Id
   const getUser = async (member: members) => {
@@ -30,7 +33,7 @@ const deleteTeam = async (req: Request, res: Response) => {
   };
 
   
-  //Remove team from user's array
+  //Remove team and project from user's array
   memberArr.forEach((member: any) => {
     const changedTeam = getUser(member.userId)
       .then((user: any) => {
@@ -39,34 +42,24 @@ const deleteTeam = async (req: Request, res: Response) => {
         });
         return user;
       })
+      .then(
+        (user: any) => {projectsArr.forEach((projectsId : any) => {
+              user.projects.forEach((projectId: any, i: number) => {
+                if (projectId.teamId == teamObj.id) user.projects.splice(i, 1);
+              });            
+        })
+        return user;
+      })
       .then((user) => user.save());
   });
 
 
-  
-  //Array of projects in team     
-  const projectsArr : any = teamObj.projects;
-
-  //Remove project from user's array
-  projectsArr.forEach((projectsId : any) => {
-  memberArr.forEach((member: any) => {
-    const changedTeam = getUser(member.userId)
-      .then((user: any) => {
-        user.projects.forEach((projectId: any, i: number) => {
-          if (projectId.teamId == teamObj.id) user.projects.splice(i, 1);
-        });
-        return user;
-      })
-      .then((user) => user.save());
-  });})
       //Find project by Id
       const getProject = async (proj: any) => {
         const project = await projectModel.findById(proj);
         return project;
       };
-      
-          
-
+    
       //Removing comments
      projectsArr.forEach((project: any) => {
         const changeProj = getProject(project.id)
@@ -99,12 +92,13 @@ const deleteTeam = async (req: Request, res: Response) => {
     await projectModel.deleteMany({
       _id: project.id
     })
+    
   })
 
 
   // Delete team
   const team = new teamModel(teamObj);
-  // await team.delete();
+  await team.delete();
   return res.status(StatusCodes.OK).send(team);
 }
 
