@@ -8,5 +8,13 @@ module.exports = {
     "^.+\\.(ts|tsx)$": "ts-jest",
   },
   testEnvironment: "node",
-  // testPathIgnorePatterns: ["users.test.ts"],
+  testPathIgnorePatterns: [
+    // "unit",
+    // "comments",
+    // "notes",
+    // "projects",
+    // "tasks",
+    // "user",
+    // "auth",
+  ],
 };

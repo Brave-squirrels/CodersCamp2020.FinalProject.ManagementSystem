@@ -2,10 +2,12 @@ import userModel from "../../../../models/user.model";
 import sendEmail from "../../../../src/utils/email";
 
 describe("sendEmail", () => {
-  it("should throw error", async () => {
-    const email = "";
+  it("should send email", async () => {
+    const email = "test@mail.com";
     const token = new userModel().generateAuthToken();
+    const res = await sendEmail(email, token);
+    console.log(res);
 
-    await expect(sendEmail(email, token)).resolves.not.toBeNull();
+    expect(res).not.toBeNull();
   });
 });

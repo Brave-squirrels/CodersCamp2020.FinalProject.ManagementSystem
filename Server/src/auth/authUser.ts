@@ -30,5 +30,5 @@ export default async function authUser(req: Request, res: Response) {
   } else console.log("User verified :D");
 
   const token = user.generateAuthToken();
-  res.send(token);
+  res.status(StatusCodes.OK).send(token);
 }
