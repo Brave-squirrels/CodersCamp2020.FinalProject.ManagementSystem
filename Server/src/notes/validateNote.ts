@@ -9,7 +9,7 @@ const validateNote = (note: Note) => {
       id: Joi.objectId().required(),
     }),
     name: Joi.string().min(3).max(24).required(),
-    content: Joi.string().min(0).max(254),
+    content: Joi.string().min(0).max(254).required(),
   });
 
   return schema.validate(note);
