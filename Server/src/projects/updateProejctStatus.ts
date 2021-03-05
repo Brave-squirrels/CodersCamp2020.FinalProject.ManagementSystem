@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
 import projectModel from "../../models/projects.model";
-import validateStatus from "./validateProejctStatus";
+import validateStatus from "./validateProjectStatus";
 
 const updateProjectStatus = async (req: Request, res: Response) => {
   const { error } = validateStatus(req.body);

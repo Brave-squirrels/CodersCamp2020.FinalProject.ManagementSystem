@@ -9,11 +9,11 @@ import ROLES from "../../enums/projectRoles";
 const createNewProject = async (req: Request, res: Response) => {
   const team = res.locals.team;
   const user = await userModel.findById(req.userInfo._id);
-  if(!user) return res.status(StatusCodes.NOT_FOUND).send('user not found')
+
 
   const projectData: Project = {
     team: { id: team._id, name: team.teamName },
-    owner: { id: user._id, name: user.name },
+    owner: { id: user!._id, name: user!.name },
     ...req.body,
   };
 
@@ -23,9 +23,9 @@ const createNewProject = async (req: Request, res: Response) => {
 
   const newProject = new projectModel(projectData);
 
-  newProject.members?.push({ id: user._id, name: user.name, role: ROLES.OWNER })
+  newProject.members!.push({ id: user!._id, name: user!.name, role: ROLES.OWNER })
 
-  user.projects?.push(
+  user!.projects!.push(
       { 
         id: newProject._id, 
         name: newProject.projectName,
@@ -34,7 +34,7 @@ const createNewProject = async (req: Request, res: Response) => {
       }
     );
 
-    team.projects?.push(
+    team.projects.push(
       { 
         id: newProject._id, 
         name: newProject.projectName,
@@ -42,7 +42,7 @@ const createNewProject = async (req: Request, res: Response) => {
     );
 
   await newProject.save();
-  await user.save();
+  await user!.save();
   await team.save();
   return res.status(StatusCodes.OK).send(newProject);
 };

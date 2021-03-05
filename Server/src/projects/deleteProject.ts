@@ -7,7 +7,6 @@ import { StatusCodes } from "http-status-codes";
 
 const deleteProject = async (req: Request, res: Response) => {
   const user = await userModel.findById(req.userInfo._id);
-  if(!user) return res.status(StatusCodes.NOT_FOUND).send('User not found');
 
   const project = res.locals.project;
   const team = res.locals.team;
@@ -18,16 +17,12 @@ const deleteProject = async (req: Request, res: Response) => {
   
   await notesModel.deleteMany({ projectId: project._id });
   
-  user.projects?.forEach((userProject: any, i: number) => {
-    if(userProject.id == project.id){
-      user.projects?.splice(i, 1);
-    }
+  user!.projects!.forEach((userProject: any, i: number) => {
+    if(userProject.id == project.id) user!.projects!.splice(i, 1);
   })
 
-  team.projects?.forEach((teamProject: any, i: number) => {
-    if(teamProject.id == project.id){
-      team.projects?.splice(i,1);
-    } 
+  team.projects!.forEach((teamProject: any, i: number) => {
+    if(teamProject.id == project.id) team.projects!.splice(i,1);
   })
 
   const tasks = await tasksModel.find({ projectId: project.id });
@@ -39,11 +34,12 @@ const deleteProject = async (req: Request, res: Response) => {
     await task.delete();
   })
 
+  await notesModel.deleteMany({ projectId: project.id });
 
-  await user.save();
+  await user!.save();
   await team.save();
   await project.delete();
-  res.status(StatusCodes.OK);
+  return res.status(StatusCodes.OK).send();
 };
 
 export default deleteProject;

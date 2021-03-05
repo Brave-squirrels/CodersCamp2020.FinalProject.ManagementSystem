@@ -5,6 +5,7 @@ import findProject from "../middleware/findProject";
 import updateNote from "../src/notes/updateNote";
 import deleteNote from "../src/notes/deleteNote";
 import findTeam from "../middleware/findTeam";
+import auth from '../middleware/auth';
 
 export default class NotesController {
   public path = "/teams/:teamId/projects/:projectId/notes";
@@ -15,12 +16,13 @@ export default class NotesController {
   }
 
   initializeRoutes() {
-    this.router.get(this.path, findTeam, findProject, this.getNotesFromProject);
+    this.router.get(this.path, auth, findTeam, findProject, this.getNotesFromProject);
 
-    this.router.post(this.path, findTeam, findProject, this.createNewNote);
+    this.router.post(this.path, auth, findTeam, findProject, this.createNewNote);
 
     this.router.put(
       `${this.path}/:noteId`,
+      auth,
       findTeam,
       findProject,
       this.updateNote
@@ -28,6 +30,7 @@ export default class NotesController {
 
     this.router.delete(
       `${this.path}/:noteId`,
+      auth,
       findTeam,
       findProject,
       this.deleteNote
