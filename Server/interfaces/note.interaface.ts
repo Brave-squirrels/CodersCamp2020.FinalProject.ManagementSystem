@@ -1,7 +1,12 @@
+interface Author {
+  id: string,
+  name: string
+}
+
 export default interface Note {
   name: string;
   projectId?: string;
   content?: string;
-  author?: string;
+  author?: Author;
   date?: string;
 }
