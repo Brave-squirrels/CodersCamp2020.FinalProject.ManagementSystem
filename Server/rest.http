@@ -201,12 +201,12 @@ GET http://localhost:3000/teams/603ff6c5a7e58805f6daa320 HTTP/1.1
 
 #ADDING USER TO PENDING
 
-PUT http://localhost:3000/teams/604281642494cb3120bb4251/addpending HTTP/1.1
+PUT http://localhost:3000/teams/603ff6c5a7e58805f6daa320/addpending HTTP/1.1
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQyM2QwZTEyMDhiNTRiNjAyNDFkMjEiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0OTcxMjE3fQ.f7ic9F85pQ4PIH91WFCVSTHv5AqNzlvmMlOBgwpZG14
 content-type: application/json
 
 {
-    "id": "604281852494cb3120bb4252"
+    "id": "60423d0e1208b54b60241d21"
 }
 
 ###
