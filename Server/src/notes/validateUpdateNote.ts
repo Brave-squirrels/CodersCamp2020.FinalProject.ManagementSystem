@@ -3,7 +3,8 @@ import Joi from "joi";
 
 const validateUpdateNote = (note: Note) => {
   const schema = Joi.object({
-    content: Joi.string().max(254).required(),
+    name: Joi.string().min(3).max(24),
+    content: Joi.string().min(0).max(254).required()
   });
 
   return schema.validate(note);
