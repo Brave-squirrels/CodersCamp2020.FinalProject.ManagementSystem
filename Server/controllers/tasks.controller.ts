@@ -11,6 +11,9 @@ import findProject from "../middleware/findProject";
 import findTeam from '../middleware/findTeam';
 import findTask from '../middleware/findTask';
 import findTasks from '../middleware/findTasks';
+import auth from '../middleware/auth';
+import taskAuth from '../middleware/taskAuth';
+import authCommentsTasks from '../middleware/authGetTasksComments';
 
 export default class TaskController {
   public path = "/teams/:teamId/projects/:projectId/tasks";
@@ -21,12 +24,12 @@ export default class TaskController {
   }
 
   initializeRoutes() {
-    this.router.post(`${this.path}`, findTeam, findProject, this.createNewTask);
-    this.router.delete(`${this.path}/:taskId`, findTeam, findProject, findTask, this.deleteTask);
-    this.router.get(`${this.path}/:taskId`, findTeam, findProject, findTask, this.getFullTask)
-    this.router.get(this.path, findTeam, findProject, findTasks, this.getAllTasks);
-    this.router.put(`${this.path}/:taskId`, findTeam, findProject, findTask,  this.updateTaskContent);
-    this.router.put(`${this.path}/:taskId/members`, findTeam, findProject, findTask, this.updateTaskUsers)
+    this.router.post(`${this.path}`, findTeam, findProject, auth, taskAuth ,this.createNewTask);
+    this.router.delete(`${this.path}/:taskId`, findTeam, findProject, findTask, auth, taskAuth, this.deleteTask);
+    this.router.get(`${this.path}/:taskId`, findTeam, findProject, findTask, auth, authCommentsTasks, this.getFullTask)
+    this.router.get(this.path, findTeam, findProject, findTasks, auth, authCommentsTasks, this.getAllTasks);
+    this.router.put(`${this.path}/:taskId`, findTeam, findProject, findTask, auth, taskAuth, this.updateTaskContent);
+    this.router.put(`${this.path}/:taskId/members`, findTeam, findProject, findTask, auth, taskAuth, this.updateTaskUsers)
   }
 
   createNewTask(req: Request, res: Response) {

@@ -3,6 +3,7 @@ import taskModel from "../models/tasks.model";
 import { StatusCodes } from "http-status-codes";
 
 const findTask = async(req: Request, res: Response, next: NextFunction) => {
+    //Find single task base on id
     const task = await taskModel.findById(req.params.taskId);
     if(!task)
         return res.status(StatusCodes.NOT_FOUND).send('Task not found');

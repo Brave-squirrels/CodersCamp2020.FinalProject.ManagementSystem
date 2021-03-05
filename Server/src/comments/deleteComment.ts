@@ -4,17 +4,27 @@ import {StatusCodes} from 'http-status-codes';
 const deleteComment = async (req: Request, res: Response) => {
 
     const comment = res.locals.comment;
-
+    const project = res.locals.project
     const task = res.locals.task;
+    const team = res.locals.team;
 
-    const index = task.commentsId.map((el:any)=>{return el.id}).indexOf(comment._id);
+    //Let delete comment only for Comment creator, project owner, team owner and team moderator
+    if(comment.creatorId == req.userInfo._id || project.owner.id == req.userInfo._id || team.moderatorsId.includes(req.userInfo._id) || team.ownerId == req.userInfo._id){
+        //Remove comment from task
+        const index = task.commentsId.map((el:any)=>{return el.id}).indexOf(comment._id);
 
-    task.commentsId.splice(index,1);
+        task.commentsId.splice(index,1);
 
-    await task.save();
-    await comment.delete();
+        //Save data
+        await task.save();
+        await comment.delete();
 
-    return res.status(StatusCodes.OK).send([task, comment]);
+        return res.status(StatusCodes.OK).send([task, comment]);
+    }else{
+        return res.status(StatusCodes.UNAUTHORIZED).send('Access denied');
+    }
+
+    
 
 }
 

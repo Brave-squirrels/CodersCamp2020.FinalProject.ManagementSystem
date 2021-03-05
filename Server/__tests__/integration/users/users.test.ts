@@ -88,7 +88,7 @@ describe("/users", () => {
       user = new userModel({
         name: "user1",
         email: "user@mail.com",
-        password: "12345",
+        password: "12345678",
       });
       await user.save();
 
@@ -123,7 +123,7 @@ describe("/users", () => {
       user = new userModel({
         name: "user1",
         email: "user@mail.com",
-        password: "12345",
+        password: "12345678",
       });
       await user.save();
 
@@ -165,7 +165,7 @@ describe("/users", () => {
       user = new userModel({
         name: "user1",
         email: "user@mail.com",
-        password: "12345",
+        password: "12345678",
       });
       await user.save();
 
@@ -199,8 +199,8 @@ describe("/users", () => {
       body = {
         name: "user1",
         email: "user@mail.com",
-        password: "12345",
-        confirmPassword: "12345",
+        password: "12345678",
+        confirmPassword: "12345678",
       };
     });
 
@@ -208,8 +208,8 @@ describe("/users", () => {
       body = {
         name: "abc",
         email: "user@mail.com",
-        password: "12345",
-        confirmPassword: "12345",
+        password: "12345678",
+        confirmPassword: "12345678",
       };
 
       const res = await exec();
@@ -221,8 +221,8 @@ describe("/users", () => {
       body = {
         name: new Array(52).join("a"),
         email: "user@mail.com",
-        password: "12345",
-        confirmPassword: "12345",
+        password: "12345678",
+        confirmPassword: "12345678",
       };
 
       const res = await exec();
@@ -234,8 +234,8 @@ describe("/users", () => {
       body = {
         name: "user1",
         email: "user@mail.com",
-        password: "12345",
-        confirmPassword: "12345",
+        password: "12345678",
+        confirmPassword: "12345678",
       };
       await exec();
 
@@ -248,8 +248,8 @@ describe("/users", () => {
       body = {
         name: "user1",
         email: "user@mail.com",
-        password: "12345",
-        confirmPassword: "1234",
+        password: "12345678",
+        confirmPassword: "123456789",
       };
 
       let res = await exec();
@@ -327,7 +327,7 @@ describe("/users", () => {
       user = new userModel({
         name: "user1",
         email: "user@mail.com",
-        password: "12345",
+        password: "12345678",
       });
       await user.save();
 
@@ -400,13 +400,13 @@ describe("/users", () => {
       user = new userModel({
         name: "user1",
         email: "user@mail.com",
-        password: "12345",
+        password: "12345678",
       });
       await user.save();
 
       token = user.generateAuthToken();
-      newPassword = "123456";
-      confirmPassword = "123456";
+      newPassword = "123456789";
+      confirmPassword = "123456789";
     });
 
     it("should return 401 if user is not logged in", async () => {
@@ -425,7 +425,7 @@ describe("/users", () => {
       expect(res.status).toBe(404);
     });
 
-    it("should return 400 if user password is less than 4 characters", async () => {
+    it("should return 400 if user password is less than 8 characters", async () => {
       newPassword = "123";
       confirmPassword = "123";
 
@@ -464,7 +464,7 @@ describe("/users", () => {
       user = new userModel({
         name: "user1",
         email: "user@mail.com",
-        password: "12345",
+        password: "12345678",
       });
       await user.save();
 

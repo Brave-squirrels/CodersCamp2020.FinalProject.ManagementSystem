@@ -6,13 +6,14 @@ import validateTask from "./validateTask";
 
 const createNewTask = async (req: Request, res: Response) => {
   const project = res.locals.project;
-  
+
   //Creating new task
   const taskData: Task = {
     projectId: project._id,
     ...req.body,
   };
 
+  //Run validation
   const { error } = validateTask(taskData);
 
   if (error)
@@ -23,7 +24,7 @@ const createNewTask = async (req: Request, res: Response) => {
   //Adding task ID to current project
   project.tasks.push({id: newTask._id});
 
-  
+  //Save data  
   await newTask.save();
   await project.save();
   return res.status(StatusCodes.OK).send([newTask, project]);

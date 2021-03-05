@@ -12,6 +12,7 @@ import findTask from '../middleware/findTask';
 import findComment from '../middleware/findComment';
 import findComments from '../middleware/findComments'
 import auth from '../middleware/auth';
+import authCommentsTasks from '../middleware/authGetTasksComments';
 
 export default class CommentController {
     public path = '/teams/:teamId/projects/:projectId/tasks/:taskId/comments';
@@ -22,11 +23,11 @@ export default class CommentController {
     }
 
     initializeRoutes(){
-        this.router.post(this.path, findTeam, findProject, findTask, auth, this.createNewComment);
-        this.router.delete(`${this.path}/:commentId`, findTeam, findProject, findTask, findComment, this.deleteComment);
-        this.router.get(this.path, findTeam, findProject, findTask, findComments, this.getComments);
-        this.router.put(`${this.path}/:commentId`, findTeam, findProject, findTask, findComment, this.editComment);
-        this.router.get(`${this.path}/:commentId`, findTeam, findProject, findTask, findComment, this.getComment)
+        this.router.post(this.path, findTeam, findProject, findTask, auth, authCommentsTasks, this.createNewComment);
+        this.router.delete(`${this.path}/:commentId`, findTeam, findProject, findTask, findComment, auth, this.deleteComment);
+        this.router.get(this.path, findTeam, findProject, findTask, findComments, auth, authCommentsTasks, this.getComments);
+        this.router.put(`${this.path}/:commentId`, findTeam, findProject, findTask, findComment, auth, this.editComment);
+        this.router.get(`${this.path}/:commentId`, findTeam, findProject, findTask, findComment, auth, authCommentsTasks, this.getComment)
     }
 
     createNewComment(req: Request, res: Response) {

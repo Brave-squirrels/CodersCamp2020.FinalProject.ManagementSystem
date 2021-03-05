@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
-import { validateProjectMembers, firstPartAuth } from "./validateProjectMember";
+import { firstPartAuth } from "./validateProjectMember";
 import userModel from "../../models/user.model";
 
 const updateProjectMembers = async (req: Request, res: Response) => {
@@ -12,6 +12,11 @@ const updateProjectMembers = async (req: Request, res: Response) => {
   if (!user) return res.status(StatusCodes.BAD_REQUEST).send("Invalid user");
 
   const project = res.locals.project;
+
+  if(project.owner.id != req.userInfo._id){
+    return res.status(StatusCodes.BAD_REQUEST).send('You are not allowed to do that!');
+  } 
+
   const team = res.locals.team;
   let stop = false;
 
@@ -31,11 +36,8 @@ const updateProjectMembers = async (req: Request, res: Response) => {
 
     req.body.member.name = user.name;
 
-    const { error } = validateProjectMembers(req.body);
-    if (error) return res.status(StatusCodes.BAD_REQUEST).send("Invalid user");
-
     // Update User Projects Array
-    user.projects?.push(
+    user.projects!.push(
       { 
         id: project.id, 
         name: project.projectName,
@@ -54,8 +56,8 @@ const updateProjectMembers = async (req: Request, res: Response) => {
     });
 
     // Delete project from users projects array
-    user.projects?.forEach((userProject: any, i: number) => {
-      if (userProject.id == project.id) user.projects?.splice(i, 1);
+    user.projects!.forEach((userProject: any, i: number) => {
+      if (userProject.id == project.id) user.projects!.splice(i, 1);
     });
   }
 
