@@ -1,12 +1,10 @@
 import request from "supertest";
-import mongoose from "mongoose";
 import { Server } from "http";
 import userModel from "../../../models/user.model";
 import projectModel from "../../../models/projects.model";
 import teamsModel from "../../../models/teams.model";
 import tasksModel from "../../../models/tasks.model";
 import commentsModel from "../../../models/comment.model";
-import teamModel from "../../../models/teams.model";
 
 let server: Server;
 
@@ -24,7 +22,7 @@ const prepareData = async ()=> {
     })
     unAuthorizedUser.save();
     user.save();
-    const team = new teamModel({
+    const team = new teamsModel({
         ownerId: user._id,
         teamName: 'Test'
     })
