@@ -13,7 +13,7 @@ const prepareData = async ()=> {
     const user = new userModel({
         name: 'user',
         email: 'user@gmail.com',
-        password: '12345'
+        password: '12345678'
     })
     const unAuthorizedUser = new userModel({
         name: 'userUnauthorized',
@@ -164,7 +164,7 @@ describe('/tasks', ()=>{
             expect(res.status).toBe(400);
         })
     })
-    describe('/DELETE ', async()=>{
+    describe('/DELETE ', ()=>{
         it('Should return success for deleted task', async()=>{
             const data = await prepareData();
             const token = data.user.generateAuthToken();
