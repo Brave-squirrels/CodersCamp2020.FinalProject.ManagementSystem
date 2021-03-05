@@ -29,6 +29,7 @@ const deleteTeam = async (req: Request, res: Response) => {
     return user;
   };
 
+  
   //Remove team from user's array
   memberArr.forEach((member: any) => {
     const changedTeam = getUser(member.userId)
@@ -38,40 +39,61 @@ const deleteTeam = async (req: Request, res: Response) => {
         });
         return user;
       })
-      // .then((user) => user.save());
+      .then((user) => user.save());
   });
 
+
   
-  //Array of projects in team
-  const projArr = teamObj.projects;
+  //Array of projects in team     
+  const projectsArr : any = teamObj.projects;
+
+
+
+      //Find project by Id
+      const getProject = async (proj: any) => {
+        const project = await projectModel.findById(proj);
+        return project;
+      };
+      
+          
+
+      //Removing comments
+      projectsArr.forEach((project: any) => {
+        const changeProj = getProject(project.id)
+          .then((project: any) => {
+            
+            project.tasks.forEach(async(task: TeamArr) => {
+              //Remove all team comments
+              await commentModel.deleteMany({
+                taskId: task.id
+            })
+            });
+          })
+      });
+
   
-  //Remove all team tasks
-  projArr.forEach( async(project : any) => {
+  projectsArr.forEach( async(project : any) => {
+    //Remove all team tasks
     await taskModel.deleteMany({
       projectId: project.id
     })
-
-    //Remove all team comments
-    // await commentModel.deleteMany({
-    //   projectId: project.id
-    // })
-
+    
     //Remove all team notes
     await noteModel.deleteMany({
       projectId: project.id
     })
-  })
 
-   //Remove all team projects
-   projArr.forEach( async(project : any) => {
+    //Remove all team projects
     await projectModel.deleteMany({
       _id: project.id
     })
   })
 
+
+
   // Delete team
   const team = new teamModel(teamObj);
-  // await team.delete();
+  await team.delete();
   return res.status(StatusCodes.OK).send(team);
 }
 
