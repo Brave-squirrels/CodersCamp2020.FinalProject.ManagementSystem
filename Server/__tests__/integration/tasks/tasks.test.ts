@@ -136,6 +136,9 @@ describe('/tasks', ()=>{
         })
     })
     describe('/POST ', ()=>{
+        const exec = async(data: any, token: any, newTask: any)=>{
+            return await request(server).post(`/teams/${data.team._id}/projects/${data.project._id}/tasks`).send(newTask).set('x-auth-token', token);
+        }
         it('Should return new created task', async()=>{
             const data = await prepareData();
             const token = data.user.generateAuthToken();
@@ -146,7 +149,7 @@ describe('/tasks', ()=>{
                 projectId: data.project._id
             }
 
-            const res = await request(server).post(`/teams/${data.team._id}/projects/${data.project._id}/tasks`).send(newTask).set('x-auth-token', token);
+            const res = await exec(data, token, newTask);
 
             expect(res.status).toBe(200);
         })
@@ -159,7 +162,7 @@ describe('/tasks', ()=>{
                 projectId: data.project._id
             }
 
-            const res = await request(server).post(`/teams/${data.team._id}/projects/${data.project._id}/tasks`).send(newTask).set('x-auth-token', token);
+            const res = await exec(data, token, newTask);
 
             expect(res.status).toBe(400);
         })
@@ -183,11 +186,14 @@ describe('/tasks', ()=>{
         })
     })
     describe('/PUT ', async()=>{
+        const exec = async(data: any, token: any, changed: any, taskId: any, path='')=>{
+            return await request(server).put(`/teams/${data.team._id}/projects/${data.project._id}/tasks/${taskId}${path}`).set('x-auth-token', token).send(changed);
+        }
         it('Return new task after update', async()=>{
             const data = await prepareData();
             const token = data.user.generateAuthToken();
 
-            const res = await request(server).put(`/teams/${data.team._id}/projects/${data.project._id}/tasks/${data.task._id}`).set('x-auth-token', token).send({name: 'changedTask'});
+            const res = await exec(data, token, {name: 'changedTask'}, data.task._id);
             expect(res.status).toBe(200);
             expect(res.body.name).toEqual('changedTask');
         })
@@ -195,79 +201,80 @@ describe('/tasks', ()=>{
             const data = await prepareData();
             const token = data.user.generateAuthToken();
 
-            const res = await request(server).put(`/teams/${data.team._id}/projects/${data.project._id}/tasks/604145f820549639ac1f17b2`).set('x-auth-token', token).send({name: 'changedTask'});
+            const res = await exec(data, token,{name: 'changedTask'},'604145f820549639ac1f17b2')
             expect(res.status).toBe(404);
         })
         it('Should return 400 for invalid updateData', async()=>{
             const data = await prepareData();
             const token = data.user.generateAuthToken();
 
-            const res = await request(server).put(`/teams/${data.team._id}/projects/${data.project._id}/tasks/604145f820549639ac1f17b2`).set('x-auth-token', token).send({deadlineData: 'changeDeadline'});
-            expect(res.status).toBe(404);
+            const res=await exec(data, token, {deadlineData: 'changeDeadline'}, data.task._id);
+            expect(res.status).toBe(400);
         })
         it('Should return success after valid member added', async()=>{
             const data = await prepareData();
             const token = data.user.generateAuthToken();
 
-            const res = await request(server).put(`/teams/${data.team._id}/projects/${data.project._id}/tasks/${data.task._id}/members`).set('x-auth-token', token).send({member:
+            const res = await exec(data, token, {member:
                 {
                     name: 'Member',
                     id: '604145f820549639ac1f17b2',
                     role: 'FrontendDev'
                 }
-            , delete: false});
+            , delete: false}, data.task._id, '/members');
             expect(res.status).toBe(200);
         })
         it('Should return success after valid member removed', async()=>{
             const data = await prepareData();
             const token = data.user.generateAuthToken();
 
-            const res = await request(server).put(`/teams/${data.team._id}/projects/${data.project._id}/tasks/${data.task._id}/members`).set('x-auth-token', token).send({member:
+            const res = await exec(data, token, {member:
                 {
                     name: data.user.name,
                     id: data.user._id,
                     role: 'FrontendDev'
-                }
-            , delete: true});
+                },
+            delete: true}, data.task._id, '/members');
             expect(res.status).toBe(200);
         })
         it('Should return 400 for invalid data passed', async()=>{
             const data = await prepareData();
             const token = data.user.generateAuthToken();
-
-            const res = await request(server).put(`/teams/${data.team._id}/projects/${data.project._id}/tasks/${data.task._id}/members`).set('x-auth-token', token).send({member:
+                
+            const res = await exec(data, token, {member:
                 {
                     name: data.user.name,
                     id: '1234',
                     role: 'FrontendDev'
-                }
-            , delete: true});
+                },
+            delete: true}, data.task._id);
+
             expect(res.status).toBe(400);
         })
         it('Should return 400 for user that exists in task already', async()=>{
             const data = await prepareData();
             const token = data.user.generateAuthToken();
 
-            const res = await request(server).put(`/teams/${data.team._id}/projects/${data.project._id}/tasks/${data.task._id}/members`).set('x-auth-token', token).send({member:
+            const res = await exec(data, token, {member:
                 {
                     id:  data.user._id,
                     name: data.user.name,
                     role: 'FrontendDev'
                 }
-            , delete: false});
+            , delete: false}, data.task._id);
             expect(res.status).toBe(400);
         })
         it('Should return 400 for invalid user data', async()=>{
             const data = await prepareData();
             const token = data.user.generateAuthToken();
 
-            const res = await request(server).put(`/teams/${data.team._id}/projects/${data.project._id}/tasks/${data.task._id}/members`).set('x-auth-token', token).send({member:
+            const res = await exec(data, token, {member:
                 {
                     id:  '1234',
                     name: data.user.name,
                     role: 'FrontendDev'
                 }
-            , delete: false});
+            , delete: false}, data.task._id);
             expect(res.status).toBe(400);
         })
     })
