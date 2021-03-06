@@ -12,12 +12,19 @@ let server: Server;
 
 type U = { name: string };
 
-type Body = {
-  name: string;
-  email: string;
-  password: string;
+interface Body extends User  {
   confirmPassword: string;
 };
+
+async function prepareUser() {
+  const user = new userModel({
+    name: "user1",
+    email: "user1@mail.com",
+    password: "12345",
+  });
+  await user.save();
+  return user;
+}
 
 describe("/users", () => {
   beforeEach(() => {
@@ -49,13 +56,7 @@ describe("/users", () => {
 
   describe("GET /:id", () => {
     it("should return a user if valid id is passed", async () => {
-      const user = new userModel({
-        name: "user1",
-        email: "user1@mail.com",
-        password: "12345",
-      });
-      await user.save();
-
+      const user = await prepareUser();
       const res = await request(server).get("/users/" + user._id);
 
       expect(res.status).toBe(200);
@@ -64,7 +65,6 @@ describe("/users", () => {
 
     it("should return 404 if invalid id is passed", async () => {
       const res = await request(server).get("/api/users/1");
-
       expect(res.status).toBe(404);
     });
 
@@ -85,19 +85,12 @@ describe("/users", () => {
     };
 
     beforeEach(async () => {
-      user = new userModel({
-        name: "user1",
-        email: "user@mail.com",
-        password: "12345678",
-      });
-      await user.save();
-
+      user = await prepareUser();
       token = user.generateAuthToken();
     });
 
     it("should return 401 if user is not logged in", async () => {
       token = "";
-
       const res = await exec();
 
       expect(res.status).toBe(401);
@@ -120,19 +113,12 @@ describe("/users", () => {
     };
 
     beforeEach(async () => {
-      user = new userModel({
-        name: "user1",
-        email: "user@mail.com",
-        password: "12345678",
-      });
-      await user.save();
-
+      user = await prepareUser();
       token = user.generateAuthToken();
     });
 
     it("should return 400 if user not found", async () => {
       token = new userModel().generateAuthToken();
-
       const res = await exec();
 
       expect(res.status).toBe(404);
@@ -140,7 +126,6 @@ describe("/users", () => {
 
     it("should return 400 if invalid token is passed", async () => {
       token = "1";
-
       const res = await exec();
 
       expect(res.status).toBe(400);
@@ -148,7 +133,6 @@ describe("/users", () => {
 
     it("should return 200 if valid token is passed", async () => {
       const res = await exec();
-
       expect(res.status).toBe(200);
     });
   });
@@ -162,19 +146,12 @@ describe("/users", () => {
     };
 
     beforeEach(async () => {
-      user = new userModel({
-        name: "user1",
-        email: "user@mail.com",
-        password: "12345678",
-      });
-      await user.save();
-
+      user = await prepareUser();
       email = user.email;
     });
 
     it("should return 400 if user not found", async () => {
       email = "wrong@email.com";
-
       const res = await exec();
 
       expect(res.status).toBe(404);
@@ -207,7 +184,7 @@ describe("/users", () => {
     it("should return 400 if user name is less than 4 characters", async () => {
       body = {
         name: "abc",
-        email: "user@mail.com",
+        email: "abc@mail.com",
         password: "12345678",
         confirmPassword: "12345678",
       };
@@ -220,7 +197,7 @@ describe("/users", () => {
     it("should return 400 if user name is more than 50 characters", async () => {
       body = {
         name: new Array(52).join("a"),
-        email: "user@mail.com",
+        email: "aaaaa@mail.com",
         password: "12345678",
         confirmPassword: "12345678",
       };
@@ -324,12 +301,7 @@ describe("/users", () => {
     };
 
     beforeEach(async () => {
-      user = new userModel({
-        name: "user1",
-        email: "user@mail.com",
-        password: "12345678",
-      });
-      await user.save();
+      user = await prepareUser();
 
       token = user.generateAuthToken();
       newName = "updatedName";
@@ -337,7 +309,6 @@ describe("/users", () => {
 
     it("should return 401 if user is not logged in", async () => {
       token = "";
-
       const res = await exec();
 
       expect(res.status).toBe(401);
@@ -345,7 +316,6 @@ describe("/users", () => {
 
     it("should return 400 if user not found", async () => {
       token = new userModel().generateAuthToken();
-
       const res = await exec();
 
       expect(res.status).toBe(404);
@@ -353,7 +323,6 @@ describe("/users", () => {
 
     it("should return 400 if user name is less than 4 characters", async () => {
       newName = "abc";
-
       const res = await exec();
 
       expect(res.status).toBe(400);
@@ -361,7 +330,6 @@ describe("/users", () => {
 
     it("should return 400 if user name is more than 50 characters", async () => {
       newName = new Array(52).join("a");
-
       const res = await exec();
 
       expect(res.status).toBe(400);
@@ -369,7 +337,6 @@ describe("/users", () => {
 
     it("should update the user if input is valid", async () => {
       const res = await exec();
-
       const updatedUser = await userModel.findById(user._id);
 
       expect(updatedUser?.name).toBe(newName);
@@ -397,12 +364,7 @@ describe("/users", () => {
     };
 
     beforeEach(async () => {
-      user = new userModel({
-        name: "user1",
-        email: "user@mail.com",
-        password: "12345678",
-      });
-      await user.save();
+      user = await prepareUser();
 
       token = user.generateAuthToken();
       newPassword = "123456789";
@@ -411,7 +373,6 @@ describe("/users", () => {
 
     it("should return 401 if user is not logged in", async () => {
       token = "";
-
       const res = await exec();
 
       expect(res.status).toBe(401);
@@ -419,7 +380,6 @@ describe("/users", () => {
 
     it("should return 400 if user not found", async () => {
       token = new userModel().generateAuthToken();
-
       const res = await exec();
 
       expect(res.status).toBe(404);
@@ -428,7 +388,6 @@ describe("/users", () => {
     it("should return 400 if user password is less than 8 characters", async () => {
       newPassword = "123";
       confirmPassword = "123";
-
       const res = await exec();
 
       expect(res.status).toBe(400);
@@ -436,7 +395,6 @@ describe("/users", () => {
 
     it("should update the user if input is valid", async () => {
       const res = await exec();
-
       const updatedUser = await userModel.findById(user._id);
 
       expect(res.status).toBe(200);
@@ -461,19 +419,12 @@ describe("/users", () => {
     };
 
     beforeEach(async () => {
-      user = new userModel({
-        name: "user1",
-        email: "user@mail.com",
-        password: "12345678",
-      });
-      await user.save();
-
+      user = await prepareUser();
       id = user._id;
     });
 
     it("should return 404 if no user with the given id was found", async () => {
       id = mongoose.Types.ObjectId();
-
       const res = await exec();
 
       expect(res.status).toBe(404);
@@ -481,7 +432,6 @@ describe("/users", () => {
 
     it("should delete the user if input is valid", async () => {
       await exec();
-
       const userInDb = await userModel.findById(id);
 
       expect(userInDb).toBeNull();
