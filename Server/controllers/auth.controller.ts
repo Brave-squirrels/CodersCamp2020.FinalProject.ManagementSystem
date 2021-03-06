@@ -6,7 +6,7 @@ import authUser from "../src/auth/authUser";
  * responsible for managing CRUD operations inside of /comments edpoint
  */
 export default class AuthController {
-  public path = "/auth";
+  public path = "/login";
   public router = express.Router();
 
   constructor() {
