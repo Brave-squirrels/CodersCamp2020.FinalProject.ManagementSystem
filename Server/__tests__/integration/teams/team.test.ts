@@ -25,7 +25,8 @@ const prepareData = async ()=> {
     user.save();
     const team = new teamsModel({
         ownerId: user._id,
-        teamName: 'Test'
+        teamName: 'Test',
+        moderatorsId: [user._id]
     })
     await team.save();
     const project = new projectModel({
@@ -105,11 +106,150 @@ describe('/teams', ()=>{
         await server.close();
     })
 
+    describe('/GET ', ()=>{
+        it('Should return team', async()=>{
+            const data = await prepareData();
+            const token = data.user.generateAuthToken();
+            const res = await request(server).get(`/teams/${data.team._id}`).set('x-auth-token', token);
+
+            expect(res.status).toBe(200);
+            expect(res.body.teamName).toEqual('Test');
+        })
+        it('Should return 404 if team not found', async()=>{
+            const data = await prepareData();
+            const token = data.user.generateAuthToken();
+            const res = await request(server).get(`/teams/604281642494cb3120bb4252`).set('x-auth-token', token);
+
+            expect(res.status).toBe(404);
+        })
+    })
+
+    describe('/POST ', ()=>{
+        const exec = async(data: any, token: any, newTeam: any)=>{
+            return await request(server).post(`/teams`).send(newTeam).set('x-auth-token', token);
+        }
+        it('Should return new created team', async()=>{
+            const data = await prepareData();
+            const token = data.user.generateAuthToken();
+            const newTeam = {
+                teamName: 'newTeam',
+            }
+
+            const res = await exec(data, token, newTeam);
+
+            expect(res.status).toBe(200);
+        })
+        it('Should return 400 for not unique team name', async()=>{
+            const data = await prepareData();
+            const token = data.user.generateAuthToken();
+            const newTeam = {
+                teamName: 'Test',
+            }
+
+            const res = await exec(data, token, newTeam);
+
+            expect(res.status).toBe(400);
+        })
+
+        it('Should return 400 for invalid data', async()=>{
+            const data = await prepareData();
+            const token = data.user.generateAuthToken();
+            const newTeam = {
+                teamName: 'N',
+            }
+
+            const res = await exec(data, token, newTeam);
+
+            expect(res.status).toBe(400);
+        })
+    })
 
 
+    describe('/DELETE ', ()=>{
+        it('Should return success for deleted team', async()=>{
+            const data = await prepareData();
+            const token = data.user.generateAuthToken();
+
+            const res = await request(server).delete(`/teams/${data.team._id}`).set('x-auth-token', token);
+
+            expect(res.status).toBe(200);
+        })
+        it('Should return 404 if task if not found', async()=>{
+            const data = await prepareData();
+            const token = data.user.generateAuthToken();
+            
+            const res = await request(server).delete(`/teams/604281642494cb3120bb4252`).set('x-auth-token', token);
+
+            expect(res.status).toBe(404);
+        })
+        it('Should return 401 for not team owner', async()=>{
+            const data = await prepareData();
+            const newToken = data.unAuthorizedUser.generateAuthToken();
+
+            const res = await request(server).delete(`/teams/${data.team._id}`).set('x-auth-token', newToken);
+
+            expect(res.status).toBe(401);
+        })
+    })
+
+    describe('/PUT ', ()=>{
+        const exec = async(data: any, token: any, changed: any, path='')=>{
+            return await request(server).put(`/teams/${data.team._id}${path}`).set('x-auth-token', token).send(changed);
+        }
+        it('Return new team after update description', async()=>{
+            const data = await prepareData();
+            const token = data.user.generateAuthToken();
+
+            const res = await exec(data, token, {newDescription : "New description"}, '/changeDescription');
+            expect(res.status).toBe(200);
+        })
+        it('Return 401 for not moderator', async()=>{
+            const data = await prepareData();
+            const badToken = data.unAuthorizedUser.generateAuthToken();
+
+            const res = await exec(data, badToken, {newDescription : "New description"}, '/changeDescription');
+            expect(res.status).toBe(401);
+        })
+        it('Return 401 for not moderator', async()=>{
+            const data = await prepareData();
+            const token = data.user.generateAuthToken();
+
+            const res = await exec(data, token, {newDescription : "loooong descripiton dadasdasdadasdasdasdadasdsasdadasdadadasdasdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}, '/changeDescription');
+            expect(res.status).toBe(400);
+        })
+        it('Return new team after update team name', async()=>{
+            const data = await prepareData();
+            const token = data.user.generateAuthToken();
+
+            const res = await exec(data, token, {newTeamName : "Name"}, '/changeTeamName');
+            expect(res.status).toBe(200);
+        })
+        it('Return 400 for invalide team name', async()=>{
+            const data = await prepareData();
+            const token = data.user.generateAuthToken();
+
+            const res = await exec(data, token, {newTeamName : "N"}, '/changeTeamName');
+            expect(res.status).toBe(400);
+        })
+        it('Return 401 for not moderator', async()=>{
+            const data = await prepareData();
+        const badToken = data.unAuthorizedUser.generateAuthToken();
+
+            const res = await exec(data, badToken, {newTeamName : "Name"}, '/changeTeamName');
+            expect(res.status).toBe(401);
+        })
+        it('Return new team after update team name', async()=>{
+            const data = await prepareData();
+            const token = data.user.generateAuthToken();
+
+            const res = await exec(data, token, {newTeamName : "Test"}, '/changeTeamName');
+            expect(res.status).toBe(400);
+        })
 
 
+        
 
+    })
 
 
 

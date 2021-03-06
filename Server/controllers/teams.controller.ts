@@ -44,14 +44,14 @@ export default class TeamController {
     this.router.get(`${this.path}/:teamId`, findTeam, this.getTeam);
 
     this.router.put(
-      `${this.path}/:teamId/adduser`,
+      `${this.path}/:teamId/addUser`,
       findTeam,
       findUserByBody,
       this.addUserToTeam
     );
 
     this.router.put(
-      `${this.path}/:teamId/addpending`,
+      `${this.path}/:teamId/addPending`,
       findTeam,
       findUserByBody,
       auth,
