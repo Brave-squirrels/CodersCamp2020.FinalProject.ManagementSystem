@@ -15,7 +15,7 @@ const changeTeamName = async (req: Request, res: Response) => {
 
   //Checking if user have permissions 
   if (!team.moderatorsId.includes(authId))
-  return res.status(StatusCodes.BAD_REQUEST).send("You don't have permission to change team name");
+  return res.status(StatusCodes.UNAUTHORIZED).send("You don't have permission to change team name");
 
   //Check if new team name is unique
   const teams = res.locals.teams;

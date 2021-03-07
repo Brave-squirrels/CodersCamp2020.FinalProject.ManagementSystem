@@ -15,7 +15,7 @@ const deleteTeam = async (req: Request, res: Response) => {
 
   //Checking if user have permissions 
   if (authId != teamObj.ownerId)
-  return res.status(StatusCodes.BAD_REQUEST).send("You are not team owner");
+  return res.status(StatusCodes.UNAUTHORIZED).send("You are not team owner");
 
 
 

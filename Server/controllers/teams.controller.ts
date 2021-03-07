@@ -19,6 +19,7 @@ import changeDescription from "../src/teams/changeDescription";
 import changeTeamName from "../src/teams/changeTeamName";
 import addPending from "../src/teams/addPending";
 import removePending from "../src/teams/removePending";
+import changeTeamOwner from '../src/teams/changeTeamOwner'
 
 export default class TeamController {
   public path = "/teams";
@@ -108,6 +109,14 @@ export default class TeamController {
       findUserByBody,
       this.removePending 
     );
+
+    this.router.put(
+      `${this.path}/:teamId/changeTeamOwner`,
+      findTeam,
+      auth,
+      this.changeTeamOwner 
+    );
+
   }
 
   createNewTeam(req: Request, res: Response) {
@@ -152,5 +161,9 @@ export default class TeamController {
   }
   removePending(req: Request, res: Response) {
     removePending(req, res);
+  }
+
+  changeTeamOwner(req: Request, res: Response) {
+    changeTeamOwner(req, res);
   }
 }

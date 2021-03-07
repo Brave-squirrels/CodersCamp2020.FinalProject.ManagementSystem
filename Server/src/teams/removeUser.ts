@@ -15,7 +15,7 @@ const removeUser = async (req: Request, res: Response) => {
 
   //Checking if user have permissions 
   if (!team.moderatorsId.includes(authId))
-  return res.status(StatusCodes.BAD_REQUEST).send("You don't have permission to remove user from team");
+  return res.status(StatusCodes.UNAUTHORIZED).send("You don't have permission to remove user from team");
 
   //Remove user from team
   team.members.forEach((member: members, i: number) => {

@@ -12,7 +12,7 @@ const removePermissions = async (req: Request, res: Response) => {
 
   //Checking if user have permissions 
   if (authId != team.ownerId)
-  return res.status(StatusCodes.BAD_REQUEST).send("You are not team owner");
+  return res.status(StatusCodes.UNAUTHORIZED).send("You are not team owner");
 
   //Remove user from moderators
   team.moderatorsId.forEach((moderator: string, i: number) => {

@@ -14,14 +14,13 @@ const addPermissions = async (req: Request, res: Response) => {
 
   //Checking if user have permissions 
   if (authId != team.ownerId)
-  return res.status(StatusCodes.BAD_REQUEST).send("You are not team owner");
+  return res.status(StatusCodes.UNAUTHORIZED).send("You are not team owner");
 
   //Check if user is team member
   const membersIdArr: string[] = [];
   team.members.forEach((member: members) => membersIdArr.push((member.userId).toString()));
   
   if (!(membersIdArr.includes(req.body.id))){
-    console.log(req.body.id)
       return res
       .status(StatusCodes.BAD_REQUEST)
       .send("User is not a team member");}
