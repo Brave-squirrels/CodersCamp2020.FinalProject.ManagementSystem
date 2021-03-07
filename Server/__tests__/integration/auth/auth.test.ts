@@ -23,7 +23,7 @@ describe("/auth", () => {
       | {} = {};
 
     const exec = async () => {
-      return await request(server).post("/auth").send(body);
+      return await request(server).post("/login").send(body);
     };
 
     beforeEach(async () => {
