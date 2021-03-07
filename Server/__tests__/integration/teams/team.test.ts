@@ -472,9 +472,9 @@ describe('/teams', ()=>{
 
             await exec(data, token, {id:secondUser}, '/addPermissions');
             const res = await exec(data, token, {id : secondUser}, '/removeUser');
-            expect(res.body.moderatorsId.length).toBe(1);
+            expect(res.body.team.moderatorsId.length).toBe(1);
         })
-        it('Return team without user who leave with clean moderator array', async()=>{
+        it('Return clean moderator array', async()=>{
             const data = await prepareData();
             const token = data.user.generateAuthToken();
             const secondUser = data.unAuthorizedUser._id
@@ -494,9 +494,19 @@ describe('/teams', ()=>{
             await exec(data, token, {id : testUser}, '/addPending');
             await exec(data, token, {id : testUser}, '/addUser');
             const res = await exec(data, newToken, {}, '/leaveTeam');
-            expect(res.body.user.teams.length).toBe(0);
+            expect(res.body.user.teams).toEqual([]);
         })
-        
+        it('Check if user have empty teams array', async()=>{
+            const data = await prepareData();
+            const token = data.user.generateAuthToken();
+            const testUser = data.thirdUser._id
+            const newToken = data.thirdUser.generateAuthToken();
+
+            await exec(data, token, {id : testUser}, '/addPending');
+            await exec(data, token, {id : testUser}, '/addUser');
+            const res = await exec(data, token,  {id:testUser}, '/removeUser');
+            expect(res.body.user.teams).toEqual([]);
+        })
        
     })
 
