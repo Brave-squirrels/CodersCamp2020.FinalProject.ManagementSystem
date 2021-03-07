@@ -21,8 +21,14 @@ const prepareData = async ()=> {
         email: 'userUnauthorized@gmail.com',
         password: 'userUnauthorized'
     })
+    const thirdUser = new userModel({
+        name: 'thirdUser',
+        email: 'user@gmail.com',
+        password: '12345678'
+    })
     unAuthorizedUser.save();
     user.save();
+    thirdUser.save()
     const team = new teamsModel({
         ownerId: user._id,
         teamName: 'Test',
@@ -33,7 +39,7 @@ const prepareData = async ()=> {
         ownerId: user._id,
         teamName: 'TestTwo',
         moderatorsId: [user._id],
-        pendingUsers: [unAuthorizedUser._id],
+        pendingUsers: [],
         members: [{userId: user._id, userName: user.name},{userId: unAuthorizedUser._id, userName: unAuthorizedUser.name}],
     })
     await team.save();
@@ -95,6 +101,7 @@ const prepareData = async ()=> {
         task: task,
         team: team,
         teamTwo: teamTwo,
+        thirdUser: thirdUser,
         project: project,
         comment: comment,
         commentTwo: commentTwo,
@@ -271,8 +278,6 @@ describe('/teams', ()=>{
             const res = await exec(data, token, {id : newOwner}, '/changeTeamOwner');
             expect(res.status).toBe(400);
         })
-
-        
     })
 
 
@@ -299,9 +304,10 @@ describe('/teams', ()=>{
         it('Return team without removed from pending user', async()=>{
             const data = await prepareData();
             const token = data.user.generateAuthToken();
-            const pendingUser = data.unAuthorizedUser._id
+            const testUser = data.thirdUser._id
 
-            const res = await exec(data, token, {id : pendingUser}, '/removePending');
+            await exec(data, token, {id : testUser}, '/addPending');
+            const res = await exec(data, token, {id : testUser}, '/removePending');
             expect(res.status).toBe(200);
         })
         it('Return 400 if not valid Id', async()=>{
@@ -311,6 +317,13 @@ describe('/teams', ()=>{
             const res = await exec(data, token, {id: null }, '/removePending');
             expect(res.status).toBe(400);
         })
+        it('Return 404 if user not found', async()=>{
+            const data = await prepareData();
+            const token = data.user.generateAuthToken();
+
+            const res = await exec(data, token, {id: '603a544b873f3d10cc7c0e8b' }, '/removePending');
+            expect(res.status).toBe(404);
+        })
         it('Return 400 if not valid Id', async()=>{
             const data = await prepareData();
             const token = data.user.generateAuthToken();
@@ -318,7 +331,6 @@ describe('/teams', ()=>{
             const res = await exec(data, token, {id: null }, '/addPermissions');
             expect(res.status).toBe(400);
         })
-
         it('Return team with new moderator', async()=>{
             const data = await prepareData();
             const token = data.user.generateAuthToken();
@@ -337,12 +349,121 @@ describe('/teams', ()=>{
         })
         it('Return 400 for not team member', async()=>{
             const data = await prepareData();
-            const badToken = data.user.generateAuthToken();
+            const token = data.user.generateAuthToken();
             
 
-            const res = await exec(data, badToken, {id: '603a544b873f3d10cc7c0e8b' }, '/addPermissions');
+            const res = await exec(data, token, {id: '603a544b873f3d10cc7c0e8b' }, '/addPermissions');
             expect(res.status).toBe(400);
         })
+        it('Return team with removed moderator', async()=>{
+            const data = await prepareData();
+            const token = data.user.generateAuthToken();
+            const secondUser = data.unAuthorizedUser._id
+
+            await exec(data, token, {id: secondUser }, '/addPermissions');
+            const res = await exec(data, token, {id: secondUser }, '/removePermissions');
+            expect(res.status).toBe(200);
+        })
+        it('Return 400 for not valid Id', async()=>{
+            const data = await prepareData();
+            const token = data.user.generateAuthToken();
+            const secondUser = data.unAuthorizedUser._id
+
+            await exec(data, token, {id: secondUser }, '/addPermissions');
+            const res = await exec(data, token, {id: null }, '/removePermissions');
+            expect(res.status).toBe(400);
+        })
+        it('Return if user is not team owner', async()=>{
+            const data = await prepareData();
+            const token = data.user.generateAuthToken();
+            const secondUser = data.unAuthorizedUser._id
+            const badToken = data.unAuthorizedUser.generateAuthToken();
+
+            await exec(data, token, {id: secondUser }, '/addPermissions');
+            const res = await exec(data, badToken, {id: secondUser }, '/removePermissions');
+            expect(res.status).toBe(401);
+        })
+        it('Return team without removed from pending user', async()=>{
+            const data = await prepareData();
+            const token = data.user.generateAuthToken();
+            const testUser = data.thirdUser._id
+
+            const res = await exec(data, token, {id : testUser}, '/addPending');
+            expect(res.status).toBe(200);
+        })
+        it('Return 400 for user already in team', async()=>{
+            const data = await prepareData();
+            const token = data.user.generateAuthToken();
+            const secondUser = data.unAuthorizedUser._id
+
+            const res = await exec(data, token, {id : secondUser}, '/addPending');
+            expect(res.status).toBe(400);
+        })
+        it('Return 401 for not moderator', async()=>{
+            const data = await prepareData();
+            const badToken = data.unAuthorizedUser.generateAuthToken();
+            const testUser = data.thirdUser._id
+
+            const res = await exec(data, badToken, {id : testUser}, '/addPending');
+            expect(res.status).toBe(401);
+        })
+        it('Return 400 for user already in pending', async()=>{
+            const data = await prepareData();
+            const token = data.user.generateAuthToken();
+            const testUser = data.thirdUser._id
+
+            await exec(data, token, {id : testUser}, '/addPending');
+            const res = await exec(data, token, {id : testUser}, '/addPending');
+            expect(res.status).toBe(400);
+        })
+        it('Return team with new user', async()=>{
+            const data = await prepareData();
+            const token = data.user.generateAuthToken();
+            const testUser = data.thirdUser._id
+
+            await exec(data, token, {id : testUser}, '/addPending');
+            const res = await exec(data, token, {id : testUser}, '/addUser');
+            expect(res.status).toBe(200);
+        })
+        it('Return 400 if user dont have invitation', async()=>{
+            const data = await prepareData();
+            const token = data.user.generateAuthToken();
+            const testUser = data.thirdUser._id
+
+            const res = await exec(data, token, {id : testUser}, '/addUser');
+            expect(res.status).toBe(400);
+        })
+        it('Return team without removed user', async()=>{
+            const data = await prepareData();
+            const token = data.user.generateAuthToken();
+            const secondUser = data.unAuthorizedUser._id
+
+            const res = await exec(data, token, {id : secondUser}, '/removeUser');
+            expect(res.status).toBe(200);
+        })
+        it('Return 401 if user dont have permission', async()=>{
+            const data = await prepareData();
+            const badToken = data.unAuthorizedUser.generateAuthToken();
+            const secondUser = data.unAuthorizedUser._id
+
+            const res = await exec(data, badToken, {id : secondUser}, '/removeUser');
+            expect(res.status).toBe(401);
+        })
+        it('Return team without user who leave', async()=>{
+            const data = await prepareData();
+            const secondToken = data.unAuthorizedUser.generateAuthToken();
+
+            const res = await exec(data, secondToken, {}, '/leaveTeam');
+            expect(res.status).toBe(200);
+        })
+        it('Return team without user who leave', async()=>{
+            const data = await prepareData();
+            const token = data.user.generateAuthToken();
+
+            const res = await exec(data, token, {}, '/leaveTeam');
+            expect(res.status).toBe(400);
+        })
+
     })
 
 

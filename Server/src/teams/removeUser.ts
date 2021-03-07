@@ -5,10 +5,7 @@ import TeamArr from "../../interfaces/teamArr.interface";
 import validateUserId from "./validateUserId";
 
 const removeUser = async (req: Request, res: Response) => {
-  const { error } = validateUserId(req.body);
-  if (error)
-    return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
-
+  
   const user = res.locals.user;
   const team = res.locals.team;
   const authId = req.userInfo._id
