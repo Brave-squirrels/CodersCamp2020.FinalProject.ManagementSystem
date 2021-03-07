@@ -7,8 +7,8 @@ POST http://localhost:3000/auth HTTP/1.1
 Content-Type: application/json
 
 {
-    "email": "testMaciek1@test.com",
-    "password": "testowehaslo"
+    "email": "testMichal@test.com",
+    "password": "teest"
 }
 
 ###
@@ -201,12 +201,12 @@ GET http://localhost:3000/teams/604281642494cb3120bb4252 HTTP/1.1
 
 #ADDING USER TO PENDING
 
-PUT http://localhost:3000/teams/603ff6c5a7e58805f6daa320/addPending HTTP/1.1
+PUT http://localhost:3000/teams/604281642494cb3120bb4251/addPending HTTP/1.1
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQyM2QwZTEyMDhiNTRiNjAyNDFkMjEiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0OTcxMjE3fQ.f7ic9F85pQ4PIH91WFCVSTHv5AqNzlvmMlOBgwpZG14
 content-type: application/json
 
 {
-    "id": "60423d0e1208b54b60241d21"
+    "id": "603ff5f7a7e58805f6daa31f"
 }
 
 ###
@@ -225,10 +225,11 @@ Content-type: application/json
 #ADDING USER TO TEAM
 
 PUT http://localhost:3000/teams/604281642494cb3120bb4251/addUser HTTP/1.1
-Content-Type: application/json
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQyM2QwZTEyMDhiNTRiNjAyNDFkMjEiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0OTcxMjE3fQ.f7ic9F85pQ4PIH91WFCVSTHv5AqNzlvmMlOBgwpZG14
+content-type: application/json
 
 {
-    "id": "604281852494cb3120bb4252"
+    "id": "603ff5f7a7e58805f6daa31f"
 }
 
 ###
@@ -240,15 +241,15 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQyM2QwZTEyMDhiN
 content-type: application/json
 
 {
-    "id": "604281852494cb3120bb4252"
+    "id": "603ff5f7a7e58805f6daa31f"
 }
 
 ###
 
 #LEAVE TEAM
 
-PUT http://localhost:3000/teams/603e5baec26c9f2ce88007e2/leaveTeam HTTP/1.1
-x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQyM2QwZTEyMDhiNTRiNjAyNDFkMjEiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0OTcxMjE3fQ.f7ic9F85pQ4PIH91WFCVSTHv5AqNzlvmMlOBgwpZG14
+PUT http://localhost:3000/teams/604281642494cb3120bb4251/leaveTeam HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDNmZjVmN2E3ZTU4ODA1ZjZkYWEzMWYiLCJuYW1lIjoiTWljaGFsIiwiaWF0IjoxNjE1MTIyODYwfQ.BdxeSfDeZq16G5f28wwd0aY2UAWlQsmbs1wkDDzsW_g
 content-type: application/json
 
 {
@@ -259,12 +260,12 @@ content-type: application/json
 
 #ADDING USER PERMISSIONS 
 
-PUT http://localhost:3000/teams/603e5baec26c9f2ce88007e2/addPermissions HTTP/1.1
+PUT http://localhost:3000/teams/604281642494cb3120bb4251/addPermissions HTTP/1.1
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQyM2QwZTEyMDhiNTRiNjAyNDFkMjEiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0OTcxMjE3fQ.f7ic9F85pQ4PIH91WFCVSTHv5AqNzlvmMlOBgwpZG14
 content-type: application/json
 
 {
-    "id": "603a544b873f3d10cc7c0e8b"
+    "id": "603ff5f7a7e58805f6daa31f"
 }
 
 ###

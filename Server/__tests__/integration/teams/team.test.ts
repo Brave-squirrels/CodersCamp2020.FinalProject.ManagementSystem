@@ -464,6 +464,38 @@ describe('/teams', ()=>{
             expect(res.status).toBe(400);
         })
 
+        it('Return team without user who leave with clean moderator array', async()=>{
+            const data = await prepareData();
+            const token = data.user.generateAuthToken();
+            const secondUser = data.unAuthorizedUser._id
+
+
+            await exec(data, token, {id:secondUser}, '/addPermissions');
+            const res = await exec(data, token, {id : secondUser}, '/removeUser');
+            expect(res.body.moderatorsId.length).toBe(1);
+        })
+        it('Return team without user who leave with clean moderator array', async()=>{
+            const data = await prepareData();
+            const token = data.user.generateAuthToken();
+            const secondUser = data.unAuthorizedUser._id
+            const newToken = data.unAuthorizedUser.generateAuthToken();
+
+            await exec(data, token, {id:secondUser}, '/addPermissions');
+            const res = await exec(data, newToken, {}, '/leaveTeam');
+            expect(res.body.team.moderatorsId.length).toBe(1);
+        })
+        it('Return user without team which left', async()=>{
+            const data = await prepareData();
+            const token = data.user.generateAuthToken();
+            const secondUser = data.unAuthorizedUser._id
+            const newToken = data.unAuthorizedUser.generateAuthToken();
+
+            await exec(data, token, {id:secondUser}, '/addPermissions');
+            const res = await exec(data, newToken, {}, '/leaveTeam');
+            expect(res.body.user.teams.length).toBe(0);
+        })
+
+
     })
 
 
