@@ -32,22 +32,18 @@ const changeTeamName = async (req: Request, res: Response) => {
 
   await team.save();
 
+
   //Function to changing team name in user array
-  const getUser = async (userId: string, newTeamName: string) => {
-    const user = await userModel.findById(userId);
-    if (!user) return res.status(StatusCodes.NOT_FOUND).send("User not found ");
-    user.teams?.forEach((teamN) => {
-      if (teamN.id == team.id) teamN.name = newTeamName;
+  team.members.forEach(async (member: any) => {
+    const user : any= await userModel.findById(member.userId);
+    user.teams?.forEach((teamN :any ) => {
+      if (teamN.id == team.id) teamN.name = req.body.newTeamName;
     });
     await user.save();
-  };
-
-  //changing team name in user array
-  team.members.forEach((member: members) => {
-    getUser(member.userId, req.body.newTeamName);
   });
 
-  return res.status(StatusCodes.OK).send(team);
+
+  return res.status(StatusCodes.OK).send({team});
 };
 
 export default changeTeamName;

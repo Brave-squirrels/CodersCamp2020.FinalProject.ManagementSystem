@@ -4,10 +4,7 @@ import members from "../../interfaces/teamMembers.interface";
 import validateUserId from "./validateUserId";
 
 const addPending = async (req: Request, res: Response) => {
-  const { error } = validateUserId(req.body);
-  if (error)
-    return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
-
+  
   const authId = req.userInfo._id
   const team = res.locals.team;
   const user = res.locals.user;

@@ -17,7 +17,7 @@ const leaveTeam = async (req: Request, res: Response) => {
 
   //Remove user from moderators
   team.moderatorsId.forEach((moderator: string, i: number) => {
-    if (moderator == req.body.id) team.moderatorsId.splice(i, 1);
+    if (moderator == user.id) team.moderatorsId.splice(i, 1);
   });
 
   //Remove team from user's array
@@ -28,7 +28,7 @@ const leaveTeam = async (req: Request, res: Response) => {
   await team.save();
   await user.save();
 
-  return res.status(StatusCodes.OK).send(team); 
+  return res.status(StatusCodes.OK).send({team,user}); 
 };
 
 export default leaveTeam;
