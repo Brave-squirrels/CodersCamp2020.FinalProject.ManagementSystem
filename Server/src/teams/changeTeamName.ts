@@ -43,7 +43,7 @@ const changeTeamName = async (req: Request, res: Response) => {
   });
 
 
-  return res.status(StatusCodes.OK).send(team);
+  return res.status(StatusCodes.OK).send({team});
 };
 
 export default changeTeamName;

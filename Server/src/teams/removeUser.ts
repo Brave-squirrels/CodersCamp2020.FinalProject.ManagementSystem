@@ -32,7 +32,7 @@ const removeUser = async (req: Request, res: Response) => {
   await team.save();
   await user.save();
 
-  return res.status(StatusCodes.OK).send(team);
+  return res.status(StatusCodes.OK).send({team, user});
 };
 
 export default removeUser;

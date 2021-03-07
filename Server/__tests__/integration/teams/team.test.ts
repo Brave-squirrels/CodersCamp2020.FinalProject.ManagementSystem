@@ -484,18 +484,20 @@ describe('/teams', ()=>{
             const res = await exec(data, newToken, {}, '/leaveTeam');
             expect(res.body.team.moderatorsId.length).toBe(1);
         })
-        it('Return user without team which left', async()=>{
+
+        it('Check if user have empty teams array', async()=>{
             const data = await prepareData();
             const token = data.user.generateAuthToken();
-            const secondUser = data.unAuthorizedUser._id
-            const newToken = data.unAuthorizedUser.generateAuthToken();
+            const testUser = data.thirdUser._id
+            const newToken = data.thirdUser.generateAuthToken();
 
-            await exec(data, token, {id:secondUser}, '/addPermissions');
+            await exec(data, token, {id : testUser}, '/addPending');
+            await exec(data, token, {id : testUser}, '/addUser');
             const res = await exec(data, newToken, {}, '/leaveTeam');
             expect(res.body.user.teams.length).toBe(0);
         })
-
-
+        
+       
     })
 
 
