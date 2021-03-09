@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import projectModel from "../../models/projects.model";
 import validateProjectInfo from "./validateProjectInfo";
 import { StatusCodes } from "http-status-codes";
-import teamModel from '../../models/teams.model';
 import userModel from '../../models/user.model';
 
 const updateProjectInfo = async (req: Request, res: Response) => {

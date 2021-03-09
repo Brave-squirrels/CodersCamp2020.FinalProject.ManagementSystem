@@ -8,8 +8,8 @@ const deleteComment = async (req: Request, res: Response) => {
     const task = res.locals.task;
     const team = res.locals.team;
 
-    //Let delete comment only for Comment creator, project owner, team owner and team moderator
-    if(comment.creatorId == req.userInfo._id || project.owner.id == req.userInfo._id || team.moderatorsId.includes(req.userInfo._id) || team.ownerId == req.userInfo._id){
+    //Let delete comment only for Comment creator, project owner
+    if(comment.creatorId == req.userInfo._id || project.owner.id == req.userInfo._id){
         //Remove comment from task
         const index = task.commentsId.map((el:any)=>{return el.id}).indexOf(comment._id);
 

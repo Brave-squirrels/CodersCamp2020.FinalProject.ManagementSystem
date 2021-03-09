@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
 import members from "../../interfaces/teamMembers.interface";
-import validateUserId from "./validateUserId";
 
 const addPending = async (req: Request, res: Response) => {
   
