@@ -16,5 +16,6 @@ module.exports = {
     // "tasks",
     // "user",
     // "auth",
+    // "teams",
   ],
 };

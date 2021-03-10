@@ -10,10 +10,19 @@ const createNewProject = async (req: Request, res: Response) => {
   const team = res.locals.team;
   const user = await userModel.findById(req.userInfo._id);
 
+  let checkId = false;
+  team.moderatorsId.forEach((modId: any) => {
+    if(modId == req.userInfo._id) checkId=true;
+  })
+  if(!checkId){
+    if(req.userInfo._id != team.ownerId){
+      return res.status(StatusCodes.BAD_REQUEST).send("You are not allowed to do that!");
+    }
+  }
 
   const projectData: Project = {
     team: { id: team._id, name: team.teamName },
-    owner: { id: user!._id, name: user!.name },
+    owner: { id: req.userInfo._id, name: user!.name },
     ...req.body,
   };
 
