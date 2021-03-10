@@ -15,7 +15,7 @@ const prepareData  = async() => {
     const user = new userModel({
         name: 'user',
         email: 'user@gmail.com',
-        password: '12345'
+        password: '12345678'
     })
     await user.save();
 
@@ -89,6 +89,27 @@ describe("/projects", () => {
 
             expect(res.status).toBe(400);
         });
+
+        test("Should throw 401 for bad user attempt", async() => {
+            const { user, team } = await prepareData();
+            const token = user.generateAuthToken();
+
+            const newUser = new userModel({
+                name: 'asfdafsdf',
+                email: 'tessdgsdgt@gmail.com',
+                password: '1234sdg5'
+            })
+            await newUser.save();
+            const newToken = newUser.generateAuthToken();
+
+            const project = {
+                projectName: "te",
+                deadline : "2022-03-24T17:06:34.928+00:00",
+            }
+            const res = await request(server).post(`/teams/${team._id}/projects`).send(project).set('x-auth-token', newToken);
+
+            expect(res.status).toBe(400);
+        });
     });
 
     describe("PUT / ", () => {
@@ -136,6 +157,34 @@ describe("/projects", () => {
             expect(resD.status).toBe(400);
         });
 
+        test("Throw error, cant modify status as non-mod", async() => {
+            const { team, user } = await prepareData();
+            const token = user.generateAuthToken();
+            
+            const project = {
+                projectName: "testname",
+                deadline : "2022-03-24T17:06:34.928+00:00",
+            }
+            const res = await request(server).post(`/teams/${team._id}/projects`).send(project).set('x-auth-token', token);
+            const newProject = JSON.parse(res.text);
+
+            const newUser = new userModel({
+                name: 'asfdafsdf',
+                email: 'tessdgsdgt@gmail.com',
+                password: '1234shdg5'
+            })
+            await newUser.save();
+            const newToken = newUser.generateAuthToken();
+
+            const updatedStatus = {
+                status: STATUS.ABANDONED
+            };
+
+            const resD = await request(server).put(`/teams/${team._id}/projects/${newProject._id}/status`).send(updatedStatus).set('x-auth-token', newToken);
+
+            expect(resD.status).toBe(400);
+        });
+
         test("Throw error, cant modify info as non-mod", async() => {
             const { team, user } = await prepareData();
             const token = user.generateAuthToken();
@@ -145,24 +194,23 @@ describe("/projects", () => {
                 deadline : "2022-03-24T17:06:34.928+00:00",
             }
             const res = await request(server).post(`/teams/${team._id}/projects`).send(project).set('x-auth-token', token);
-            
             const newProject = JSON.parse(res.text);
 
             const newUser = new userModel({
                 name: 'asfdafsdf',
                 email: 'tessdgsdgt@gmail.com',
-                password: '1234sdg5'
+                password: '1234shdg5'
             })
             await newUser.save();
             const newToken = newUser.generateAuthToken();
 
             const updatedInfo = {
-                projectName: "changed name",
+                projectName: "changed name kdjfkd",
                 content: "added content"
             };
 
             const resD = await request(server).put(`/teams/${team._id}/projects/${newProject._id}/info`).send(updatedInfo).set('x-auth-token', newToken);
-        
+
             expect(resD.status).toBe(400);
         });
 
@@ -223,7 +271,7 @@ describe("/projects", () => {
             const newUser = new userModel({
                 name: 'test',
                 email: 'test@gmail.com',
-                password: '12345'
+                password: '12346785'
             })
             await newUser.save();
 
@@ -251,7 +299,7 @@ describe("/projects", () => {
             const newUser = new userModel({
                 name: 'test',
                 email: 'test@gmail.com',
-                password: '12345'
+                password: '12345678'
             })
             await newUser.save();
             
@@ -279,7 +327,7 @@ describe("/projects", () => {
             const newUser = new userModel({
                 name: 'test',
                 email: 'test@gmail.com',
-                password: '12345'
+                password: '12346785'
             })
             await newUser.save();
             
@@ -328,7 +376,7 @@ describe("/projects", () => {
             const newUser = new userModel({
                 name: 'test',
                 email: 'test@gmail.com',
-                password: '12345'
+                password: '12346785'
             })
             await newUser.save();
             
@@ -363,7 +411,7 @@ describe("/projects", () => {
             const newUser = new userModel({
                 name: 'test',
                 email: 'test@gmail.com',
-                password: '12345'
+                password: '12367845'
             })
             await newUser.save();
             const newToken = newUser.generateAuthToken();
@@ -412,7 +460,7 @@ describe("/projects", () => {
             const newUser = new userModel({
                 name: 'test',
                 email: 'test@gmail.com',
-                password: '12345'
+                password: '12346785'
             })
             await newUser.save();
 
