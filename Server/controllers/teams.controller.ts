@@ -1,8 +1,7 @@
-import express, { request, Request, Response } from "express";
+import express, { Request, Response } from "express";
 
 import findTeam from "../middleware/findTeam";
 import findAllTeams from "../middleware/findAllTeams";
-import findUser from "../middleware/findUser";
 import findUserByBody from "../middleware/findUserByBody";
 import auth from '../middleware/auth';
 import findUserByAuth from '../middleware/findUserByAuth';

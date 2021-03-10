@@ -7,20 +7,21 @@ import projectModel from "../../../models/projects.model";
 import teamsModel from "../../../models/teams.model";
 import tasksModel from "../../../models/tasks.model";
 import commentsModel from "../../../models/comment.model";
+import teamModel from "../../../models/teams.model";
 
 let server: Server;
 
 type U = { name: string };
 
-interface Body extends User  {
+interface Body extends User {
   confirmPassword: string;
-};
+}
 
 async function prepareUser() {
   const user = new userModel({
     name: "user1",
     email: "user1@mail.com",
-    password: "12345",
+    password: "12345678",
   });
   await user.save();
   return user;
@@ -343,6 +344,48 @@ describe("/users", () => {
     });
 
     it("should return the updated user if it is valid", async () => {
+      const team = new teamsModel({
+        ownerId: user._id,
+        teamName: "Test",
+      });
+      await team.save();
+
+      const project = new projectModel({
+        projectName: "Test",
+        deadline: "2021-03-24T17:06:34.928+00:00",
+        owner: {
+          id: user._id,
+          name: user.name,
+        },
+        team: {
+          id: team._id,
+          name: team.teamName,
+        },
+        members: [
+          {
+            name: user.name,
+            id: user._id,
+            role: "FrontendDev",
+          },
+        ],
+      });
+      await project.save();
+
+      const task = new tasksModel({
+        name: "test",
+        content: "test",
+        deadlineDate: "03/24/2021",
+        projectId: project._id,
+        members: [
+          {
+            name: user.name,
+            id: user._id,
+            role: "FrontendDev",
+          },
+        ],
+      });
+      await task.save();
+
       const res = await exec();
 
       expect(res.body).toHaveProperty("_id");
