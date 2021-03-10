@@ -127,10 +127,17 @@ describe('/teams', ()=>{
         it('Should return team', async()=>{
             const data = await prepareData();
             const token = data.user.generateAuthToken();
-            const res = await request(server).get(`/teams/${data.team._id}`).set('x-auth-token', token);
+            const res = await request(server).get(`/teams/${data.teamTwo._id}`).set('x-auth-token', token);
 
             expect(res.status).toBe(200);
-            expect(res.body.teamName).toEqual('Test');
+            expect(res.body.teamName).toEqual('TestTwo');
+        })
+        it('Should return 401 for not team member', async()=>{
+            const data = await prepareData();
+            const badToken = data.thirdUser.generateAuthToken();
+            const res = await request(server).get(`/teams/${data.teamTwo._id}`).set('x-auth-token', badToken);
+
+            expect(res.status).toBe(401);
         })
         it('Should return 404 if team not found', async()=>{
             const data = await prepareData();
