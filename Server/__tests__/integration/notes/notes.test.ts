@@ -13,7 +13,7 @@ const prepareData  = async() => {
     const user = new userModel({
         name: 'user',
         email: 'user@gmail.com',
-        password: '12345'
+        password: '12345678'
     })
     await user.save();
     const token = user.generateAuthToken();
@@ -120,6 +120,34 @@ describe("/notes", () => {
             expect(resD.status).toBe(200);
         });
 
+        test("Should throw error, cant update if you didnt make it", async() => {
+            const { user, team, newProject, token } = await prepareData();
+            
+            const note = {
+                name: "Test Note",
+                author: {name: user.name, id: user._id},
+                content: "blalba"
+            }
+            const res = await request(server).post(`/teams/${team._id}/projects/${newProject._id}/notes`).send(note).set('x-auth-token', token);
+            const newNote = JSON.parse(res.text);
+
+            const update = {
+                content: "changed"
+            }
+
+            const newUser = new userModel({
+                name: 'asfdafsdf',
+                email: 'tessdgsdgt@gmail.com',
+                password: '1234sdg5'
+            })
+            await newUser.save();
+            const newToken = newUser.generateAuthToken();
+
+            const resD = await request(server).put(`/teams/${team._id}/projects/${newProject._id}/notes/${newNote._id}`).send(update).set('x-auth-token', newToken);
+
+            expect(resD.status).toBe(400);
+        });
+
         test("Should throw invalid body error", async() => {
             const { user, team, newProject, token } = await prepareData();
             
@@ -177,6 +205,7 @@ describe("/notes", () => {
 
             expect(resD.status).toBe(200);
         });
+
         test("Should throw error, note not found", async() => {
             const { user, team, newProject, token } = await prepareData();
             
