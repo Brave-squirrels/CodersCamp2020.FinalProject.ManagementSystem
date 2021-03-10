@@ -14,13 +14,13 @@ const userSchema = new mongoose.Schema<User>({
   password: {
     type: String,
     required: true,
-    minlength: 4,
+    minlength: 8,
     maxLength: 255,
   },
   email: {
     type: String,
     required: true,
-    minlength: 4,
+    minlength: 5,
     maxLength: 50,
   },
   teamInvitation: {

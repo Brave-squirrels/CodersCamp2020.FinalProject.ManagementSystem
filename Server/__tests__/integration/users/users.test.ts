@@ -21,7 +21,7 @@ async function prepareUser() {
   const user = new userModel({
     name: "user1",
     email: "user1@mail.com",
-    password: "12345",
+    password: "12345678",
   });
   await user.save();
   return user;
