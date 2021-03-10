@@ -40,7 +40,7 @@ export default class TeamController {
 
     this.router.delete(`${this.path}/:teamId`, findTeam, auth, this.deleteTeam); 
 
-    this.router.get(`${this.path}/:teamId`, findTeam, this.getTeam);
+    this.router.get(`${this.path}/:teamId`, findTeam, auth, this.getTeam);
 
     this.router.put(
       `${this.path}/:teamId/addUser`,
