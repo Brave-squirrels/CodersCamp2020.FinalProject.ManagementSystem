@@ -16,8 +16,14 @@ const Header = (props: any) => {
     <header className={styles.header}>
       <div className={styles.logoWrapper}>
         <NavLink to="/" exact>
-          <img src={logo} alt="Site logo" className={styles.logo} />
-          <span className={styles.logoTitle}>Project Name</span>
+          <ul className={styles.logoList}>
+            <li>
+              <img src={logo} alt="Site logo" className={styles.logo} />
+            </li>
+            <li>
+              <span className={styles.logoTitle}>Project Name</span>
+            </li>
+          </ul>
         </NavLink>
       </div>
 
