@@ -6,8 +6,9 @@ import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 import { BrowserRouter } from "react-router-dom";
 
-import rootReducer from "./redux/index";
+import "./styles/global.scss";
 
+import rootReducer from "./redux/index";
 import App from "./App";
 declare global {
   interface Window {

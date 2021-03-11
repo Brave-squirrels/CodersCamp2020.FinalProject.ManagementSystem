@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Switch, withRouter } from "react-router-dom";
-import { Header, Footer, Main } from "./hoc/indexHoc";
+import { Header, Main } from "./hoc/indexHoc";
 
 import Test from "./containers/test/test";
 import LandingNotLogged from "./containers/landingNotLogged/landingNotLogged";
@@ -19,7 +19,6 @@ const App: any = () => {
     <>
       <Header />
       <Main>{routes}</Main>
-      <Footer />
     </>
   );
 };
