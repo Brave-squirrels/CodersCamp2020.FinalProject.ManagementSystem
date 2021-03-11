@@ -1,20 +1,37 @@
-import App from './app/App';
-import validateEnv from './app/validateEnv';
-import ComentsController from '../controllers/comments.controller';
+import "dotenv/config";
+import config from "config";
+import App from "./app/App";
+import validateEnv from "./app/validateEnv";
+import ProjectsController from "../controllers/projects.controller";
+import UserController from "../controllers/users.controller";
+import AuthController from "../controllers/auth.controller";
+import TaskController from "../controllers/tasks.controller";
+import CommentController from "../controllers/comment.controller";
+import TeamController from "../controllers/teams.controller";
+import NotesController from "../controllers/notes.controller";
 
-// Creating environment variables
-import 'dotenv/config';
+// Check if private key exist
+if (!config.get("jwtPrivateKey")) {
+  console.error("Fatal Error: jwtPrivateKey is not defined.");
+  process.exit(1);
+}
 
 // Validatin enivronmental variables
 validateEnv();
 
 // Starting app
-const app = new App(
-    [
-        // Adding all controllers
-        new ComentsController(),
-    ]
-);
+const app = new App([
+  // Adding all controllers
+  new ProjectsController(),
+  new UserController(),
+  new NotesController(),
+  new AuthController(),
+  new TaskController(),
+  new CommentController(),
+  new TeamController(),
+]);
 
 // Express app listen
-app.listen();
+const server = app.listen();
+
+module.exports = server;
