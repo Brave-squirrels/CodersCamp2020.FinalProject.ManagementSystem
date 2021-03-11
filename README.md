@@ -11,6 +11,10 @@ Final Project on Coderscamp2020
 
 PS install ts-node globally
 
+**URUCHOMIENIE BACKEND I FRONTEND**
+
+`yarn run dev`
+
 ## Praca z projektem
 
 ### Commit Message

@@ -3,7 +3,7 @@
 
 ###
 # login
-POST http://localhost:3000/login HTTP/1.1
+POST http://localhost:5000/login HTTP/1.1
 Content-Type: application/json
 
 {
@@ -16,31 +16,31 @@ Content-Type: application/json
  
 ###
 # get users
-GET http://localhost:3000/users HTTP/1.1
+GET http://localhost:5000/users HTTP/1.1
 
 
 ###
 # get user
-GET http://localhost:3000/users/603ff5f7a7e58805f6daa31f HTTP/1.1
+GET http://localhost:5000/users/603ff5f7a7e58805f6daa31f HTTP/1.1
 
 
 ###
 # get me
-GET http://localhost:3000/users/me HTTP/1.1
+GET http://localhost:5000/users/me HTTP/1.1
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDNmZjVmN2E3ZTU4ODA1ZjZkYWEzMWYiLCJuYW1lIjoiTWljaGFsIiwiaWF0IjoxNjE0ODA0NDk0fQ.iXhX7CyHE2aWX-ie3i9E-ZppAiZyfqKksxYjEC6vq7g
 
 
 ###
 # confirm user
-GET http://localhost:3000/users/confirmation/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDNkMmYyNzk4OGY5OTBkNzhkMTk3OGEiLCJuYW1lIjoiT2xlayIsImlhdCI6MTYxNDYyMjUxM30.6JafoHcl4KxQ8GFY_dVwEoyKcC3ed6FROug8DpBkyqQ HTTP/1.1
+GET http://localhost:5000/users/confirmation/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDNkMmYyNzk4OGY5OTBkNzhkMTk3OGEiLCJuYW1lIjoiT2xlayIsImlhdCI6MTYxNDYyMjUxM30.6JafoHcl4KxQ8GFY_dVwEoyKcC3ed6FROug8DpBkyqQ HTTP/1.1
 
 ###
 # search user by email
-GET http://localhost:3000/users/search/test@mail.com HTTP/1.1
+GET http://localhost:5000/users/search/test@mail.com HTTP/1.1
 
 ###
 # create users
-POST http://localhost:3000/users/create HTTP/1.1
+POST http://localhost:5000/users/create HTTP/1.1
 Content-Type: application/json
 
 {
@@ -52,7 +52,7 @@ Content-Type: application/json
 
 ###
 # send email
-POST http://localhost:3000/users/email HTTP/1.1
+POST http://localhost:5000/users/email HTTP/1.1
 Content-Type: application/json
 
 {
@@ -62,7 +62,7 @@ Content-Type: application/json
 
 ###
 # change name
-PUT http://localhost:3000/users/name HTTP/1.1
+PUT http://localhost:5000/users/name HTTP/1.1
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDNlOGUxY2UwNmJiYzBmMzBkNTdlMzMiLCJuYW1lIjoiT2xlayIsImlhdCI6MTYxNDc3OTYwNH0.yCGN6HTHIa91ZivXOscS5JF2xGxoVewLPAQ9X-eIGX0
 Content-Type: application/json
 
@@ -72,7 +72,7 @@ Content-Type: application/json
 
 ###
 # change password
-PUT http://localhost:3000/users/password HTTP/1.1
+PUT http://localhost:5000/users/password HTTP/1.1
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDMyMjcxZGJjMmM1NjAxOTA5NmIyMTciLCJpYXQiOjE2MTM5MDc2MzF9.c-rfYIqw-jXZL9834jtusjtSpQq5yeHWXZ_73aQdxX4
 Content-Type: application/json
 
@@ -83,17 +83,17 @@ Content-Type: application/json
 
 ###
 # delete users
-DELETE  http://localhost:3000/users/60450f1c67c2303868b7482b HTTP/1.1
+DELETE  http://localhost:5000/users/60450f1c67c2303868b7482b HTTP/1.1
 
 ###
 # ____________________________ PROJECTS ____________________________
 
 # GET SPECIFIC PROJECT FROM TEAM
-GET http://localhost:3000/teams/603ff6c5a7e58805f6daa320/projects/6040c166773cd70129a201e5 HTTP/1.1 
+GET http://localhost:5000/teams/603ff6c5a7e58805f6daa320/projects/6040c166773cd70129a201e5 HTTP/1.1 
 
 ###
 # CREATE NEW PROJECT IN TEAM
-POST http://localhost:3000/teams/604141fe20549639ac1f17b1/projects HTTP/1.1
+POST http://localhost:5000/teams/604141fe20549639ac1f17b1/projects HTTP/1.1
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQxNDBhMzIwNTQ5NjM5YWMxZjE3YjAiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0ODg5MjE5fQ.KjL5teIwOhCncPtGiA7y5kkOLDyA_IIglNsAm5FGXms
 content-type: application/json
 
@@ -107,7 +107,7 @@ content-type: application/json
 ###
 
 # UPDATE MEMBERS IN PROJECT
-PUT http://localhost:3000/teams/602daad612d3182dc04f8050/projects/60376a46cc7a0506003a2e16/members HTTP/1.1
+PUT http://localhost:5000/teams/602daad612d3182dc04f8050/projects/60376a46cc7a0506003a2e16/members HTTP/1.1
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQxNDBhMzIwNTQ5NjM5YWMxZjE3YjAiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0ODg5MjE5fQ.KjL5teIwOhCncPtGiA7y5kkOLDyA_IIglNsAm5FGXms
 content-type: application/json
 
@@ -118,7 +118,7 @@ content-type: application/json
 ###
 
 # UPDATE PROJECT STATUS
-PUT http://localhost:3000/teams/603ff6c5a7e58805f6daa320/projects/6040c166773cd70129a201e5/status HTTP/1.1
+PUT http://localhost:5000/teams/603ff6c5a7e58805f6daa320/projects/6040c166773cd70129a201e5/status HTTP/1.1
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQxNDBhMzIwNTQ5NjM5YWMxZjE3YjAiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0ODg5MjE5fQ.KjL5teIwOhCncPtGiA7y5kkOLDyA_IIglNsAm5FGXms
 content-type: application/json
 
@@ -130,7 +130,7 @@ content-type: application/json
 ###
 
 # UPDATE PROJECT INFO
-PUT http://localhost:3000/teams/603ff6c5a7e58805f6daa320/projects/6040c166773cd70129a201e5/info HTTP/1.1
+PUT http://localhost:5000/teams/603ff6c5a7e58805f6daa320/projects/6040c166773cd70129a201e5/info HTTP/1.1
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQxNDBhMzIwNTQ5NjM5YWMxZjE3YjAiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0ODg5MjE5fQ.KjL5teIwOhCncPtGiA7y5kkOLDyA_IIglNsAm5FGXms
 content-type: application/json
 
@@ -142,19 +142,19 @@ content-type: application/json
 ###
 
 # DELETE PROJECT 
-DELETE http://localhost:3000/teams/603ff6c5a7e58805f6daa320/projects/6040c2cf1e78e201bc1b392d HTTP/1.1
+DELETE http://localhost:5000/teams/603ff6c5a7e58805f6daa320/projects/6040c2cf1e78e201bc1b392d HTTP/1.1
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQxNDBhMzIwNTQ5NjM5YWMxZjE3YjAiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0ODg5MjE5fQ.KjL5teIwOhCncPtGiA7y5kkOLDyA_IIglNsAm5FGXms
 content-type: application/json
 
 #################################### NOTES ##############################################
 
 # GET ALL NOTES FROM PROJECT
-GET http://localhost:3000/teams/602daad612d3182dc04f8050/projects/603767298b1176034d43066e/notes HTTP/1.1
+GET http://localhost:5000/teams/602daad612d3182dc04f8050/projects/603767298b1176034d43066e/notes HTTP/1.1
 
 ###
 # CREATE NEW NOTE
 
-POST http://localhost:3000/teams/604141fe20549639ac1f17b1/projects/604224e1481c8838943fa855/notes HTTP/1.1
+POST http://localhost:5000/teams/604141fe20549639ac1f17b1/projects/604224e1481c8838943fa855/notes HTTP/1.1
 Content-Type: application/json
 
 {
@@ -165,7 +165,7 @@ Content-Type: application/json
 ###
 
 # UPDATE NOTE
-PUT http://localhost:3000/teams/602daad612d3182dc04f8050/projects/60321601a0356b0924c94bde/notes/6032160da0356b0924c94bdf HTTP/1.1
+PUT http://localhost:5000/teams/602daad612d3182dc04f8050/projects/60321601a0356b0924c94bde/notes/6032160da0356b0924c94bdf HTTP/1.1
 Content-Type: application/json
 
 {
@@ -176,14 +176,14 @@ Content-Type: application/json
 
 
 # DELETE NOTE
-DELETE http://localhost:3000/teams/602daad612d3182dc04f8050/projects/6036e58865ee6e1273ca7237/notes/6036e5c265ee6e1273ca7238 HTTP/1.1
+DELETE http://localhost:5000/teams/602daad612d3182dc04f8050/projects/6036e58865ee6e1273ca7237/notes/6036e5c265ee6e1273ca7238 HTTP/1.1
 
 
 #################################### TEAMS ##############################################
 
 #CREATE TEAM
 
-POST http://localhost:3000/teams HTTP/1.1
+POST http://localhost:5000/teams HTTP/1.1
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQyM2QwZTEyMDhiNTRiNjAyNDFkMjEiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0OTcxMjE3fQ.f7ic9F85pQ4PIH91WFCVSTHv5AqNzlvmMlOBgwpZG14
 content-type: application/json
 
@@ -195,7 +195,7 @@ content-type: application/json
 
 #GET TEAM
 
-GET http://localhost:3000/teams/604281642494cb3120bb4251 HTTP/1.1
+GET http://localhost:5000/teams/604281642494cb3120bb4251 HTTP/1.1
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQyM2QwZTEyMDhiNTRiNjAyNDFkMjEiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0OTcxMjE3fQ.f7ic9F85pQ4PIH91WFCVSTHv5AqNzlvmMlOBgwpZG14
 content-type: application/json
 
@@ -203,7 +203,7 @@ content-type: application/json
 
 #ADDING USER TO PENDING
 
-PUT http://localhost:3000/teams/604281642494cb3120bb4251/addPending HTTP/1.1
+PUT http://localhost:5000/teams/604281642494cb3120bb4251/addPending HTTP/1.1
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQyM2QwZTEyMDhiNTRiNjAyNDFkMjEiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0OTcxMjE3fQ.f7ic9F85pQ4PIH91WFCVSTHv5AqNzlvmMlOBgwpZG14
 content-type: application/json
 
@@ -215,7 +215,7 @@ content-type: application/json
 
 #REMOVING USER FROM PENDING
 
-PUT http://localhost:3000/teams/603e5baec26c9f2ce88007e2/removePending HTTP/1.1
+PUT http://localhost:5000/teams/603e5baec26c9f2ce88007e2/removePending HTTP/1.1
 Content-type: application/json
 
 {
@@ -226,7 +226,7 @@ Content-type: application/json
 
 #ADDING USER TO TEAM
 
-PUT http://localhost:3000/teams/604281642494cb3120bb4251/addUser HTTP/1.1
+PUT http://localhost:5000/teams/604281642494cb3120bb4251/addUser HTTP/1.1
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQyM2QwZTEyMDhiNTRiNjAyNDFkMjEiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0OTcxMjE3fQ.f7ic9F85pQ4PIH91WFCVSTHv5AqNzlvmMlOBgwpZG14
 content-type: application/json
 
@@ -238,7 +238,7 @@ content-type: application/json
 
 #REMOVING USER FROM TEAM
 
-PUT http://localhost:3000/teams/604281642494cb3120bb4251/removeUser HTTP/1.1
+PUT http://localhost:5000/teams/604281642494cb3120bb4251/removeUser HTTP/1.1
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQyM2QwZTEyMDhiNTRiNjAyNDFkMjEiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0OTcxMjE3fQ.f7ic9F85pQ4PIH91WFCVSTHv5AqNzlvmMlOBgwpZG14
 content-type: application/json
 
@@ -250,7 +250,7 @@ content-type: application/json
 
 #LEAVE TEAM
 
-PUT http://localhost:3000/teams/604281642494cb3120bb4251/leaveTeam HTTP/1.1
+PUT http://localhost:5000/teams/604281642494cb3120bb4251/leaveTeam HTTP/1.1
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDNmZjVmN2E3ZTU4ODA1ZjZkYWEzMWYiLCJuYW1lIjoiTWljaGFsIiwiaWF0IjoxNjE1MTIyODYwfQ.BdxeSfDeZq16G5f28wwd0aY2UAWlQsmbs1wkDDzsW_g
 content-type: application/json
 
@@ -262,7 +262,7 @@ content-type: application/json
 
 #ADDING USER PERMISSIONS 
 
-PUT http://localhost:3000/teams/604281642494cb3120bb4251/addPermissions HTTP/1.1
+PUT http://localhost:5000/teams/604281642494cb3120bb4251/addPermissions HTTP/1.1
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQyM2QwZTEyMDhiNTRiNjAyNDFkMjEiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0OTcxMjE3fQ.f7ic9F85pQ4PIH91WFCVSTHv5AqNzlvmMlOBgwpZG14
 content-type: application/json
 
@@ -274,7 +274,7 @@ content-type: application/json
 
 #REMOVING USER PERMISSIONS 
 
-PUT http://localhost:3000/teams/603e5baec26c9f2ce88007e2/removePermissions HTTP/1.1
+PUT http://localhost:5000/teams/603e5baec26c9f2ce88007e2/removePermissions HTTP/1.1
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQyM2QwZTEyMDhiNTRiNjAyNDFkMjEiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0OTcxMjE3fQ.f7ic9F85pQ4PIH91WFCVSTHv5AqNzlvmMlOBgwpZG14
 content-type: application/json
 
@@ -286,7 +286,7 @@ content-type: application/json
 
 #CHANGE TEAM DESCRIPTIOM
 
-PUT http://localhost:3000/teams/603e5baec26c9f2ce88007e2/changeDescription HTTP/1.1
+PUT http://localhost:5000/teams/603e5baec26c9f2ce88007e2/changeDescription HTTP/1.1
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQyM2QwZTEyMDhiNTRiNjAyNDFkMjEiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0OTcxMjE3fQ.f7ic9F85pQ4PIH91WFCVSTHv5AqNzlvmMlOBgwpZG14
 content-type: application/json
 
@@ -298,7 +298,7 @@ content-type: application/json
 
 #CHANGE TEAM NAME
 
-PUT http://localhost:3000/teams/603e5baec26c9f2ce88007e2/changeTeamName HTTP/1.1
+PUT http://localhost:5000/teams/603e5baec26c9f2ce88007e2/changeTeamName HTTP/1.1
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQyM2QwZTEyMDhiNTRiNjAyNDFkMjEiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0OTcxMjE3fQ.f7ic9F85pQ4PIH91WFCVSTHv5AqNzlvmMlOBgwpZG14
 content-type: application/json
 
@@ -310,7 +310,7 @@ content-type: application/json
 
 #CHANGE TEAM OWNER
 
-PUT http://localhost:3000/teams/604281642494cb3120bb4251/changeTeamOwner HTTP/1.1
+PUT http://localhost:5000/teams/604281642494cb3120bb4251/changeTeamOwner HTTP/1.1
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQyM2QwZTEyMDhiNTRiNjAyNDFkMjEiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0OTcxMjE3fQ.f7ic9F85pQ4PIH91WFCVSTHv5AqNzlvmMlOBgwpZG14
 content-type: application/json
 
@@ -321,14 +321,14 @@ content-type: application/json
 ###
 
 # DELETE TEAM
-DELETE  http://localhost:3000/teams/604141fe20549639ac1f17b1 HTTP/1.1
+DELETE  http://localhost:5000/teams/604141fe20549639ac1f17b1 HTTP/1.1
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQyM2QwZTEyMDhiNTRiNjAyNDFkMjEiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0OTcxMjE3fQ.f7ic9F85pQ4PIH91WFCVSTHv5AqNzlvmMlOBgwpZG14
 content-type: application/json
 
 ############################## TASKS ######################################
 
 # CREATE NEW TASK IN PROJECT
-POST http://localhost:3000/teams/604141fe20549639ac1f17b1/projects/6042282955246a17307e21b0/tasks HTTP/1.1
+POST http://localhost:5000/teams/604141fe20549639ac1f17b1/projects/6042282955246a17307e21b0/tasks HTTP/1.1
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQyM2QwZTEyMDhiNTRiNjAyNDFkMjEiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0OTcxMjE3fQ.f7ic9F85pQ4PIH91WFCVSTHv5AqNzlvmMlOBgwpZG14
 content-type: application/json
 
@@ -342,23 +342,23 @@ content-type: application/json
 
 # DELETE TASK
 
-DELETE http://localhost:3000/teams/603442956288812dfc56128d/projects/604219b84d4cba28ac909505/tasks/6034e8e29bd824329483ea9a HTTP/1.1
+DELETE http://localhost:5000/teams/603442956288812dfc56128d/projects/604219b84d4cba28ac909505/tasks/6034e8e29bd824329483ea9a HTTP/1.1
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQyM2QwZTEyMDhiNTRiNjAyNDFkMjEiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0OTcxMjE3fQ.f7ic9F85pQ4PIH91WFCVSTHv5AqNzlvmMlOBgwpZG14
 content-type: application/json
 ### GET ONE TASK
 
-GET http://localhost:3000/teams/603442956288812dfc56128d/projects/60376a46cc7a0506003a2e16/tasks/60368ff8246f711710048fce HTTP/1.1
+GET http://localhost:5000/teams/603442956288812dfc56128d/projects/60376a46cc7a0506003a2e16/tasks/60368ff8246f711710048fce HTTP/1.1
 
 
 ### GET ALL TASKS IN CURRENT PROJECT
 
-GET http://localhost:3000/teams/603442956288812dfc56128d/projects/603f9b743dca282a50db1b9c/tasks HTTP/1.1
+GET http://localhost:5000/teams/603442956288812dfc56128d/projects/603f9b743dca282a50db1b9c/tasks HTTP/1.1
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQyM2QwZTEyMDhiNTRiNjAyNDFkMjEiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0OTcxMjE3fQ.f7ic9F85pQ4PIH91WFCVSTHv5AqNzlvmMlOBgwpZG14
 content-type: application/json
 
 ### UPDATE TASK INFO
 
-PUT http://localhost:3000/teams/603442956288812dfc56128d/projects/603781028a3f941ce4069a6d/tasks/60368ff8246f711710048fce HTTP/1.1
+PUT http://localhost:5000/teams/603442956288812dfc56128d/projects/603781028a3f941ce4069a6d/tasks/60368ff8246f711710048fce HTTP/1.1
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQyM2QwZTEyMDhiNTRiNjAyNDFkMjEiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0OTcxMjE3fQ.f7ic9F85pQ4PIH91WFCVSTHv5AqNzlvmMlOBgwpZG14
 content-type: application/json
 
@@ -369,7 +369,7 @@ content-type: application/json
 
 ### UPDATE/DELETE TASK USERS
 
-PUT http://localhost:3000/teams/603442956288812dfc56128d/projects/60320e1348b544024a5dbfa2/tasks/60368ff8246f711710048fce/members
+PUT http://localhost:5000/teams/603442956288812dfc56128d/projects/60320e1348b544024a5dbfa2/tasks/60368ff8246f711710048fce/members
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQyM2QwZTEyMDhiNTRiNjAyNDFkMjEiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0OTcxMjE3fQ.f7ic9F85pQ4PIH91WFCVSTHv5AqNzlvmMlOBgwpZG14
 content-type: application/json
 
@@ -382,7 +382,7 @@ content-type: application/json
 
 ### Create new comment
 
-POST http://localhost:3000/teams/604141fe20549639ac1f17b1/projects/6042282955246a17307e21b0/tasks/6042285f55246a17307e21b1/comments HTTP/1.1
+POST http://localhost:5000/teams/604141fe20549639ac1f17b1/projects/6042282955246a17307e21b0/tasks/6042285f55246a17307e21b1/comments HTTP/1.1
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQyM2QwZTEyMDhiNTRiNjAyNDFkMjEiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0OTcxMjE3fQ.f7ic9F85pQ4PIH91WFCVSTHv5AqNzlvmMlOBgwpZG14
 content-type: application/json
 
@@ -393,25 +393,25 @@ content-type: application/json
 
 ### DELETE COMMENT
 
-DELETE http://localhost:3000/teams/603f9b4d3dca282a50db1b9b/projects/603f9b743dca282a50db1b9c/tasks/603f9f55142d622d34433d09/comments/603fa01a3b743c15b04e5622 HTTP/1.1
+DELETE http://localhost:5000/teams/603f9b4d3dca282a50db1b9b/projects/603f9b743dca282a50db1b9c/tasks/603f9f55142d622d34433d09/comments/603fa01a3b743c15b04e5622 HTTP/1.1
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQyM2QwZTEyMDhiNTRiNjAyNDFkMjEiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0OTcxMjE3fQ.f7ic9F85pQ4PIH91WFCVSTHv5AqNzlvmMlOBgwpZG14
 content-type: application/json
 
 ### GET COMMENTS FROM TASK
 
-GET http://localhost:3000/teams/603442956288812dfc56128d/projects/603781028a3f941ce4069a6d/tasks/60368ff8246f711710048fce/comments/ HTTP/1.1
+GET http://localhost:5000/teams/603442956288812dfc56128d/projects/603781028a3f941ce4069a6d/tasks/60368ff8246f711710048fce/comments/ HTTP/1.1
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQxNDBhMzIwNTQ5NjM5YWMxZjE3YjAiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0ODg5MjE5fQ.KjL5teIwOhCncPtGiA7y5kkOLDyA_IIglNsAm5FGXms
 content-type: application/json
 
 ### GET ONE COMMENT
 
-GET http://localhost:3000/teams/603442956288812dfc56128d/projects/603781028a3f941ce4069a6d/tasks/60368ff8246f711710048fce/comments/6036a5239cff91245c0ada4c HTTP/1.1
+GET http://localhost:5000/teams/603442956288812dfc56128d/projects/603781028a3f941ce4069a6d/tasks/60368ff8246f711710048fce/comments/6036a5239cff91245c0ada4c HTTP/1.1
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQxNDBhMzIwNTQ5NjM5YWMxZjE3YjAiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0ODg5MjE5fQ.KjL5teIwOhCncPtGiA7y5kkOLDyA_IIglNsAm5FGXms
 content-type: application/json
 
 ### EDIT COMMENT
 
-PUT http://localhost:3000/teams/603442956288812dfc56128d/projects/603781028a3f941ce4069a6d/tasks/60368ff8246f711710048fce/comments/6036a5239cff91245c0ada4c HTTP/1.1
+PUT http://localhost:5000/teams/603442956288812dfc56128d/projects/603781028a3f941ce4069a6d/tasks/60368ff8246f711710048fce/comments/6036a5239cff91245c0ada4c HTTP/1.1
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQxNDBhMzIwNTQ5NjM5YWMxZjE3YjAiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE0ODg5MjE5fQ.KjL5teIwOhCncPtGiA7y5kkOLDyA_IIglNsAm5FGXms
 content-type: application/json
 
