@@ -1,16 +1,27 @@
 import React from "react";
 import { Route, Switch, withRouter } from "react-router-dom";
+import { Header, Footer, Main } from "./hoc/indexHoc";
 
-import LandingPage from "./containers/landingPage/LandingPage";
+import Test from "./containers/test/test";
+import LandingNotLogged from "./containers/landingNotLogged/landingNotLogged";
+import LandingLogged from "./components/landingLogged/landingLogged";
 
 const App: any = () => {
   let routes = (
     <Switch>
-      <Route path="/main" component={LandingPage} />
+      <Route path="/user" component={LandingLogged} />
+      <Route path="/test" component={Test} />
+      <Route path="/" component={LandingNotLogged} />
     </Switch>
   );
 
-  return <>{routes}</>;
+  return (
+    <>
+      <Header />
+      <Main>{routes}</Main>
+      <Footer />
+    </>
+  );
 };
 
 //Go props and state for authentication
