@@ -1,0 +1,50 @@
+@import "../../styles/variables.scss";
+
+.header {
+  background: $backgroundLight;
+  padding: 0.5em 1.5em;
+  font-size: 1.3em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  height: 100%;
+  font-weight: 600;
+  gap: 3em;
+}
+
+.navItem {
+  box-sizing: border-box;
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: $mainFontColor;
+    &:hover,
+    &:active,
+    a.active {
+      color: $fontActive;
+    }
+  }
+}
+
+@media (min-width: 650px) {
+  .hamburger {
+    display: none;
+  }
+}
+
+@media (max-width: 650px) {
+  .navDisplay {
+    display: none;
+  }
+}

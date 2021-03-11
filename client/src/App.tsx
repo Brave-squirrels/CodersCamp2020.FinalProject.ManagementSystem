@@ -4,6 +4,7 @@ import { Header, Main } from "./hoc/indexHoc";
 
 import LandingNotLogged from "./containers/landingNotLogged/landingNotLogged";
 import LandingLogged from "./components/landingLogged/landingLogged";
+import ResNav from "./hoc/header/resHeader/resHeader";
 
 const App: any = () => {
   let routes = (
@@ -15,6 +16,7 @@ const App: any = () => {
 
   return (
     <>
+      <ResNav />
       <Header />
       <Main>{routes}</Main>
     </>

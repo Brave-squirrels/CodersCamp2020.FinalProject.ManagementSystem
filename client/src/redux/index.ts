@@ -1,10 +1,9 @@
 import {combineReducers} from 'redux';
 
-//Import reducers and add as an objects
-import testReducer from './reducers/testReducer';
+import openSideNavReducer from './reducers/sideNavReducer';
 
 const rootReducer = combineReducers({
-    testReducer: testReducer
+    openSideNavReducer: openSideNavReducer
 });
 
 export default rootReducer;
