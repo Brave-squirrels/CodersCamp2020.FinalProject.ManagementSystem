@@ -7,7 +7,7 @@ import settings from "../../assets/settings.svg";
 
 import styles from "./header.module.scss";
 
-import { openSideNav } from "../../redux/actions/sideNavAction";
+import { openSideNav } from "../../reduxState/actions/sideNavAction";
 
 const Header = (props: any) => {
   return (

@@ -8,7 +8,7 @@ import { BrowserRouter } from "react-router-dom";
 
 import "./styles/global.scss";
 
-import rootReducer from "./redux/index";
+import rootReducer from "./reduxState/index";
 import App from "./App";
 declare global {
   interface Window {

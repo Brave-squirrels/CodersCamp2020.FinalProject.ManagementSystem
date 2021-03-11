@@ -7,7 +7,7 @@ import settings from "../../../assets/settings.svg";
 
 import styles from "./resHeader.module.scss";
 
-import { openSideNav } from "../../../redux/actions/sideNavAction";
+import { openSideNav } from "../../../reduxState/actions/sideNavAction";
 
 const ResHeader = (props: any): any => {
   let attachedClasses = [styles.resNavCon, styles.closeResNav];

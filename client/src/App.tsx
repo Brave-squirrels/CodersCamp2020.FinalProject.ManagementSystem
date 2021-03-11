@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Switch, withRouter } from "react-router-dom";
-import { Header, Main } from "./hoc/indexHoc";
+import { Header, Main } from "hoc/indexHoc";
 
 import LandingNotLogged from "./containers/landingNotLogged/landingNotLogged";
 import LandingLogged from "./components/landingLogged/landingLogged";
