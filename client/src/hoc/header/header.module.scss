@@ -7,6 +7,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  box-sizing: border-box;
+  height: 58px;
 }
 
 .navList {
@@ -22,7 +24,6 @@
 }
 
 .navItem {
-  box-sizing: border-box;
   a {
     display: flex;
     justify-content: center;
@@ -37,14 +38,43 @@
   }
 }
 
-@media (min-width: 650px) {
-  .hamburger {
+.hamburger {
+  filter: invert(97%) sepia(89%) saturate(434%) hue-rotate(69deg)
+    brightness(99%) contrast(96%);
+  &:hover {
+    cursor: pointer;
+    filter: invert(100%) sepia(89%) saturate(434%) hue-rotate(69deg)
+      brightness(99%) contrast(96%);
+  }
+  height: 2.3em;
+  @media (min-width: 650px) {
     display: none;
   }
 }
 
 @media (max-width: 650px) {
   .navDisplay {
+    display: none;
+  }
+}
+
+.logoWrapper {
+  height: 100%;
+  font-weight: 600;
+  a {
+    text-decoration: none;
+    color: $fontActive;
+  }
+}
+
+.logo {
+  vertical-align: middle;
+  height: 1.9em;
+}
+
+.logoTitle {
+  padding-left: 1.5em;
+  @media (max-width: 920px) and (min-width: 650px) {
     display: none;
   }
 }

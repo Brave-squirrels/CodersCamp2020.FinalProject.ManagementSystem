@@ -4,3 +4,13 @@ body {
   padding: 0;
   font-family: $mainFont;
 }
+
+* {
+  box-sizing: border-box;
+}
+
+@media (max-width: 650px) {
+  :root {
+    font-size: 14px;
+  }
+}
