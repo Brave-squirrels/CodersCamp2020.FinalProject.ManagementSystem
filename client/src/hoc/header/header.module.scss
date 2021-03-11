@@ -8,34 +8,7 @@
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
-  height: 58px;
-}
-
-.navList {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  flex-flow: row;
-  align-items: center;
-  height: 100%;
-  font-weight: 600;
-  gap: 3em;
-}
-
-.navItem {
-  a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-    color: $mainFontColor;
-    &:hover,
-    &:active,
-    a.active {
-      color: $fontActive;
-    }
-  }
+  height: 60px;
 }
 
 .hamburger {
@@ -77,4 +50,15 @@
   @media (max-width: 920px) and (min-width: 650px) {
     display: none;
   }
+}
+
+.logoList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  height: 100%;
+  gap: 0.5em;
 }
