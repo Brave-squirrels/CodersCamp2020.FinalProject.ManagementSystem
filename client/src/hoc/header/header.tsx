@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import logo from "../../assets/logo.svg";
 import settings from "../../assets/settings.svg";
@@ -9,15 +9,13 @@ import NavigationItem from "components/UI/navigationItem/navigationItem";
 
 import styles from "./header.module.scss";
 
-import { openSideNav } from "../../reduxState/actions/sideNavAction";
+import allActions from "reduxState/indexActions";
 
 import { AppDispatch } from "reduxState/actions/types";
 
-type Props = {
-  onClickHamburger: () => void;
-};
+const Header: FunctionComponent = () => {
+  const dispatch: AppDispatch = useDispatch();
 
-const Header: FunctionComponent<Props> = (props) => {
   return (
     <header className={styles.header}>
       <div className={styles.logoWrapper}>
@@ -32,7 +30,7 @@ const Header: FunctionComponent<Props> = (props) => {
       <img
         src={hamburger}
         className={styles.hamburger}
-        onClick={props.onClickHamburger}
+        onClick={() => dispatch(allActions.openSideNav())}
         alt="hamburger"
       />
       <div className={styles.navDisplay}>
@@ -53,10 +51,4 @@ const Header: FunctionComponent<Props> = (props) => {
   );
 };
 
-const mapDispatchToProps = (dispatch: AppDispatch) => {
-  return {
-    onClickHamburger: () => dispatch(openSideNav()),
-  };
-};
-
-export default connect(null, mapDispatchToProps)(Header);
+export default Header;

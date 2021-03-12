@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import settings from "../../../assets/settings.svg";
 import logo from "../../../assets/logo.svg";
@@ -9,19 +9,18 @@ import NavigationItem from "components/UI/navigationItem/navigationItem";
 
 import styles from "./resHeader.module.scss";
 
-import { openSideNav } from "reduxState/actions/sideNavAction";
+import allActions from "reduxState/indexActions";
 
 import { AppDispatch, RootState } from "reduxState/actions/types";
 
-type Props = {
-  hamburgerChange: boolean;
-  onClickHamburger: () => void;
-};
+const ResHeader: FunctionComponent = () => {
+  const show = useSelector((state: RootState) => state.openSideNavReducer);
 
-const ResHeader: FunctionComponent<Props> = (props): any => {
+  const dispatch: AppDispatch = useDispatch();
+
   let attachedClasses = [styles.resNavCon, styles.closeResNav];
 
-  if (props.hamburgerChange) {
+  if (show.open) {
     attachedClasses = [styles.resNavCon, styles.openResNav];
   }
 
@@ -31,7 +30,7 @@ const ResHeader: FunctionComponent<Props> = (props): any => {
       <img
         src={hamburger}
         className={styles.hamburger}
-        onClick={props.onClickHamburger}
+        onClick={() => dispatch(allActions.openSideNav())}
         alt="hamburger"
       />
       <ul className={styles.navList}>
@@ -50,16 +49,4 @@ const ResHeader: FunctionComponent<Props> = (props): any => {
   );
 };
 
-const mapStateToProps = (state: RootState) => {
-  return {
-    hamburgerChange: state.openSideNavReducer.open,
-  };
-};
-
-const mapDispatchToProps = (dispatch: AppDispatch) => {
-  return {
-    onClickHamburger: () => dispatch(openSideNav()),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ResHeader);
+export default ResHeader;

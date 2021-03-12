@@ -1,7 +1,9 @@
 import * as actionTypes from './types';
 
-export const openSideNav = () => {
+const openSideNav = () => {
     return{
         type: actionTypes.CLICK_HAMBURGER
     }
 }
+
+export default openSideNav;
