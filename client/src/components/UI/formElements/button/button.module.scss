@@ -1,0 +1,20 @@
+@import "../../../../styles/variables.scss";
+.button {
+  box-sizing: border-box;
+  filter: $buttonFilter;
+  background: $buttonBackground;
+  border: none;
+  border-radius: 6px;
+  font-family: $robotoFont;
+  color: $secondFontColor;
+  font-weight: 400;
+  font-size: 1em;
+  letter-spacing: 2px;
+  height: 2.8em;
+  width: 6.5em;
+  padding: 0.2em 0.5em;
+  outline: none;
+  &:hover {
+    cursor: pointer;
+  }
+}

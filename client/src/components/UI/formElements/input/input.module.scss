@@ -1,0 +1,47 @@
+@import "../../../../styles/variables.scss";
+
+.inputContainer {
+  box-sizing: border-box;
+  font-family: $robotoFont;
+  max-width: 380px;
+  width: 70%;
+  margin: 0 auto;
+  padding: 1em 1.5em;
+  filter: $inputFilter;
+  background: $backgroundLight;
+  display: flex;
+  flex-flow: column;
+  border-bottom: 1.5px solid $fontLightGreen;
+  color: $fontLightGreen;
+  border-radius: 8px 8px 0 0;
+  transition: background 0.4s ease-in;
+  &:focus-within {
+    background: $inputActiveBackground;
+  }
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.input {
+  font-size: 1.2em;
+  padding: 0.2em 10px;
+  border: none;
+  background: transparent;
+  color: $secondFontColor;
+  transition: all 0.4s ease-in;
+  &::placeholder {
+    color: $placeholderColor;
+  }
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.label {
+  font-size: 0.9em;
+  padding: 0.2em 10px;
+}
