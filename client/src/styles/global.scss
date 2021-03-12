@@ -5,8 +5,12 @@ body {
   font-family: $mainFont;
 }
 
-* {
+html {
   box-sizing: border-box;
+}
+* *::after,
+*::before {
+  box-sizing: inherit;
 }
 
 @media (max-width: 650px) {

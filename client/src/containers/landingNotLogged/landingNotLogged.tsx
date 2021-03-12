@@ -1,7 +1,20 @@
-import React from "react";
+import React, { FunctionComponent, useState } from "react";
 
-const startPage = () => {
-  return <div>Sign In/Sign up</div>;
+import Input from "components/UI/formElements/input/input";
+
+const StartPage: FunctionComponent = () => {
+  const [inputValue, setInputValue] = useState("");
+  return (
+    <>
+      <Input
+        type="text"
+        placeholder="Name"
+        inputValue={inputValue}
+        onChangeInput={(e: any) => setInputValue(e.target.value)}
+        label="Name"
+      />
+    </>
+  );
 };
 
-export default startPage;
+export default StartPage;

@@ -1,14 +1,20 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
 
 $backgroundLight: #414858;
 $backgroundDark: #3a3d50;
 $backgroundSquare: #4a4060;
 $mainFontColor: #acf7d0;
 $secondFontColor: #f3f9f6;
+$placeholderColor: #f3f9f6cc;
 $fontActive: #1cd8f8;
 $buttonBackground: #36b3c8;
 $fontGreen: #1cf859;
+$fontLightGreen: #acf7d0;
 $black: #000;
 $backgroundCircle: #3d4371;
+$inputFilter: drop-shadow(4px 4px 14px rgba(0, 0, 0, 0.2));
+$inputActiveBackground: #576075;
 
 $mainFont: "Montserrat", sans-serif;
+$robotoFont: "Roboto", sans-serif;
