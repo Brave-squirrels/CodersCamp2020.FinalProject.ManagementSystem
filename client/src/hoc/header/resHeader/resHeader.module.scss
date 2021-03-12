@@ -19,6 +19,18 @@
   }
 }
 
+.navList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  height: 100%;
+  font-weight: 600;
+  gap: 3em;
+}
+
 .openResNav {
   visibility: visible;
   transform: translateX(0);

@@ -1,16 +1,24 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 import { connect } from "react-redux";
 
+import settings from "../../../assets/settings.svg";
 import logo from "../../../assets/logo.svg";
 import hamburger from "../../../assets/hamburger.svg";
 
-import styles from "./resHeader.module.scss";
+import NavigationItem from "components/UI/navigationItem/navigationItem";
 
-import NavigationItems from "../../../components/UI/navigationItems/navigationItems";
+import styles from "./resHeader.module.scss";
 
 import { openSideNav } from "reduxState/actions/sideNavAction";
 
-const ResHeader = (props: any): any => {
+import { AppDispatch, RootState } from "reduxState/actions/types";
+
+type Props = {
+  hamburgerChange: boolean;
+  onClickHamburger: () => void;
+};
+
+const ResHeader: FunctionComponent<Props> = (props): any => {
   let attachedClasses = [styles.resNavCon, styles.closeResNav];
 
   if (props.hamburgerChange) {
@@ -26,18 +34,29 @@ const ResHeader = (props: any): any => {
         onClick={props.onClickHamburger}
         alt="hamburger"
       />
-      <NavigationItems flxDrc={false} />
+      <ul className={styles.navList}>
+        <NavigationItem path="/teams">Teams</NavigationItem>
+        <NavigationItem path="/teaminvites">Team invites</NavigationItem>
+        <NavigationItem path="/logout">Logout</NavigationItem>
+        <NavigationItem path="/settings">
+          <img
+            src={settings}
+            alt="User settings"
+            className={styles.settingsImg}
+          />
+        </NavigationItem>
+      </ul>
     </div>
   );
 };
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: RootState) => {
   return {
     hamburgerChange: state.openSideNavReducer.open,
   };
 };
 
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: AppDispatch) => {
   return {
     onClickHamburger: () => dispatch(openSideNav()),
   };

@@ -11,6 +11,18 @@
   height: 60px;
 }
 
+.navList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  height: 100%;
+  font-weight: 600;
+  gap: 3em;
+}
+
 .hamburger {
   filter: invert(97%) sepia(89%) saturate(434%) hue-rotate(69deg)
     brightness(99%) contrast(96%);
@@ -23,6 +35,10 @@
   @media (min-width: 650px) {
     display: none;
   }
+}
+
+.settingsImg {
+  height: 1.9em;
 }
 
 @media (max-width: 650px) {
