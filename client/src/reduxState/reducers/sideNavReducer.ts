@@ -4,7 +4,11 @@ const initState = {
     open: false
 }
 
-const reducer = (state = initState, action: any) => {
+interface Action {
+    type: string
+}
+
+const reducer = (state = initState, action : Action ) => {
     switch(action.type){
         case actionTypes.CLICK_HAMBURGER:
             return{
