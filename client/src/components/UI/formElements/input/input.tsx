@@ -1,5 +1,4 @@
 import React, { FunctionComponent } from "react";
-
 import styles from "./input.module.scss";
 
 interface Props {
