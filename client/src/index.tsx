@@ -18,7 +18,7 @@ ReactDOM.render(
       </BrowserRouter>
     </Provider>
   </React.StrictMode>,
-  document.getElementById("root")
+  document.body.appendChild(document.createElement("div"))
 );
 
 reportWebVitals();

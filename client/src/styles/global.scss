@@ -8,9 +8,11 @@ body {
 html {
   box-sizing: border-box;
 }
-* *::after,
+*,
+*::after,
 *::before {
   box-sizing: inherit;
+  letter-spacing: 1px;
 }
 
 @media (max-width: 650px) {

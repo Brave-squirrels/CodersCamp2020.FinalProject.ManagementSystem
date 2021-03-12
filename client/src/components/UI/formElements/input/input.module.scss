@@ -18,6 +18,9 @@
   &:focus-within {
     background: $inputActiveBackground;
   }
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .input {
@@ -32,6 +35,9 @@
   }
   &:focus {
     outline: none;
+  }
+  &:hover {
+    cursor: pointer;
   }
 }
 
