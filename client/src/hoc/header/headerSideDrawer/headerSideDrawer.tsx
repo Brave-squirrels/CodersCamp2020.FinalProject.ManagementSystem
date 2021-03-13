@@ -7,7 +7,7 @@ import hamburger from "../../../assets/hamburger.svg";
 
 import NavigationItem from "components/UI/navigationItem/navigationItem";
 
-import styles from "./resHeader.module.scss";
+import styles from "./headerSideDrawer.module.scss";
 
 import allActions from "reduxState/indexActions";
 
