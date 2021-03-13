@@ -5,7 +5,7 @@ interface Props {
   type: string;
   placeholder: string;
   inputValue: string;
-  onChangeInput: (e: { target: HTMLInputElement }) => void;
+  onChangeInput: any;
   label: string;
 }
 
