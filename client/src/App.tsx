@@ -3,8 +3,8 @@ import { Route, Switch, withRouter } from "react-router-dom";
 import { Header, Main } from "hoc/indexHoc";
 
 import LandingNotLogged from "./containers/landingNotLogged/landingNotLogged";
-import LandingLogged from "./components/landingLogged/landingLogged";
-import ResNav from "./hoc/header/resHeader/resHeader";
+import LandingLogged from "containers/landingLogged/landingLogged";
+import ResNav from "./hoc/header/headerSideDrawer/headerSideDrawer";
 
 const App = () => {
   let check: boolean = true;
