@@ -11,26 +11,26 @@ import ResNav from "./hoc/header/headerSideDrawer/headerSideDrawer";
 const App = () => {
   let check: boolean = true;
   let content;
-  // if (check) {
-  //   content = (
-  //     <>
-  //       <LandingNotLogged />
-  //     </>
-  //   );
-  // } else {
-  content = (
-    <>
-      <ResNav />
-      <Header />
-      <Main>
-        <Switch>
-          <Route path="/user" component={LandingLogged} />
-          <Route path="/projects" component={Projects} />
-        </Switch>
-      </Main>
-    </>
-  );
-  // }
+  if (check) {
+    content = (
+      <>
+        <LandingNotLogged />
+      </>
+    );
+  } else {
+    content = (
+      <>
+        <ResNav />
+        <Header />
+        <Main>
+          <Switch>
+            <Route path="/user" component={LandingLogged} />
+            <Route path="/projects" component={Projects} />
+          </Switch>
+        </Main>
+      </>
+    );
+  }
 
   return content;
 };
