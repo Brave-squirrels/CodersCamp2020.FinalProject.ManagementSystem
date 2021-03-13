@@ -1,7 +1,7 @@
-import React from "react";
+import classes from "./sidebar.module.scss";
 
-const sideBar = () => {
-  return <div></div>;
+const SideBar = () => {
+  return <div className={classes.sideBar}></div>;
 };
 
-export default sideBar;
+export default SideBar;

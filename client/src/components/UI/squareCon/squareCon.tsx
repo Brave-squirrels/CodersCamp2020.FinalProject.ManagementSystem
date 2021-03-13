@@ -1,7 +1,7 @@
-import React from "react";
+import classes from "./squareCon.module.scss";
 
-const squareCon = () => {
-  return <div></div>;
+const SquareCon = () => {
+  return <div className={classes.squareCon}></div>;
 };
 
-export default squareCon;
+export default SquareCon;

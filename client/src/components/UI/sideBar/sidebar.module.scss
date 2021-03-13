@@ -1,0 +1,10 @@
+@import "../../../styles//variables.scss";
+
+.sideBar {
+  margin: 0;
+  padding: 0;
+  width: 25%;
+  height: 90%;
+  background-color: $backgroundLight;
+  box-shadow: 1px 1px 3px black;
+}
