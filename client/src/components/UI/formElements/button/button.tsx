@@ -1,14 +1,14 @@
-import React, { FunctionComponent } from "react";
+import React /* , { FunctionComponent } */ from "react";
 
 import styles from "./button.module.scss";
 
-interface Props {
+/* interface Props {
   children: string;
-}
+} */
 
-const button: FunctionComponent<Props> = (props) => {
+const button = (props: any) => {
   return (
-    <button className={styles.button} type="submit">
+    <button className={styles.button} onClick={props.clicked} type="submit">
       {props.children}
     </button>
   );
