@@ -6,21 +6,30 @@ import LandingNotLogged from "./containers/landingNotLogged/landingNotLogged";
 import LandingLogged from "./components/landingLogged/landingLogged";
 import ResNav from "./hoc/header/resHeader/resHeader";
 
-const App: any = () => {
-  let routes = (
-    <Switch>
-      <Route path="/user" component={LandingLogged} />
-      <Route path="/" component={LandingNotLogged} />
-    </Switch>
-  );
+const App = () => {
+  let check: boolean = true;
+  let content;
+  if (check) {
+    content = (
+      <>
+        <LandingNotLogged />
+      </>
+    );
+  } else {
+    content = (
+      <>
+        <ResNav />
+        <Header />
+        <Main>
+          <Switch>
+            <Route path="/user" component={LandingLogged} />
+          </Switch>
+        </Main>
+      </>
+    );
+  }
 
-  return (
-    <>
-      <ResNav />
-      <Header />
-      <Main>{routes}</Main>
-    </>
-  );
+  return content;
 };
 
 //Go props and state for authentication
