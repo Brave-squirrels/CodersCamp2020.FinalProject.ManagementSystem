@@ -10,6 +10,7 @@ import signInTmp from "../../assets/signInTmp.svg";
 import signUpTmp from "../../assets/signUpTmp.svg";
 
 const StartPage: FunctionComponent = () => {
+  /* Handle form state */
   const [inputValue, setInputValue] = useState({
     signUp: {
       nameValue: "",
@@ -23,6 +24,7 @@ const StartPage: FunctionComponent = () => {
     },
   });
 
+  /* Handle animation */
   const [view, changeView] = useState(true);
   let classes;
   if (!view) {
