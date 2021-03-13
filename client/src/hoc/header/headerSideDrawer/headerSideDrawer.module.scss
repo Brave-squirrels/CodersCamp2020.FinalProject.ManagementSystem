@@ -14,7 +14,7 @@
   padding: 2em 0;
   gap: 2em;
   font-size: 2em;
-  overflow-y: scroll;
+  overflow-y: auto;
   @media (min-width: 650px) {
     display: none;
   }

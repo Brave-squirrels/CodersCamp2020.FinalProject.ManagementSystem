@@ -3,26 +3,36 @@ import { Route, Switch, withRouter } from "react-router-dom";
 import { Header, Main } from "hoc/indexHoc";
 
 import LandingNotLogged from "./containers/landingNotLogged/landingNotLogged";
-import LandingLogged from "./components/landingLogged/landingLogged";
-import ResNav from "./hoc/header/resHeader/resHeader";
 import Projects from "./containers/Projects/projects";
 
-const App = () => {
-  let routes = (
-    <Switch>
-      <Route path="/user" component={LandingLogged} />
-      <Route path="/projects" component={Projects} />
-      <Route path="/" component={LandingNotLogged} />
-    </Switch>
-  );
+import LandingLogged from "containers/landingLogged/landingLogged";
+import ResNav from "./hoc/header/headerSideDrawer/headerSideDrawer";
 
-  return (
+const App = () => {
+  let check: boolean = true;
+  let content;
+  // if (check) {
+  //   content = (
+  //     <>
+  //       <LandingNotLogged />
+  //     </>
+  //   );
+  // } else {
+  content = (
     <>
       <ResNav />
       <Header />
-      <Main>{routes}</Main>
+      <Main>
+        <Switch>
+          <Route path="/user" component={LandingLogged} />
+          <Route path="/projects" component={Projects} />
+        </Switch>
+      </Main>
     </>
   );
+  // }
+
+  return content;
 };
 
 //Go props and state for authentication
