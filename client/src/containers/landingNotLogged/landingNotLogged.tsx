@@ -3,7 +3,7 @@ import React, { FunctionComponent, useState } from "react";
 import Input from "components/UI/formElements/input/input";
 import Button from "components/UI/formElements/button/button";
 
-const StartPage: FunctionComponent = () => {
+const StartPage = () => {
   const [inputValue, setInputValue] = useState("");
   return (
     <>

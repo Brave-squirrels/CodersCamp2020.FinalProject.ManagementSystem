@@ -1,6 +1,8 @@
 @import "../../styles/variables.scss";
 .mainCon {
-  background: $backgroundDark;
-  height: 500px;
+  position: fixed;
   padding: 2em;
+  background: $backgroundDark;
+  height: 100%;
+  width: 100%;
 }

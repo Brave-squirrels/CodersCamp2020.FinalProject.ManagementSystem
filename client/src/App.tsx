@@ -5,11 +5,13 @@ import { Header, Main } from "hoc/indexHoc";
 import LandingNotLogged from "./containers/landingNotLogged/landingNotLogged";
 import LandingLogged from "./components/landingLogged/landingLogged";
 import ResNav from "./hoc/header/resHeader/resHeader";
+import Projects from "./containers/Projects/projects";
 
-const App: any = () => {
+const App = () => {
   let routes = (
     <Switch>
       <Route path="/user" component={LandingLogged} />
+      <Route path="/projects" component={Projects} />
       <Route path="/" component={LandingNotLogged} />
     </Switch>
   );

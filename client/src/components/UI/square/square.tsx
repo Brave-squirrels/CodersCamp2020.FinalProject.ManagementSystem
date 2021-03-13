@@ -1,7 +1,9 @@
 import React from "react";
 
-const square = () => {
-  return <div></div>;
+import classes from "./square.module.scss";
+
+const Square = (props: any) => {
+  return <div className={classes.square}>123</div>;
 };
 
-export default square;
+export default Square;

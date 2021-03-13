@@ -1,0 +1,28 @@
+@import "../../../styles//variables.scss";
+
+.bigRectangle {
+  text-align: center;
+  align-items: center;
+  width: 80%;
+  height: 100%;
+  background-color: $backgroundLight;
+  box-shadow: 1px 1px 3px black;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgb(41, 33, 46);
+    border-radius: 2px;
+  }
+}

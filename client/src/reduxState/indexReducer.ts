@@ -1,9 +1,11 @@
-import {combineReducers} from 'redux';
+import { combineReducers } from "redux";
 
-import openSideNavReducer from './reducers/sideNavReducer';
+import openSideNavReducer from "./reducers/sideNavReducer";
+import projectsReducer from "./reducers/projectsReducer";
 
 const rootReducer = combineReducers({
-    openSideNavReducer: openSideNavReducer
+  openSideNavReducer,
+  projectsReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
