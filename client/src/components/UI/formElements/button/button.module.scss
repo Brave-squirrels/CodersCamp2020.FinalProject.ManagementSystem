@@ -17,4 +17,8 @@
   &:hover {
     cursor: pointer;
   }
+  &:disabled {
+    background: $buttonBackgroundDisabled;
+    pointer-events: none;
+  }
 }
