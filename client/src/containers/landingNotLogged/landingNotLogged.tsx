@@ -23,6 +23,7 @@ const StartPage: FunctionComponent = () => {
     email: {
       val: "",
       type: "email",
+      inputType: "input",
       placeholder: "E-mail",
       label: "E-mail",
       validation: {
@@ -36,6 +37,7 @@ const StartPage: FunctionComponent = () => {
     password: {
       val: "",
       type: "password",
+      inputType: "input",
       placeholder: "********",
       label: "Password",
       validation: {
@@ -52,6 +54,7 @@ const StartPage: FunctionComponent = () => {
     name: {
       val: "",
       type: "text",
+      inputType: "input",
       placeholder: "Name",
       label: "Name",
       validation: {
@@ -65,6 +68,7 @@ const StartPage: FunctionComponent = () => {
     email: {
       val: "",
       type: "email",
+      inputType: "input",
       placeholder: "E-mail",
       label: "E-mail",
       validation: {
@@ -78,6 +82,7 @@ const StartPage: FunctionComponent = () => {
     password: {
       val: "",
       type: "password",
+      inputType: "input",
       placeholder: "********",
       label: "Password",
       validation: {
@@ -91,6 +96,7 @@ const StartPage: FunctionComponent = () => {
     confirmPassword: {
       val: "",
       type: "password",
+      inputType: "input",
       placeholder: "********",
       label: "Confirm Password",
       validation: {
@@ -197,7 +203,6 @@ const StartPage: FunctionComponent = () => {
             >
               <FormTitle> Sign Up</FormTitle>
 
-              {/* {signUpForm} */}
               <FormStructure state={signUp} onChangeHandler={onChangeSignUp} />
 
               <Button disabled={!formValidity.signUp}>SIGN UP</Button>
@@ -210,7 +215,6 @@ const StartPage: FunctionComponent = () => {
               className={styles.form}
             >
               <FormTitle> Sign In</FormTitle>
-              {/* {signInForm} */}
               <FormStructure state={signIn} onChangeHandler={onChangeSignIn} />
               <Button disabled={!formValidity.signIn}>SIGN IN</Button>
             </form>

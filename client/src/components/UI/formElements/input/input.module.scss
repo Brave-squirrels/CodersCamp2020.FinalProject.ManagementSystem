@@ -44,6 +44,14 @@
   }
 }
 
+.textarea{
+  resize: none;
+  font-family: $robotoFont;
+  font-size: 1em;
+  height: 8em;
+  @include scrollbar;
+}
+
 .label {
   font-size: 0.9em;
   padding: 0.2em 10px;
