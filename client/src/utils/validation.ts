@@ -1,7 +1,8 @@
 interface Rules {
-    required: boolean;
-    minLength: number;
-    maxLength: number;
+    required?: boolean;
+    minLength?: number;
+    maxLength?: number;
+    minDate?: any
   }
 
 export const validation = (value: string,rules?: Rules) => {
@@ -17,6 +18,10 @@ export const validation = (value: string,rules?: Rules) => {
     }
     if (rules.maxLength) {
       isValid = value.length <= rules.maxLength && isValid;
+    }
+
+    if(rules.minDate){
+      isValid = new Date(value) >= rules.minDate && isValid;
     }
 
 

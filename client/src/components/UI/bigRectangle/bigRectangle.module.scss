@@ -14,16 +14,5 @@
   flex-wrap: wrap;
   overflow-y: scroll;
 
-  &::-webkit-scrollbar {
-    width: 4px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0);
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: rgb(41, 33, 46);
-    border-radius: 2px;
-  }
+  @include scrollbar;
 }

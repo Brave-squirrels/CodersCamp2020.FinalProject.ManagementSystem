@@ -22,6 +22,7 @@ const formStructure = (props: Props) => {
       <Input
         key={input.id}
         type={input.config.type}
+        inputType={input.config.inputType}
         placeholder={input.config.placeholder}
         inputValue={input.config.val}
         onChangeInput={(e: { target: HTMLInputElement }) =>
