@@ -1,6 +1,5 @@
 import React, { FunctionComponent, useState } from "react";
 
-import Input from "components/UI/formElements/input/input";
 import Button from "components/UI/formElements/button/button";
 import FormTitle from "components/UI/formElements/formTitle/formTitle";
 
@@ -11,6 +10,8 @@ import signUpTmp from "../../assets/signUpTmp.svg";
 
 import { validation, wholeFormValidity } from "utils/validation";
 import mutateState from "utils/mutateFormState";
+
+import FormStructure from "components/UI/formElements/formStructure/formStructure";
 
 const StartPage: FunctionComponent = () => {
   /* Handle form state */
@@ -111,77 +112,16 @@ const StartPage: FunctionComponent = () => {
     classes = [styles.container];
   }
 
-  /* SignUp form elements */
-  const signUpElements = [];
-  let signUpKey: keyof typeof signUp;
-  for (signUpKey in signUp) {
-    signUpElements.push({
-      id: signUpKey,
-      config: signUp[signUpKey],
-    });
-  }
-
-  let signUpForm = signUpElements.map((input) => {
-    return (
-      <Input
-        key={input.id}
-        type={input.config.type}
-        placeholder={input.config.placeholder}
-        inputValue={input.config.val}
-        onChangeInput={(e: { target: HTMLInputElement }) =>
-          onChangeFormHandler(e, "signUp", input.id)
-        }
-        label={input.config.label}
-        validity={input.config.valid}
-        touched={input.config.touched}
-      />
-    );
-  });
-
-  /* SignIn form elements */
-  const signInElements = [];
-  let signInKey: keyof typeof signIn;
-  for (signInKey in signIn) {
-    signInElements.push({
-      id: signInKey,
-      config: signIn[signInKey],
-    });
-  }
-
-  let signInForm = signInElements.map((input) => {
-    return (
-      <Input
-        key={input.id}
-        type={input.config.type}
-        placeholder={input.config.placeholder}
-        inputValue={input.config.val}
-        onChangeInput={(e: { target: HTMLInputElement }) =>
-          onChangeFormHandler(e, "signIn", input.id)
-        }
-        label={input.config.label}
-        validity={input.config.valid}
-        touched={input.config.touched}
-      />
-    );
-  });
-
-  /* Handle changes in both forms */
-  const onChangeFormHandler = (
+  /* Handle changes in signUp form */
+  const onChangeSignUp = (
     e: { target: HTMLInputElement },
-    stateType: string,
-    inputType: keyof typeof signIn | keyof typeof signUp
+    inputType: keyof typeof signUp
   ) => {
     /* Make copy of state */
-    let stateCopy;
-    let passwordCheck: boolean;
-    if (stateType === "signUp") {
-      stateCopy = { ...signUp };
-      passwordCheck = true;
-    } else {
-      passwordCheck = false;
-      stateCopy = { ...signIn };
-    }
-    const inputField: any = {
+
+    const stateCopy = { ...signUp };
+
+    const inputField = {
       ...stateCopy[inputType],
     };
 
@@ -189,44 +129,61 @@ const StartPage: FunctionComponent = () => {
     let valid: boolean = validation(e.target.value, inputField.validation);
 
     /* Mutate state */
-    const updatedFields = mutateState(
-      e,
-      inputType,
-      stateCopy,
-      valid,
-      passwordCheck
-    );
+    const updatedFields = mutateState(e, inputType, stateCopy, valid, true);
 
     /* Check if whole form is valid */
     const validForm = wholeFormValidity(updatedFields);
 
     /* Set up new state */
-    if (stateType === "signUp") {
-      setSignUp((prevState) => {
-        return {
-          ...prevState,
-          ...updatedFields,
-        };
-      });
-      /* Update form validity */
-      changeFormValidity((prevState) => ({
+
+    setSignUp((prevState) => {
+      return {
         ...prevState,
-        signUp: validForm,
-      }));
-    }
-    if (stateType === "signIn") {
-      setSignIn((prevState) => {
-        return {
-          ...prevState,
-          ...updatedFields,
-        };
-      });
-      /* Update form validity */
-      changeFormValidity((prevState) => ({
+        ...updatedFields,
+      };
+    });
+    /* Update form validity */
+    changeFormValidity((prevState) => ({
+      ...prevState,
+      signUp: validForm,
+    }));
+  };
+
+  /* Handle changes in signIn form */
+  const onChangeSignIn = (
+    e: { target: HTMLInputElement },
+    inputType: keyof typeof signIn
+  ) => {
+    /* Make copy of state */
+
+    const stateCopy = { ...signIn };
+
+    const inputField = {
+      ...stateCopy[inputType],
+    };
+
+    /* Check if data is valid */
+    let valid: boolean = validation(e.target.value, inputField.validation);
+
+    /* Mutate state */
+    const updatedFields = mutateState(e, inputType, stateCopy, valid);
+
+    /* Check if whole form is valid */
+    const validForm = wholeFormValidity(updatedFields);
+
+    /* Set up new state */
+
+    setSignIn((prevState) => {
+      return {
         ...prevState,
-        signIn: validForm,
-      }));
-    }
+        ...updatedFields,
+      };
+    });
+    /* Update form validity */
+    changeFormValidity((prevState) => ({
+      ...prevState,
+      signIn: validForm,
+    }));
   };
 
   return (
@@ -240,7 +197,8 @@ const StartPage: FunctionComponent = () => {
             >
               <FormTitle> Sign Up</FormTitle>
 
-              {signUpForm}
+              {/* {signUpForm} */}
+              <FormStructure state={signUp} onChangeHandler={onChangeSignUp} />
 
               <Button disabled={!formValidity.signUp}>SIGN UP</Button>
             </form>
@@ -252,7 +210,8 @@ const StartPage: FunctionComponent = () => {
               className={styles.form}
             >
               <FormTitle> Sign In</FormTitle>
-              {signInForm}
+              {/* {signInForm} */}
+              <FormStructure state={signIn} onChangeHandler={onChangeSignIn} />
               <Button disabled={!formValidity.signIn}>SIGN IN</Button>
             </form>
           </div>
