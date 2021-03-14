@@ -4,7 +4,7 @@ interface Rules {
     maxLength: number;
   }
 
-const validation = (value: string,rules?: Rules) => {
+export const validation = (value: string,rules?: Rules) => {
     let isValid = true;
     if (!rules) {
       return true;
@@ -23,4 +23,12 @@ const validation = (value: string,rules?: Rules) => {
     return isValid;
   };
 
-  export default validation;
+  export const wholeFormValidity = (fields: any) => {
+    let key: keyof typeof fields;
+    for (key in fields) {
+      if (fields[key].valid === false) {
+        return false;
+      }
+    }
+    return true;
+  };
