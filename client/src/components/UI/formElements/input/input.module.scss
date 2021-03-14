@@ -23,7 +23,9 @@
     cursor: pointer;
   }
 }
-
+.invalidInput {
+  border: 1.5px solid $invalidInputBorder;
+}
 .input {
   font-size: 1.2em;
   padding: 0.2em 10px;

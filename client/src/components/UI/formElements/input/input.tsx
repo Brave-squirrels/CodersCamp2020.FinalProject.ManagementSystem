@@ -7,11 +7,18 @@ interface Props {
   inputValue: string;
   onChangeInput: any;
   label: string;
+  validity: boolean;
+  touched: boolean;
 }
 
 const input: FunctionComponent<Props> = (props) => {
+  let inputClasses: string[] = [styles.inputContainer];
+  if (!props.validity && props.touched) {
+    inputClasses = [styles.inputContainer, styles.invalidInput];
+  }
+
   return (
-    <label className={styles.inputContainer}>
+    <label className={inputClasses.join(" ")}>
       <span className={styles.label}>{props.label}</span>
 
       <input

@@ -29,6 +29,7 @@ const StartPage: FunctionComponent = () => {
           minLength: 4,
           maxLength: 50,
         },
+        touched: false,
         valid: false,
       },
       email: {
@@ -41,6 +42,7 @@ const StartPage: FunctionComponent = () => {
           minLength: 5,
           maxLength: 50,
         },
+        touched: false,
         valid: false,
       },
       password: {
@@ -53,6 +55,7 @@ const StartPage: FunctionComponent = () => {
           minLength: 8,
           maxLength: 50,
         },
+        touched: false,
         valid: false,
       },
       confirmPassword: {
@@ -65,6 +68,7 @@ const StartPage: FunctionComponent = () => {
           minLength: 8,
           maxLength: 50,
         },
+        touched: false,
         valid: false,
       },
     },
@@ -79,6 +83,7 @@ const StartPage: FunctionComponent = () => {
           minLength: 5,
           maxLength: 50,
         },
+        touched: false,
         valid: false,
       },
       password: {
@@ -91,6 +96,7 @@ const StartPage: FunctionComponent = () => {
           minLength: 8,
           maxLength: 50,
         },
+        touched: false,
         valid: false,
       },
     },
@@ -126,6 +132,8 @@ const StartPage: FunctionComponent = () => {
           onChangeInputHandler(e, "signUp", input.id)
         }
         label={input.config.label}
+        validity={input.config.valid}
+        touched={input.config.touched}
       />
     );
   });
@@ -150,6 +158,8 @@ const StartPage: FunctionComponent = () => {
           onChangeInputHandler(e, "signIn", input.id)
         }
         label={input.config.label}
+        validity={input.config.valid}
+        touched={input.config.touched}
       />
     );
   });
@@ -172,30 +182,67 @@ const StartPage: FunctionComponent = () => {
 
     let valid: boolean = validation(e.target.value, inputField.validation);
 
-    setInputValue((prevState) => {
-      const copyType = JSON.parse(JSON.stringify(prevState[formType]));
-      return {
-        ...prevState,
-        [formType]: {
-          ...prevState[formType],
-          [inputType]: {
-            ...copyType[inputType],
-            val: e.target.value,
-            valid: valid,
-          },
+    let updatedFields: any;
+    if (inputType === "password" && formType === "signUp") {
+      valid = valid && e.target.value === state.confirmPassword.val;
+      updatedFields = {
+        ...state,
+        [inputType]: {
+          ...state[inputType],
+          val: e.target.value,
+          valid: valid,
+          touched: true,
+        },
+        confirmPassword: {
+          ...state.confirmPassword,
+          valid: valid,
         },
       };
-    });
+    } else if (inputType === "confirmPassword" && formType === "signUp") {
+      valid = valid && e.target.value === state.password.val;
+      updatedFields = {
+        ...state,
+        [inputType]: {
+          ...state[inputType],
+          val: e.target.value,
+          valid: valid,
+          touched: true,
+        },
+        password: {
+          ...state.password,
+          valid: valid,
+        },
+      };
+    } else {
+      updatedFields = {
+        ...state,
+        [inputType]: {
+          ...state[inputType],
+          val: e.target.value,
+          valid: valid,
+          touched: true,
+        },
+      };
+    }
 
     let validForm = true;
-    let key: keyof typeof state;
-    for (key in state) {
-      if (state[key].valid === false) {
+    let key: keyof typeof updatedFields;
+    for (key in updatedFields) {
+      if (updatedFields[key].valid === false) {
         validForm = false;
         break;
       }
     }
-    console.log(validForm);
+
+    setInputValue((prevState) => {
+      return {
+        ...prevState,
+        [formType]: {
+          ...updatedFields,
+        },
+      };
+    });
+
     changeFormValidity((prevState) => ({
       ...prevState,
       [formType]: validForm,
