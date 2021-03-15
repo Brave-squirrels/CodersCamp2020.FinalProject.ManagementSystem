@@ -5,7 +5,6 @@ import {
   withRouter,
   useLocation,
   Redirect,
-  BrowserRouter as Router,
 } from "react-router-dom";
 import { Header, Main } from "hoc/indexHoc";
 import { useSelector, useDispatch } from "react-redux";
@@ -32,12 +31,11 @@ const App = () => {
     dispatch(allActions.authUser());
   }, [location, dispatch, loginState.token]);
 
-  //let check: boolean = true;
   let content;
-  if (!loginState.token) {
+  if (!localStorage.getItem("token")) {
     content = (
       <>
-        <Redirect to="/" />
+        {localStorage.getItem("token") ? null : <Redirect to="/" />}
         <Switch>
           <Route exact path="/" render={() => <LandingNotLogged />} />
           <Route render={ErrorPage} />
@@ -63,7 +61,7 @@ const App = () => {
     );
   }
 
-  return <Suspense fallback={<p>Loading</p>}> {content}</Suspense>;
+  return <Suspense fallback={<p>Loading</p>}>{content}</Suspense>;
 };
 
 export default withRouter(App);
