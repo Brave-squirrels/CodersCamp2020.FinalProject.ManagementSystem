@@ -1,0 +1,9 @@
+@import '../../styles/variables.scss';
+.errorContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $invalidInputBorder;
+    font-weight: 600;
+    padding: 0.4em;
+}
