@@ -58,7 +58,6 @@ JWT_PRIVATE_KEY=\<some random password></br>
 EMAIL=\<your email></br>
 PASSWORD=\<your email's password></br></br>
 (PS your email must be an yahoo email, it's complicated, trust me... If you do not however, don't mind visiting <a href="https://nodemailer.com/about/">this</a> site )</br></br>
-
 If you would like to run tests, you will need to add additional line to your .env file, which should contain:</br></br>
 NODE_ENV=test</br></br>
 Keep in mind that the app will not work when this line is added, it only allows you to run tests.</br></br>
