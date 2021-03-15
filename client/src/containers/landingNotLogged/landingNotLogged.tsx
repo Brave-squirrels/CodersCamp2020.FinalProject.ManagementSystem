@@ -17,7 +17,9 @@ import onChangeForm from "utils/onChangeForm";
 import allActions from "reduxState/indexActions";
 
 const StartPage = () => {
-  const createState = useSelector((state: any) => state.createUserReducer);
+  const signUpState = useSelector((state: any) => state.createUserReducer);
+
+  const signInState = useSelector((state: any) => state.loginUserReducer);
 
   const dispatch: any = useDispatch();
   /* Handle form state */
@@ -178,8 +180,17 @@ const StartPage = () => {
   };
 
   /* Login user after submit */
-  const loginUserHandler = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const loginUserHandler = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData: any = {};
+    let key: keyof typeof signIn;
+    for (key in signIn) {
+      if (key === "formValid") {
+        break;
+      }
+      formData[key] = signIn[key].val;
+    }
+    dispatch(allActions.loginUser(formData));
   };
 
   /* Change content when API call */
@@ -197,20 +208,34 @@ const StartPage = () => {
     </form>
   );
 
-  if (createState.loading) {
+  if (signUpState.loading) {
     signUpContent = <Spinner />;
   }
-  if (createState.success) {
+  if (signUpState.success) {
     signUpContent = <FormTitle>Success! Check your email</FormTitle>;
   }
+
+  let signInContent = (
+    <FormStructure
+      state={signIn}
+      onChangeHandler={onChangeSignIn}
+      btnText="SIGN IN"
+      formTitle="Sign In"
+    />
+  );
+
+  if (signInState.loading) {
+    signInContent = <Spinner />;
+  }
+
   return (
     <div className={classes.join(" ")}>
       <div className={styles.formContainer}>
         <div className={styles.signInSignUp}>
           <div className={styles.signUpForm}>
             {signUpContent}
-            {createState.error ? (
-              <ErrorHandler>{createState.error.response.data}</ErrorHandler>
+            {signUpState.error ? (
+              <ErrorHandler>{signUpState.error.response.data}</ErrorHandler>
             ) : null}
           </div>
 
@@ -219,12 +244,10 @@ const StartPage = () => {
               onSubmit={(event) => loginUserHandler(event)}
               className={styles.form}
             >
-              <FormStructure
-                state={signIn}
-                onChangeHandler={onChangeSignIn}
-                btnText="SIGN IN"
-                formTitle="Sign In"
-              />
+              {signInContent}
+              {signInState.error ? (
+                <ErrorHandler>{signInState.error.response.data}</ErrorHandler>
+              ) : null}
             </form>
           </div>
         </div>

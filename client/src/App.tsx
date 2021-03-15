@@ -1,6 +1,13 @@
-import React from "react";
-import { Route, Switch, withRouter } from "react-router-dom";
+import React, { useEffect, Suspense } from "react";
+import {
+  Route,
+  Switch,
+  withRouter,
+  useLocation,
+  Redirect,
+} from "react-router-dom";
 import { Header, Main } from "hoc/indexHoc";
+import { useSelector, useDispatch } from "react-redux";
 
 import LandingNotLogged from "./containers/landingNotLogged/landingNotLogged";
 import Projects from "./containers/Projects/projects";
@@ -11,14 +18,27 @@ import ErrorPage from "./hoc/errorPage/errorPage";
 
 import SampleForm from "utils/sampleForm";
 
+import allActions from "reduxState/indexActions";
+
 const App = () => {
-  let check: boolean = true;
+  const loginState: any = useSelector((state: any) => state.loginUserReducer);
+  const dispatch: any = useDispatch();
+
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname === "/" && !localStorage.getItem("token")) return;
+    dispatch(allActions.authUser());
+  }, [location, dispatch, loginState.token]);
+
+  //let check: boolean = true;
   let content;
-  if (check) {
+  if (!loginState.token) {
     content = (
       <>
+        <Redirect to="/" />
         <Switch>
-          <Route exact path="/" component={LandingNotLogged} />
+          <Route exact path="/" render={() => <LandingNotLogged />} />
           <Route component={ErrorPage} />
         </Switch>
       </>
@@ -30,9 +50,9 @@ const App = () => {
         <Header />
         <Main>
           <Switch>
-            <Route exact path="/user" component={LandingLogged} />
+            <Route exact path="/" render={() => <LandingLogged />} />
             <Route exact path="/projects/id" component={Project} />
-            <Route exact path="/projects" component={Projects} />
+            <Route exact path="/teams" render={() => <Projects />} />
             {/* Sample form */}
             <Route exact path="/sampleForm" component={SampleForm} />
             <Route component={ErrorPage} />
@@ -41,11 +61,8 @@ const App = () => {
       </>
     );
   }
-  // }
 
-  return content;
+  return <Suspense fallback={<p>Loading</p>}> {content}</Suspense>;
 };
-
-//Go props and state for authentication
 
 export default withRouter(App);
