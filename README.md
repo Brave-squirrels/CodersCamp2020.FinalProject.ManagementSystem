@@ -46,8 +46,8 @@ If you do not know if you have it installed on your computer and you still want 
 * *Open repository in your code editor*
 * *Make sure that you open your terminal in /server catalog !*
 * *Run command **yarn install***
-* *Create .env file within the server catalog, this file should contain important information which lack of will cause fatal errors.*
-**this the data that you should add into .env file**</br>
+* *Create .env file within the server catalog, this file should contain important information which lack of will cause fatal errors.*</br></br>
+**this the data that you should add into .env file:**</br></br>
 MONGO_USER=\<you user name></br>
 MONGO_PASSWORD=\<your user password></br>
 MONGO_DB_NAME=\<your db name></br>
@@ -55,8 +55,8 @@ PORT=5000 < Leave it like that!</br>
 ADDRESS=localhost < Leave it like that!</br>
 JWT_PRIVATE_KEY=\<some random password></br>
 EMAIL=\<your email></br>
-PASSWORD=\<your email's password></br>
-(PS your email must be an yahoo email, it's complicated, trust me... If you do not however, don't mind visiting <a href="https://nodemailer.com/about/">this</a> site )
+PASSWORD=\<your email's password></br></br>
+(PS your email must be an yahoo email, it's complicated, trust me... If you do not however, don't mind visiting <a href="https://nodemailer.com/about/">this</a> site )</br></br>
 * *Run command **yarn start***
 * *Enter the local host that was created which should be at **http://localhost:5000/***
 * **_You can now send API requests to endpoints form rest.http file!_***
