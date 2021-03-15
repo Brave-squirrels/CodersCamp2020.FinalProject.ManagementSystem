@@ -30,13 +30,15 @@ const reducer = (state = initState, action:Action)=>{
         case actionTypes.CREATE_USER: 
         return{
             ...state,
-            loading: true
+            loading: true,
+            error: null
         }
         case actionTypes.CREATE_SUCCESS:
         return{
             ...state,
             loading: false,
-            success: true
+            success: true,
+            error: null
         };
         case actionTypes.CREATE_FAILED:
             return{
