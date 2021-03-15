@@ -8,6 +8,8 @@ import Project from "./containers/Projects/project";
 import LandingLogged from "containers/landingLogged/landingLogged";
 import ResNav from "./hoc/header/headerSideDrawer/headerSideDrawer";
 
+import SampleForm from "utils/sampleForm";
+
 const App = () => {
   let check: boolean = true;
   let content;
@@ -27,6 +29,8 @@ const App = () => {
             <Route path="/user" component={LandingLogged} />
             <Route path="/projects/id" component={Project} />
             <Route path="/projects" component={Projects} />
+            {/* Sample form */}
+            <Route path="/sampleForm" component={SampleForm} />
           </Switch>
         </Main>
       </>

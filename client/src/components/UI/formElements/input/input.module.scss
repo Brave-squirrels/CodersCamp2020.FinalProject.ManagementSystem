@@ -56,3 +56,19 @@
   font-size: 0.9em;
   padding: 0.2em 10px;
 }
+
+.select{
+  background: $backgroundLight;
+  margin: 0.2em 7px;
+  outline: none;
+  border: none;
+  color: $secondFontColor;
+  transition: all 0.4s ease-in;
+  &:hover{
+    cursor: pointer;
+  }
+  &:focus{
+    background: $inputActiveBackground;
+  }
+  background-image: none;
+}

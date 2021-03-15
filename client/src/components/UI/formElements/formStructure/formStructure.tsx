@@ -35,6 +35,7 @@ const formStructure = (props: Props) => {
         label={input.config.label}
         validity={input.config.valid}
         touched={input.config.touched}
+        stateMain={props.state}
       />
     );
   });
