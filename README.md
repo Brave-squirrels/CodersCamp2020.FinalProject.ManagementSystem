@@ -73,17 +73,17 @@ Keep in mind that the app will not work when this line is added, it only allows 
 * POST http://localhost:5000/users/create HTTP/1.1</br>
 Content-Type: application/json</br>
 {</br>
-    "name": "sampleName",</br>
-    "email": "sampleName@sample.com",</br>
-    "password": "samplePass",</br>
-    "confirmPassword": "samplePass"</br>
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "name": "sampleName",</br>
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "email": "sampleName@sample.com",</br>
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "password": "samplePass",</br>
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "confirmPassword": "samplePass"</br>
 }</br>
 #### LOGIN (getting token in request!)
 * POST http://localhost:5000/login HTTP/1.1</br>
 Content-Type: application/json</br>
 {</br>
-    "email": "sampleName@sample.com",</br>
-    "password": "samplePass"</br>
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "email": "sampleName@sample.com",</br>
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "password": "samplePass"</br>
 }</br>
 #### GET USER INFO
 * GET http://localhost:5000/users/me HTTP/1.1</br>
@@ -93,7 +93,7 @@ x-auth-token: <your token></br>
 x-auth-token: \<your token></br>
 content-type: application/json</br>
 {</br>
-    "teamName": "sample team"</br>
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "teamName": "sample team"</br>
 }</br>
 #### GET TEAM INFO
 * GET http://localhost:5000/teams/604f7b8cc633a147b03b1f5e HTTP/1.1</br>
@@ -103,8 +103,8 @@ x-auth-token: \<your token></br>
 x-auth-token: \<your token></br>
 content-type: application/json</br>
 {</br>
-    "projectName": "sample project",</br>
-    "deadline" : "2021-03-24T17:06:34.928+00:00"</br>
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "projectName": "sample project",</br>
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "deadline" : "2021-03-24T17:06:34.928+00:00"</br>
 }</br>
 #### GET PROJECT INFO
 * GET http://localhost:5000/teams/603ff6c5a7e58805f6daa320/projects/6040c166773cd70129a201e5 HTTP/1.1 </br>
@@ -114,23 +114,23 @@ x-auth-token: \<your token></br>
 x-auth-token: \<your token></br>
 content-type: application/json</br>
 {</br>
-    "name": "Task prezentacja",</br>
-    "content": "Tresc taska",</br>
-    "deadlineDate": "03/24/2021"</br>
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "name": "Task prezentacja",</br>
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "content": "Tresc taska",</br>
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "deadlineDate": "03/24/2021"</br>
 }</br>
 #### CREATE NOTE
 * POST http://localhost:5000/teams/604f7b8cc633a147b03b1f5e/projects/604f7f65c633a147b03b1f60/notes HTTP/1.1</br>
 x-auth-token: \<your token></br>
 content-type: application/json</br>
 {   </br>
-    "content": "Note description",</br>
-    "name": "Test Note",</br>
-    "author": {"name": "Maciek", "id": "604f7b21c633a147b03b1f5d"}</br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"content": "Note description",</br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"name": "Test Note",</br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"author": {"name": "Maciek", "id": "604f7b21c633a147b03b1f5d"}</br>
 }</br>
 #### CREATE COMMENTS
 * POST http://localhost:5000/teams/604f7b8cc633a147b03b1f5e/projects/604f7f65c633a147b03b1f60/tasks/604f920420ac7b18a00c8958/comments HTTP/1.1</br>
 x-auth-token: \<your token></br>
 content-type: application/json</br>
 {</br>
-    "content": "New comment"</br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"content": "New comment"</br>
 }</br>
