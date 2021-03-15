@@ -68,7 +68,6 @@ Keep in mind that the app will not work when this line is added, it only allows 
 * **_You can now send API requests to endpoints from rest.http file!_***
 
 ### Documentation
------------------
 (You can see every single endpoint in rest.http file, here are some most important examples)
 #### REGISTRATION
 * POST http://localhost:5000/users/create HTTP/1.1</br>
@@ -80,7 +79,6 @@ Content-Type: application/json</br>
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "confirmPassword": "samplePass"</br>
 }</br>
 #### LOGIN (getting token in request!)
------------------
 * POST http://localhost:5000/login HTTP/1.1</br>
 Content-Type: application/json</br>
 {</br>
@@ -88,11 +86,9 @@ Content-Type: application/json</br>
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "password": "samplePass"</br>
 }</br>
 #### GET USER INFO
------------------
 * GET http://localhost:5000/users/me HTTP/1.1</br>
 x-auth-token: <your token></br>
 #### CREATE TEAM
------------------
 * POST http://localhost:5000/teams HTTP/1.1</br>
 x-auth-token: \<your token></br>
 content-type: application/json</br>
@@ -100,11 +96,9 @@ content-type: application/json</br>
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "teamName": "sample team"</br>
 }</br>
 #### GET TEAM INFO
------------------
 * GET http://localhost:5000/teams/604f7b8cc633a147b03b1f5e HTTP/1.1</br>
 x-auth-token: \<your token></br>
 #### CREATE PROJECT
------------------
 * POST http://localhost:5000/teams/604f7b8cc633a147b03b1f5e/projects HTTP/1.1</br>
 x-auth-token: \<your token></br>
 content-type: application/json</br>
@@ -113,11 +107,9 @@ content-type: application/json</br>
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "deadline" : "2021-03-24T17:06:34.928+00:00"</br>
 }</br>
 #### GET PROJECT INFO
------------------
 * GET http://localhost:5000/teams/603ff6c5a7e58805f6daa320/projects/6040c166773cd70129a201e5 HTTP/1.1 </br>
 x-auth-token: \<your token></br>
 #### CREATE TASK
------------------
 * POST http://localhost:5000/teams/604f7b8cc633a147b03b1f5e/projects/604f7f65c633a147b03b1f60/tasks HTTP/1.1</br>
 x-auth-token: \<your token></br>
 content-type: application/json</br>
@@ -127,7 +119,6 @@ content-type: application/json</br>
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "deadlineDate": "03/24/2021"</br>
 }</br>
 #### CREATE NOTE
------------------
 * POST http://localhost:5000/teams/604f7b8cc633a147b03b1f5e/projects/604f7f65c633a147b03b1f60/notes HTTP/1.1</br>
 x-auth-token: \<your token></br>
 content-type: application/json</br>
@@ -137,7 +128,6 @@ content-type: application/json</br>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"author": {"name": "Maciek", "id": "604f7b21c633a147b03b1f5d"}</br>
 }</br>
 #### CREATE COMMENTS
------------------
 * POST http://localhost:5000/teams/604f7b8cc633a147b03b1f5e/projects/604f7f65c633a147b03b1f60/tasks/604f920420ac7b18a00c8958/comments HTTP/1.1</br>
 x-auth-token: \<your token></br>
 content-type: application/json</br>
