@@ -3,6 +3,7 @@ import config from "config";
 import loggerMiddleware from "../../middleware/logger";
 import Controller from "../../interfaces/controller.interface";
 import mongoose from "mongoose";
+const cors = require('cors');
 
 /**
  * Main App class, responsible for initializing middlewares,
@@ -25,6 +26,7 @@ export default class App {
     this.app.use(express.json());
     this.app.use(loggerMiddleware);
     this.app.use(express.urlencoded({ extended: true }));
+    this.app.use(cors());
   }
 
   private initializeControllers(controllers: Controller[]) {

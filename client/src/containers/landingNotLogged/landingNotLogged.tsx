@@ -1,7 +1,10 @@
-import React, { FunctionComponent, useState } from "react";
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 import Button from "components/UI/formElements/button/button";
 import FormTitle from "components/UI/formElements/formTitle/formTitle";
+import FormStructure from "components/UI/formElements/formStructure/formStructure";
+import Spinner from "components/Spinner/spinner";
 
 import styles from "./landingNotLogged.module.scss";
 
@@ -10,9 +13,12 @@ import signUpTmp from "../../assets/signUpTmp.svg";
 
 import onChangeForm from "utils/onChangeForm";
 
-import FormStructure from "components/UI/formElements/formStructure/formStructure";
+import allActions from "reduxState/indexActions";
 
-const StartPage: FunctionComponent = () => {
+const StartPage = () => {
+  const createState = useSelector((state: any) => state.createUserReducer);
+
+  const dispatch: any = useDispatch();
   /* Handle form state */
   const [signIn, setSignIn] = useState({
     email: {
@@ -117,12 +123,12 @@ const StartPage: FunctionComponent = () => {
 
   /* Handle changes in signUp form */
   const onChangeSignUp = (
-    e: { target: HTMLInputElement },
+    event: { target: HTMLInputElement },
     inputType: keyof typeof signUp
   ) => {
     /* Mutate and valid state */
     const { updatedFields, validForm } = onChangeForm(
-      e,
+      event,
       inputType,
       signUp,
       true
@@ -140,11 +146,11 @@ const StartPage: FunctionComponent = () => {
 
   /* Handle changes in signIn form */
   const onChangeSignIn = (
-    e: { target: HTMLInputElement },
+    event: { target: HTMLInputElement },
     inputType: keyof typeof signIn
   ) => {
     /* Mutate and valid state */
-    const { updatedFields, validForm } = onChangeForm(e, inputType, signIn);
+    const { updatedFields, validForm } = onChangeForm(event, inputType, signIn);
 
     /* Set up new state */
     setSignIn((prevState) => {
@@ -156,33 +162,59 @@ const StartPage: FunctionComponent = () => {
     });
   };
 
+  /* Create user after submit */
+  const createUserHandler = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData: any = {};
+    let key: keyof typeof signUp;
+    for (key in signUp) {
+      if (key === "formValid") {
+        break;
+      }
+      formData[key] = signUp[key].val;
+    }
+    dispatch(allActions.createUser(formData));
+  };
+
+  /* Login user after submit */
+  const loginUserHandler = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
+
+  /* Change content when API call */
+  let signUpContent: JSX.Element = (
+    <form
+      onSubmit={(event) => createUserHandler(event)}
+      className={styles.form}
+    >
+      <FormStructure
+        state={signUp}
+        onChangeHandler={onChangeSignUp}
+        btnText="SIGN UP"
+        formTitle="Sign Up"
+      />
+    </form>
+  );
+
+  if (createState.loading) {
+    signUpContent = <Spinner />;
+  }
+  if (createState.success) {
+    signUpContent = <FormTitle>Success! Check your email</FormTitle>;
+  }
+  if (createState.error) {
+    console.log(createState.error);
+  }
+
   return (
     <div className={classes.join(" ")}>
       <div className={styles.formContainer}>
         <div className={styles.signInSignUp}>
-          <div className={styles.signUpForm}>
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                console.log(signUp);
-              }}
-              className={styles.form}
-            >
-              <FormStructure
-                state={signUp}
-                onChangeHandler={onChangeSignUp}
-                btnText="SIGN UP"
-                formTitle="Sign In"
-              />
-            </form>
-          </div>
+          <div className={styles.signUpForm}>{signUpContent}</div>
 
           <div className={styles.signInForm}>
             <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                console.log(signIn);
-              }}
+              onSubmit={(event) => loginUserHandler(event)}
               className={styles.form}
             >
               <FormStructure
