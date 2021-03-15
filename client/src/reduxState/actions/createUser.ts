@@ -2,8 +2,6 @@ import axios from '../../axios/axiosMain';
 
 import * as actionTypes from '../actions/types';
 
-import { AppDispatch } from "reduxState/actions/types";
-
 interface PostData {
     name: string;
     email: string;
@@ -31,7 +29,7 @@ const registerFailed = (error : Error) => {
 }
 
 export const createUser = (data: PostData) => {
-    return (dispatch : AppDispatch)=>{
+    return (dispatch : actionTypes.AppDispatch)=>{
         dispatch(startRegister());
         axios.post('/users/create', data)
         .then(res=>{

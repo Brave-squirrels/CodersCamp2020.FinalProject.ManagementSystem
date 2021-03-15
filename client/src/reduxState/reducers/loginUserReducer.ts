@@ -1,5 +1,12 @@
 import * as actionTypes from '../actions/types';
 
+interface Action {
+    type: string,
+    id?: string,
+    token?:string,
+    error?:Error,
+}
+
 const initState = {
     loading: false,
     error: null,
@@ -8,7 +15,7 @@ const initState = {
     success: false
 }
 
-const loginReducer = (state = initState, action: any)=>{
+const loginReducer = (state = initState, action: Action)=>{
     switch(action.type){
         case actionTypes.LOGIN_USER:
             return{

@@ -1,12 +1,13 @@
 import openSideNav from './actions/sideNavAction';
 import {createUser} from './actions/createUser';
-import {loginUser, authUser} from './actions/loginUser';
+import {loginUser, authUser, logout} from './actions/loginUser';
 
 const allActions = {
     openSideNav,
     createUser,
     loginUser,
-    authUser
+    authUser,
+    logout
 }
 
 export default allActions;
