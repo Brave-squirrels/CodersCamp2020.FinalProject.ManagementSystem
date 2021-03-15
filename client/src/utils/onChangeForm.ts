@@ -59,7 +59,6 @@ const validation = (value: string,rules?: Rules) => {
     valid: boolean,
     passwordCheck?: boolean,
 ) => {
-    console.log(e.target.value);
     let inputFields;
     if (inputType === "password" && passwordCheck) {
       valid = valid && e.target.value === stateCopy.confirmPassword.val;
