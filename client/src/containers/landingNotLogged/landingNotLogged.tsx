@@ -212,7 +212,11 @@ const StartPage = () => {
     signUpContent = <Spinner />;
   }
   if (signUpState.success) {
-    signUpContent = <FormTitle>Success! Check your email</FormTitle>;
+    signUpContent = (
+      <FormTitle>
+        Success! Check your email account to confirm registration!
+      </FormTitle>
+    );
   }
 
   let signInContent = (

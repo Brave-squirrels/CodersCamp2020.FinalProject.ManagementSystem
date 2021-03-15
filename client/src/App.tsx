@@ -60,7 +60,6 @@ const App = () => {
         {localStorage.getItem("token") ? null : <Redirect to="/" />}
         <Switch>
           <Route exact path="/" render={() => <LandingNotLogged />} />
-          <Route render={ErrorPage} />
         </Switch>
       </>
     );
