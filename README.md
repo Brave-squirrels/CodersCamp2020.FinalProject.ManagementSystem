@@ -21,6 +21,7 @@ Project is created with:
 * TypeScript
 * Node.js
 * Express.js
+* Jest
 
 ### Requirements
 -----------------
@@ -44,10 +45,10 @@ If you do not know if you have it installed on your computer and you still want 
 #### To run the project locally follow these steps:
 * *Clone this repository*
 * *Open repository in your code editor*
-* *Make sure that you open your terminal in /server catalog !*
+* *Make sure that you open your terminal in /Server catalog !*
 * *Run command **yarn install***
 * *Create .env file within the server catalog, this file should contain important information which lack of will cause fatal errors.*</br></br>
-**this the data that you should add into .env file:**</br></br>
+**this is the data that you should add into .env file:**</br></br>
 MONGO_USER=\<you user name></br>
 MONGO_PASSWORD=\<your user password></br>
 MONGO_DB_NAME=\<your db name></br>
@@ -57,6 +58,10 @@ JWT_PRIVATE_KEY=\<some random password></br>
 EMAIL=\<your email></br>
 PASSWORD=\<your email's password></br></br>
 (PS your email must be an yahoo email, it's complicated, trust me... If you do not however, don't mind visiting <a href="https://nodemailer.com/about/">this</a> site )</br></br>
+
+If you would like to run tests, you will need to add additional line to your .env file, which should contain:</br></br>
+NODE_ENV=test</br></br>
+Keep in mind that the app will not work when this line is added, it only allows you to run tests.</br></br>
 * *Run command **yarn start***
 * *Enter the local host that was created which should be at **http://localhost:5000/***
-* **_You can now send API requests to endpoints form rest.http file!_***
+* **_You can now send API requests to endpoints from rest.http file!_***
