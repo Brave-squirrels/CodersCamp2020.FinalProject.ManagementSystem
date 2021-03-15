@@ -10,6 +10,7 @@ const cors = require('cors');
  * connecting to database, running local server
  */
 
+
 export default class App {
   public app: Application;
   private port = process.env.PORT || 3000;
@@ -28,6 +29,7 @@ export default class App {
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(cors());
   }
+  
 
   private initializeControllers(controllers: Controller[]) {
     controllers.forEach((controller) => {
