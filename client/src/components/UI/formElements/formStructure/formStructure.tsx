@@ -1,10 +1,14 @@
 import React from "react";
 
 import Input from "../input/input";
+import Button from "../button/button";
+import FormTitle from "../formTitle/formTitle";
 
 interface Props {
   state: any;
   onChangeHandler: any;
+  btnText: string;
+  formTitle: string;
 }
 
 const formStructure = (props: Props) => {
@@ -35,7 +39,12 @@ const formStructure = (props: Props) => {
     );
   });
 
-  return <>{form}</>;
+  return (
+    <>
+      <FormTitle>{props.formTitle}</FormTitle>
+      {form} <Button disabled={!props.state.formValid}>{props.btnText}</Button>
+    </>
+  );
 };
 
 export default formStructure;

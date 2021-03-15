@@ -8,17 +8,12 @@ import styles from "./landingNotLogged.module.scss";
 import signInTmp from "../../assets/signInTmp.svg";
 import signUpTmp from "../../assets/signUpTmp.svg";
 
-import { validation, wholeFormValidity } from "utils/validation";
-import mutateState from "utils/mutateFormState";
+import onChangeForm from "utils/onChangeForm";
 
 import FormStructure from "components/UI/formElements/formStructure/formStructure";
 
 const StartPage: FunctionComponent = () => {
   /* Handle form state */
-  const [formValidity, changeFormValidity] = useState({
-    signUp: false,
-    signIn: false,
-  });
   const [signIn, setSignIn] = useState({
     email: {
       val: "",
@@ -48,6 +43,7 @@ const StartPage: FunctionComponent = () => {
       touched: false,
       valid: false,
     },
+    formValid: false,
   });
 
   const [signUp, setSignUp] = useState({
@@ -107,6 +103,7 @@ const StartPage: FunctionComponent = () => {
       touched: false,
       valid: false,
     },
+    formValid: false,
   });
 
   /* Handle animation */
@@ -123,36 +120,22 @@ const StartPage: FunctionComponent = () => {
     e: { target: HTMLInputElement },
     inputType: keyof typeof signUp
   ) => {
-    /* Make copy of state */
-
-    const stateCopy = { ...signUp };
-
-    const inputField = {
-      ...stateCopy[inputType],
-    };
-
-    /* Check if data is valid */
-    let valid: boolean = validation(e.target.value, inputField.validation);
-
-    /* Mutate state */
-    const updatedFields = mutateState(e, inputType, stateCopy, valid, true);
-
-    /* Check if whole form is valid */
-    const validForm = wholeFormValidity(updatedFields);
+    /* Mutate and valid state */
+    const { updatedFields, validForm } = onChangeForm(
+      e,
+      inputType,
+      signUp,
+      true
+    );
 
     /* Set up new state */
-
     setSignUp((prevState) => {
       return {
         ...prevState,
         ...updatedFields,
+        formValid: validForm,
       };
     });
-    /* Update form validity */
-    changeFormValidity((prevState) => ({
-      ...prevState,
-      signUp: validForm,
-    }));
   };
 
   /* Handle changes in signIn form */
@@ -160,36 +143,17 @@ const StartPage: FunctionComponent = () => {
     e: { target: HTMLInputElement },
     inputType: keyof typeof signIn
   ) => {
-    /* Make copy of state */
-
-    const stateCopy = { ...signIn };
-
-    const inputField = {
-      ...stateCopy[inputType],
-    };
-
-    /* Check if data is valid */
-    let valid: boolean = validation(e.target.value, inputField.validation);
-
-    /* Mutate state */
-    const updatedFields = mutateState(e, inputType, stateCopy, valid);
-
-    /* Check if whole form is valid */
-    const validForm = wholeFormValidity(updatedFields);
+    /* Mutate and valid state */
+    const { updatedFields, validForm } = onChangeForm(e, inputType, signIn);
 
     /* Set up new state */
-
     setSignIn((prevState) => {
       return {
         ...prevState,
         ...updatedFields,
+        formValid: validForm,
       };
     });
-    /* Update form validity */
-    changeFormValidity((prevState) => ({
-      ...prevState,
-      signIn: validForm,
-    }));
   };
 
   return (
@@ -198,25 +162,35 @@ const StartPage: FunctionComponent = () => {
         <div className={styles.signInSignUp}>
           <div className={styles.signUpForm}>
             <form
-              onSubmit={() => console.log("submitted")}
+              onSubmit={(e) => {
+                e.preventDefault();
+                console.log(signUp);
+              }}
               className={styles.form}
             >
-              <FormTitle> Sign Up</FormTitle>
-
-              <FormStructure state={signUp} onChangeHandler={onChangeSignUp} />
-
-              <Button disabled={!formValidity.signUp}>SIGN UP</Button>
+              <FormStructure
+                state={signUp}
+                onChangeHandler={onChangeSignUp}
+                btnText="SIGN UP"
+                formTitle="Sign In"
+              />
             </form>
           </div>
 
           <div className={styles.signInForm}>
             <form
-              onSubmit={() => console.log("submitted")}
+              onSubmit={(e) => {
+                e.preventDefault();
+                console.log(signIn);
+              }}
               className={styles.form}
             >
-              <FormTitle> Sign In</FormTitle>
-              <FormStructure state={signIn} onChangeHandler={onChangeSignIn} />
-              <Button disabled={!formValidity.signIn}>SIGN IN</Button>
+              <FormStructure
+                state={signIn}
+                onChangeHandler={onChangeSignIn}
+                btnText="SIGN IN"
+                formTitle="Sign In"
+              />
             </form>
           </div>
         </div>
