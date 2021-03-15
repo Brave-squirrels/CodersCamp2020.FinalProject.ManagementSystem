@@ -5,6 +5,7 @@ import {
   withRouter,
   useLocation,
   Redirect,
+  BrowserRouter as Router,
 } from "react-router-dom";
 import { Header, Main } from "hoc/indexHoc";
 import { useSelector, useDispatch } from "react-redux";
@@ -39,7 +40,7 @@ const App = () => {
         <Redirect to="/" />
         <Switch>
           <Route exact path="/" render={() => <LandingNotLogged />} />
-          <Route component={ErrorPage} />
+          <Route render={ErrorPage} />
         </Switch>
       </>
     );
