@@ -2,6 +2,12 @@ import axios from '../../axios/axiosMain';
 
 import * as actionTypes from './types';
 
+interface LoginData {
+    email: string,
+    password: string,
+    confirmPassword: string
+}
+
 const startLogginIn = ()=>{
     return{
         type: actionTypes.LOGIN_USER
@@ -30,8 +36,8 @@ const logout = ()=>{
     }
 }
 
-const loginUser = (data:any) =>{
-    return (dispatch: any)=>{
+const loginUser = (data:LoginData) =>{
+    return (dispatch: actionTypes.AppDispatch)=>{
         dispatch(startLogginIn());
             axios.post('/login', data)
             .then(res=>{
@@ -47,7 +53,7 @@ const loginUser = (data:any) =>{
 
 const authUser = ()=>{
     const token = localStorage.getItem('token');
-    return (dispatch: any)=>{
+    return (dispatch: actionTypes.AppDispatch)=>{
         axios.get('/users/me', {headers:{'x-auth-token': `${token}`}})
         .then(res=>{
             dispatch(logginSuccess(res.data._id, `${token}`));
@@ -59,4 +65,4 @@ const authUser = ()=>{
 }
 
 
-export {loginUser, authUser};
+export {loginUser, authUser, logout};
