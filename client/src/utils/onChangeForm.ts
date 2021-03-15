@@ -57,8 +57,9 @@ const validation = (value: string,rules?: Rules) => {
     inputType: string,
     stateCopy: any,
     valid: boolean,
-    passwordCheck?: boolean
+    passwordCheck?: boolean,
 ) => {
+    console.log(e.target.value);
     let inputFields;
     if (inputType === "password" && passwordCheck) {
       valid = valid && e.target.value === stateCopy.confirmPassword.val;
@@ -90,7 +91,7 @@ const validation = (value: string,rules?: Rules) => {
           valid: valid,
         },
       };
-    } else {
+    }  else {
       inputFields = {
         ...stateCopy,
         [inputType]: {

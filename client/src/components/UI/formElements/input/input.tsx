@@ -10,12 +10,21 @@ interface Props {
   validity: boolean;
   touched: boolean;
   inputType: string;
+  stateMain?: any;
+  name?: string;
 }
 
 const input: FunctionComponent<Props> = (props) => {
   let inputClasses: string[] = [styles.inputContainer];
   if (!props.validity && props.touched) {
     inputClasses = [styles.inputContainer, styles.invalidInput];
+  }
+
+  let selectOptions = [];
+  if (props.inputType === "select") {
+    for (let key in props.stateMain.select.options) {
+      selectOptions.push(props.stateMain.select.options[key]);
+    }
   }
 
   let input;
@@ -48,6 +57,28 @@ const input: FunctionComponent<Props> = (props) => {
           />
         </label>
       );
+      break;
+    case "select":
+      input = (
+        <label className={inputClasses.join(" ")}>
+          <span className={styles.label}>{props.label}</span>
+          <select
+            name={props.name}
+            value={props.inputValue}
+            onChange={props.onChangeInput}
+            className={styles.select}
+          >
+            {selectOptions.map((option) => {
+              return (
+                <option value={option.val} key={option.val}>
+                  {option.name}
+                </option>
+              );
+            })}
+          </select>
+        </label>
+      );
+      break;
   }
 
   return <>{input}</>;
