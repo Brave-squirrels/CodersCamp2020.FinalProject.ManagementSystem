@@ -4,7 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import Button from "components/UI/formElements/button/button";
 import FormTitle from "components/UI/formElements/formTitle/formTitle";
 import FormStructure from "components/UI/formElements/formStructure/formStructure";
-import Spinner from "components/Spinner/spinner";
+import Spinner from "components/UI/Spinner/spinner";
+import ErrorHandler from "components/errorHandler/errorHandler";
 
 import styles from "./landingNotLogged.module.scss";
 
@@ -202,15 +203,16 @@ const StartPage = () => {
   if (createState.success) {
     signUpContent = <FormTitle>Success! Check your email</FormTitle>;
   }
-  if (createState.error) {
-    console.log(createState.error);
-  }
-
   return (
     <div className={classes.join(" ")}>
       <div className={styles.formContainer}>
         <div className={styles.signInSignUp}>
-          <div className={styles.signUpForm}>{signUpContent}</div>
+          <div className={styles.signUpForm}>
+            {signUpContent}
+            {createState.error ? (
+              <ErrorHandler>{createState.error.response.data}</ErrorHandler>
+            ) : null}
+          </div>
 
           <div className={styles.signInForm}>
             <form
