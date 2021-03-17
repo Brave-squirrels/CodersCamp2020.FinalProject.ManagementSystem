@@ -9,6 +9,7 @@ interface Props {
   onChangeHandler: any;
   btnText: string;
   formTitle: string;
+  children?: JSX.Element;
 }
 
 const formStructure = (props: Props) => {
@@ -43,7 +44,8 @@ const formStructure = (props: Props) => {
   return (
     <>
       <FormTitle>{props.formTitle}</FormTitle>
-      {form} <Button disabled={!props.state.formValid}>{props.btnText}</Button>
+      {form} {props.children}{" "}
+      <Button disabled={!props.state.formValid}>{props.btnText}</Button>
     </>
   );
 };

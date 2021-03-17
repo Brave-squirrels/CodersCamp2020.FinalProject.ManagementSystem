@@ -76,6 +76,13 @@
 
   .signInForm {
     z-index: 2;
+    a{
+      text-decoration: none;
+      color: $placeholderColor;
+      &:hover{
+        color: $secondFontColor;
+      }
+    }
   }
 }
 
@@ -163,6 +170,8 @@
     pointer-events: none;
   }
 }
+
+
 
 /* Small screen styles */
 @media (max-width: 900px) {

@@ -16,6 +16,7 @@ import Project from "./containers/Projects/project";
 import LandingLogged from "containers/landingLogged/landingLogged";
 import ResNav from "./hoc/header/headerSideDrawer/headerSideDrawer";
 import ErrorPage from "./hoc/errorPage/errorPage";
+import ForgotPassword from "./containers/forgotPassword/forgotPassword";
 
 import SampleForm from "utils/sampleForm";
 
@@ -60,6 +61,11 @@ const App = () => {
         {localStorage.getItem("token") ? null : <Redirect to="/" />}
         <Switch>
           <Route exact path="/" render={() => <LandingNotLogged />} />
+          <Route
+            exact
+            path="/forgotpassword"
+            render={() => <ForgotPassword />}
+          />
         </Switch>
       </>
     );
