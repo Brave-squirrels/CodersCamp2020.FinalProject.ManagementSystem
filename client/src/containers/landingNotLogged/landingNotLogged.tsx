@@ -271,10 +271,16 @@ const StartPage = () => {
 
           <img src={signUpTmp} alt="SignUp" className={styles.image} />
         </div>
-        <div className={styles.panelRight}>
+        <div className={styles.panelRight} id={styles.rightId}>
           <div className={styles.content}>
             <FormTitle>One of us?</FormTitle>
-            <Button clicked={() => changeView(true)}>Sign In</Button>
+            <Button
+              clicked={() => changeView(true)}
+              disabled={view}
+              btnType="disable"
+            >
+              Sign In
+            </Button>
           </div>
           <img src={signInTmp} alt="SignIn" className={styles.image} />
         </div>

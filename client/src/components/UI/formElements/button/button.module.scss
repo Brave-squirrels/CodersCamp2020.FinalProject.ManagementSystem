@@ -22,3 +22,8 @@
     pointer-events: none;
   }
 }
+.disable {
+  &:disabled {
+    background: $buttonBackground;
+  }
+}
