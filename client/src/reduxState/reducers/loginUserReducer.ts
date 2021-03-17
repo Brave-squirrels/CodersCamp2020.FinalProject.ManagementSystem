@@ -12,7 +12,8 @@ const initState = {
     error: null,
     id: null,
     token: null,
-    success: false
+    success: false,
+    isAuth: false,
 }
 
 const loginReducer = (state = initState, action: Action)=>{
@@ -23,7 +24,8 @@ const loginReducer = (state = initState, action: Action)=>{
                 loading: true,
                 id: null,
                 token: null,
-                success: false
+                success: false,
+                isAuth: false,
             }
         case actionTypes.LOGIN_SUCCESS:
             return{
@@ -32,7 +34,8 @@ const loginReducer = (state = initState, action: Action)=>{
                 error: null,
                 id: action.id,
                 token: action.token,
-                success: true
+                success: true,
+                isAuth: true,
             }
         case actionTypes.LOGIN_FAIL:
             return{
@@ -41,7 +44,8 @@ const loginReducer = (state = initState, action: Action)=>{
                 error: action.error,
                 token: null,
                 id: null,
-                success: false
+                success: false,
+                isAuth: false,
             }
         case actionTypes.LOGOUT:
             return{
@@ -50,7 +54,8 @@ const loginReducer = (state = initState, action: Action)=>{
                 error: null,
                 token: null,
                 id: null,
-                success: false
+                success: false,
+                isAuth: false,
             }
             default: return state
     }

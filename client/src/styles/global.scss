@@ -21,3 +21,9 @@ html {
     font-size: 14px;
   }
 }
+
+#root {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 60px 1fr;
+}
