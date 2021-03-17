@@ -22,6 +22,8 @@ const LandingNotLogged = React.lazy(
 );
 const Projects = React.lazy(() => import("./containers/Projects/projects"));
 const Project = React.lazy(() => import("./containers/Projects/project"));
+const Teams = React.lazy(() => import("./containers/Teams/teams"));
+const Team = React.lazy(() => import("./containers/Teams/team"));
 const LandingLogged = React.lazy(
   () => import("containers/landingLogged/landingLogged")
 );
@@ -85,6 +87,8 @@ const App = () => {
         <Main>
           <Switch>
             <Route exact path="/" render={() => <LandingLogged />} />
+            <Route exact path="/teams/id" component={Team} />
+            <Route exact path="/teams" component={Teams} />
             <Route exact path="/projects/id" component={Project} />
             <Route exact path="/projects" component={Projects} />
             <Route exact path="/teams" render={() => <h1>Teams</h1>} />
