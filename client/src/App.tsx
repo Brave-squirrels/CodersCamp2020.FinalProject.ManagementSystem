@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 import { Header, Main, ErrorPage } from "hoc/indexHoc";
 import { useSelector, useDispatch } from "react-redux";
-import Spinner from "components/UI/Spinner/spinner";
+import SuspenseSpinner from "components/UI/suspenseSpinner/suspenseSpinner";
 
 import SampleForm from "utils/sampleForm";
 
@@ -104,7 +104,7 @@ const App = () => {
     );
   }
 
-  return <Suspense fallback={<Spinner />}>{content}</Suspense>;
+  return <Suspense fallback={<SuspenseSpinner />}>{content}</Suspense>;
 };
 
 export default withRouter(App);
