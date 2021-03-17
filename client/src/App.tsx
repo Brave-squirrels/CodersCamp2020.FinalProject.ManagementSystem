@@ -13,6 +13,7 @@ import { useSelector, useDispatch } from "react-redux";
 import LandingNotLogged from "./containers/landingNotLogged/landingNotLogged";
 import Projects from "./containers/Projects/projects";
 import Project from "./containers/Projects/project";
+import User from "./containers/User/user";
 import LandingLogged from "containers/landingLogged/landingLogged";
 import ResNav from "./hoc/header/headerSideDrawer/headerSideDrawer";
 import ErrorPage from "./hoc/errorPage/errorPage";
@@ -70,7 +71,8 @@ const App = () => {
         <Header />
         <Main>
           <Switch>
-            <Route exact path="/" render={() => <LandingLogged />} />
+            {/* <Route exact path="/" render={() => <LandingLogged />} /> */}
+            <Route exact path="/" render={() => <User />} />
             <Route exact path="/projects/id" component={Project} />
             <Route exact path="/teams" render={() => <Projects />} />
             <Route exact path="/logout" />
