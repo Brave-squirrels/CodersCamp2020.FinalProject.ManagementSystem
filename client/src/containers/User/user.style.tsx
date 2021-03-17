@@ -6,6 +6,9 @@ export const useStyles = makeStyles((theme: Theme) =>
       padding: theme.spacing(4),
       background: "#414858",
       marginTop: "1rem",
+      height: "75vh",
+      overflowY: "scroll",
+      scrollbarWidth: "thin",
     },
     card: {
       background: "#4A5060",
@@ -14,6 +17,9 @@ export const useStyles = makeStyles((theme: Theme) =>
     },
     content: {
       color: "#F3F9F6",
+    },
+    gridList: {
+      overflow: "hidden",
     },
   })
 );

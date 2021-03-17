@@ -1,25 +1,14 @@
-import React from "react";
-import { Card, CardContent, Grid, Paper, Typography } from "@material-ui/core";
+import React, { FunctionComponent } from "react";
+import { Grid, Paper, Typography } from "@material-ui/core";
+import SingleCard from "./singleCard";
 import { useStyles } from "./user.style";
 
-const template = ["Team 1", "Team 2", "Team 3", "Team 4"];
+interface Props {
+  teams: never[];
+}
 
-const UserTeams = () => {
+const UserTeams: FunctionComponent<Props> = ({ teams }) => {
   const classes = useStyles();
-
-  const singleCard = (project: string, index: number) => {
-    return (
-      <Grid key={index} item xs={12} sm={6}>
-        <Card className={classes.card}>
-          <CardContent>
-            <Typography variant="h6" component="h3">
-              {project}
-            </Typography>
-          </CardContent>
-        </Card>
-      </Grid>
-    );
-  };
 
   return (
     <>
@@ -28,7 +17,13 @@ const UserTeams = () => {
       </Typography>
       <Paper className={classes.paper}>
         <Grid container spacing={6}>
-          {template.map((project, i) => singleCard(project, i))}
+          {teams.length ? (
+            teams.map(({ name, id }) => <SingleCard key={id} {...{ name }} />)
+          ) : (
+            <Typography variant="h6" component="h2" align="center">
+              You are not on any team yet...
+            </Typography>
+          )}
         </Grid>
       </Paper>
     </>
