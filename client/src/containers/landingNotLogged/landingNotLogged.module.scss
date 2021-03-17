@@ -79,6 +79,7 @@
     a{
       text-decoration: none;
       color: $placeholderColor;
+      font-weight: 600;
       &:hover{
         color: $secondFontColor;
       }

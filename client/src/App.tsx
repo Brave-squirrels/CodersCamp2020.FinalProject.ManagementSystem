@@ -10,19 +10,27 @@ import {
 import { Header, Main } from "hoc/indexHoc";
 import { useSelector, useDispatch } from "react-redux";
 
-import LandingNotLogged from "./containers/landingNotLogged/landingNotLogged";
-import Projects from "./containers/Projects/projects";
-import Project from "./containers/Projects/project";
-import LandingLogged from "containers/landingLogged/landingLogged";
-import ResNav from "./hoc/header/headerSideDrawer/headerSideDrawer";
-import ErrorPage from "./hoc/errorPage/errorPage";
-import ForgotPassword from "./containers/forgotPassword/forgotPassword";
-
 import SampleForm from "utils/sampleForm";
 
 import allActions from "reduxState/indexActions";
 
 import { RootState } from "reduxState/actions/types";
+
+const LandingNotLogged = React.lazy(
+  () => import("./containers/landingNotLogged/landingNotLogged")
+);
+const Projects = React.lazy(() => import("./containers/Projects/projects"));
+const Project = React.lazy(() => import("./containers/Projects/project"));
+const LandingLogged = React.lazy(
+  () => import("containers/landingLogged/landingLogged")
+);
+const ResNav = React.lazy(
+  () => import("./hoc/header/headerSideDrawer/headerSideDrawer")
+);
+const ErrorPage = React.lazy(() => import("./hoc/errorPage/errorPage"));
+const ForgotPassword = React.lazy(
+  () => import("./containers/forgotPassword/forgotPassword")
+);
 
 interface LoginState {
   loading: boolean;
