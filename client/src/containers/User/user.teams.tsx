@@ -12,7 +12,9 @@ const UserTeams = () => {
       <Grid key={index} item xs={12} sm={6}>
         <Card className={classes.card}>
           <CardContent>
-            <Typography variant="h6">{project}</Typography>
+            <Typography variant="h6" component="h3">
+              {project}
+            </Typography>
           </CardContent>
         </Card>
       </Grid>
@@ -21,7 +23,7 @@ const UserTeams = () => {
 
   return (
     <>
-      <Typography variant="h4" align="center">
+      <Typography variant="h4" component="h2" align="center">
         Your teams
       </Typography>
       <Paper className={classes.paper}>
