@@ -7,8 +7,9 @@ import {
   Redirect,
   useHistory,
 } from "react-router-dom";
-import { Header, Main } from "hoc/indexHoc";
+import { Header, Main, ErrorPage } from "hoc/indexHoc";
 import { useSelector, useDispatch } from "react-redux";
+import Spinner from "components/UI/Spinner/spinner";
 
 import SampleForm from "utils/sampleForm";
 
@@ -27,7 +28,6 @@ const LandingLogged = React.lazy(
 const ResNav = React.lazy(
   () => import("./hoc/header/headerSideDrawer/headerSideDrawer")
 );
-const ErrorPage = React.lazy(() => import("./hoc/errorPage/errorPage"));
 const ForgotPassword = React.lazy(
   () => import("./containers/forgotPassword/forgotPassword")
 );
@@ -86,7 +86,14 @@ const App = () => {
           <Switch>
             <Route exact path="/" render={() => <LandingLogged />} />
             <Route exact path="/projects/id" component={Project} />
-            <Route exact path="/teams" render={() => <Projects />} />
+            <Route exact path="/projects" component={Projects} />
+            <Route exact path="/teams" render={() => <h1>Teams</h1>} />
+            <Route
+              exact
+              path="/teaminvites"
+              render={() => <h1>Team invites</h1>}
+            />
+            <Route exact path="/settings" render={() => <h1>Settings</h1>} />
             <Route exact path="/logout" />
             {/* Sample form */}
             <Route exact path="/sampleForm" component={SampleForm} />
@@ -97,7 +104,7 @@ const App = () => {
     );
   }
 
-  return <Suspense fallback={<p>Loading</p>}>{content}</Suspense>;
+  return <Suspense fallback={<Spinner />}>{content}</Suspense>;
 };
 
 export default withRouter(App);
