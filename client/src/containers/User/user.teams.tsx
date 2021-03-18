@@ -1,31 +1,22 @@
 import React, { FunctionComponent } from "react";
-import { Grid, Paper, Typography } from "@material-ui/core";
 import SingleCard from "./singleCard";
-import { useStyles } from "./user.style";
+import classes2 from "./card.module.scss";
 
 interface Props {
   teams: never[];
 }
 
 const UserTeams: FunctionComponent<Props> = ({ teams }) => {
-  const classes = useStyles();
-
   return (
     <>
-      <Typography variant="h4" component="h2" align="center">
-        Your teams
-      </Typography>
-      <Paper className={classes.paper}>
-        <Grid container spacing={6}>
-          {teams.length ? (
-            teams.map(({ name, id }) => <SingleCard key={id} {...{ name }} />)
-          ) : (
-            <Typography variant="h6" component="h2" align="center">
-              You are not on any team yet...
-            </Typography>
-          )}
-        </Grid>
-      </Paper>
+      <h2 className={classes2.teamsHeader}>Your projects</h2>
+      <div className={classes2.board}>
+        {teams.length ? (
+          teams.map(({ name, id }) => <SingleCard key={id} {...{ name }} />)
+        ) : (
+          <div>You don't have any project yet ...</div>
+        )}
+      </div>
     </>
   );
 };

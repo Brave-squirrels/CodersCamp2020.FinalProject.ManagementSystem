@@ -9,19 +9,9 @@ import {
 } from "react-router-dom";
 import { Header, Main, ErrorPage } from "hoc/indexHoc";
 import { useSelector, useDispatch } from "react-redux";
-import LandingNotLogged from "./containers/landingNotLogged/landingNotLogged";
-import Projects from "./containers/Projects/projects";
-import Project from "./containers/Projects/project";
-import User from "./containers/User/user";
-import LandingLogged from "containers/landingLogged/landingLogged";
-import ResNav from "./hoc/header/headerSideDrawer/headerSideDrawer";
-import ErrorPage from "./hoc/errorPage/errorPage";
 import SuspenseSpinner from "components/UI/suspenseSpinner/suspenseSpinner";
-
 import SampleForm from "utils/sampleForm";
-
 import allActions from "reduxState/indexActions";
-
 import { RootState } from "reduxState/actions/types";
 
 const LandingNotLogged = React.lazy(
@@ -31,6 +21,7 @@ const Projects = React.lazy(() => import("./containers/Projects/projects"));
 const Project = React.lazy(() => import("./containers/Projects/project"));
 const Teams = React.lazy(() => import("./containers/Teams/teams"));
 const Team = React.lazy(() => import("./containers/Teams/team"));
+const User = React.lazy(() => import("./containers/User/user"));
 const LandingLogged = React.lazy(
   () => import("containers/landingLogged/landingLogged")
 );

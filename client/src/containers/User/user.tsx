@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Grid } from "@material-ui/core";
-import { useStyles } from "./user.style";
 import axios from "axios/axiosMain";
-import UserTeams from "./user.teams";
 import UserProjects from "./user.projects";
+import UserTeams from "./user.teams";
+import classes2 from "./card.module.scss";
 
 const User = () => {
   const [teams, setTeams] = useState([]);
   const [projects, setProjects] = useState([]);
-  const classes = useStyles();
 
   useEffect(() => {
     (async () => {
@@ -25,14 +23,14 @@ const User = () => {
   }, []);
 
   return (
-    <Grid container spacing={6} className={classes.content}>
-      <Grid item sm={12} md={6}>
+    <div className={classes2.userContainer}>
+      <div className={classes2.element}>
         <UserTeams {...{ teams }} />
-      </Grid>
-      <Grid item sm={12} md={6}>
+      </div>
+      <div className={classes2.element}>
         <UserProjects {...{ projects }} />
-      </Grid>
-    </Grid>
+      </div>
+    </div>
   );
 };
 

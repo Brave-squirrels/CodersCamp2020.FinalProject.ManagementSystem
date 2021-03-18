@@ -1,24 +1,15 @@
 import React, { FunctionComponent } from "react";
-import { Card, CardContent, Grid, Typography } from "@material-ui/core";
-import { useStyles } from "./user.style";
+import classes2 from "./card.module.scss";
 
 interface Props {
   name: string;
 }
 
 const SingleCard: FunctionComponent<Props> = ({ name }) => {
-  const classes = useStyles();
-
   return (
-    <Grid item xs={12} sm={6}>
-      <Card className={classes.card}>
-        <CardContent>
-          <Typography variant="h6" component="h3">
-            {name}
-          </Typography>
-        </CardContent>
-      </Card>
-    </Grid>
+    <div className={classes2.card}>
+      <h3 className={classes2.cardHeader}>{name}</h3>
+    </div>
   );
 };
 
