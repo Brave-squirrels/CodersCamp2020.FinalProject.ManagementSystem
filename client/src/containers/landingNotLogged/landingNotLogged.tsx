@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { NavLink } from "react-router-dom";
 
 import Button from "components/UI/formElements/button/button";
 import FormTitle from "components/UI/formElements/formTitle/formTitle";
@@ -219,13 +220,17 @@ const StartPage = () => {
     );
   }
 
-  let signInContent = (
+  let signInContent: JSX.Element = (
     <FormStructure
       state={signIn}
       onChangeHandler={onChangeSignIn}
       btnText="SIGN IN"
       formTitle="Sign In"
-    />
+    >
+      <NavLink to="/forgotpassword" exact className={styles.forgotLink}>
+        Forgot password?
+      </NavLink>
+    </FormStructure>
   );
 
   if (signInState.loading) {
@@ -266,10 +271,16 @@ const StartPage = () => {
 
           <img src={signUpTmp} alt="SignUp" className={styles.image} />
         </div>
-        <div className={styles.panelRight}>
+        <div className={styles.panelRight} id={styles.rightId}>
           <div className={styles.content}>
             <FormTitle>One of us?</FormTitle>
-            <Button clicked={() => changeView(true)}>Sign In</Button>
+            <Button
+              clicked={() => changeView(true)}
+              disabled={view}
+              btnType="disable"
+            >
+              Sign In
+            </Button>
           </div>
           <img src={signInTmp} alt="SignIn" className={styles.image} />
         </div>

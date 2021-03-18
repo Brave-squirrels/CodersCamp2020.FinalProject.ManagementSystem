@@ -7,9 +7,8 @@ import {
   Redirect,
   useHistory,
 } from "react-router-dom";
-import { Header, Main } from "hoc/indexHoc";
+import { Header, Main, ErrorPage } from "hoc/indexHoc";
 import { useSelector, useDispatch } from "react-redux";
-
 import LandingNotLogged from "./containers/landingNotLogged/landingNotLogged";
 import Projects from "./containers/Projects/projects";
 import Project from "./containers/Projects/project";
@@ -17,12 +16,30 @@ import User from "./containers/User/user";
 import LandingLogged from "containers/landingLogged/landingLogged";
 import ResNav from "./hoc/header/headerSideDrawer/headerSideDrawer";
 import ErrorPage from "./hoc/errorPage/errorPage";
+import SuspenseSpinner from "components/UI/suspenseSpinner/suspenseSpinner";
 
 import SampleForm from "utils/sampleForm";
 
 import allActions from "reduxState/indexActions";
 
 import { RootState } from "reduxState/actions/types";
+
+const LandingNotLogged = React.lazy(
+  () => import("./containers/landingNotLogged/landingNotLogged")
+);
+const Projects = React.lazy(() => import("./containers/Projects/projects"));
+const Project = React.lazy(() => import("./containers/Projects/project"));
+const Teams = React.lazy(() => import("./containers/Teams/teams"));
+const Team = React.lazy(() => import("./containers/Teams/team"));
+const LandingLogged = React.lazy(
+  () => import("containers/landingLogged/landingLogged")
+);
+const ResNav = React.lazy(
+  () => import("./hoc/header/headerSideDrawer/headerSideDrawer")
+);
+const ForgotPassword = React.lazy(
+  () => import("./containers/forgotPassword/forgotPassword")
+);
 
 interface LoginState {
   loading: boolean;
@@ -61,6 +78,11 @@ const App = () => {
         {localStorage.getItem("token") ? null : <Redirect to="/" />}
         <Switch>
           <Route exact path="/" render={() => <LandingNotLogged />} />
+          <Route
+            exact
+            path="/forgotpassword"
+            render={() => <ForgotPassword />}
+          />
         </Switch>
       </>
     );
@@ -73,8 +95,17 @@ const App = () => {
           <Switch>
             {/* <Route exact path="/" render={() => <LandingLogged />} /> */}
             <Route exact path="/" render={() => <User />} />
+            <Route exact path="/teams/id" component={Team} />
+            <Route exact path="/teams" component={Teams} />
             <Route exact path="/projects/id" component={Project} />
-            <Route exact path="/teams" render={() => <Projects />} />
+            <Route exact path="/projects" component={Projects} />
+            <Route exact path="/teams" render={() => <h1>Teams</h1>} />
+            <Route
+              exact
+              path="/teaminvites"
+              render={() => <h1>Team invites</h1>}
+            />
+            <Route exact path="/settings" render={() => <h1>Settings</h1>} />
             <Route exact path="/logout" />
             {/* Sample form */}
             <Route exact path="/sampleForm" component={SampleForm} />
@@ -85,7 +116,7 @@ const App = () => {
     );
   }
 
-  return <Suspense fallback={<p>Loading</p>}>{content}</Suspense>;
+  return <Suspense fallback={<SuspenseSpinner />}>{content}</Suspense>;
 };
 
 export default withRouter(App);

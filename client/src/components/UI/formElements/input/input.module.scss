@@ -4,8 +4,8 @@
   box-sizing: border-box;
   font-family: $robotoFont;
   max-width: 380px;
-  min-width: 310px;
-  width: 70%;
+  min-width: 260px;
+  width: 80%;
   margin: 0 auto;
   padding: 0.6em 1em;
   filter: $inputFilter;
@@ -44,7 +44,7 @@
   }
 }
 
-.textarea{
+.textarea {
   resize: none;
   font-family: $robotoFont;
   font-size: 1em;
@@ -57,17 +57,17 @@
   padding: 0.2em 10px;
 }
 
-.select{
+.select {
   background: $backgroundLight;
   margin: 0.2em 7px;
   outline: none;
   border: none;
   color: $secondFontColor;
   transition: all 0.4s ease-in;
-  &:hover{
+  &:hover {
     cursor: pointer;
   }
-  &:focus{
+  &:focus {
     background: $inputActiveBackground;
   }
   background-image: none;

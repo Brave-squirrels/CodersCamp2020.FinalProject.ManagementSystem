@@ -18,7 +18,7 @@ const button: FunctionComponent<Props> = (props: Props) => {
   }
   return (
     <button
-      className={[classes].join(" ")}
+      className={classes.join(" ")}
       onClick={props.clicked}
       type="submit"
       disabled={props.disabled}
