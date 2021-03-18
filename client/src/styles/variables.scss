@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
 
+$backgroundCard: #4a5060;
 $backgroundLight: #414858;
 $backgroundDark: #3a3d50;
 $backgroundSquare: #4a4060;
@@ -20,17 +21,19 @@ $invalidInputBorder: #f56e69;
 
 $buttonFilter: drop-shadow(5.97778px 5.97778px 20.9222px rgba(0, 0, 0, 0.2));
 $buttonBackground: linear-gradient(90.55deg, #36b3c8 0%, #2ce6c8 99.9%);
+$boxShadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+  0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
 
 $mainFont: "Montserrat", sans-serif;
 $robotoFont: "Roboto", sans-serif;
 
 @mixin scrollbar(
-  $scrollSize: 4px,
-  $backgroundTrack: rgba(255, 255, 255, 0),
-  $backgroundThumb: rgb(41, 33, 46),
-  $scrollRadius: 2px
+  $scrollSize: 0.5rem,
+  $backgroundTrack: #333845,
+  $backgroundThumb: #83868e,
+  $scrollRadius: 0px
 ) {
-  scrollbar-width: "thin";
+  scrollbar-width: thin;
   &::-webkit-scrollbar {
     width: $scrollSize;
   }

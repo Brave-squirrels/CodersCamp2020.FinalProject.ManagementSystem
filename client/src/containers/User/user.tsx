@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios/axiosMain";
 import UserProjects from "./user.projects";
 import UserTeams from "./user.teams";
-import classes2 from "./card.module.scss";
+import classes2 from "./user.module.scss";
 
 const User = () => {
   const [teams, setTeams] = useState([]);
