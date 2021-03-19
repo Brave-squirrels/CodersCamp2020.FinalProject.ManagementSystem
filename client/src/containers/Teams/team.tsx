@@ -1,14 +1,21 @@
 import SideBar from "../../components/UI/sideBar/sideBar";
-import SquareCon from "../../components/UI/squareCon/squareCon";
-
-import classes from "./team.module.scss";
+import ViewWithSidebar from "hoc/viewWithSidebar/viewWithSidebar";
+import styles from "./team.module.scss";
 
 const Team = () => {
   return (
-    <div className={classes.team}>
+    <ViewWithSidebar>
       <SideBar />
-      <SquareCon />
-    </div>
+      <div className={styles.rightSideWrapper}>
+        <div className={styles.wrapper}>
+          <h1 className={styles.title}>Team A</h1>
+          
+          {/* Container for team's info */}
+          <div className={styles.container}></div>
+
+        </div>
+      </div>
+    </ViewWithSidebar>
   );
 };
 

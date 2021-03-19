@@ -1,7 +1,6 @@
 @import "../../styles/variables.scss";
 .mainCon {
   @include scrollbar;
-  padding: 2em;
   background: $backgroundDark;
   width: 100%;
 }
