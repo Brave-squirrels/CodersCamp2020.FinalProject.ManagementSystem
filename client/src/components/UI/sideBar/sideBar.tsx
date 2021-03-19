@@ -1,7 +1,7 @@
 import classes from "./sidebar.module.scss";
 
-const SideBar = () => {
-  return <div className={classes.sideBar}></div>;
+const SideBar = (props :any) => {
+  return <div className={classes.sideBar}>{props.children}</div>;
 };
 
 export default SideBar;
