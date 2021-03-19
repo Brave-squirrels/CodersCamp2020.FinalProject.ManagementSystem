@@ -265,7 +265,7 @@ const StartPage = () => {
       <div className={styles.panelsContainer}>
         <div className={styles.panelLeft}>
           <div className={styles.content}>
-            <FormTitle>Don't have and account?</FormTitle>
+            <FormTitle>Don't have an account?</FormTitle>
             <Button clicked={() => changeView(false)}>Sign Up</Button>
           </div>
 
