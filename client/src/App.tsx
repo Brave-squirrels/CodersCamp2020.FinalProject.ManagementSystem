@@ -10,11 +10,7 @@ import {
 import { Header, Main, ErrorPage } from "hoc/indexHoc";
 import { useSelector, useDispatch } from "react-redux";
 import SuspenseSpinner from "components/UI/suspenseSpinner/suspenseSpinner";
-
-import SampleForm from "utils/sampleForm";
-
 import allActions from "reduxState/indexActions";
-
 import { RootState } from "reduxState/actions/types";
 
 const LandingNotLogged = React.lazy(
@@ -24,9 +20,7 @@ const Projects = React.lazy(() => import("./containers/Projects/projects"));
 const Project = React.lazy(() => import("./containers/Projects/project"));
 const Teams = React.lazy(() => import("./containers/Teams/teams"));
 const Team = React.lazy(() => import("./containers/Teams/team"));
-const LandingLogged = React.lazy(
-  () => import("containers/landingLogged/landingLogged")
-);
+const User = React.lazy(() => import("./containers/User/user"));
 const ResNav = React.lazy(
   () => import("./hoc/header/headerSideDrawer/headerSideDrawer")
 );
@@ -68,7 +62,6 @@ const App = () => {
   if (!localStorage.getItem("token")) {
     content = (
       <>
-        {localStorage.getItem("token") ? null : <Redirect to="/" />}
         <Switch>
           <Route exact path="/" render={() => <LandingNotLogged />} />
           <Route
@@ -76,6 +69,8 @@ const App = () => {
             path="/forgotpassword"
             render={() => <ForgotPassword />}
           />
+          <Route exact path="/confirmed" render={() => <h1>xD</h1>} />
+          <Route render={() => <LandingNotLogged />} />
         </Switch>
       </>
     );
@@ -86,7 +81,7 @@ const App = () => {
         <Header />
         <Main>
           <Switch>
-            <Route exact path="/" render={() => <LandingLogged />} />
+            <Route exact path="/" render={() => <User />} />
             <Route exact path="/teams/id" component={Team} />
             <Route exact path="/teams" component={Teams} />
             <Route exact path="/projects/id" component={Project} />
@@ -99,8 +94,6 @@ const App = () => {
             />
             <Route exact path="/settings" render={() => <h1>Settings</h1>} />
             <Route exact path="/logout" />
-            {/* Sample form */}
-            <Route exact path="/sampleForm" component={SampleForm} />
             <Route component={ErrorPage} />
           </Switch>
         </Main>

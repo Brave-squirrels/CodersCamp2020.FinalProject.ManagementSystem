@@ -21,8 +21,9 @@ const confirmUser = async (req: Request, res: Response) => {
     );
     if (!user) return res.status(StatusCodes.NOT_FOUND).send("User not found");
 
-    // res.redirect('http://localhost:3000/confirmed');
-    res.status(StatusCodes.OK).send("User verified!");
+    res
+      .status(StatusCodes.OK)
+      .redirect(`http://${process.env.ADDRESS}:3000/confirmed`);
   } catch (ex) {
     res.status(StatusCodes.BAD_REQUEST).send("Invalid token.");
   }
