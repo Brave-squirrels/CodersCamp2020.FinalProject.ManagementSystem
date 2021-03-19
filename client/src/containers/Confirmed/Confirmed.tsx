@@ -1,17 +1,13 @@
 import React from "react";
 import { useHistory } from "react-router";
-import { useDispatch } from "react-redux";
 import Nav from "components/notification/notification";
 import NavigationItem from "components/UI/navigationItem/navigationItem";
-import allActions from "reduxState/indexActions";
 import checkMark from "assets/checkMark.svg";
 import classes from "./confirmed.module.scss";
 import logo from "../../assets/logo.png";
-import hamburger from "../../assets/hamburger.svg";
 
 const Confirmed = () => {
   const history = useHistory();
-  const dispatch = useDispatch();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
