@@ -7,6 +7,7 @@ import FormTitle from "components/UI/formElements/formTitle/formTitle";
 import FormStructure from "components/UI/formElements/formStructure/formStructure";
 import Spinner from "components/UI/Spinner/spinner";
 import ErrorHandler from "components/errorHandler/errorHandler";
+import RegisterSuccess from "containers/registerSuccess/registerSuccess";
 
 import styles from "./landingNotLogged.module.scss";
 
@@ -213,11 +214,7 @@ const StartPage = () => {
     signUpContent = <Spinner />;
   }
   if (signUpState.success) {
-    signUpContent = (
-      <FormTitle>
-        Success! Check your email account to confirm registration!
-      </FormTitle>
-    );
+    signUpContent = <RegisterSuccess email={signUp.email.val} />;
   }
 
   let signInContent: JSX.Element = (

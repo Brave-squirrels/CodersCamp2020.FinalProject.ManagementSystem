@@ -22,9 +22,6 @@ const Project = React.lazy(() => import("./containers/Projects/project"));
 const Teams = React.lazy(() => import("./containers/Teams/teams"));
 const Team = React.lazy(() => import("./containers/Teams/team"));
 const User = React.lazy(() => import("./containers/User/user"));
-const LandingLogged = React.lazy(
-  () => import("containers/landingLogged/landingLogged")
-);
 const ResNav = React.lazy(
   () => import("./hoc/header/headerSideDrawer/headerSideDrawer")
 );
@@ -84,7 +81,6 @@ const App = () => {
         <Header />
         <Main>
           <Switch>
-            {/* <Route exact path="/" render={() => <LandingLogged />} /> */}
             <Route exact path="/" render={() => <User />} />
             <Route exact path="/teams/id" component={Team} />
             <Route exact path="/teams" component={Teams} />
