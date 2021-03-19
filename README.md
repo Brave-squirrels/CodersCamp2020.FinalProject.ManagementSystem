@@ -3,7 +3,7 @@
 Final Project on Coderscamp2020
 
 **PACKAGES INSTALLATION**
-`yarn install`
+`yarn dev:i`
 **NODEMON**
 `nodemon ./src/server.ts`
 **TESTS**

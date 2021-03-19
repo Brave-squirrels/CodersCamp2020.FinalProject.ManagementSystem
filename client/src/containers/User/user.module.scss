@@ -1,0 +1,30 @@
+.userContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 1600px;
+  margin: auto;
+
+  .element {
+    color: white;
+    flex: 1;
+    margin: 1rem;
+  }
+}
+
+.teamsHeader {
+  text-align: center;
+  font-weight: 500;
+  font-size: 2.1rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.cardHeader {
+  padding: 0;
+  font-size: 1.25rem;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 500;
+  margin: 0;
+}

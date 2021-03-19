@@ -10,11 +10,8 @@ import {
 import { Header, Main, ErrorPage } from "hoc/indexHoc";
 import { useSelector, useDispatch } from "react-redux";
 import SuspenseSpinner from "components/UI/suspenseSpinner/suspenseSpinner";
-
 import SampleForm from "utils/sampleForm";
-
 import allActions from "reduxState/indexActions";
-
 import { RootState } from "reduxState/actions/types";
 
 const LandingNotLogged = React.lazy(
@@ -22,6 +19,9 @@ const LandingNotLogged = React.lazy(
 );
 const Projects = React.lazy(() => import("./containers/Projects/projects"));
 const Project = React.lazy(() => import("./containers/Projects/project"));
+const Teams = React.lazy(() => import("./containers/Teams/teams"));
+const Team = React.lazy(() => import("./containers/Teams/team"));
+const User = React.lazy(() => import("./containers/User/user"));
 const LandingLogged = React.lazy(
   () => import("containers/landingLogged/landingLogged")
 );
@@ -84,7 +84,10 @@ const App = () => {
         <Header />
         <Main>
           <Switch>
-            <Route exact path="/" render={() => <LandingLogged />} />
+            {/* <Route exact path="/" render={() => <LandingLogged />} /> */}
+            <Route exact path="/" render={() => <User />} />
+            <Route exact path="/teams/id" component={Team} />
+            <Route exact path="/teams" component={Teams} />
             <Route exact path="/projects/id" component={Project} />
             <Route exact path="/projects" component={Projects} />
             <Route exact path="/teams" render={() => <h1>Teams</h1>} />
