@@ -21,6 +21,7 @@ const Project = React.lazy(() => import("./containers/Projects/project"));
 const Teams = React.lazy(() => import("./containers/Teams/teams"));
 const Team = React.lazy(() => import("./containers/Teams/team"));
 const User = React.lazy(() => import("./containers/User/user"));
+const Confirmed = React.lazy(() => import("./containers/Confirmed/Confirmed"));
 const ResNav = React.lazy(
   () => import("./hoc/header/headerSideDrawer/headerSideDrawer")
 );
@@ -69,7 +70,7 @@ const App = () => {
             path="/forgotpassword"
             render={() => <ForgotPassword />}
           />
-          <Route exact path="/confirmed" render={() => <h1>xD</h1>} />
+          <Route exact path="/confirmed" render={() => <Confirmed />} />
           <Route render={() => <LandingNotLogged />} />
         </Switch>
       </>
