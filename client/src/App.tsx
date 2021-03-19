@@ -63,6 +63,10 @@ const App = () => {
   if (!localStorage.getItem("token")) {
     content = (
       <>
+        {localStorage.getItem("token") ? null : location.pathname ===
+          "/confirmed" ? null : (
+          <Redirect to="/" />
+        )}
         <Switch>
           <Route exact path="/" render={() => <LandingNotLogged />} />
           <Route
@@ -71,7 +75,6 @@ const App = () => {
             render={() => <ForgotPassword />}
           />
           <Route exact path="/confirmed" render={() => <Confirmed />} />
-          <Route render={() => <LandingNotLogged />} />
         </Switch>
       </>
     );

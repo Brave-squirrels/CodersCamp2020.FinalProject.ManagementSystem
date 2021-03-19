@@ -1,14 +1,21 @@
 import SideBar from "../../components/UI/sideBar/sideBar";
-import SquareCon from "../../components/UI/squareCon/squareCon";
-
-import classes from "./project.module.scss";
+import ViewWithSidebar from "hoc/viewWithSidebar/viewWithSidebar";
+import styles from "./project.module.scss";
 
 const Project = () => {
   return (
-    <div className={classes.project}>
+    <ViewWithSidebar>
       <SideBar />
-      <SquareCon />
-    </div>
+      <div className={styles.rightSideWrapper}>
+        <div className={styles.wrapper}>
+          <h1 className={styles.title}>Project A</h1>
+
+          {/* Container for project's info */}
+          <div className={styles.container}></div>
+
+        </div>
+      </div>
+    </ViewWithSidebar>
   );
 };
 

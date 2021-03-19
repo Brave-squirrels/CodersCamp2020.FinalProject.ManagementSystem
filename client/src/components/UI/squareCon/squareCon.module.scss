@@ -1,8 +1,12 @@
 @import "../../../styles/variables.scss";
 
 .squareCon {
-  width: 70%;
-  height: 90%;
+  padding: 1em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 55vmax;
+  height: 35vmax;
   background-color: $backgroundLight;
   box-shadow: 1px 1px 3px black;
 }
