@@ -10,9 +10,9 @@
     "server": "cd Server && yarn start",
     "client:i": "cd client && yarn install",
     "server:i": "cd Server && yarn install",
-    "current:i": "concurrently \"yarn current:i\" \"yarn server:i\"",
+    "current:i": "concurrently \"yarn client:i\" \"yarn server:i\"",
     "dev": "concurrently \"yarn server\" \"yarn client\"",
-    "dev:i": "yarn install && yarn client:i"
+    "dev:i": "yarn install && yarn current:i"
   },
   "devDependencies": {
     "concurrently": "^6.0.0"
