@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from "react";
 import { useDispatch } from "react-redux";
 
-import logo from "../../assets/logo2.svg";
+import logo from "../../assets/logo.png";
 import settings from "../../assets/settings.svg";
 import hamburger from "../../assets/hamburger.svg";
 
@@ -22,7 +22,7 @@ const Header: FunctionComponent = () => {
         <ul className={styles.logoList}>
           <NavigationItem path="/">
             <img src={logo} alt="Site logo" className={styles.logo} />
-            <span className={styles.logoTitle}>Project Name</span>
+            <span className={styles.logoTitle}>Management system</span>
           </NavigationItem>
         </ul>
       </div>

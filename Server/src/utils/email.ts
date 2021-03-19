@@ -34,10 +34,9 @@ export default async function sendEmail(email: string, url: string) {
  
 		<tr>
 		<td align="center" style="line-height: 0px;">
-		<img style="display:block; line-height:0px; font-size:0px; border:0px;" src="https://i.ibb.co/DDFCtxq/Group-33.png" alt="logo">
+		<img style="display:block; line-height:0px; font-size:0px; border:0px; height: 100px;" src="https://i.ibb.co/XYVfX5p/logo.png" alt="logo">
 		</td>
 		</tr>
- 
  
  
 		<tr>
