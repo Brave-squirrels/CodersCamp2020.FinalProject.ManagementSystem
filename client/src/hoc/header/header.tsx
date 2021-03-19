@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from "react";
 import { useDispatch } from "react-redux";
 
-import logo from "../../assets/logo.svg";
+import logo from "../../assets/logo2.svg";
 import settings from "../../assets/settings.svg";
 import hamburger from "../../assets/hamburger.svg";
 
