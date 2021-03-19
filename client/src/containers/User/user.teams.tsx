@@ -15,7 +15,7 @@ const UserTeams: FunctionComponent<Props> = ({ teams }) => {
         {teams && teams.length ? (
           teams.map(({ name, id }) => (
             <Card key={id}>
-              {/* <h3 className={classes.cardHeader}>{name}</h3> */}
+              <h3 className={classes.cardHeader}>{name}</h3>
             </Card>
           ))
         ) : (
