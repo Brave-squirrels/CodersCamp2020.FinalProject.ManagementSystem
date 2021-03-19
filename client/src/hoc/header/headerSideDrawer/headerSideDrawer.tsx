@@ -2,7 +2,7 @@ import React, { FunctionComponent } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import settings from "../../../assets/settings.svg";
-import logo from "../../../assets/logo.svg";
+import logo from "../../../assets/logo.png";
 import hamburger from "../../../assets/hamburger.svg";
 
 import NavigationItem from "components/UI/navigationItem/navigationItem";
