@@ -1,0 +1,7 @@
+@import "../../styles/variables.scss";
+.Wrapper {
+  @include scrollbar;
+  display: grid;
+  grid-template-columns: 20vw 1fr;
+  height: 100%;
+}
