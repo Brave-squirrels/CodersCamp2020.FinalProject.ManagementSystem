@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios/axiosMain";
 import UserProjects from "./user.projects";
 import UserTeams from "./user.teams";
-import classes2 from "./user.module.scss";
+import classes from "./user.module.scss";
 
 const User = () => {
   const [teams, setTeams] = useState([]);
@@ -23,11 +23,11 @@ const User = () => {
   }, []);
 
   return (
-    <div className={classes2.userContainer}>
-      <div className={classes2.element}>
+    <div className={classes.userContainer}>
+      <div className={classes.element}>
         <UserTeams {...{ teams }} />
       </div>
-      <div className={classes2.element}>
+      <div className={classes.element}>
         <UserProjects {...{ projects }} />
       </div>
     </div>

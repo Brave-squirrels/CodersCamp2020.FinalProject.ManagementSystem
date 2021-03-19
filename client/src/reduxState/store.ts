@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, compose } from "redux";
-import rootReducer from "./indexReducer";
 import thunk from "redux-thunk";
+import rootReducer from "./indexReducer";
 
 declare global {
   interface Window {
