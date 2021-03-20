@@ -6,7 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 
 import "./styles/global.scss";
 
-import { store } from "./reduxState/features/store";
+import store from "./reduxState/store";
 
 import App from "./App";
 
