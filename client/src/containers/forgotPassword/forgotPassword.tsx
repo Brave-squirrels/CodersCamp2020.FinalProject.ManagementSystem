@@ -75,7 +75,7 @@ const ForgotPassword = () => {
     dispatch(sendChangePassword(data));
   };
 
-  let sendResetContent: JSX.Element | string = (
+  let sendResetContent: JSX.Element = (
     <form onSubmit={(e) => sendResetPassword(e)} className={styles.formStyles}>
       <FormStructure
         state={forgot}
