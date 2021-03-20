@@ -23,13 +23,12 @@ export default async function authUser(req: Request, res: Response) {
       .send("Invalid email or password.");
 
   if (!user.isVerified) {
-    // return res
-    //   .status(StatusCodes.NON_AUTHORITATIVE_INFORMATION)
-    //   .send("You must first confirm the registration.");
-    console.log("User not verified!!!");
-  } else console.log("User verified :D");
+    return res
+      .status(StatusCodes.NON_AUTHORITATIVE_INFORMATION)
+      .send("You must first confirm the registration.");
+  }
 
   const id = user._id;
   const token = user.generateAuthToken();
-  res.status(StatusCodes.OK).send({token,id});
+  res.status(StatusCodes.OK).send({ token, id });
 }
