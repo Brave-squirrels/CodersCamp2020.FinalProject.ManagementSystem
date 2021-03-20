@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import axios from "../../axios/axiosMain";
+import axios from "../axios/axiosMain";
 import { AppThunk, RootState } from "./store";
 
 interface Data {
@@ -9,10 +9,12 @@ interface Data {
   confirmPassword: string;
 }
 
+
 interface Action {
   type: string;
-  error?: Error;
   data?: Data;
+  name?: string;
+  message?: string;
 }
 
 interface PostData {
@@ -24,7 +26,7 @@ interface PostData {
 
 interface createUserState {
   loading: boolean;
-  error: null | Error;
+  error: any;
   success: boolean;
 }
 
@@ -50,7 +52,7 @@ export const createUserSlice = createSlice({
     failed: (state, action: PayloadAction<Action>) => {
       state.loading = false;
       state.success = false;
-      state.error = action.payload.error as Error;
+      state.error = action.payload as any;
     },
   },
 });

@@ -16,14 +16,16 @@ import signUpTmp from "../../assets/signUpTmp.svg";
 
 import onChangeForm from "utils/onChangeForm";
 
-import allActions from "reduxState/indexActions";
+import { createUser } from "reduxState/createUserSlice";
+import { loginUser } from "reduxState/loginSlice";
+import { RootState } from "reduxState/store";
 
 const StartPage = () => {
-  const signUpState = useSelector((state: any) => state.createUserReducer);
+  const signUpState = useSelector((state: RootState) => state.createUser);
 
-  const signInState = useSelector((state: any) => state.loginUserReducer);
+  const signInState = useSelector((state: RootState) => state.login);
 
-  const dispatch: any = useDispatch();
+  const dispatch = useDispatch();
   /* Handle form state */
   const [signIn, setSignIn] = useState({
     email: {
@@ -178,7 +180,7 @@ const StartPage = () => {
       }
       formData[key] = signUp[key].val;
     }
-    dispatch(allActions.createUser(formData));
+    dispatch(createUser(formData));
   };
 
   /* Login user after submit */
@@ -192,7 +194,7 @@ const StartPage = () => {
       }
       formData[key] = signIn[key].val;
     }
-    dispatch(allActions.loginUser(formData));
+    dispatch(loginUser(formData));
   };
 
   /* Change content when API call */
@@ -233,7 +235,12 @@ const StartPage = () => {
   if (signInState.loading) {
     signInContent = <Spinner />;
   }
-
+  if (signInState.error) {
+    console.log(signInState.error);
+  }
+  if (signUpState.error) {
+    console.log(signUpState.error);
+  }
   return (
     <div className={classes.join(" ")}>
       <div className={styles.formContainer}>

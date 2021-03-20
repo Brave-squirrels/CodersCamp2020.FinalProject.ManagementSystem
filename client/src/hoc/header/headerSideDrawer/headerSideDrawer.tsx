@@ -8,15 +8,14 @@ import hamburger from "../../../assets/hamburger.svg";
 import NavigationItem from "components/UI/navigationItem/navigationItem";
 
 import styles from "./headerSideDrawer.module.scss";
+import { clickHamburger } from "reduxState/sideNavActionSlice";
 
-import allActions from "reduxState/indexActions";
-
-import { AppDispatch, RootState } from "reduxState/actions/types";
+import { RootState } from "reduxState/store";
 
 const ResHeader: FunctionComponent = () => {
-  const show = useSelector((state: RootState) => state.openSideNavReducer);
+  const show = useSelector((state: RootState) => state.sideNavAction);
 
-  const dispatch: AppDispatch = useDispatch();
+  const dispatch = useDispatch();
 
   let attachedClasses = [styles.resNavCon, styles.closeResNav];
 
@@ -30,7 +29,7 @@ const ResHeader: FunctionComponent = () => {
       <img
         src={hamburger}
         className={styles.hamburger}
-        onClick={() => dispatch(allActions.openSideNav())}
+        onClick={() => dispatch(clickHamburger())}
         alt="hamburger"
       />
       <ul className={styles.navList}>
