@@ -93,6 +93,7 @@ const App = () => {
             <Route exact path="/projects/id" component={Project} />
             <Route exact path="/projects" component={Projects} />
             <Route exact path="/teams" render={() => <h1>Teams</h1>} />
+            <Route exact path="/confirmed" render={() => <Confirmed />} />
             <Route
               exact
               path="/teaminvites"

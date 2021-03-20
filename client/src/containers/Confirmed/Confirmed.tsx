@@ -32,7 +32,7 @@ const Confirmed = () => {
           subTitle={
             "Your account has been successfully created. Please use your email address to log in."
           }
-          btnText={"Return to LOGIN"}
+          btnText={"Return to DASHBOARD"}
           img={checkMark}
         />
       </form>
