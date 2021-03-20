@@ -24,7 +24,7 @@ export default async function authUser(req: Request, res: Response) {
 
   if (!user.isVerified) {
     return res
-      .status(StatusCodes.NON_AUTHORITATIVE_INFORMATION)
+      .status(StatusCodes.BAD_REQUEST)
       .send("You must first confirm the registration.");
   }
 
