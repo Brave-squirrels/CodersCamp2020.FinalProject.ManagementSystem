@@ -41,6 +41,9 @@
       position: absolute;
       transform: translateY(50%);
       color: rgb(0, 0, 0);
+      &:hover {
+        cursor: pointer;
+      }
     }
     input {
       max-width: 320px;
