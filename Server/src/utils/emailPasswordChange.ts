@@ -148,7 +148,7 @@ export default async function sendEmail(email: string, url: string) {
 											color: #333;
 										"
 									>
-										To confirm your account just click this link below
+										To change your password just click this link below
 									</td>
 								</tr>
 								<tr>
@@ -188,7 +188,7 @@ export default async function sendEmail(email: string, url: string) {
 													padding: 0.5rem;
 												"
 											>
-												Confirm email
+												Change password
 											</div></a
 										>
 									</td>
