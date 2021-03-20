@@ -10,6 +10,7 @@ import {
 import { Header, Main, ErrorPage } from "hoc/indexHoc";
 import { useSelector, useDispatch } from "react-redux";
 import SuspenseSpinner from "components/UI/suspenseSpinner/suspenseSpinner";
+import ResetPassword from "containers/resetPassword/resetPassword";
 
 import { authUser, logout } from "reduxState/loginSlice";
 import { RootState } from "reduxState/store";
@@ -64,7 +65,8 @@ const App = () => {
     content = (
       <>
         {localStorage.getItem("token") ? null : location.pathname ===
-          "/confirmed" ? null : (
+            "/confirmed" ||
+          location.pathname.startsWith("/resetPassword") ? null : (
           <Redirect to="/" />
         )}
         <Switch>
@@ -75,12 +77,13 @@ const App = () => {
             render={() => <ForgotPassword />}
           />
           <Route exact path="/confirmed" render={() => <Confirmed />} />
+          <Route path="/resetPassword" render={() => <ResetPassword />} />
         </Switch>
       </>
     );
   } else {
     content = (
-      <>
+      <div className="wrapper">
         <ResNav />
         <Header />
         <Main>
@@ -103,7 +106,7 @@ const App = () => {
             <Route component={ErrorPage} />
           </Switch>
         </Main>
-      </>
+      </div>
     );
   }
 

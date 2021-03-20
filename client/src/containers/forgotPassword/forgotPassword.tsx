@@ -8,6 +8,8 @@ import onChangeForm from "utils/onChangeForm";
 
 import styles from "./forgotPassword.module.scss";
 
+import axios from "axios/axiosMain";
+
 const ForgotPassword = () => {
   const history = useHistory();
 
@@ -50,6 +52,17 @@ const ForgotPassword = () => {
     history.push("/");
   };
 
+  const sendResetPassword = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const data = {
+      email: forgot.email.val,
+    };
+    axios
+      .post("/users/sendreset", data)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  };
+
   return (
     <div className={styles.forgotContainer}>
       <div className={styles.goBackBtn}>
@@ -57,10 +70,7 @@ const ForgotPassword = () => {
       </div>
 
       <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          console.log("xD");
-        }}
+        onSubmit={(e) => sendResetPassword(e)}
         className={styles.formStyles}
       >
         <FormStructure
