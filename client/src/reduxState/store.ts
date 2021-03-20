@@ -1,20 +1,27 @@
-import { createStore, applyMiddleware, compose } from "redux";
-import thunk from "redux-thunk";
-import rootReducer from "./indexReducer";
+import { configureStore, ThunkAction, Action, getDefaultMiddleware } from "@reduxjs/toolkit";
+import createUserReducer from "./createUserSlice";
+import loginReducer from "./loginSlice";
+import sideNavActionReducer from "./sideNavActionSlice";
+import thunk from 'redux-thunk';
 
-declare global {
-  interface Window {
-    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: typeof compose;
-  }
-}
+export const store = configureStore({
+  reducer: {
+    createUser: createUserReducer,
+    login: loginReducer,
+    sideNavAction: sideNavActionReducer,
+  },
+  middleware: [
+    ...getDefaultMiddleware({
+      serializableCheck: false
+    }),
+    thunk
+  ]
+});
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
-const store = createStore(
-  rootReducer,
-  composeEnhancers(applyMiddleware(thunk))
-);
-
-export type AppDispatch = typeof store.dispatch;
-
-export default store;
+export type RootState = ReturnType<typeof store.getState>;
+export type AppThunk<ReturnType = void> = ThunkAction<
+  ReturnType,
+  RootState,
+  unknown,
+  Action<string>
+>;

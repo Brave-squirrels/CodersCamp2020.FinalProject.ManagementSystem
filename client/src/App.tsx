@@ -10,8 +10,9 @@ import {
 import { Header, Main, ErrorPage } from "hoc/indexHoc";
 import { useSelector, useDispatch } from "react-redux";
 import SuspenseSpinner from "components/UI/suspenseSpinner/suspenseSpinner";
-import allActions from "reduxState/indexActions";
-import { RootState } from "reduxState/actions/types";
+
+import { authUser, logout } from "reduxState/loginSlice";
+import { RootState } from "reduxState/store";
 
 const LandingNotLogged = React.lazy(
   () => import("./containers/landingNotLogged/landingNotLogged")
@@ -39,10 +40,8 @@ interface LoginState {
 }
 
 const App = () => {
-  const loginState: LoginState = useSelector(
-    (state: RootState) => state.loginUserReducer
-  );
-  const dispatch: any = useDispatch();
+  const loginState: LoginState = useSelector((state: RootState) => state.login);
+  const dispatch = useDispatch();
 
   const location = useLocation();
   const history = useHistory();
@@ -50,14 +49,14 @@ const App = () => {
   /* Logout handle */
   history.listen((currentLocation) => {
     if (currentLocation.pathname === "/logout") {
-      dispatch(allActions.logout());
+      dispatch(logout());
       currentLocation.pathname = "/";
     }
   });
 
   useEffect(() => {
     if (location.pathname === "/" && !localStorage.getItem("token")) return;
-    dispatch(allActions.authUser());
+    dispatch(authUser());
   }, [location, dispatch, loginState.token]);
 
   let content;
