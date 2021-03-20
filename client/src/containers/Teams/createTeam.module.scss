@@ -1,33 +1,26 @@
 @import "../../styles//variables.scss";
 
 .formContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   box-sizing: border-box;
   margin: auto;
-  margin-top: 10%;
   padding: 2em;
   width: 50%;
   height: 65%;
   background-color: $backgroundCard;
   box-shadow: 1px 1px 3px black;
   box-sizing: border-box;
-  @media (max-width: 650px) {
-    width: 80%;
-    margin-top: 32%;
-  }
-  @media (max-width: 850px) {
-    width: 80%;
-    margin-top: 32%;
-  }
   @media (max-width: 1200px) {
     width: 80%;
-    margin-top: 25%;
   }
 }
 
 .customField {
   position: relative;
   font-size: 1em;
-  padding-top: 20px;
   padding-top: 5px;
   top: 4em;
 }
@@ -40,13 +33,6 @@
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-
-  @media (max-width: 650px) {
-    width: 90%;
-  }
-  @media (max-width: 850px) {
-    width: 90%;
-  }
   @media (max-width: 1200px) {
     width: 90%;
   }
