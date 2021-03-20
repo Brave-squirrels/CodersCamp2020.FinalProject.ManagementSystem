@@ -28,6 +28,7 @@ const ResNav = React.lazy(
 const ForgotPassword = React.lazy(
   () => import("./containers/forgotPassword/forgotPassword")
 );
+const CreateTeam = React.lazy(() => import("./containers/Teams/createTeam"));
 
 interface LoginState {
   loading: boolean;
@@ -88,6 +89,7 @@ const App = () => {
             <Route exact path="/" render={() => <User />} />
             <Route exact path="/teams/id" component={Team} />
             <Route exact path="/teams" component={Teams} />
+            <Route exact path="/createTeam" component={CreateTeam} />
             <Route exact path="/projects/id" component={Project} />
             <Route exact path="/projects" component={Projects} />
             <Route exact path="/teams" render={() => <h1>Teams</h1>} />
