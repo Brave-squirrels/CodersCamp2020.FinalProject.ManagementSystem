@@ -1,12 +1,16 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 import FormStructure from "components/UI/formElements/formStructure/formStructure";
+import Button from "components/UI/formElements/button/button";
 
 import onChangeForm from "utils/onChangeForm";
 
 import styles from "./forgotPassword.module.scss";
 
 const ForgotPassword = () => {
+  const history = useHistory();
+
   const [forgot, setForgot] = useState({
     email: {
       val: "",
@@ -42,8 +46,16 @@ const ForgotPassword = () => {
     });
   };
 
+  const goBackHandler = () => {
+    history.push("/");
+  };
+
   return (
     <div className={styles.forgotContainer}>
+      <div className={styles.goBackBtn}>
+        <Button clicked={goBackHandler}>Go back</Button>
+      </div>
+
       <form
         onSubmit={(e) => {
           e.preventDefault();
