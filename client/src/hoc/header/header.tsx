@@ -9,12 +9,10 @@ import NavigationItem from "components/UI/navigationItem/navigationItem";
 
 import styles from "./header.module.scss";
 
-import allActions from "reduxState/indexActions";
-
-import { AppDispatch } from "reduxState/actions/types";
+import { clickHamburger } from "reduxState/sideNavActionSlice";
 
 const Header: FunctionComponent = () => {
-  const dispatch: AppDispatch = useDispatch();
+  const dispatch = useDispatch();
 
   return (
     <header className={styles.header}>
@@ -30,7 +28,7 @@ const Header: FunctionComponent = () => {
       <img
         src={hamburger}
         className={styles.hamburger}
-        onClick={() => dispatch(allActions.openSideNav())}
+        onClick={() => dispatch(clickHamburger())}
         alt="hamburger"
       />
       <div className={styles.navDisplay}>

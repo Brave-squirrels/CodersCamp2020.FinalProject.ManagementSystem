@@ -1,0 +1,78 @@
+@import "../../styles//variables.scss";
+
+.formContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  margin: auto;
+  padding: 2em;
+  width: 50%;
+  height: 65%;
+  background-color: $backgroundCard;
+  box-shadow: 1px 1px 3px black;
+  box-sizing: border-box;
+  @media (max-width: 1200px) {
+    width: 80%;
+  }
+}
+
+.customField {
+  position: relative;
+  font-size: 1em;
+  padding-top: 5px;
+  top: 4em;
+}
+
+.insideForm {
+  background-color: rgb(172, 172, 172);
+  box-shadow: 1px 1px 1px black;
+  width: 60%;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  @media (max-width: 1200px) {
+    width: 90%;
+  }
+  label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    input {
+      border: 2px solid #ddd;
+      appearance: none;
+      background-color: rgba(0, 0, 0, 0);
+      padding: 12px;
+      border-radius: 3px;
+      width: 15em;
+      outline: none;
+      transition: border-color 0.3s ease-out;
+      @media (max-width: 650px) {
+        width: 90%;
+      }
+      &:focus + .placeholder {
+        transition: 0.1s;
+        top: 1.6em;
+        font-size: 0.7em;
+        color: #222;
+        background: rgb(172, 172, 172);
+        padding: 2px;
+      }
+      &:focus,
+      &:valid {
+        border-color: #222;
+      }
+    }
+    .placeholder {
+      transition: 0.1s;
+      position: absolute;
+      margin-top: 1.2em;
+      transform: translateY(-50%);
+      color: rgb(0, 0, 0);
+    }
+  }
+}

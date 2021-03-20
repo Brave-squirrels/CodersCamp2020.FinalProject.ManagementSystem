@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import axios from "../../axios/axiosMain";
+import axios from "../axios/axiosMain";
 import { AppThunk, RootState } from "./store";
 
 interface LoginData {
@@ -12,12 +12,12 @@ interface Action {
   type?: string;
   id?: string;
   token?: string | null;
-  error?: Error;
+  error?: any;
 }
 
 interface InitState {
   loading: boolean;
-  error: null | Error;
+  error: any;
   id: string | null;
   token: string | null;
   success: boolean;
@@ -54,7 +54,7 @@ export const loginSlice = createSlice({
     },
     loginFail: (state, action: PayloadAction<Action>) => {
       state.loading = false;
-      state.error = action.payload.error as Error;
+      state.error = action.payload as any;
       state.id = null;
       state.token = null;
       state.success = false;
@@ -79,12 +79,14 @@ export const loginUser = (data: LoginData): AppThunk => (dispatch) => {
   axios
     .post("/login", data)
     .then((res) => {
+      console.log('xD');
       const ob = { id: res.data._id, token: res.data.token };
       dispatch(loginSuccess(ob));
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("id", res.data.id);
     })
     .catch((error) => {
+      console.log('xD');
       dispatch(loginFail(error));
     });
 };
