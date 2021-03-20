@@ -24,7 +24,6 @@ const StartPage = () => {
   const signUpState = useSelector((state: RootState) => state.createUser);
 
   const signInState = useSelector((state: RootState) => state.login);
-
   const dispatch = useDispatch();
   /* Handle form state */
   const [signIn, setSignIn] = useState({
@@ -234,12 +233,6 @@ const StartPage = () => {
 
   if (signInState.loading) {
     signInContent = <Spinner />;
-  }
-  if (signInState.error) {
-    console.log(signInState.error);
-  }
-  if (signUpState.error) {
-    console.log(signUpState.error);
   }
   return (
     <div className={classes.join(" ")}>

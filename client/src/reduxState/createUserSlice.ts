@@ -13,8 +13,7 @@ interface Data {
 interface Action {
   type: string;
   data?: Data;
-  name?: string;
-  message?: string;
+  error?: any;
 }
 
 interface PostData {

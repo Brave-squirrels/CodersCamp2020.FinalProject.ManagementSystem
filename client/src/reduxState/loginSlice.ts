@@ -79,12 +79,14 @@ export const loginUser = (data: LoginData): AppThunk => (dispatch) => {
   axios
     .post("/login", data)
     .then((res) => {
+      console.log('xD');
       const ob = { id: res.data._id, token: res.data.token };
       dispatch(loginSuccess(ob));
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("id", res.data.id);
     })
     .catch((error) => {
+      console.log('xD');
       dispatch(loginFail(error));
     });
 };
