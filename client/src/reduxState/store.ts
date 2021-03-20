@@ -2,6 +2,7 @@ import { configureStore, ThunkAction, Action, getDefaultMiddleware } from "@redu
 import createUserReducer from "./createUserSlice";
 import loginReducer from "./loginSlice";
 import sideNavActionReducer from "./sideNavActionSlice";
+import sendForgotPassword from './sendForgotPassword';
 import thunk from 'redux-thunk';
 
 export const store = configureStore({
@@ -9,6 +10,7 @@ export const store = configureStore({
     createUser: createUserReducer,
     login: loginReducer,
     sideNavAction: sideNavActionReducer,
+    sendForgotPassword: sendForgotPassword,
   },
   middleware: [
     ...getDefaultMiddleware({

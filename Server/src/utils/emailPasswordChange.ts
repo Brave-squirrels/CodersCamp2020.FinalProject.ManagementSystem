@@ -17,7 +17,7 @@ export default async function sendEmail(email: string, url: string) {
   const mailOptions = {
     from: process.env.EMAIL,
     to: email,
-    subject: "Confirm Email",
+    subject: "Change Password",
     html: `
 		<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
 			<tbody>
