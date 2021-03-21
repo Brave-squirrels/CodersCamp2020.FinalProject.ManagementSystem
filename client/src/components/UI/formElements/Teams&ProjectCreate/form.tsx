@@ -5,6 +5,13 @@ import classes from "./form.module.scss";
 
 import EditInput from "../inputsToEdit/inputEdit";
 import DataInput from "../dataInput/dataInput";
+import { useDispatch } from "react-redux";
+import {
+  teamDescriptionFalse,
+  teamDescriptionTrue,
+  teamNameFalse,
+  teamNameTrue,
+} from "reduxState/teamInfoSlice";
 
 // interface Props {
 //   value: string;
@@ -32,12 +39,44 @@ const Form = (props: any) => {
     }
   }, [props.value]);
 
+  const dispatch = useDispatch();
+
+  const validateTeamName = (e: any) => {
+    if (
+      (e.target.value.length > 0 && e.target.value.length < 4) ||
+      e.target.value > 24
+    ) {
+      dispatch(teamNameFalse());
+    } else {
+      dispatch(teamNameTrue());
+    }
+  };
+
+  const validateTeamDescription = (e: any) => {
+    if (
+      (e.target.value.length > 0 && e.target.value.length < 4) ||
+      e.target.value > 254
+    ) {
+      dispatch(teamDescriptionFalse());
+    } else {
+      dispatch(teamDescriptionTrue());
+    }
+  };
+
   return (
     <div className={classes.formContainer}>
       <div className={classes.insideForm}>
         <form onSubmit={props.submitted}>
-          <EditInput value={props.inputOne} />
-          <EditInput value={props.inputTwo} />
+          <EditInput
+            value={props.inputOne}
+            valid={validateTeamName}
+            validator="teamName"
+          />
+          <EditInput
+            value={props.inputTwo}
+            valid={validateTeamDescription}
+            validator="teamDescription"
+          />
           {props.inputOne.includes("Project") ? <DataInput /> : null}
           <Button>Create</Button>
         </form>

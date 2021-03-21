@@ -1,21 +1,28 @@
-import { configureStore, ThunkAction, Action, getDefaultMiddleware } from "@reduxjs/toolkit";
+import {
+  configureStore,
+  ThunkAction,
+  Action,
+  getDefaultMiddleware,
+} from "@reduxjs/toolkit";
 import createUserReducer from "./createUserSlice";
 import loginReducer from "./loginSlice";
 import sideNavActionReducer from "./sideNavActionSlice";
-import thunk from 'redux-thunk';
+import inputValidationSlice from "./teamInfoSlice";
+import thunk from "redux-thunk";
 
 export const store = configureStore({
   reducer: {
     createUser: createUserReducer,
     login: loginReducer,
     sideNavAction: sideNavActionReducer,
+    inputValidation: inputValidationSlice,
   },
   middleware: [
     ...getDefaultMiddleware({
-      serializableCheck: false
+      serializableCheck: false,
     }),
-    thunk
-  ]
+    thunk,
+  ],
 });
 
 export type RootState = ReturnType<typeof store.getState>;

@@ -14,6 +14,7 @@ label {
     }
   }
   input {
+    color: $secondFontColor;
     max-width: 320px;
     width: 100%;
     border: 2px solid #ddd;
@@ -38,12 +39,22 @@ label {
     &:focus,
     &:valid {
       border-color: $mainFontColor;
-      .invalid {
-        border-color: red;
-      }
     }
     &:hover {
       cursor: pointer;
     }
+  }
+}
+
+.invalid {
+  input {
+    &:focus,
+    &:valid {
+      border-color: red !important;
+      color: red !important;
+    }
+  }
+  .placeholder {
+    color: red !important;
   }
 }
