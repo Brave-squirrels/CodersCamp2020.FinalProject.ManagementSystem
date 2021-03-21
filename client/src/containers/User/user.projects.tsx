@@ -1,13 +1,13 @@
 import React, { FunctionComponent } from "react";
+import { useSelector } from "react-redux";
+import { selectProjects } from "reduxState/userSlice";
 import Card from "components/UI/Card";
 import CardContainer from "components/UI/CardContainer";
 import classes from "./user.module.scss";
 
-interface Props {
-  projects: never[];
-}
+const UserProjects: FunctionComponent = () => {
+  const projects = useSelector(selectProjects);
 
-const UserProjects: FunctionComponent<Props> = ({ projects }) => {
   return (
     <>
       <h2 className={classes.teamsHeader}>Your projects</h2>

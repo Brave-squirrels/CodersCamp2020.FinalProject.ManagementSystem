@@ -1,10 +1,16 @@
-import { configureStore, ThunkAction, Action, getDefaultMiddleware } from "@reduxjs/toolkit";
+import {
+  configureStore,
+  ThunkAction,
+  Action,
+  getDefaultMiddleware,
+} from "@reduxjs/toolkit";
 import createUserReducer from "./createUserSlice";
 import loginReducer from "./loginSlice";
 import sideNavActionReducer from "./sideNavActionSlice";
-import sendForgotPassword from './sendForgotPassword';
-import changePasswordLanding from './changePasswordLoggedOut';
-import thunk from 'redux-thunk';
+import sendForgotPassword from "./sendForgotPassword";
+import changePasswordLanding from "./changePasswordLoggedOut";
+import userReducer from "./userSlice";
+import thunk from "redux-thunk";
 
 export const store = configureStore({
   reducer: {
@@ -13,13 +19,14 @@ export const store = configureStore({
     sideNavAction: sideNavActionReducer,
     sendForgotPassword: sendForgotPassword,
     changePasswordLanding: changePasswordLanding,
+    user: userReducer,
   },
   middleware: [
     ...getDefaultMiddleware({
-      serializableCheck: false
+      serializableCheck: false,
     }),
-    thunk
-  ]
+    thunk,
+  ],
 });
 
 export type RootState = ReturnType<typeof store.getState>;
