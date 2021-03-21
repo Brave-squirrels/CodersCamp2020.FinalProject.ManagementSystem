@@ -1,22 +1,17 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Button from "../button/button";
 
 import classes from "./form.module.scss";
 
 import EditInput from "../inputsToEdit/inputEdit";
 import DataInput from "../dataInput/dataInput";
-import { useDispatch } from "react-redux";
-import {
-  teamDescriptionFalse,
-  teamDescriptionTrue,
-  teamNameFalse,
-  teamNameTrue,
-} from "reduxState/teamInfoSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { teamDescription, teamName } from "reduxState/teamInfoSlice";
 
-// interface Props {
-//   value: string;
-//   submitted: (e: any) => void;
-// }
+interface TeamData {
+  name: string;
+  description: string;
+}
 
 const Form = (props: any) => {
   useEffect(() => {
@@ -39,46 +34,44 @@ const Form = (props: any) => {
     }
   }, [props.value]);
 
+  const teamData = useSelector((state: any) => state.inputValidation);
+  const [data, setData] = useState({ name: "", description: "" });
+  const [valid, setValid] = useState(true);
+
   const dispatch = useDispatch();
 
-  const validateTeamName = (e: any) => {
-    if (
-      (e.target.value.length > 0 && e.target.value.length < 4) ||
-      e.target.value > 24
-    ) {
-      dispatch(teamNameFalse());
-    } else {
-      dispatch(teamNameTrue());
+  const saveData = (e: any, type: keyof TeamData) => {
+    switch (type) {
+      case "name":
+        dispatch(teamName({ value: e.target.value }));
+        setData({ ...data, name: e.target.value });
+        break;
+      case "description":
+        dispatch(teamDescription({ value: e.target.value }));
+        setData({ ...data, description: e.target.value });
     }
   };
 
-  const validateTeamDescription = (e: any) => {
-    if (
-      (e.target.value.length > 0 && e.target.value.length < 4) ||
-      e.target.value > 254
-    ) {
-      dispatch(teamDescriptionFalse());
-    } else {
-      dispatch(teamDescriptionTrue());
-    }
-  };
+  useEffect(() => {
+    setValid(teamData.teamName && teamData.teamDescription);
+  }, [teamData]);
 
   return (
     <div className={classes.formContainer}>
       <div className={classes.insideForm}>
-        <form onSubmit={props.submitted}>
+        <form onSubmit={(e: any) => props.submitted(e, data)}>
           <EditInput
             value={props.inputOne}
-            valid={validateTeamName}
+            valid={(e: any) => saveData(e, "name")}
             validator="teamName"
           />
           <EditInput
             value={props.inputTwo}
-            valid={validateTeamDescription}
+            valid={(e: any) => saveData(e, "description")}
             validator="teamDescription"
           />
           {props.inputOne.includes("Project") ? <DataInput /> : null}
-          <Button>Create</Button>
+          <Button disabled={!valid}>Create</Button>
         </form>
       </div>
     </div>

@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import * as validate from "./validators/team/teamValidators";
 
 interface Validate {
   teamName: boolean;
@@ -11,26 +12,15 @@ const teamInfoValidation = createSlice({
   name: "teamInfoValidation",
   initialState,
   reducers: {
-    teamNameTrue(state) {
-      state.teamName = true;
+    teamName(state, action) {
+      state.teamName = validate.teamName(action.payload.value);
     },
-    teamNameFalse(state) {
-      state.teamName = false;
-    },
-    teamDescriptionTrue(state) {
-      state.teamDescription = true;
-    },
-    teamDescriptionFalse(state) {
-      state.teamDescription = false;
+    teamDescription(state, action) {
+      state.teamDescription = validate.teamDescription(action.payload.value);
     },
   },
 });
 
-export const {
-  teamNameFalse,
-  teamNameTrue,
-  teamDescriptionFalse,
-  teamDescriptionTrue,
-} = teamInfoValidation.actions;
+export const { teamName, teamDescription } = teamInfoValidation.actions;
 
 export default teamInfoValidation.reducer;
