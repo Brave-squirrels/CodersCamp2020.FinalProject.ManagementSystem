@@ -14,7 +14,7 @@ import styles from "./landingNotLogged.module.scss";
 import signInTmp from "../../assets/signInTmp.svg";
 import signUpTmp from "../../assets/signUpTmp.svg";
 
-import onChangeForm from "utils/onChangeForm";
+import onChangeForm, { mutateToAxios } from "utils/onChangeForm";
 
 import { createUser } from "reduxState/createUserSlice";
 import { loginUser } from "reduxState/loginSlice";
@@ -171,28 +171,16 @@ const StartPage = () => {
   /* Create user after submit */
   const createUserHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const formData: any = {};
-    let key: keyof typeof signUp;
-    for (key in signUp) {
-      if (key === "formValid") {
-        break;
-      }
-      formData[key] = signUp[key].val;
-    }
+    const formData = mutateToAxios(signUp);
+
     dispatch(createUser(formData));
   };
 
   /* Login user after submit */
   const loginUserHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const formData: any = {};
-    let key: keyof typeof signIn;
-    for (key in signIn) {
-      if (key === "formValid") {
-        break;
-      }
-      formData[key] = signIn[key].val;
-    }
+    const formData = mutateToAxios(signIn);
+
     dispatch(loginUser(formData));
   };
 

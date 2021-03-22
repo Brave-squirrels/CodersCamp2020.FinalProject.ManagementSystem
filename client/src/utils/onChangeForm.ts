@@ -130,4 +130,17 @@ const onChangeForm = (e: {target:HTMLInputElement}, inputType: any, state: any, 
 
 }
 
+
+export const mutateToAxios = (state : any) =>{
+  const formData: any = {};
+  let key: keyof typeof state;
+  for(key in state){
+    if(key==='formValid'){
+      break
+    }
+    formData[key] = state[key].val;
+  }
+  return formData;
+}
+
 export default onChangeForm;

@@ -60,7 +60,7 @@ const input: FunctionComponent<Props> = (props) => {
             name={props.name}
             value={props.inputValue}
             onChange={props.onChangeInput}
-            className={styles.select}
+            className={[styles.select, styles.input].join(" ")}
           >
             {selectOptions.map((option) => {
               return (

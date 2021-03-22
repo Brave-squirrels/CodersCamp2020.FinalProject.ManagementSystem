@@ -1,5 +1,5 @@
-import SideBar from "../../components/UI/sideBar/sideBar";
-import SquareCon from "../../components/UI/squareCon/squareCon";
+import SideBar from "components/UI/sideBar/sideBar";
+import SquareCon from "components/UI/squareCon/squareCon";
 import ViewWithSidebar from "hoc/viewWithSidebar/viewWithSidebar";
 import styles from "./teams.module.scss";
 import Square from "components/UI/square/square";
