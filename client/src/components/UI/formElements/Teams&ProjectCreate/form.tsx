@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { teamDescription, teamName } from "reduxState/teamInfoSlice";
 
 interface TeamData {
-  name: string;
+  teamName: string;
   description: string;
 }
 
@@ -35,16 +35,16 @@ const Form = (props: any) => {
   }, [props.value]);
 
   const teamData = useSelector((state: any) => state.inputValidation);
-  const [data, setData] = useState({ name: "", description: "" });
+  const [data, setData] = useState({ teamName: "", description: "" });
   const [valid, setValid] = useState(true);
 
   const dispatch = useDispatch();
 
   const saveData = (e: any, type: keyof TeamData) => {
     switch (type) {
-      case "name":
+      case "teamName":
         dispatch(teamName({ value: e.target.value }));
-        setData({ ...data, name: e.target.value });
+        setData({ ...data, teamName: e.target.value });
         break;
       case "description":
         dispatch(teamDescription({ value: e.target.value }));
@@ -62,7 +62,7 @@ const Form = (props: any) => {
         <form onSubmit={(e: any) => props.submitted(e, data)}>
           <EditInput
             value={props.inputOne}
-            valid={(e: any) => saveData(e, "name")}
+            valid={(e: any) => saveData(e, "teamName")}
             validator="teamName"
           />
           <EditInput

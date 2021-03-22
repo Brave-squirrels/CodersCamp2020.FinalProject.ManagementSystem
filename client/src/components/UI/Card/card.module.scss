@@ -1,6 +1,8 @@
 @import "../../../styles/variables.scss";
 
 .card {
+  border: 2px solid;
+  border-color: rgba(0, 0, 0, 0);
   color: $secondFontColor;
   height: 150px;
   background: $backgroundCard;
@@ -9,4 +11,17 @@
   border-radius: 4px;
   min-width: 200px;
   padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  transition: 0.2s;
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    background-color: $backgroundCardHover;
+    border-color: white;
+  }
+  li {
+    list-style: none;
+  }
 }

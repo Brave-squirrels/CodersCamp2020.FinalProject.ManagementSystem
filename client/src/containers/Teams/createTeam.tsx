@@ -7,8 +7,7 @@ const CreateTeam = () => {
 
   const createTeam = async (e: any, data: any) => {
     e.preventDefault();
-    const token = localStorage.getItem("token");
-    console.log(token);
+    console.log(data);
     axios
       .post("/teams", data, {
         headers: { "x-auth-token": localStorage.getItem("token") },
