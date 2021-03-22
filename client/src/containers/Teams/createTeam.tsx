@@ -1,26 +1,27 @@
-import classes from "./createTeam.module.scss";
-
-import Button from "components/UI/formElements/button/button";
+import axios from "axios/axiosMain";
+import Form from "components/UI/formElements/Teams&ProjectCreate/form";
+import { useHistory } from "react-router";
 
 const CreateTeam = () => {
+  const history = useHistory();
+
+  const createTeam = async (e: any, data: any) => {
+    e.preventDefault();
+    console.log(data);
+    axios
+      .post("/teams", data, {
+        headers: { "x-auth-token": localStorage.getItem("token") },
+      })
+      .then(() => console.log("succes!"))
+      .catch((err) => console.log(err.message));
+  };
+
   return (
-    <div className={classes.formContainer}>
-      <div className={classes.insideForm}>
-        <form>
-          <label className={classes.customField}>
-            <input type="text" required />
-            <span className={classes.placeholder}>Team Name</span>
-          </label>
-          <label className={classes.customField}>
-            <input type="text" required />
-            <span className={classes.placeholder}>Team Description</span>
-          </label>
-          <label className={classes.customField}>
-            <Button>Create New Team</Button>
-          </label>
-        </form>
-      </div>
-    </div>
+    <Form
+      inputOne="Team Name"
+      inputTwo="Team Description"
+      submitted={createTeam}
+    ></Form>
   );
 };
 

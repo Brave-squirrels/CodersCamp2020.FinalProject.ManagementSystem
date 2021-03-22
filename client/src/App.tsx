@@ -31,6 +31,9 @@ const ForgotPassword = React.lazy(
   () => import("./containers/forgotPassword/forgotPassword")
 );
 const CreateTeam = React.lazy(() => import("./containers/Teams/createTeam"));
+const CreateProject = React.lazy(
+  () => import("./containers/Projects/createProject")
+);
 
 interface LoginState {
   loading: boolean;
@@ -94,6 +97,7 @@ const App = () => {
             <Route exact path="/createTeam" component={CreateTeam} />
             <Route exact path="/projects/id" component={Project} />
             <Route exact path="/projects" component={Projects} />
+            <Route exact path="/createProject" component={CreateProject} />
             <Route exact path="/teams" render={() => <h1>Teams</h1>} />
             <Route exact path="/confirmed" render={() => <Confirmed />} />
             <Route

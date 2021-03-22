@@ -7,9 +7,13 @@ import {
 import createUserReducer from "./createUserSlice";
 import loginReducer from "./loginSlice";
 import sideNavActionReducer from "./sideNavActionSlice";
+
+import inputValidationSlice from "./teamInfoSlice";
+
 import sendForgotPassword from "./sendForgotPassword";
 import changePasswordLanding from "./changePasswordLoggedOut";
 import userReducer from "./userSlice";
+
 import thunk from "redux-thunk";
 
 export const store = configureStore({
@@ -17,6 +21,7 @@ export const store = configureStore({
     createUser: createUserReducer,
     login: loginReducer,
     sideNavAction: sideNavActionReducer,
+    inputValidation: inputValidationSlice,
     sendForgotPassword: sendForgotPassword,
     changePasswordLanding: changePasswordLanding,
     user: userReducer,
