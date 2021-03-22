@@ -1,17 +1,16 @@
 import React, { FunctionComponent } from "react";
-import { Link, useHistory } from "react-router-dom";
 
+import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectTeams } from "reduxState/userSlice";
 import Card from "components/UI/Card";
 import CardContainer from "components/UI/CardContainer";
 import classes from "./user.module.scss";
 import Button from "components/UI/formElements/button/button";
 import NavigationItem from "components/UI/navigationItem/navigationItem";
 
-interface Props {
-  teams: never[];
-}
-
-const UserTeams: FunctionComponent<Props> = ({ teams }) => {
+const UserTeams: FunctionComponent = () => {
+  const teams = useSelector(selectTeams);
   const history = useHistory();
 
   const buttonClicked = () => {

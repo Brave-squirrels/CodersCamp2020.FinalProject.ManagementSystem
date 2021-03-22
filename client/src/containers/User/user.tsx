@@ -1,34 +1,24 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios/axiosMain";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getTeamsProjects } from "reduxState/userSlice";
 import UserProjects from "./user.projects";
 import UserTeams from "./user.teams";
 import classes from "./user.module.scss";
 
 const User = () => {
-  const [teams, setTeams] = useState([]);
-  const [projects, setProjects] = useState([]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    (async () => {
-      const result = (
-        await axios("/users/me", {
-          headers: {
-            "x-auth-token": localStorage.getItem("token"),
-          },
-        })
-      ).data;
-      setTeams(result.teams);
-      setProjects(result.projects);
-    })();
-  }, []);
+    dispatch(getTeamsProjects());
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className={classes.userContainer}>
       <div className={classes.element}>
-        <UserTeams {...{ teams }} />
+        <UserTeams />
       </div>
       <div className={classes.element}>
-        <UserProjects {...{ projects }} />
+        <UserProjects />
       </div>
     </div>
   );

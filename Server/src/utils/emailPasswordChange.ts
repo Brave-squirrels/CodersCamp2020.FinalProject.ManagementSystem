@@ -17,7 +17,7 @@ export default async function sendEmail(email: string, url: string) {
   const mailOptions = {
     from: process.env.EMAIL,
     to: email,
-    subject: "Confirm Email",
+    subject: "Change Password",
     html: `
 		<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
 			<tbody>
@@ -148,7 +148,7 @@ export default async function sendEmail(email: string, url: string) {
 											color: #333;
 										"
 									>
-										To confirm your account just click this link below
+										To change your password just click this link below
 									</td>
 								</tr>
 								<tr>
@@ -188,7 +188,7 @@ export default async function sendEmail(email: string, url: string) {
 													padding: 0.5rem;
 												"
 											>
-												Confirm email
+												Change password
 											</div></a
 										>
 									</td>

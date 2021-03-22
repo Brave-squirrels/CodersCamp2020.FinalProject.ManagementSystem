@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import FormStructure from "components/UI/formElements/formStructure/formStructure";
@@ -10,30 +10,47 @@ import Notification from "components/notification/notification";
 
 import onChangeForm from "utils/onChangeForm";
 
-import styles from "./forgotPassword.module.scss";
+import styles from "./resetPassword.module.scss";
 import checkMark from "../../assets/checkMark.svg";
 
-import { sendChangePassword } from "reduxState/sendForgotPassword";
+import { changePasswordLanding } from "reduxState/changePasswordLoggedOut";
 import { RootState } from "reduxState/store";
 
-const ForgotPassword = () => {
+const ResetPassword = () => {
   const history = useHistory();
+  const location = useLocation();
 
   const reduxState = useSelector(
-    (state: RootState) => state.sendForgotPassword
+    (state: RootState) => state.changePasswordLanding
   );
+
   const dispatch = useDispatch();
 
-  const [forgot, setForgot] = useState({
-    email: {
+  /* Set input states */
+  const [password, setPassword] = useState({
+    password: {
       val: "",
-      type: "email",
+      type: "password",
       inputType: "input",
-      placeholder: "E-mail",
-      label: "E-mail",
+      placeholder: "********",
+      label: "New password",
       validation: {
         required: true,
-        minLength: 5,
+        minLength: 8,
+        maxLength: 50,
+      },
+      touched: false,
+      valid: false,
+    },
+    confirmPassword: {
+      val: "",
+      type: "password",
+      inputType: "input",
+      placeholder: "********",
+      label: "Confirm Password",
+      validation: {
+        required: true,
+        minLength: 8,
         maxLength: 50,
       },
       touched: false,
@@ -42,15 +59,21 @@ const ForgotPassword = () => {
     formValid: false,
   });
 
-  const onChangeReset = (
+  /* Handle input change and validation  */
+  const onChangePassword = (
     event: { target: HTMLInputElement },
-    inputType: keyof typeof forgot
+    inputType: keyof typeof password
   ) => {
     /* Mutate and valid state */
-    const { updatedFields, validForm } = onChangeForm(event, inputType, forgot);
+    const { updatedFields, validForm } = onChangeForm(
+      event,
+      inputType,
+      password,
+      true
+    );
 
     /* Set up new state */
-    setForgot((prevState) => {
+    setPassword((prevState) => {
       return {
         ...prevState,
         ...updatedFields,
@@ -59,6 +82,7 @@ const ForgotPassword = () => {
     });
   };
 
+  /* Handle go back button */
   const goBackHandler = (e?: React.FormEvent<HTMLFormElement>) => {
     if (e) {
       e.preventDefault();
@@ -67,36 +91,43 @@ const ForgotPassword = () => {
   };
 
   /* Handle request */
-  const sendResetPassword = (e: React.FormEvent<HTMLFormElement>) => {
+  const sendChangePasswordMail = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const token = location.pathname.substring(
+      location.pathname.lastIndexOf("/") + 1
+    );
     const data = {
-      email: forgot.email.val,
+      password: password.password.val,
+      confirmPassword: password.confirmPassword.val,
     };
-    dispatch(sendChangePassword(data));
+    dispatch(changePasswordLanding(data, token));
   };
 
-  let sendResetContent: JSX.Element = (
-    <form onSubmit={(e) => sendResetPassword(e)} className={styles.formStyles}>
+  let resetPasswordContent: JSX.Element = (
+    <form
+      onSubmit={(e) => sendChangePasswordMail(e)}
+      className={styles.formStyles}
+    >
       <FormStructure
-        state={forgot}
-        onChangeHandler={onChangeReset}
-        btnText="RESET"
-        formTitle="Reset password"
+        state={password}
+        onChangeHandler={onChangePassword}
+        btnText="SEND"
+        formTitle="Change password"
       />
     </form>
   );
   if (reduxState.loading) {
-    sendResetContent = <Spinner />;
+    resetPasswordContent = <Spinner />;
   }
   if (reduxState.success) {
-    sendResetContent = (
+    resetPasswordContent = (
       <form
         className={styles.notificationSuccess}
         onSubmit={(e) => goBackHandler(e)}
       >
         <Notification
-          title="Link yo reset your password has been sent to your email account"
-          subTitle="Please click on the link that has been sent to your email account to change your password."
+          title="You have successfully reset your password"
+          subTitle="Go back to the main page to sign in!"
           btnText="GO BACK"
           img={checkMark}
         />
@@ -104,13 +135,13 @@ const ForgotPassword = () => {
     );
   }
 
+  /* Return statement */
   return (
     <div className={styles.forgotContainer}>
       <div className={styles.goBackBtn}>
         <Button clicked={goBackHandler}>Go back</Button>
       </div>
-
-      {sendResetContent}
+      {resetPasswordContent}
       {reduxState.error ? (
         <ErrorHandler>{reduxState.error.response.data}</ErrorHandler>
       ) : null}
@@ -118,4 +149,4 @@ const ForgotPassword = () => {
   );
 };
 
-export default ForgotPassword;
+export default ResetPassword;

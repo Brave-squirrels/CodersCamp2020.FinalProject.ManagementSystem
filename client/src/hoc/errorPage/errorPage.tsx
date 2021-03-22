@@ -2,15 +2,14 @@ import React from "react";
 
 import styles from "./errorPage.module.scss";
 
-import wrench from "../../assets/wrench.png";
+import pageError from "../../assets/404.png";
 
 const errorPage = () => {
   return (
     <div className={styles.notFoundContainer}>
-      <h1 className={styles.title}>404</h1>
+      <img src={pageError} alt="" className={styles.image} />
       <div className={styles.contentWrapper}>
-        <span className={styles.subtitle}>Ooops, something went wrong</span>
-        <img src={wrench} alt="Wrench" className={styles.image} />
+        <span className={styles.subtitle}>Ooops, something went wrong...</span>
       </div>
     </div>
   );
