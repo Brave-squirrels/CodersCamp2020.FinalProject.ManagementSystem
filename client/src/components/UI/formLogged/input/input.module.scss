@@ -1,0 +1,61 @@
+@import "../../../../styles/variables.scss";
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .label {
+    transition: 0.1s;
+    position: absolute;
+    transform: translateY(50%);
+    color: $secondFontColor;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  .input {
+    z-index: 0;
+    color: $secondFontColor;
+    max-width: 320px;
+    width: 100%;
+    border: 2px solid $secondFontColor;
+    appearance: none;
+    background: transparent;
+    padding: 12px;
+    border-radius: 3px;
+    outline: none;
+    transition: border-color 0.1s ease-out;
+    @media (max-width: 650px) {
+      width: 90%;
+    }
+    &:focus + .label {
+      transition: 0.1s;
+      transform: translateY(-50%);
+      font-size: 0.8em;
+      color: $mainFontColor;
+      background: $backgroundDark;
+      z-index: 2;
+    }
+    &:focus {
+      border-color: $mainFontColor;
+      z-index: 2;
+    }
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.invalidInput {
+  .input {
+    border-color: $invalidInputBorder;
+    color: $invalidInputBorder;
+    &:focus {
+      border-color: $invalidInputBorder;
+      color: $invalidInputBorder;
+    }
+  }
+  .label {
+    color: $invalidInputBorder !important;
+  }
+}
