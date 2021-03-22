@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { selectProjects } from "reduxState/userSlice";
 import Card from "components/UI/Card";

@@ -4,10 +4,6 @@ import styles from "./createProject.module.scss";
 
 import FormStructure from "components/UI/formLogged/formStructure/formStructure";
 const CreateProject = () => {
-  const createProject = async () => {
-    console.log(1);
-  };
-
   const [project, setProject] = useState({
     projectName: {
       val: "",
