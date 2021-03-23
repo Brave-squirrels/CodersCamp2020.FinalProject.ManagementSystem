@@ -23,7 +23,7 @@ const UserTeams: FunctionComponent = () => {
       <CardContainer>
         {teams && teams.length ? (
           teams.map(({ name, id }) => (
-            <NavigationItem path={`/teams/${id}`}>
+            <NavigationItem path={`/teams/${id}`} key={id}>
               <Card key={id}>
                 <h3 className={classes.cardHeader}>{name}</h3>
               </Card>
