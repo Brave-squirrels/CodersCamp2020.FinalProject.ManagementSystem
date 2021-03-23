@@ -24,12 +24,12 @@ const CreateTeam = () => {
       inputType: "textarea",
       label: "Team Description",
       validation: {
-        required: true,
+        required: false,
         minLength: 0,
         maxLength: 255,
       },
       touched: false,
-      valid: false,
+      valid: true,
     },
     formValid: false,
   });
