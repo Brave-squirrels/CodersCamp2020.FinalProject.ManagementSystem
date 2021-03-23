@@ -11,7 +11,7 @@ import sideNavActionReducer from "./sideNavActionSlice";
 import sendForgotPassword from "./sendForgotPassword";
 import changePasswordLanding from "./changePasswordLoggedOut";
 import userReducer from "./userSlice";
-import teamDataSlice from './teamDataSlice';
+import singleTeamData from './teamDataSlice';
 import sendVerifyAgain from './sendVerifyAgain';
 
 import thunk from "redux-thunk";
@@ -24,7 +24,7 @@ export const store = configureStore({
     sendForgotPassword: sendForgotPassword,
     changePasswordLanding: changePasswordLanding,
     user: userReducer,
-    teamData: teamDataSlice,
+    singleTeamData: singleTeamData,
     sendVerifyAgain: sendVerifyAgain
   },
   middleware: [
