@@ -98,7 +98,7 @@ const App = () => {
         <Main>
           <Switch>
             <Route exact path="/" render={() => <User />} />
-            <Route exact path="/teams/:id" component={Team} />
+            <Route exact path="/teams/:teamid" component={Team} />
             <Route exact path="/teams" component={Teams} />
             <Route exact path="/createTeam" component={CreateTeam} />
             <Route exact path="/projects/id" component={Project} />
