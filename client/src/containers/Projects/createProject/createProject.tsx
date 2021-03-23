@@ -23,12 +23,12 @@ const CreateProject = () => {
       inputType: "textarea",
       label: "Project Description",
       validation: {
-        required: true,
+        required: false,
         minLength: 0,
         maxLength: 255,
       },
       touched: false,
-      valid: false,
+      valid: true,
     },
     deadline: {
       val: "",
