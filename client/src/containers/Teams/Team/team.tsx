@@ -37,7 +37,7 @@ const Team = () => {
 
   return (
     <ViewWithSidebar>
-      <SideBar />
+      <SideBar sidebarTitle="Your teams" data={localTeamData} />
       <div className={styles.rightSideWrapper}>
         <div className={styles.wrapper}>
           <h1 className={styles.title}>{localTeamData.teamName}</h1>

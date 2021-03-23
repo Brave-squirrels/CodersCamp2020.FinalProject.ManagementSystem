@@ -17,7 +17,7 @@ interface Props {
 }
 
 const formStructure = (props: Props) => {
-  let key: keyof typeof props.state;
+  let key: typeof props.state;
   let elements = [];
   for (key in props.state) {
     elements.push({
@@ -28,7 +28,7 @@ const formStructure = (props: Props) => {
 
   const onChangeInput = (
     event: { target: HTMLInputElement },
-    inputType: keyof typeof props.state
+    inputType: typeof props.state
   ) => {
     /* Mutate, save and valid state */
     onChangeForm(

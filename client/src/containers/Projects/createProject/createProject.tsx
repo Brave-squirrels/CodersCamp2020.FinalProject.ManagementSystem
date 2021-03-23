@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { mutateToAxios } from "utils/onChangeForm";
+import axios from "axios/axiosMain";
 
 import FormStructure from "components/UI/formLogged/formStructure/formStructure";
 
@@ -48,7 +49,12 @@ const CreateProject = () => {
   const submitForm = (e: any) => {
     e.preventDefault();
     const formData = mutateToAxios(project);
-    console.log(formData);
+    axios
+      .post("/teams/60586527eb8b980255e32d70/projects", formData, {
+        headers: { "x-auth-token": localStorage.getItem("token") },
+      })
+      .then(() => console.log("succes!"))
+      .catch((err) => console.log(err.response.data));
   };
 
   return (

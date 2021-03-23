@@ -10,7 +10,7 @@ const teamInfoValidation = createSlice({
   reducers: {
     setData(state, action: PayloadAction<types.TeamData>) {
       state = { ...action.payload };
-      console.log(state);
+      // console.log(state);
     },
   },
 });
