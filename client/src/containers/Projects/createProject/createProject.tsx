@@ -50,24 +50,13 @@ const CreateProject = () => {
     inputType: keyof typeof project
   ) => {
     /* Mutate and valid state */
-    const { updatedFields, validForm } = onChangeForm(
-      event,
-      inputType,
-      project
-    );
-
-    /* Set up new state */
-    setProject((prevState: any) => {
-      return {
-        ...prevState,
-        ...updatedFields,
-        formValid: validForm,
-      };
-    });
+    onChangeForm(event, inputType, project, setProject);
   };
 
   const submitForm = (e: any) => {
     e.preventDefault();
+    const formData = mutateToAxios(project);
+    console.log(formData);
   };
 
   return (

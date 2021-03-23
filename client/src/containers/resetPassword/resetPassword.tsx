@@ -65,21 +65,7 @@ const ResetPassword = () => {
     inputType: keyof typeof password
   ) => {
     /* Mutate and valid state */
-    const { updatedFields, validForm } = onChangeForm(
-      event,
-      inputType,
-      password,
-      true
-    );
-
-    /* Set up new state */
-    setPassword((prevState) => {
-      return {
-        ...prevState,
-        ...updatedFields,
-        formValid: validForm,
-      };
-    });
+    onChangeForm(event, inputType, password, setPassword, true);
   };
 
   /* Handle go back button */

@@ -47,16 +47,7 @@ const ForgotPassword = () => {
     inputType: keyof typeof forgot
   ) => {
     /* Mutate and valid state */
-    const { updatedFields, validForm } = onChangeForm(event, inputType, forgot);
-
-    /* Set up new state */
-    setForgot((prevState) => {
-      return {
-        ...prevState,
-        ...updatedFields,
-        formValid: validForm,
-      };
-    });
+    onChangeForm(event, inputType, forgot, setForgot);
   };
 
   const goBackHandler = (e?: React.FormEvent<HTMLFormElement>) => {

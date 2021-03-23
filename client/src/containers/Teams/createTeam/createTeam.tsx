@@ -36,7 +36,7 @@ const CreateTeam = () => {
 
   const createTeam = async (e: any) => {
     e.preventDefault();
-
+    /* Transform data to axios format */
     const formData = mutateToAxios(team);
     axios
       .post("/teams", formData, {
@@ -50,17 +50,8 @@ const CreateTeam = () => {
     event: { target: HTMLInputElement },
     inputType: keyof typeof team
   ) => {
-    /* Mutate and valid state */
-    const { updatedFields, validForm } = onChangeForm(event, inputType, team);
-
-    /* Set up new state */
-    setTeam((prevState) => {
-      return {
-        ...prevState,
-        ...updatedFields,
-        formValid: validForm,
-      };
-    });
+    /* Mutate, save and valid state */
+    onChangeForm(event, inputType, team, setTeam);
   };
 
   return (

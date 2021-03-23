@@ -133,21 +133,7 @@ const StartPage = () => {
     inputType: keyof typeof signUp
   ) => {
     /* Mutate and valid state */
-    const { updatedFields, validForm } = onChangeForm(
-      event,
-      inputType,
-      signUp,
-      true
-    );
-
-    /* Set up new state */
-    setSignUp((prevState) => {
-      return {
-        ...prevState,
-        ...updatedFields,
-        formValid: validForm,
-      };
-    });
+    onChangeForm(event, inputType, signUp, setSignUp, true);
   };
 
   /* Handle changes in signIn form */
@@ -156,16 +142,7 @@ const StartPage = () => {
     inputType: keyof typeof signIn
   ) => {
     /* Mutate and valid state */
-    const { updatedFields, validForm } = onChangeForm(event, inputType, signIn);
-
-    /* Set up new state */
-    setSignIn((prevState) => {
-      return {
-        ...prevState,
-        ...updatedFields,
-        formValid: validForm,
-      };
-    });
+    onChangeForm(event, inputType, signIn, setSignIn);
   };
 
   /* Create user after submit */
