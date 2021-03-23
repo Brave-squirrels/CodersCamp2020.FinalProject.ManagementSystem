@@ -30,7 +30,8 @@
     @media (max-width: 650px) {
       width: 90%;
     }
-    &:focus + .label {
+    &:focus + .label,
+    &:valid + .label {
       transition: 0.1s;
       transform: translateY(-50%);
       font-size: 0.8em;

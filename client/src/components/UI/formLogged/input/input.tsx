@@ -21,8 +21,8 @@ const input: FunctionComponent<Props> = (props) => {
 
   let selectOptions = [];
   if (props.inputType === "select") {
-    for (let key in props.stateMain.select.options) {
-      selectOptions.push(props.stateMain.select.options[key]);
+    for (let key in props.stateMain.status.options) {
+      selectOptions.push(props.stateMain.status.options[key]);
     }
   }
 
@@ -36,6 +36,7 @@ const input: FunctionComponent<Props> = (props) => {
             type={props.type}
             value={props.inputValue}
             onChange={props.onChangeInput}
+            required
           />
           <span className={styles.label}>{props.label}</span>
         </label>
@@ -48,6 +49,7 @@ const input: FunctionComponent<Props> = (props) => {
             className={[styles.input, styles.textarea].join(" ")}
             value={props.inputValue}
             onChange={props.onChangeInput}
+            required
           />
           <span className={styles.label}>{props.label}</span>
         </label>
@@ -61,6 +63,7 @@ const input: FunctionComponent<Props> = (props) => {
             value={props.inputValue}
             onChange={props.onChangeInput}
             className={[styles.select, styles.input].join(" ")}
+            required
           >
             {selectOptions.map((option) => {
               return (
