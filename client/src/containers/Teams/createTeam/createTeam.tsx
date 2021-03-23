@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import axios from "axios/axiosMain";
 import { mutateToAxios } from "utils/onChangeForm";
 
+import styles from "./createTeam.module.scss";
+
 import FormStructure from "components/UI/formLogged/formStructure/formStructure";
 
 const CreateTeam = () => {
@@ -47,14 +49,16 @@ const CreateTeam = () => {
   };
 
   return (
-    <FormStructure
-      state={team}
-      setState={setTeam}
-      btnText="Create"
-      formTitle="Create team"
-      submitted={createTeam}
-      checkPass={false}
-    />
+    <div className={styles.formWrapper}>
+      <FormStructure
+        state={team}
+        setState={setTeam}
+        btnText="Create"
+        formTitle="Create team"
+        submitted={createTeam}
+        checkPass={false}
+      />
+    </div>
   );
 };
 
