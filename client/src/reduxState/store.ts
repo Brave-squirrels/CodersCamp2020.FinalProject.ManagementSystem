@@ -7,9 +7,12 @@ import {
 import createUserReducer from "./createUserSlice";
 import loginReducer from "./loginSlice";
 import sideNavActionReducer from "./sideNavActionSlice";
+
 import sendForgotPassword from "./sendForgotPassword";
 import changePasswordLanding from "./changePasswordLoggedOut";
 import userReducer from "./userSlice";
+import teamDataSlice from './teamDataSlice';
+
 import thunk from "redux-thunk";
 
 export const store = configureStore({
@@ -20,6 +23,7 @@ export const store = configureStore({
     sendForgotPassword: sendForgotPassword,
     changePasswordLanding: changePasswordLanding,
     user: userReducer,
+    teamData: teamDataSlice,
   },
   middleware: [
     ...getDefaultMiddleware({

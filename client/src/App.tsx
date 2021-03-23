@@ -18,10 +18,14 @@ import { RootState } from "reduxState/store";
 const LandingNotLogged = React.lazy(
   () => import("./containers/landingNotLogged/landingNotLogged")
 );
-const Projects = React.lazy(() => import("./containers/Projects/projects"));
-const Project = React.lazy(() => import("./containers/Projects/project"));
-const Teams = React.lazy(() => import("./containers/Teams/teams"));
-const Team = React.lazy(() => import("./containers/Teams/team"));
+const Projects = React.lazy(
+  () => import("./containers/Projects/Projects/projects")
+);
+const Project = React.lazy(
+  () => import("./containers/Projects/Project/project")
+);
+const Teams = React.lazy(() => import("./containers/Teams/Teams/teams"));
+const Team = React.lazy(() => import("./containers/Teams/Team/team"));
 const User = React.lazy(() => import("./containers/User/user"));
 const Confirmed = React.lazy(() => import("./containers/Confirmed/Confirmed"));
 const ResNav = React.lazy(
@@ -30,7 +34,12 @@ const ResNav = React.lazy(
 const ForgotPassword = React.lazy(
   () => import("./containers/forgotPassword/forgotPassword")
 );
-const CreateTeam = React.lazy(() => import("./containers/Teams/createTeam"));
+const CreateTeam = React.lazy(
+  () => import("./containers/Teams/createTeam/createTeam")
+);
+const CreateProject = React.lazy(
+  () => import("./containers/Projects/createProject/createProject")
+);
 
 interface LoginState {
   loading: boolean;
@@ -89,11 +98,12 @@ const App = () => {
         <Main>
           <Switch>
             <Route exact path="/" render={() => <User />} />
-            <Route exact path="/teams/id" component={Team} />
+            <Route exact path="/teams/:teamId" component={Team} />
             <Route exact path="/teams" component={Teams} />
             <Route exact path="/createTeam" component={CreateTeam} />
             <Route exact path="/projects/id" component={Project} />
             <Route exact path="/projects" component={Projects} />
+            <Route exact path="/createProject" component={CreateProject} />
             <Route exact path="/teams" render={() => <h1>Teams</h1>} />
             <Route exact path="/confirmed" render={() => <Confirmed />} />
             <Route

@@ -8,8 +8,6 @@ import Spinner from "components/UI/Spinner/spinner";
 import ErrorHandler from "components/errorHandler/errorHandler";
 import Notification from "components/notification/notification";
 
-import onChangeForm from "utils/onChangeForm";
-
 import styles from "./resetPassword.module.scss";
 import checkMark from "../../assets/checkMark.svg";
 
@@ -59,29 +57,6 @@ const ResetPassword = () => {
     formValid: false,
   });
 
-  /* Handle input change and validation  */
-  const onChangePassword = (
-    event: { target: HTMLInputElement },
-    inputType: keyof typeof password
-  ) => {
-    /* Mutate and valid state */
-    const { updatedFields, validForm } = onChangeForm(
-      event,
-      inputType,
-      password,
-      true
-    );
-
-    /* Set up new state */
-    setPassword((prevState) => {
-      return {
-        ...prevState,
-        ...updatedFields,
-        formValid: validForm,
-      };
-    });
-  };
-
   /* Handle go back button */
   const goBackHandler = (e?: React.FormEvent<HTMLFormElement>) => {
     if (e) {
@@ -104,17 +79,14 @@ const ResetPassword = () => {
   };
 
   let resetPasswordContent: JSX.Element = (
-    <form
-      onSubmit={(e) => sendChangePasswordMail(e)}
-      className={styles.formStyles}
-    >
-      <FormStructure
-        state={password}
-        onChangeHandler={onChangePassword}
-        btnText="SEND"
-        formTitle="Change password"
-      />
-    </form>
+    <FormStructure
+      state={password}
+      setState={setPassword}
+      btnText="SEND"
+      formTitle="Change password"
+      submitted={sendChangePasswordMail}
+      checkPass={true}
+    />
   );
   if (reduxState.loading) {
     resetPasswordContent = <Spinner />;

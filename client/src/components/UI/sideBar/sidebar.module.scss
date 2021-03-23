@@ -6,4 +6,30 @@
   height: 95%;
   background-color: $backgroundLight;
   box-shadow: 1px 1px 3px black;
+  text-align: center;
+  .title {
+    color: $fontActive;
+    margin: 0;
+    padding: 0.5em;
+    font-size: 2em;
+    border-bottom: 1px solid $fontActive;
+  }
+  .teamsList {
+    color: $secondFontColor;
+    font-size: 1.2em;
+    margin: 0;
+    padding: 1em 0.5em;
+    list-style: none;
+    text-align: left;
+    li {
+      padding: 0.5em;
+      margin-bottom: 0.5em;
+      border-bottom: 1px solid $fontActive;
+      list-style: none;
+      &:hover {
+        cursor: pointer;
+        background-color: $backgroundCardHover;
+      }
+    }
+  }
 }

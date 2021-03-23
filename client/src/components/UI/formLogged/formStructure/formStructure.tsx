@@ -1,11 +1,19 @@
 import React from "react";
 
 import Input from "../input/input";
-import Button from "../button/button";
-import FormTitle from "../formTitle/formTitle";
+import Button from "../../formElements/button/button";
+import FormTitle from "../../formElements/formTitle/formTitle";
 import styles from "./formStructure.module.scss";
 import onChangeForm from "utils/onChangeForm";
 
+/* Props
+    state - state with input config
+    seState - setState callback function from useState
+    btnText - text in submit form button
+    formTitle - text in form title
+    submitted - function on submit form
+    children - JSX element optionally passed
+*/
 interface Props {
   state: any;
   setState: any;
@@ -17,7 +25,7 @@ interface Props {
 }
 
 const formStructure = (props: Props) => {
-  let key: typeof props.state;
+  let key: keyof typeof props.state;
   let elements = [];
   for (key in props.state) {
     elements.push({
@@ -28,7 +36,7 @@ const formStructure = (props: Props) => {
 
   const onChangeInput = (
     event: { target: HTMLInputElement },
-    inputType: typeof props.state
+    inputType: keyof typeof props.state
   ) => {
     /* Mutate, save and valid state */
     onChangeForm(
@@ -40,13 +48,12 @@ const formStructure = (props: Props) => {
     );
   };
 
-  const formElements = elements.map((input: any) => {
+  const form = elements.map((input: any) => {
     return (
       <Input
         key={input.id}
         type={input.config.type}
         inputType={input.config.inputType}
-        placeholder={input.config.placeholder}
         inputValue={input.config.val}
         onChangeInput={(e: { target: HTMLInputElement }) =>
           onChangeInput(e, input.id)
@@ -62,7 +69,7 @@ const formStructure = (props: Props) => {
   return (
     <form onSubmit={(event) => props.submitted(event)} className={styles.form}>
       <FormTitle>{props.formTitle}</FormTitle>
-      {formElements} {props.children}{" "}
+      {form} {props.children}{" "}
       <Button disabled={!props.state.formValid}>{props.btnText}</Button>
     </form>
   );

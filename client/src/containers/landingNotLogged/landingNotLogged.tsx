@@ -14,7 +14,7 @@ import styles from "./landingNotLogged.module.scss";
 import signInTmp from "../../assets/signInTmp.svg";
 import signUpTmp from "../../assets/signUpTmp.svg";
 
-import onChangeForm from "utils/onChangeForm";
+import { mutateToAxios } from "utils/onChangeForm";
 
 import { createUser } from "reduxState/createUserSlice";
 import { loginUser } from "reduxState/loginSlice";
@@ -127,88 +127,32 @@ const StartPage = () => {
     classes = [styles.container];
   }
 
-  /* Handle changes in signUp form */
-  const onChangeSignUp = (
-    event: { target: HTMLInputElement },
-    inputType: keyof typeof signUp
-  ) => {
-    /* Mutate and valid state */
-    const { updatedFields, validForm } = onChangeForm(
-      event,
-      inputType,
-      signUp,
-      true
-    );
-
-    /* Set up new state */
-    setSignUp((prevState) => {
-      return {
-        ...prevState,
-        ...updatedFields,
-        formValid: validForm,
-      };
-    });
-  };
-
-  /* Handle changes in signIn form */
-  const onChangeSignIn = (
-    event: { target: HTMLInputElement },
-    inputType: keyof typeof signIn
-  ) => {
-    /* Mutate and valid state */
-    const { updatedFields, validForm } = onChangeForm(event, inputType, signIn);
-
-    /* Set up new state */
-    setSignIn((prevState) => {
-      return {
-        ...prevState,
-        ...updatedFields,
-        formValid: validForm,
-      };
-    });
-  };
-
   /* Create user after submit */
   const createUserHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const formData: any = {};
-    let key: keyof typeof signUp;
-    for (key in signUp) {
-      if (key === "formValid") {
-        break;
-      }
-      formData[key] = signUp[key].val;
-    }
+    const formData = mutateToAxios(signUp);
+
     dispatch(createUser(formData));
   };
 
   /* Login user after submit */
   const loginUserHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const formData: any = {};
-    let key: keyof typeof signIn;
-    for (key in signIn) {
-      if (key === "formValid") {
-        break;
-      }
-      formData[key] = signIn[key].val;
-    }
+    const formData = mutateToAxios(signIn);
+
     dispatch(loginUser(formData));
   };
 
   /* Change content when API call */
   let signUpContent: JSX.Element = (
-    <form
-      onSubmit={(event) => createUserHandler(event)}
-      className={styles.form}
-    >
-      <FormStructure
-        state={signUp}
-        onChangeHandler={onChangeSignUp}
-        btnText="SIGN UP"
-        formTitle="Sign Up"
-      />
-    </form>
+    <FormStructure
+      state={signUp}
+      setState={setSignUp}
+      btnText="SIGN UP"
+      formTitle="Sign Up"
+      submitted={createUserHandler}
+      checkPass={true}
+    />
   );
 
   if (signUpState.loading) {
@@ -221,9 +165,11 @@ const StartPage = () => {
   let signInContent: JSX.Element = (
     <FormStructure
       state={signIn}
-      onChangeHandler={onChangeSignIn}
+      setState={setSignIn}
       btnText="SIGN IN"
       formTitle="Sign In"
+      submitted={loginUserHandler}
+      checkPass={false}
     >
       <NavLink to="/forgotpassword" exact className={styles.forgotLink}>
         Forgot password?
@@ -246,15 +192,10 @@ const StartPage = () => {
           </div>
 
           <div className={styles.signInForm}>
-            <form
-              onSubmit={(event) => loginUserHandler(event)}
-              className={styles.form}
-            >
-              {signInContent}
-              {signInState.error ? (
-                <ErrorHandler>{signInState.error.response.data}</ErrorHandler>
-              ) : null}
-            </form>
+            {signInContent}
+            {signInState.error ? (
+              <ErrorHandler>{signInState.error.response.data}</ErrorHandler>
+            ) : null}
           </div>
         </div>
       </div>

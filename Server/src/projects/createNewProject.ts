@@ -19,13 +19,12 @@ const createNewProject = async (req: Request, res: Response) => {
       return res.status(StatusCodes.BAD_REQUEST).send("You are not allowed to do that!");
     }
   }
-
   const projectData: Project = {
     team: { id: team._id, name: team.teamName },
     owner: { id: req.userInfo._id, name: user!.name },
     ...req.body,
   };
-
+  
   const { error } = validateProject(projectData);
   if (error)
     return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);

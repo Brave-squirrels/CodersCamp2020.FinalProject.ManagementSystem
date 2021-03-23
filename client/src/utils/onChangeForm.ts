@@ -112,7 +112,7 @@ const validation = (value: string,rules?: Rules) => {
     @param {state} - state
     @param {checkPass} - boolean value to pass if we have to check if passwords are matching
 */
-const onChangeForm = (e: {target:HTMLInputElement}, inputType: any, state: any, checkPass?: boolean)=>{
+const onChangeForm = (e: {target:HTMLInputElement}, inputType: any, state: any, setState: any, checkPass?: boolean)=>{
 
     const stateCopy = {...state};
     const inputField={
@@ -123,11 +123,27 @@ const onChangeForm = (e: {target:HTMLInputElement}, inputType: any, state: any, 
     const updatedFields = mutateState(e, inputType, stateCopy, valid, checkPass);
     const validForm = wholeFormValidity(updatedFields);
 
-    return{
-        updatedFields,
-        validForm
-    }
+    setState((prevState : any)=>{
+      return{
+        ...prevState,
+        ...updatedFields,
+        formValid: validForm
+      }
+    })
 
+}
+
+
+export const mutateToAxios = (state : any) =>{
+  const formData: any = {};
+  let key: keyof typeof state;
+  for(key in state){
+    if(key==='formValid'){
+      break
+    }
+    formData[key] = state[key].val;
+  }
+  return formData;
 }
 
 export default onChangeForm;

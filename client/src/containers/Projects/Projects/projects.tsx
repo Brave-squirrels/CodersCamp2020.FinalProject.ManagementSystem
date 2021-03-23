@@ -1,5 +1,5 @@
-import BigRectangle from "../../components/UI/bigRectangle/bigRectangle";
-import Square from "../../components/UI/square/square";
+import BigRectangle from "components/UI/bigRectangle/bigRectangle";
+import Square from "components/UI/square/square";
 
 import classes from "./projects.module.scss";
 

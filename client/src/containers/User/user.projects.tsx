@@ -1,12 +1,18 @@
-import React, { FunctionComponent } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { selectProjects } from "reduxState/userSlice";
 import Card from "components/UI/Card";
 import CardContainer from "components/UI/CardContainer";
 import classes from "./user.module.scss";
+import { useHistory } from "react-router";
+import Button from "components/UI/formElements/button/button";
 
-const UserProjects: FunctionComponent = () => {
+const UserProjects = () => {
   const projects = useSelector(selectProjects);
+  const history = useHistory();
+  const buttonClicked = () => {
+    history.push("/createProject");
+  };
 
   return (
     <>
@@ -21,6 +27,7 @@ const UserProjects: FunctionComponent = () => {
         ) : (
           <div>You don't have any project yet...</div>
         )}
+        <Button clicked={() => buttonClicked()}>New Project</Button>
       </CardContainer>
     </>
   );

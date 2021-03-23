@@ -1,4 +1,4 @@
-import SideBar from "../../components/UI/sideBar/sideBar";
+import SideBar from "components/UI/sideBar/sideBar";
 import ViewWithSidebar from "hoc/viewWithSidebar/viewWithSidebar";
 import styles from "./project.module.scss";
 
@@ -12,7 +12,6 @@ const Project = () => {
 
           {/* Container for project's info */}
           <div className={styles.container}></div>
-
         </div>
       </div>
     </ViewWithSidebar>

@@ -8,8 +8,6 @@ import Spinner from "components/UI/Spinner/spinner";
 import ErrorHandler from "components/errorHandler/errorHandler";
 import Notification from "components/notification/notification";
 
-import onChangeForm from "utils/onChangeForm";
-
 import styles from "./forgotPassword.module.scss";
 import checkMark from "../../assets/checkMark.svg";
 
@@ -42,23 +40,6 @@ const ForgotPassword = () => {
     formValid: false,
   });
 
-  const onChangeReset = (
-    event: { target: HTMLInputElement },
-    inputType: keyof typeof forgot
-  ) => {
-    /* Mutate and valid state */
-    const { updatedFields, validForm } = onChangeForm(event, inputType, forgot);
-
-    /* Set up new state */
-    setForgot((prevState) => {
-      return {
-        ...prevState,
-        ...updatedFields,
-        formValid: validForm,
-      };
-    });
-  };
-
   const goBackHandler = (e?: React.FormEvent<HTMLFormElement>) => {
     if (e) {
       e.preventDefault();
@@ -76,14 +57,14 @@ const ForgotPassword = () => {
   };
 
   let sendResetContent: JSX.Element = (
-    <form onSubmit={(e) => sendResetPassword(e)} className={styles.formStyles}>
-      <FormStructure
-        state={forgot}
-        onChangeHandler={onChangeReset}
-        btnText="RESET"
-        formTitle="Reset password"
-      />
-    </form>
+    <FormStructure
+      state={forgot}
+      setState={setForgot}
+      btnText="RESET"
+      formTitle="Reset password"
+      submitted={sendResetPassword}
+      checkPass={false}
+    />
   );
   if (reduxState.loading) {
     sendResetContent = <Spinner />;
