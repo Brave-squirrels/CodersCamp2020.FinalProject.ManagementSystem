@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { RootState } from "reduxState/store";
 
@@ -9,16 +9,10 @@ import ViewWithSidebar from "hoc/viewWithSidebar/viewWithSidebar";
 import SideBar from "components/UI/sideBar/sideBar";
 import styles from "./team.module.scss";
 
-import axios from "axios/axiosMain";
-import { selectTeams } from "reduxState/userSlice";
-
 import { fetchTeam } from "reduxState/teamDataSlice";
 
 const Team = () => {
   const dispatch = useDispatch();
-  const [localTeamData, setTeamData] = useState<types.TeamData>({
-    ...types.baseTeamSetup,
-  });
 
   const { teamId } = useParams<types.TParams>();
 
