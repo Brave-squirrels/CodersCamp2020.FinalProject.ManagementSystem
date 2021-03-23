@@ -2,6 +2,7 @@
 
 .sideBar {
   margin-top: 10%;
+
   padding: 0;
   height: 95%;
   background-color: $backgroundLight;
@@ -21,14 +22,42 @@
     padding: 1em 0.5em;
     list-style: none;
     text-align: left;
-    li {
-      padding: 0.5em;
+    .activeTeam {
+      margin: 0;
+      padding: 0.2em 0.5em;
+      background: $backgroundDark;
+      box-shadow: 1px 1px 2px black;
+    }
+    & li {
+      padding: 0.5em 0;
       margin-bottom: 0.5em;
       border-bottom: 1px solid $fontActive;
       list-style: none;
+    }
+    .inactiveTeam {
+      transition: 0.2s;
+      &:hover {
+        background-color: $backgroundCardHover;
+        cursor: pointer;
+      }
+    }
+  }
+  .projectsList {
+    text-align: center;
+    list-style: none;
+    color: $secondFontColor;
+    margin: 0.5em 0 0 0;
+    padding: 0;
+    & > li {
+      box-sizing: border-box;
+      border: none;
+      list-style: none;
+      font-size: 0.8em;
+      transition: 0.2s;
       &:hover {
         cursor: pointer;
-        background-color: $backgroundCardHover;
+        transform: scale(1.05);
+        border: 1px solid $mainFontColor;
       }
     }
   }

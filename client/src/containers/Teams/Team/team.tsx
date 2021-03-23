@@ -10,13 +10,13 @@ import ViewWithSidebar from "hoc/viewWithSidebar/viewWithSidebar";
 import SideBar from "components/UI/sideBar/sideBar";
 import styles from "./team.module.scss";
 import axios from "axios/axiosMain";
+import { selectTeams } from "reduxState/userSlice";
 
 const Team = () => {
   const dispatch = useDispatch();
   const [localTeamData, setTeamData] = useState<types.TeamData>({
     ...types.baseTeamSetup,
   });
-
   const { teamId } = useParams<types.TParams>();
 
   const fetchData = () => {
@@ -33,11 +33,11 @@ const Team = () => {
 
   useEffect(() => {
     fetchData();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [teamId]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <ViewWithSidebar>
-      <SideBar sidebarTitle="Your teams" data={localTeamData} />
+      <SideBar sidebarTitle="Your teams" />
       <div className={styles.rightSideWrapper}>
         <div className={styles.wrapper}>
           <h1 className={styles.title}>{localTeamData.teamName}</h1>
