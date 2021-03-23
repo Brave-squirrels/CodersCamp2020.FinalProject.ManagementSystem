@@ -76,14 +76,13 @@ const ForgotPassword = () => {
   };
 
   let sendResetContent: JSX.Element = (
-    <form onSubmit={(e) => sendResetPassword(e)} className={styles.formStyles}>
-      <FormStructure
-        state={forgot}
-        onChangeHandler={onChangeReset}
-        btnText="RESET"
-        formTitle="Reset password"
-      />
-    </form>
+    <FormStructure
+      state={forgot}
+      onChangeHandler={onChangeReset}
+      btnText="RESET"
+      formTitle="Reset password"
+      submitted={sendResetPassword}
+    />
   );
   if (reduxState.loading) {
     sendResetContent = <Spinner />;

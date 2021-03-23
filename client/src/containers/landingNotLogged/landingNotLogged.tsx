@@ -186,17 +186,13 @@ const StartPage = () => {
 
   /* Change content when API call */
   let signUpContent: JSX.Element = (
-    <form
-      onSubmit={(event) => createUserHandler(event)}
-      className={styles.form}
-    >
-      <FormStructure
-        state={signUp}
-        onChangeHandler={onChangeSignUp}
-        btnText="SIGN UP"
-        formTitle="Sign Up"
-      />
-    </form>
+    <FormStructure
+      state={signUp}
+      onChangeHandler={onChangeSignUp}
+      btnText="SIGN UP"
+      formTitle="Sign Up"
+      submitted={createUserHandler}
+    />
   );
 
   if (signUpState.loading) {
@@ -212,6 +208,7 @@ const StartPage = () => {
       onChangeHandler={onChangeSignIn}
       btnText="SIGN IN"
       formTitle="Sign In"
+      submitted={loginUserHandler}
     >
       <NavLink to="/forgotpassword" exact className={styles.forgotLink}>
         Forgot password?
@@ -234,15 +231,10 @@ const StartPage = () => {
           </div>
 
           <div className={styles.signInForm}>
-            <form
-              onSubmit={(event) => loginUserHandler(event)}
-              className={styles.form}
-            >
-              {signInContent}
-              {signInState.error ? (
-                <ErrorHandler>{signInState.error.response.data}</ErrorHandler>
-              ) : null}
-            </form>
+            {signInContent}
+            {signInState.error ? (
+              <ErrorHandler>{signInState.error.response.data}</ErrorHandler>
+            ) : null}
           </div>
         </div>
       </div>

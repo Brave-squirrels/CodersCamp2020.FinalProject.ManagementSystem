@@ -3,12 +3,14 @@ import React from "react";
 import Input from "../input/input";
 import Button from "../button/button";
 import FormTitle from "../formTitle/formTitle";
+import styles from "./formStructure.module.scss";
 
 interface Props {
   state: any;
   onChangeHandler: any;
   btnText: string;
   formTitle: string;
+  submitted: any;
   children?: JSX.Element;
 }
 
@@ -22,7 +24,7 @@ const formStructure = (props: Props) => {
     });
   }
 
-  const form = elements.map((input: any) => {
+  const formElements = elements.map((input: any) => {
     return (
       <Input
         key={input.id}
@@ -42,11 +44,11 @@ const formStructure = (props: Props) => {
   });
 
   return (
-    <>
+    <form onSubmit={(event) => props.submitted(event)} className={styles.form}>
       <FormTitle>{props.formTitle}</FormTitle>
-      {form} {props.children}{" "}
+      {formElements} {props.children}{" "}
       <Button disabled={!props.state.formValid}>{props.btnText}</Button>
-    </>
+    </form>
   );
 };
 

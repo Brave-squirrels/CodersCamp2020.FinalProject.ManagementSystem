@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import onChangeForm, { mutateToAxios } from "utils/onChangeForm";
-import styles from "./createProject.module.scss";
 
 import FormStructure from "components/UI/formLogged/formStructure/formStructure";
+
 const CreateProject = () => {
   const [project, setProject] = useState({
     projectName: {
@@ -66,15 +66,18 @@ const CreateProject = () => {
     });
   };
 
+  const submitForm = (e: any) => {
+    e.preventDefault();
+  };
+
   return (
-    <form className={styles.form}>
-      <FormStructure
-        state={project}
-        onChangeHandler={onChangeProject}
-        btnText="Create"
-        formTitle="Create project"
-      />
-    </form>
+    <FormStructure
+      state={project}
+      onChangeHandler={onChangeProject}
+      btnText="Create"
+      formTitle="Create project"
+      submitted={submitForm}
+    />
   );
 };
 

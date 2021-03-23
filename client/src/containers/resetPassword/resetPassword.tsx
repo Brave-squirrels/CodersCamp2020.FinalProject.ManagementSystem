@@ -104,17 +104,13 @@ const ResetPassword = () => {
   };
 
   let resetPasswordContent: JSX.Element = (
-    <form
-      onSubmit={(e) => sendChangePasswordMail(e)}
-      className={styles.formStyles}
-    >
-      <FormStructure
-        state={password}
-        onChangeHandler={onChangePassword}
-        btnText="SEND"
-        formTitle="Change password"
-      />
-    </form>
+    <FormStructure
+      state={password}
+      onChangeHandler={onChangePassword}
+      btnText="SEND"
+      formTitle="Change password"
+      submitted={sendChangePasswordMail}
+    />
   );
   if (reduxState.loading) {
     resetPasswordContent = <Spinner />;

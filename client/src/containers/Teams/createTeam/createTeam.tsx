@@ -4,8 +4,6 @@ import onChangeForm, { mutateToAxios } from "utils/onChangeForm";
 
 import FormStructure from "components/UI/formLogged/formStructure/formStructure";
 
-import styles from "./createTeam.module.scss";
-
 const CreateTeam = () => {
   const [team, setTeam] = useState({
     teamName: {
@@ -66,14 +64,13 @@ const CreateTeam = () => {
   };
 
   return (
-    <form onSubmit={(event) => createTeam(event)} className={styles.form}>
-      <FormStructure
-        state={team}
-        onChangeHandler={onChangeTeam}
-        btnText="Create"
-        formTitle="Create team"
-      />
-    </form>
+    <FormStructure
+      state={team}
+      onChangeHandler={onChangeTeam}
+      btnText="Create"
+      formTitle="Create team"
+      submitted={createTeam}
+    />
   );
 };
 
