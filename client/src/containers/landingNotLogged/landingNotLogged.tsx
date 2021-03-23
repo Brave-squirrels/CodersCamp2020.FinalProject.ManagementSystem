@@ -14,7 +14,7 @@ import styles from "./landingNotLogged.module.scss";
 import signInTmp from "../../assets/signInTmp.svg";
 import signUpTmp from "../../assets/signUpTmp.svg";
 
-import onChangeForm, { mutateToAxios } from "utils/onChangeForm";
+import { mutateToAxios } from "utils/onChangeForm";
 
 import { createUser } from "reduxState/createUserSlice";
 import { loginUser } from "reduxState/loginSlice";
@@ -127,24 +127,6 @@ const StartPage = () => {
     classes = [styles.container];
   }
 
-  /* Handle changes in signUp form */
-  const onChangeSignUp = (
-    event: { target: HTMLInputElement },
-    inputType: keyof typeof signUp
-  ) => {
-    /* Mutate and valid state */
-    onChangeForm(event, inputType, signUp, setSignUp, true);
-  };
-
-  /* Handle changes in signIn form */
-  const onChangeSignIn = (
-    event: { target: HTMLInputElement },
-    inputType: keyof typeof signIn
-  ) => {
-    /* Mutate and valid state */
-    onChangeForm(event, inputType, signIn, setSignIn);
-  };
-
   /* Create user after submit */
   const createUserHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -165,10 +147,11 @@ const StartPage = () => {
   let signUpContent: JSX.Element = (
     <FormStructure
       state={signUp}
-      onChangeHandler={onChangeSignUp}
+      setState={setSignUp}
       btnText="SIGN UP"
       formTitle="Sign Up"
       submitted={createUserHandler}
+      checkPass={true}
     />
   );
 
@@ -182,10 +165,11 @@ const StartPage = () => {
   let signInContent: JSX.Element = (
     <FormStructure
       state={signIn}
-      onChangeHandler={onChangeSignIn}
+      setState={setSignIn}
       btnText="SIGN IN"
       formTitle="Sign In"
       submitted={loginUserHandler}
+      checkPass={false}
     >
       <NavLink to="/forgotpassword" exact className={styles.forgotLink}>
         Forgot password?

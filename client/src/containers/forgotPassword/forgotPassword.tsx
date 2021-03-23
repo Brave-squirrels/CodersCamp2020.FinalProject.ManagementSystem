@@ -8,8 +8,6 @@ import Spinner from "components/UI/Spinner/spinner";
 import ErrorHandler from "components/errorHandler/errorHandler";
 import Notification from "components/notification/notification";
 
-import onChangeForm from "utils/onChangeForm";
-
 import styles from "./forgotPassword.module.scss";
 import checkMark from "../../assets/checkMark.svg";
 
@@ -42,14 +40,6 @@ const ForgotPassword = () => {
     formValid: false,
   });
 
-  const onChangeReset = (
-    event: { target: HTMLInputElement },
-    inputType: keyof typeof forgot
-  ) => {
-    /* Mutate and valid state */
-    onChangeForm(event, inputType, forgot, setForgot);
-  };
-
   const goBackHandler = (e?: React.FormEvent<HTMLFormElement>) => {
     if (e) {
       e.preventDefault();
@@ -69,10 +59,11 @@ const ForgotPassword = () => {
   let sendResetContent: JSX.Element = (
     <FormStructure
       state={forgot}
-      onChangeHandler={onChangeReset}
+      setState={setForgot}
       btnText="RESET"
       formTitle="Reset password"
       submitted={sendResetPassword}
+      checkPass={false}
     />
   );
   if (reduxState.loading) {

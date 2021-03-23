@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios/axiosMain";
-import onChangeForm, { mutateToAxios } from "utils/onChangeForm";
+import { mutateToAxios } from "utils/onChangeForm";
 
 import FormStructure from "components/UI/formLogged/formStructure/formStructure";
 
@@ -46,21 +46,14 @@ const CreateTeam = () => {
       .catch((err) => console.log(err.message));
   };
 
-  const onChangeTeam = (
-    event: { target: HTMLInputElement },
-    inputType: keyof typeof team
-  ) => {
-    /* Mutate, save and valid state */
-    onChangeForm(event, inputType, team, setTeam);
-  };
-
   return (
     <FormStructure
       state={team}
-      onChangeHandler={onChangeTeam}
+      setState={setTeam}
       btnText="Create"
       formTitle="Create team"
       submitted={createTeam}
+      checkPass={false}
     />
   );
 };

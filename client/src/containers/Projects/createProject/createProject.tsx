@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import onChangeForm, { mutateToAxios } from "utils/onChangeForm";
+import { mutateToAxios } from "utils/onChangeForm";
 
 import FormStructure from "components/UI/formLogged/formStructure/formStructure";
 
@@ -45,14 +45,6 @@ const CreateProject = () => {
     formValid: false,
   });
 
-  const onChangeProject = (
-    event: { target: HTMLInputElement },
-    inputType: keyof typeof project
-  ) => {
-    /* Mutate and valid state */
-    onChangeForm(event, inputType, project, setProject);
-  };
-
   const submitForm = (e: any) => {
     e.preventDefault();
     const formData = mutateToAxios(project);
@@ -62,10 +54,11 @@ const CreateProject = () => {
   return (
     <FormStructure
       state={project}
-      onChangeHandler={onChangeProject}
+      setState={setProject}
       btnText="Create"
       formTitle="Create project"
       submitted={submitForm}
+      checkPass={false}
     />
   );
 };
