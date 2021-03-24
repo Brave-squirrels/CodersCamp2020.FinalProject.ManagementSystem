@@ -12,18 +12,20 @@ const Teams = () => {
       <div className={styles.rightSideWrapper}>
         <div className={styles.wrapper}>
           <CardContainer title="Your Teams">
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
+            <div className={styles.innerWrapper}>
+              <Card />
+              <Card />
+              <Card />
+              <Card />
+              <Card />
+              <Card />
+              <Card />
+              <Card />
+              <Card />
+              <Card />
+              <Card />
+              <Card />
+            </div>
           </CardContainer>
         </div>
       </div>

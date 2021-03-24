@@ -1,18 +1,14 @@
 @import "../../../styles/variables.scss";
 
 .board {
-  box-sizing: border-box;
   background: $backgroundLight;
   height: 100%;
   width: 100%;
-  padding: 2em;
+  padding: 2rem;
   overflow-y: auto;
   scrollbar-width: thin;
-  box-shadow: $boxShadow;
+  box-shadow: $cardConShadow;
   border-radius: 4px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
   align-content: start;
 
   @media (max-width: 600px) {
@@ -21,7 +17,6 @@
 
   @include scrollbar;
 }
-
 .title {
   color: $secondFontColor;
   font-weight: 600;

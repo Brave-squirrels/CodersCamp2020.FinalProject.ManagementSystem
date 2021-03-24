@@ -7,3 +7,9 @@
   flex-direction: column;
   padding: 2em 6em;
 }
+.innerWrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 2em;
+  grid-auto-rows: 140px;
+}

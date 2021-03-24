@@ -6,11 +6,10 @@
   color: $secondFontColor;
   height: 150px;
   background: $backgroundCard;
-  box-shadow: $boxShadow;
+  box-shadow: $cardShadow;
   box-sizing: border-box;
   border-radius: 4px;
   min-width: 200px;
-  padding: 1rem;
   display: flex;
   align-items: center;
   justify-content: space-around;

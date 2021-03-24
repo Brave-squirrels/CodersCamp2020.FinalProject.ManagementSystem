@@ -18,8 +18,8 @@ const UserTeams: FunctionComponent = () => {
   };
 
   return (
-    <>
-      <CardContainer title="Your Teams">
+    <CardContainer title="Your Teams">
+      <div className={classes.innerWrapper}>
         {teams && teams.length ? (
           teams.map(({ name, id }) => (
             <NavigationItem path={`/teams/${id}`} key={id}>
@@ -32,8 +32,8 @@ const UserTeams: FunctionComponent = () => {
           <div>You have not joined any teams yet...</div>
         )}
         <Button clicked={() => buttonClicked()}>New Team</Button>
-      </CardContainer>
-    </>
+      </div>
+    </CardContainer>
   );
 };
 

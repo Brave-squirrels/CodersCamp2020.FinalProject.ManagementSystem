@@ -1,27 +1,23 @@
+@import "../../styles/variables.scss";
 .userContainer {
-  width: 100%;
+  height: 100%;
+  width: 90%;
   display: flex;
-  height: 80%;
+  margin: 0 auto;
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  max-width: 1600px;
-  margin: 0 auto;
+  gap: 2em;
   list-style: none;
-  .element {
-    color: white;
-    flex: 1;
-    margin: 1rem;
-    height: 100%;
-  }
 }
 
-.teamsHeader {
-  text-align: center;
-  font-weight: 500;
-  font-size: 2.1rem;
-  margin-top: 0;
-  margin-bottom: 1rem;
+.element {
+  height: 600px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .cardHeader {
@@ -30,4 +26,13 @@
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   font-weight: 500;
   margin: 0;
+}
+
+.innerWrapper {
+  display: grid;
+  height: 100%;
+  width: 100%;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: 200px;
+  grid-gap: 2em;
 }
