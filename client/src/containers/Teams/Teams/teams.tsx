@@ -1,22 +1,30 @@
 import SideBar from "components/UI/sideBar/sideBar";
-import SquareCon from "components/UI/squareCon/squareCon";
 import ViewWithSidebar from "hoc/viewWithSidebar/viewWithSidebar";
 import styles from "./teams.module.scss";
-import Square from "components/UI/square/square";
+
+import CardContainer from "components/UI/CardContainer/index";
+import Card from "components/UI/Card/index";
 
 const Teams = () => {
   return (
     <ViewWithSidebar>
-      <SideBar />
+      <SideBar sidebarTitle="Your teams" />
       <div className={styles.rightSideWrapper}>
         <div className={styles.wrapper}>
-          <h1 className={styles.title}>Your Teams</h1>
-          <SquareCon>
-            <Square />
-            <Square />
-            <Square />
-            <Square />
-          </SquareCon>
+          <CardContainer title="Your Teams">
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+          </CardContainer>
         </div>
       </div>
     </ViewWithSidebar>

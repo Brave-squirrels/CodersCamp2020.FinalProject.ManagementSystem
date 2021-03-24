@@ -2,7 +2,7 @@ interface Rules {
     required?: boolean;
     minLength?: number;
     maxLength?: number;
-    minDate?: any
+    minDate?: Date
   }
 
   /* Input data validation 
