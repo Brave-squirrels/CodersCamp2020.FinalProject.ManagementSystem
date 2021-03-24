@@ -1,31 +1,64 @@
 @import "../../../styles//variables.scss";
 
-.sideBar {
+.sideBarHidden {
+  margin-top: 10%;
+  width: 85%;
+  height: 93%;
+  background-color: $backgroundLight;
+  box-shadow: 1px 1px 3px black;
+  transform: translateX(-90%);
+  transition: 0.1s;
+  &:hover {
+    cursor: pointer;
+    transform: translateX(-80%);
+    background-color: rgba(255, 255, 255, 0.103);
+  }
+  &::after {
+    transform: translateX(-900%);
+  }
+  .sideBarShown {
+    transform: translateX(-90%);
+  }
+}
+
+.sideBarShown {
   margin-top: 10%;
   margin-left: 0.5em;
+  width: 85%;
+  max-width: 85%;
   padding: 0;
   height: 93%;
   background-color: $backgroundLight;
   box-shadow: 1px 1px 3px black;
-  text-align: center;
+  transition: all 0.1s;
+  word-wrap: break-word;
+  .back {
+    color: $secondFontColor;
+    padding: 0.5em;
+    text-align: right;
+    &:hover {
+      cursor: pointer;
+    }
+  }
   .title {
     color: $fontActive;
+    text-align: center;
     margin: 0;
     padding: 0.5em;
-    font-size: 2em;
+    font-size: 1.7em;
     border-bottom: 1px solid $fontActive;
   }
-  .teamsList {
+  .primaryList {
     color: $secondFontColor;
     font-size: 1.2em;
     margin: 0;
     padding: 1em 0.5em;
     list-style: none;
     text-align: left;
-    .activeTeam {
-      margin: 0;
+    .activePrimaryItem {
       padding: 0.2em 0.5em;
       background: $backgroundDark;
+      color: $fontActive;
       box-shadow: 1px 1px 2px black;
     }
     & li {
@@ -34,7 +67,7 @@
       border-bottom: 1px solid $fontActive;
       list-style: none;
     }
-    .inactiveTeam {
+    .inactivePrimaryItem {
       transition: 0.2s;
       &:hover {
         background-color: $backgroundCardHover;
@@ -42,7 +75,7 @@
       }
     }
   }
-  .projectsList {
+  .secondaryList {
     text-align: center;
     list-style: none;
     color: $secondFontColor;
@@ -56,16 +89,19 @@
       list-style: none;
       font-size: 0.8em;
       transition: 0.2s;
-      &.activeProject {
+      &.activeSecondaryItem {
         background-color: rgba(116, 111, 111, 0.548);
       }
-      &.inActiveProject {
+      &.inActiveSecondaryItem {
         &:hover {
           cursor: pointer;
           transform: scale(1.05);
-          border: 1px solid $mainFontColor;
+          background-color: rgba(0, 0, 0, 0.199);
         }
       }
     }
+  }
+  .navLink {
+    text-decoration: none;
   }
 }
