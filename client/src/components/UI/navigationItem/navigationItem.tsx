@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import { FunctionComponent } from "react";
 import { NavLink } from "react-router-dom";
 
 import styles from "./navigationItem.module.scss";

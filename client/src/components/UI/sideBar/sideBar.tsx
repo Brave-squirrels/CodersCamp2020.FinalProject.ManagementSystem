@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { selectProjects, selectTeams } from "reduxState/userSlice";
 import { useHistory, useParams } from "react-router-dom";
 import axios from "axios/axiosMain";
 import * as types from "../../../utils/types";
-
+import { NavLink } from "react-router-dom";
 import classes from "./sidebar.module.scss";
 
 interface Object {
@@ -13,7 +11,7 @@ interface Object {
 }
 
 const SideBar = (props: any) => {
-  const { teamId } = useParams<types.TParams>();
+  const { teamId, projectId } = useParams<types.TParams>();
   const [userTeams, setUserTeams] = useState<Object[]>([]);
   const [userProjects, setUserProjects] = useState<Object[]>([]);
   const history = useHistory();
@@ -52,25 +50,42 @@ const SideBar = (props: any) => {
     <div className={classes.sideBar}>
       <p className={classes.title}>{props.sidebarTitle}</p>
       <ul className={classes.teamsList}>
-        {userTeams.map(({ name, id }: any) => (
+        {userTeams.map((team: any) => (
           <>
-            {id === teamId ? (
-              <li key={id} id={id}>
-                <div className={classes.activeTeam}>{name}</div>
+            {team.id === teamId ? (
+              <li key={team.id} id={team.id}>
+                <div className={classes.activeTeam}>{team.name}</div>
                 <ul className={classes.projectsList}>
-                  {userProjects.map(({ name, id }) => (
-                    <li key={id}>{name}</li>
-                  ))}
+                  {userProjects.map((project: any) =>
+                    project.id !== projectId ? (
+                      <NavLink
+                        to={`/teams/${teamId}/projects/${project.id}`}
+                        exact
+                        className={classes.navLink}
+                      >
+                        <li
+                          key={project.id}
+                          className={classes.inActiveProject}
+                        >
+                          {project.name}
+                        </li>
+                      </NavLink>
+                    ) : (
+                      <li key={project.id} className={classes.activeProject}>
+                        {project.name}
+                      </li>
+                    )
+                  )}
                 </ul>
               </li>
             ) : (
               <li
-                key={id}
-                id={id}
+                key={team.id}
+                id={team.id}
                 className={classes.inactiveTeam}
                 onClick={changeTeam}
               >
-                {name}
+                {team.name}
               </li>
             )}
           </>

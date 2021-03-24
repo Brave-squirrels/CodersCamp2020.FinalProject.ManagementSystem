@@ -12,6 +12,7 @@ import sendForgotPassword from "./sendForgotPassword";
 import changePasswordLanding from "./changePasswordLoggedOut";
 import userReducer from "./userSlice";
 import singleTeamData from './teamDataSlice';
+import singleProjectData from "./projectDataSlice";
 import sendVerifyAgain from './sendVerifyAgain';
 
 import thunk from "redux-thunk";
@@ -25,7 +26,8 @@ export const store = configureStore({
     changePasswordLanding: changePasswordLanding,
     user: userReducer,
     singleTeamData: singleTeamData,
-    sendVerifyAgain: sendVerifyAgain
+    sendVerifyAgain: sendVerifyAgain,
+    singleProjectData: singleProjectData
   },
   middleware: [
     ...getDefaultMiddleware({
