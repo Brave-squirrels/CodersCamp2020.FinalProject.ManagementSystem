@@ -15,8 +15,8 @@ const UserProjects = () => {
   };
 
   return (
-    <>
-      <CardContainer title="Your projects">
+    <CardContainer title="Your projects">
+      <div className={classes.innerWrapper}>
         {projects && projects.length ? (
           projects.map(({ name, id }) => (
             <Card key={id}>
@@ -27,8 +27,8 @@ const UserProjects = () => {
           <div>You don't have any project yet...</div>
         )}
         <Button clicked={() => buttonClicked()}>New Project</Button>
-      </CardContainer>
-    </>
+      </div>
+    </CardContainer>
   );
 };
 

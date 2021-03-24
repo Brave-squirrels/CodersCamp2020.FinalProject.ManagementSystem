@@ -9,7 +9,15 @@ const teamInvites = () => {
   return (
     <div className={styles.wrapper}>
       <CardContainer title="Team Invites">
-        <Square>Invite 1</Square>
+        <div className={styles.innerWrapper}>
+          <Square>Invite 1</Square>
+          <Square>Invite 1</Square>
+          <Square>Invite 1</Square>
+          <Square>Invite 1</Square>
+          <Square>Invite 1</Square>
+          <Square>Invite 1</Square>
+          <Square>Invite 1</Square>
+        </div>
       </CardContainer>
     </div>
   );
