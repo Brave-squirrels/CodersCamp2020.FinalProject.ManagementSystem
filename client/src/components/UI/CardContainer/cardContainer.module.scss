@@ -4,17 +4,11 @@
   background: $backgroundLight;
   height: 100%;
   width: 100%;
-  padding: 2rem;
+  padding: 2em;
   overflow-y: auto;
   scrollbar-width: thin;
   box-shadow: $cardConShadow;
   border-radius: 4px;
-  align-content: start;
-
-  @media (max-width: 600px) {
-    grid-template-columns: 1fr;
-  }
-
   @include scrollbar;
 }
 .title {
