@@ -19,8 +19,7 @@ const UserTeams: FunctionComponent = () => {
 
   return (
     <>
-      <h2 className={classes.teamsHeader}>Your Teams</h2>
-      <CardContainer>
+      <CardContainer title="Your Teams">
         {teams && teams.length ? (
           teams.map(({ name, id }) => (
             <NavigationItem path={`/teams/${id}`} key={id}>

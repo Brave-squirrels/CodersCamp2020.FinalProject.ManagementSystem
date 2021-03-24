@@ -10,7 +10,7 @@ const addUserToTeam = async (req: Request, res: Response) => {
 
   //check if user have invitation
   if (!team.pendingUsers.includes(req.body.id))
-    return res.status(StatusCodes.BAD_REQUEST).send("User don't have invnite");
+    return res.status(StatusCodes.BAD_REQUEST).send("User don't have invite");
 
   //Remove user from pending
   team.pendingUsers.forEach((pendingUser: string, i: number) => {

@@ -16,8 +16,7 @@ const UserProjects = () => {
 
   return (
     <>
-      <h2 className={classes.teamsHeader}>Your projects</h2>
-      <CardContainer>
+      <CardContainer title="Your projects">
         {projects && projects.length ? (
           projects.map(({ name, id }) => (
             <Card key={id}>

@@ -15,30 +15,30 @@ import ResetPassword from "containers/resetPassword/resetPassword";
 import { authUser, logout } from "reduxState/loginSlice";
 import { RootState } from "reduxState/store";
 
-const LandingNotLogged = React.lazy(
-  () => import("./containers/landingNotLogged/landingNotLogged")
+const LandingNotLogged = React.lazy(() =>
+  import("./containers/landingNotLogged/landingNotLogged")
 );
-const Projects = React.lazy(
-  () => import("./containers/Projects/Projects/projects")
-);
-const Project = React.lazy(
-  () => import("./containers/Projects/Project/project")
+const Project = React.lazy(() =>
+  import("./containers/Projects/Project/project")
 );
 const Teams = React.lazy(() => import("./containers/Teams/Teams/teams"));
 const Team = React.lazy(() => import("./containers/Teams/Team/team"));
 const User = React.lazy(() => import("./containers/User/user"));
 const Confirmed = React.lazy(() => import("./containers/Confirmed/Confirmed"));
-const ResNav = React.lazy(
-  () => import("./hoc/header/headerSideDrawer/headerSideDrawer")
+const ResNav = React.lazy(() =>
+  import("./hoc/header/headerSideDrawer/headerSideDrawer")
 );
-const ForgotPassword = React.lazy(
-  () => import("./containers/forgotPassword/forgotPassword")
+const ForgotPassword = React.lazy(() =>
+  import("./containers/forgotPassword/forgotPassword")
 );
-const CreateTeam = React.lazy(
-  () => import("./containers/Teams/createTeam/createTeam")
+const CreateTeam = React.lazy(() =>
+  import("./containers/Teams/createTeam/createTeam")
 );
-const CreateProject = React.lazy(
-  () => import("./containers/Projects/createProject/createProject")
+const CreateProject = React.lazy(() =>
+  import("./containers/Projects/createProject/createProject")
+);
+const TeamInvites = React.lazy(() =>
+  import("./containers/teamInvites/teamInvites")
 );
 
 interface LoginState {
@@ -106,15 +106,10 @@ const App = () => {
               path="/teams/:teamId/projects/:projectId"
               component={Project}
             />
-            <Route exact path="/projects" component={Projects} />
             <Route exact path="/createProject" component={CreateProject} />
             <Route exact path="/teams" render={() => <h1>Teams</h1>} />
             <Route exact path="/confirmed" render={() => <Confirmed />} />
-            <Route
-              exact
-              path="/teaminvites"
-              render={() => <h1>Team invites</h1>}
-            />
+            <Route exact path="/teaminvites" render={() => <TeamInvites />} />
             <Route exact path="/settings" render={() => <h1>Settings</h1>} />
             <Route exact path="/logout" />
             <Route component={ErrorPage} />

@@ -5,11 +5,13 @@ import { AppThunk, RootState } from "./store";
 interface InitState {
   teams: [];
   projects: [];
+  teamInvites: [];
 }
 
 const initialState: InitState = {
   teams: [],
   projects: [],
+  teamInvites: [],
 };
 
 export const userSlice = createSlice({
@@ -22,6 +24,9 @@ export const userSlice = createSlice({
     addProjects: (state, action: PayloadAction<[]>) => {
       state.projects = action.payload;
     },
+    addTeamInvites: (state, action: PayloadAction<[]>) =>{
+      state.teamInvites = action.payload;
+    }
   },
 });
 
@@ -45,5 +50,6 @@ export const getTeamsProjects = (): AppThunk => async (dispatch) => {
 
 export const selectTeams = (state: RootState) => state.user.teams;
 export const selectProjects = (state: RootState) => state.user.projects;
+export const selectTeamInvites = (state: RootState) => state.user.teamInvites;
 
 export default userSlice.reducer;
