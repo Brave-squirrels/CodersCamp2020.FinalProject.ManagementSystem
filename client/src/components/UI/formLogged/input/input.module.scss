@@ -40,7 +40,8 @@
       padding: 0 0.8em;
       z-index: 2;
     }
-    &:focus {
+    &:focus,
+    &:valid {
       border-color: $mainFontColor;
       z-index: 2;
     }

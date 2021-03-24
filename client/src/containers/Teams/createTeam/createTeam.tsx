@@ -1,12 +1,21 @@
 import React, { useState } from "react";
-import axios from "axios/axiosMain";
+import { useDispatch, useSelector } from "react-redux";
 import { mutateToAxios } from "utils/onChangeForm";
+import { Redirect } from "react-router-dom";
 
 import styles from "./createTeam.module.scss";
 
 import FormStructure from "components/UI/formLogged/formStructure/formStructure";
+import Spinner from "components/UI/Spinner/spinner";
+import ErrorHandler from "components/errorHandler/errorHandler";
+
+import { createTeam, clear } from "reduxState/createTeam";
+import { RootState } from "reduxState/store";
 
 const CreateTeam = () => {
+  const dispatch = useDispatch();
+  const reduxState = useSelector((state: RootState) => state.createTeamSlice);
+
   const [team, setTeam] = useState({
     teamName: {
       val: "",
@@ -36,30 +45,39 @@ const CreateTeam = () => {
     formValid: false,
   });
 
-  const createTeam = async (e: any) => {
+  const createTeamHandler = async (e: any) => {
     e.preventDefault();
     /* Transform data to axios format */
     const formData = mutateToAxios(team);
-    axios
-      .post("/teams", formData, {
-        headers: { "x-auth-token": localStorage.getItem("token") },
-      })
-      .then(() => console.log("succes!"))
-      .catch((err) => console.log(err.message));
+    dispatch(createTeam(formData));
   };
 
-  return (
-    <div className={styles.formWrapper}>
+  let content: JSX.Element = (
+    <>
       <FormStructure
         state={team}
         setState={setTeam}
         btnText="Create"
         formTitle="Create team"
-        submitted={createTeam}
+        submitted={createTeamHandler}
         checkPass={false}
       />
-    </div>
+      {reduxState.error ? (
+        <ErrorHandler>{reduxState.error.response.data}</ErrorHandler>
+      ) : null}
+    </>
   );
+  if (reduxState.loading) {
+    content = <Spinner />;
+  }
+  if (reduxState.success) {
+    content = <Redirect to={`/teams/${reduxState.teamId}`} />;
+    setTimeout(() => {
+      dispatch(clear());
+    }, 2000);
+  }
+
+  return <div className={styles.formWrapper}>{content}</div>;
 };
 
 export default CreateTeam;
