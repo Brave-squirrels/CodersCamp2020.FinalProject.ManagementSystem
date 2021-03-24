@@ -10,7 +10,7 @@ import SideBar from "components/UI/sideBar/sideBar";
 import styles from "./team.module.scss";
 // import classes from "./user.module.scss";
 import NavigationItem from "components/UI/navigationItem/navigationItem";
-import Card from "components/UI/Card";
+import Card from "components/UI/Card/card";
 
 import { fetchTeam } from "reduxState/teamDataSlice";
 
