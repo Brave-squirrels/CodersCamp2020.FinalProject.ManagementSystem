@@ -50,7 +50,7 @@ const CreateProject = () => {
     e.preventDefault();
     const formData = mutateToAxios(project);
     axios
-      .post("/teams/60586527eb8b980255e32d70/projects", formData, {
+      .post("/teams/60591a53612c392d7cd86b77/projects", formData, {
         headers: { "x-auth-token": localStorage.getItem("token") },
       })
       .then(() => console.log("succes!"))
