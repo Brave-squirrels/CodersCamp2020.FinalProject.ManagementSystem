@@ -2,10 +2,8 @@
 
 .sideBarHidden {
   transform: translateX(-90%);
-  transition: 0.3s ease-out;
   & > * {
-    transition: 0.1s ease-out;
-    transform: translateX(-20%);
+    transform: translateX(-25%);
     pointer-events: none;
   }
   &:hover {
@@ -13,9 +11,6 @@
     transform: translateX(-80%);
     background-color: rgba(255, 255, 255, 0.103);
     transition: transform 0.1s ease-in;
-  }
-  &::after {
-    transform: translateX(-900%);
   }
   .sideBarShown {
     transform: translateX(-90%);
@@ -27,7 +22,7 @@
 
 .sideBarShown {
   & > * {
-    transition: 0.1s ease-out;
+    transition: transform 0.3 ease-out;
   }
   margin-top: 10%;
   margin-left: 0.5em;
@@ -36,7 +31,7 @@
   height: 85vh;
   background-color: $backgroundLight;
   box-shadow: 1px 1px 3px black;
-  transition: all 0.3s ease-out;
+  transition: transform 0.3s ease-out;
   word-wrap: break-word;
   overflow: auto;
   @include scrollbar;
