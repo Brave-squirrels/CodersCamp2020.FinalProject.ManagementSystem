@@ -14,7 +14,7 @@
     font-size: 0.8em;
     transition: 0.2s;
     &.activeSecondaryItem {
-      background-color: rgba(116, 111, 111, 0.548);
+      background-color: $backgroundSecondaryActive;
     }
   }
 }
