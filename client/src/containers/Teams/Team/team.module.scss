@@ -29,10 +29,6 @@
   text-align: center;
   list-style: none;
 
-  .content {
-    margin-top: 0.5em;
-    font-size: 0.8em;
-  }
 
   .firstColumn {
     display: grid;
@@ -40,43 +36,6 @@
     height: 35vmax;
     grid-template-rows: 1fr 1fr 1fr;
 
-    & > div {
-      background-color: $backgroundLight;
-      box-shadow: 1px 1px 1px black;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
   }
 
-  .tileTitle {
-    border-bottom: 1px solid $fontActive;
-    color: $fontActive;
-    margin: 0;
-    padding: 0.3em 0;
-    width: 90%;
-  }
-
-  .description {
-    padding: 0 0.5em;
-    overflow-y: auto;
-    scrollbar-width: thin;
-    @include scrollbar;
-  }
-
-  .members {
-    background-color: $backgroundLight;
-    box-shadow: 1px 1px 1px black;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .moderators {
-    background-color: $backgroundLight;
-    box-shadow: 1px 1px 1px black;
-    padding: 0 0.8em;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
 }
