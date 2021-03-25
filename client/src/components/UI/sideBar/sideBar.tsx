@@ -29,7 +29,7 @@ const SideBar = (props: any) => {
         <p className={classes.title}>{props.title}</p>
         {props.children}
         <p className={classes.back} onClick={changeReveal}>
-          Back
+          &#8592;
         </p>
       </div>
     </>
