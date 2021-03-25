@@ -1,27 +1,29 @@
 @import "../../../styles//variables.scss";
 
 .sideBarHidden {
-  margin-top: 10%;
-  width: 85%;
-  height: 93%;
-  background-color: $backgroundLight;
-  box-shadow: 1px 1px 3px black;
   transform: translateX(-90%);
-  transition: 0.1s;
+  & > * {
+    transform: translateX(-25%);
+    pointer-events: none;
+  }
   &:hover {
     cursor: pointer;
     transform: translateX(-80%);
     background-color: rgba(255, 255, 255, 0.103);
-  }
-  &::after {
-    transform: translateX(-900%);
+    transition: transform 0.1s ease-in;
   }
   .sideBarShown {
     transform: translateX(-90%);
   }
 }
+.sideBarHidden.sideBarShown {
+  overflow: hidden;
+}
 
 .sideBarShown {
+  & > * {
+    transition: transform 0.3 ease-out;
+  }
   margin-top: 10%;
   margin-left: 0.5em;
   width: 35vh;
@@ -29,7 +31,7 @@
   height: 85vh;
   background-color: $backgroundLight;
   box-shadow: 1px 1px 3px black;
-  transition: all 0.3s ease-out;
+  transition: transform 0.3s ease-out;
   word-wrap: break-word;
   overflow: auto;
   @include scrollbar;
@@ -37,12 +39,12 @@
     margin: 0.5em 0 0 0;
     color: $secondFontColor;
     padding: 1em;
-    font-size: 1.4em;
+    font-size: 1.5em;
     text-align: right;
-    transition: 0.1s;
+    transition: font-size 0.1s ease-in;
     &:hover {
       cursor: pointer;
-      font-size: 1.45em;
+      font-size: 1.6em;
     }
   }
   .title {
@@ -52,61 +54,5 @@
     padding: 0.5em;
     font-size: 1.7em;
     border-bottom: 1px solid $fontActive;
-  }
-  .primaryList {
-    color: $secondFontColor;
-    font-size: 1.2em;
-    margin: 0;
-    padding: 1em 0.5em;
-    list-style: none;
-    text-align: left;
-    .activePrimaryItem {
-      padding: 0.2em 0.5em;
-      background: $backgroundDark;
-      color: $fontActive;
-      box-shadow: 1px 1px 2px black;
-    }
-    & li {
-      padding: 0.5em 0;
-      margin-bottom: 0.5em;
-      border-bottom: 1px solid $fontActive;
-      list-style: none;
-    }
-    .inactivePrimaryItem {
-      transition: 0.2s;
-      &:hover {
-        background-color: $backgroundCardHover;
-        cursor: pointer;
-      }
-    }
-  }
-  .secondaryList {
-    text-align: center;
-    list-style: none;
-    color: $secondFontColor;
-    margin: 0.5em 0 0 0;
-    padding: 0;
-    & li {
-      color: $secondFontColor;
-      text-decoration: none;
-      box-sizing: border-box;
-      border: none;
-      list-style: none;
-      font-size: 0.8em;
-      transition: 0.2s;
-      &.activeSecondaryItem {
-        background-color: rgba(116, 111, 111, 0.548);
-      }
-      &.inActiveSecondaryItem {
-        &:hover {
-          cursor: pointer;
-          transform: scale(1.05);
-          background-color: rgba(0, 0, 0, 0.199);
-        }
-      }
-    }
-  }
-  .navLink {
-    text-decoration: none;
   }
 }

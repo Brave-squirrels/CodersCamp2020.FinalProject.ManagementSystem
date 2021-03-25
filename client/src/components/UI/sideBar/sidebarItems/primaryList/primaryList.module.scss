@@ -1,0 +1,16 @@
+@import "../../../../../styles/variables.scss";
+.primaryList {
+  color: $secondFontColor;
+  font-size: 1.2em;
+  margin: 0;
+  padding: 1em 0.5em;
+  list-style: none;
+  text-align: left;
+
+  & li {
+    padding: 0.5em 0;
+    margin-bottom: 0.5em;
+    border-bottom: 1px solid $fontActive;
+    list-style: none;
+  }
+}

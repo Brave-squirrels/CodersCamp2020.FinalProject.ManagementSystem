@@ -1,13 +1,17 @@
-import { useHistory, useParams, NavLink } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "../../../../axios/axiosMain";
 
 import * as types from "../../../../utils/types";
-import classes from "../../../../components/UI/sideBar/sidebar.module.scss";
 
-import PrimaryActiveItem from "components/UI/sideBar/sidebarItems/primaryActiveItem";
-import PrimaryInactiveItem from "components/UI/sideBar/sidebarItems/primaryInactiveItem";
-import SecondaryItem from "components/UI/sideBar/sidebarItems/secondaryItem";
+import PrimaryActiveItem from "components/UI/sideBar/sidebarItems/primaryActiveItem/primaryActiveItem";
+import PrimaryInactiveItem from "components/UI/sideBar/sidebarItems/primaryInactiveItem/primaryInactiveItem";
+import SecondaryItem from "components/UI/sideBar/sidebarItems/secondaryItem/secondaryItem";
+import SideBar from "components/UI/sideBar/sideBar";
+import NavLink from "components/UI/sideBar/sidebarItems/navLink/navLink";
+import PrimaryList from "components/UI/sideBar/sidebarItems/primaryList/primaryList";
+import SecondaryList from "components/UI/sideBar/sidebarItems/secondaryList/secondaryList";
+import LiItem from "components/UI/sideBar/sidebarItems/liItem/liItem";
 
 const TeamSidebar = () => {
   const [userTeams, setUserTeams] = useState([]);
@@ -48,27 +52,25 @@ const TeamSidebar = () => {
   }, [teamId]);
 
   return (
-    <>
-      <p className={classes.title}>Your teams</p>
-      <ul className={classes.primaryList}>
+    <SideBar title={"Your teams"}>
+      <PrimaryList>
         {userTeams.map((team: any) => (
           <>
             {team.id === teamId ? (
-              <li key={team.id} id={team.id}>
+              <LiItem teamId={team.id}>
                 <PrimaryActiveItem name={team.name} />
-                <ul className={classes.secondaryList}>
+                <SecondaryList>
                   {userProjects.map((project: any) => (
                     <NavLink
-                      to={`/teams/${teamId}/projects/${project.id}`}
-                      exact
-                      className={classes.navLink}
+                      teamId={teamId}
+                      projectId={project.id}
                       key={project.id}
                     >
                       <SecondaryItem id={project.id} name={project.name} />
                     </NavLink>
                   ))}
-                </ul>
-              </li>
+                </SecondaryList>
+              </LiItem>
             ) : (
               <PrimaryInactiveItem
                 key={team.id}
@@ -79,8 +81,8 @@ const TeamSidebar = () => {
             )}
           </>
         ))}
-      </ul>
-    </>
+      </PrimaryList>
+    </SideBar>
   );
 };
 

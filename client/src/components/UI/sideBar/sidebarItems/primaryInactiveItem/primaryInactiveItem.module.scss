@@ -1,0 +1,8 @@
+@import "../../../../../styles/variables.scss";
+.inactivePrimaryItem {
+  transition: 0.2s;
+  &:hover {
+    background-color: $backgroundCardHover;
+    cursor: pointer;
+  }
+}
