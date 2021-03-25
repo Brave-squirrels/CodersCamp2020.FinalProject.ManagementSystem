@@ -64,7 +64,7 @@ const TeamSidebar = () => {
                     <NavLink
                       teamId={teamId}
                       projectId={project.id}
-                      key={project.id}
+                      key={`${project.id}1`}
                     >
                       <SecondaryItem id={project.id} name={project.name} />
                     </NavLink>
