@@ -1,0 +1,7 @@
+@import "../../../../../styles/variables.scss";
+.activePrimaryItem {
+  padding: 0.2em 0.5em;
+  background: $backgroundDark;
+  color: $fontActive;
+  box-shadow: 1px 1px 2px black;
+}

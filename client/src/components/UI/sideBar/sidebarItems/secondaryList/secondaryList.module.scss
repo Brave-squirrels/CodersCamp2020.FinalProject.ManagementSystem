@@ -1,0 +1,20 @@
+@import "../../../../../styles/variables.scss";
+.secondaryList {
+  text-align: center;
+  list-style: none;
+  color: $secondFontColor;
+  margin: 0.5em 0 0 0;
+  padding: 0;
+  & li {
+    color: $secondFontColor;
+    text-decoration: none;
+    box-sizing: border-box;
+    border: none;
+    list-style: none;
+    font-size: 0.8em;
+    transition: 0.2s;
+    &.activeSecondaryItem {
+      background-color: rgba(116, 111, 111, 0.548);
+    }
+  }
+}

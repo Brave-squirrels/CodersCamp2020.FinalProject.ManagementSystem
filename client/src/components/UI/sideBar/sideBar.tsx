@@ -8,18 +8,30 @@ const SideBar = (props: any) => {
     setReveal(!reveal);
   };
 
+  let navClasses = [classes.sideBarShown];
+
+  if (!reveal) {
+    navClasses = [classes.sideBarShown, classes.sideBarHidden];
+  }
+
   return (
     <>
-      {reveal ? (
-        <div className={classes.sideBarShown}>
-          {props.children}
-          <p className={classes.back} onClick={changeReveal}>
-            Back
-          </p>
-        </div>
-      ) : (
-        <div className={classes.sideBarHidden} onClick={changeReveal}></div>
-      )}
+      <div
+        className={navClasses.join(" ")}
+        onClick={() => {
+          if (reveal) {
+            return;
+          } else {
+            changeReveal();
+          }
+        }}
+      >
+        <p className={classes.title}>{props.title}</p>
+        {props.children}
+        <p className={classes.back} onClick={changeReveal}>
+          Back
+        </p>
+      </div>
     </>
   );
 };

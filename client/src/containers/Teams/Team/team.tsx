@@ -5,7 +5,6 @@ import { useParams } from "react-router-dom";
 import * as types from "utils/types";
 
 import ViewWithSidebar from "hoc/viewWithSidebar/viewWithSidebar";
-import SideBar from "components/UI/sideBar/sideBar";
 import TeamSidebar from "./teamSideBar/teamSideBar";
 
 import { fetchTeam } from "reduxState/teamDataSlice";
@@ -20,9 +19,7 @@ const Team = () => {
 
   return (
     <ViewWithSidebar>
-      <SideBar>
-        <TeamSidebar />
-      </SideBar>
+      <TeamSidebar />
     </ViewWithSidebar>
   );
 };
