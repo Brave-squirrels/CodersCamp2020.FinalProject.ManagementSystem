@@ -1,0 +1,8 @@
+@import "../../../../../styles/variables.scss";
+.inActiveSecondaryItem {
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    background-color: $backgroundSideLinkSecond;
+  }
+}

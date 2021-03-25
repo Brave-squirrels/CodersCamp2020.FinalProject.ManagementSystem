@@ -6,7 +6,6 @@ import { RootState } from "reduxState/store";
 import * as types from "utils/types";
 
 import ViewWithSidebar from "hoc/viewWithSidebar/viewWithSidebar";
-import SideBar from "components/UI/sideBar/sideBar";
 import styles from "./team.module.scss";
 import TeamSidebar from "./teamSideBar/teamSideBar";
 import { CardWithTitle } from "components/UI/CardWithTitle/CardWithTitle";
@@ -32,9 +31,7 @@ const Team = () => {
 
   return (
     <ViewWithSidebar>
-      <SideBar>
-        <TeamSidebar />
-      </SideBar>
+      <TeamSidebar />
       <div className={styles.rightSideWrapper}>
         <div className={styles.wrapper}>
           <h1 className={styles.title}>{state.team.teamName}</h1>

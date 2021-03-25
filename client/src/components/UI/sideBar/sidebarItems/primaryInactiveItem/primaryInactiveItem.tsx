@@ -1,4 +1,4 @@
-import classes from "../sidebar.module.scss";
+import classes from "./primaryInactiveItem.module.scss";
 
 const PrimaryInactiveItem = (props: any) => (
   <li
