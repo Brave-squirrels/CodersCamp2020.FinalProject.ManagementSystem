@@ -55,7 +55,7 @@ const TeamSidebar = () => {
           <>
             {team.id === teamId ? (
               <li key={team.id} id={team.id}>
-                <PrimaryActiveItem teamName={team.name} />
+                <PrimaryActiveItem name={team.name} />
                 <ul className={classes.secondaryList}>
                   {userProjects.map((project: any) => (
                     <NavLink
