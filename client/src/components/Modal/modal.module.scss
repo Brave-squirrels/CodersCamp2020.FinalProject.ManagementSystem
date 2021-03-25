@@ -13,10 +13,6 @@
   display: none;
   z-index: 1;
 }
-.display {
-  display: flex;
-}
-
 .modalContent {
   width: 65%;
   height: 70%;
@@ -26,6 +22,9 @@
   background: $backgroundDark;
   position: relative;
   padding: 0.5em;
+}
+.display {
+  display: flex;
 }
 
 .modalClose {
