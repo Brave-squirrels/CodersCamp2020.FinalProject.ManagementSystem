@@ -5,6 +5,10 @@ import axios from "../../../../axios/axiosMain";
 import * as types from "../../../../utils/types";
 import classes from "../../../../components/UI/sideBar/sidebar.module.scss";
 
+import PrimaryActiveItem from "components/UI/sideBar/sidebarItems/primaryActiveItem";
+import PrimaryInactiveItem from "components/UI/sideBar/sidebarItems/primaryInactiveItem";
+import SecondaryItem from "components/UI/sideBar/sidebarItems/secondaryItem";
+
 const TeamSidebar = () => {
   const [userTeams, setUserTeams] = useState([]);
   const [userProjects, setUserProjects] = useState([]);
@@ -51,7 +55,7 @@ const TeamSidebar = () => {
           <>
             {team.id === teamId ? (
               <li key={team.id} id={team.id}>
-                <div className={classes.activePrimaryItem}>{team.name}</div>
+                <PrimaryActiveItem teamName={team.name} />
                 <ul className={classes.secondaryList}>
                   {userProjects.map((project: any) => (
                     <NavLink
@@ -60,25 +64,18 @@ const TeamSidebar = () => {
                       className={classes.navLink}
                       key={project.id}
                     >
-                      <li
-                        key={project.id}
-                        className={classes.inActiveSecondaryItem}
-                      >
-                        {project.name}
-                      </li>
+                      <SecondaryItem id={project.id} name={project.name} />
                     </NavLink>
                   ))}
                 </ul>
               </li>
             ) : (
-              <li
+              <PrimaryInactiveItem
                 key={team.id}
                 id={team.id}
-                className={classes.inactivePrimaryItem}
-                onClick={changeTeam}
-              >
-                {team.name}
-              </li>
+                name={team.name}
+                clickHandler={changeTeam}
+              />
             )}
           </>
         ))}
