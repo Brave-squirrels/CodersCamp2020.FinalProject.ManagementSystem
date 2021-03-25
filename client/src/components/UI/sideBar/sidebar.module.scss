@@ -3,7 +3,6 @@
 .sideBarHidden {
   transform: translateX(-90%);
   & > * {
-    transform: translateX(-25%);
     pointer-events: none;
   }
   &:hover {
