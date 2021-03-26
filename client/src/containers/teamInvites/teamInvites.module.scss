@@ -13,3 +13,15 @@
   grid-gap: 2em;
   grid-auto-rows: 180px;
 }
+
+@media (max-width: 600px) {
+  .innerWrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 450px) {
+  .innerWrapper {
+    grid-template-columns: 1fr;
+  }
+}

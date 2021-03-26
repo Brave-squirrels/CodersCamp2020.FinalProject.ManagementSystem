@@ -41,16 +41,8 @@ const TeamInvites = React.lazy(() =>
   import("./containers/teamInvites/teamInvites")
 );
 
-interface LoginState {
-  loading: boolean;
-  error: Error | null;
-  id: string | null;
-  token: string | null;
-  success: boolean;
-}
-
 const App = () => {
-  const loginState: LoginState = useSelector((state: RootState) => state.login);
+  const loginState = useSelector((state: RootState) => state.login);
   const dispatch = useDispatch();
 
   const location = useLocation();
