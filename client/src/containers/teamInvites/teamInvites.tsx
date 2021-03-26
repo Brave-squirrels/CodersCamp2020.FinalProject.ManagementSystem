@@ -2,7 +2,6 @@ import React from "react";
 import { /* useDispatch, */ useSelector } from "react-redux";
 
 import CardContainer from "components/UI/CardContainer/cardContainer";
-import Square from "components/UI/square/square";
 import TeamInviteContent from "components/teamInviteContent/teamInviteContent";
 
 import { RootState } from "reduxState/store";
@@ -22,11 +21,9 @@ const TeamInvites = () => {
           {reduxState.teamInvitation
             ? reduxState.teamInvitation.map((el: any) => {
                 return (
-                  <Square>
-                    <TeamInviteContent teamId={el.id}>
-                      {el.name}
-                    </TeamInviteContent>
-                  </Square>
+                  <TeamInviteContent teamId={el.id} key={el.id}>
+                    {el.name}
+                  </TeamInviteContent>
                 );
               })
             : "No invites :/"}
