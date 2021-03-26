@@ -1,6 +1,6 @@
 import { useHistory, useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
-import axios from "../../../../axios/axiosMain";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 import * as types from "../../../../utils/types";
 
@@ -13,62 +13,46 @@ import PrimaryList from "components/UI/sideBar/sidebarItems/primaryList/primaryL
 import SecondaryList from "components/UI/sideBar/sidebarItems/secondaryList/secondaryList";
 import LiItem from "components/UI/sideBar/sidebarItems/liItem/liItem";
 
+import { fetchTeam } from "reduxState/teamDataSlice";
+
 const TeamSidebar = () => {
-  const [userTeams, setUserTeams] = useState([]);
-  const [userProjects, setUserProjects] = useState([]);
   const history = useHistory();
   const { teamId } = useParams<types.TParams>();
+
+  const dispatch = useDispatch();
+  const user = useSelector((state: any) => state.login.userInformation);
+  const userTeam = useSelector((state: any) => state.singleTeamData);
 
   // import list of teams and projects of current active team
   const changeTeam = (e: any) => {
     history.push(`/teams/${e.target.id}`);
   };
 
-  const fetchUserTeams = () => {
-    return axios
-      .get("/users/me", {
-        headers: { "x-auth-token": localStorage.getItem("token") },
-      })
-      .then((res) => setUserTeams(res.data.teams))
-      .catch((err) => err.response.data);
-  };
-
-  const revealProjects = () => {
-    axios
-      .get(`/teams/${teamId}`, {
-        headers: { "x-auth-token": localStorage.getItem("token") },
-      })
-      .then((res) => {
-        return setUserProjects(res.data.projects);
-      })
-      .catch((err) => err.response.data);
-  };
-
   useEffect(() => {
-    setUserProjects([]);
-    fetchUserTeams();
-    revealProjects();
+    dispatch(fetchTeam(teamId));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [teamId]);
 
   return (
     <SideBar title={"Your teams"}>
       <PrimaryList>
-        {userTeams.map((team: any) => (
+        {user.teams.map((team: any) => (
           <>
             {team.id === teamId ? (
               <LiItem teamId={team.id}>
                 <PrimaryActiveItem name={team.name} />
                 <SecondaryList>
-                  {userProjects.map((project: any) => (
-                    <NavLink
-                      teamId={teamId}
-                      projectId={project.id}
-                      key={project.id}
-                    >
-                      <SecondaryItem id={project.id} name={project.name} />
-                    </NavLink>
-                  ))}
+                  {userTeam.team.projects
+                    ? userTeam.team.projects.map((project: any) => (
+                        <NavLink
+                          teamId={teamId}
+                          projectId={project.id}
+                          key={project.id}
+                        >
+                          <SecondaryItem id={project.id} name={project.name} />
+                        </NavLink>
+                      ))
+                    : null}
                 </SecondaryList>
               </LiItem>
             ) : (

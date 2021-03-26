@@ -1,6 +1,5 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { selectProjects } from "reduxState/userSlice";
 import Card from "components/UI/Card/card";
 import CardContainer from "components/UI/CardContainer/cardContainer";
 import classes from "./user.module.scss";
@@ -8,7 +7,7 @@ import { useHistory } from "react-router";
 import Button from "components/UI/formElements/button/button";
 
 const UserProjects = () => {
-  const projects = useSelector(selectProjects);
+  const user = useSelector((state: any) => state.login.userInformation);
   const history = useHistory();
   const buttonClicked = () => {
     history.push("/createProject");
@@ -17,10 +16,10 @@ const UserProjects = () => {
   return (
     <CardContainer title="Your projects">
       <div className={classes.innerWrapper}>
-        {projects && projects.length ? (
-          projects.map(({ name, id }) => (
-            <Card key={id}>
-              <h3 className={classes.cardHeader}>{name}</h3>
+        {user.projects && user.projects.length ? (
+          user.projects.map((el: any) => (
+            <Card key={el.id}>
+              <h3 className={classes.cardHeader}>{el.name}</h3>
             </Card>
           ))
         ) : (

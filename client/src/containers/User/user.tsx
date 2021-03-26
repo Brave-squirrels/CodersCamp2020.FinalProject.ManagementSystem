@@ -1,17 +1,10 @@
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { getTeamsProjects } from "reduxState/userSlice";
+import React from "react";
+
 import UserProjects from "./user.projects";
 import UserTeams from "./user.teams";
 import classes from "./user.module.scss";
 
 const User = () => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getTeamsProjects());
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
   return (
     <div className={classes.userContainer}>
       <div className={classes.element}>

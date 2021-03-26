@@ -10,7 +10,6 @@ import sideNavActionReducer from "./sideNavActionSlice";
 
 import sendForgotPassword from "./sendForgotPassword";
 import changePasswordLanding from "./changePasswordLoggedOut";
-import userReducer from "./userSlice";
 import singleTeamData from './teamDataSlice';
 import singleProjectData from "./projectDataSlice";
 import sendVerifyAgain from './sendVerifyAgain';
@@ -25,7 +24,6 @@ export const store = configureStore({
     sideNavAction: sideNavActionReducer,
     sendForgotPassword: sendForgotPassword,
     changePasswordLanding: changePasswordLanding,
-    user: userReducer,
     singleTeamData: singleTeamData,
     sendVerifyAgain: sendVerifyAgain,
     singleProjectData: singleProjectData,
