@@ -1,4 +1,4 @@
-@import '../../../styles/variables.scss';
+@import "../../../styles/variables.scss";
 
 .Loader,
 .Loader:before,
@@ -21,7 +21,7 @@
 .Loader:before,
 .Loader:after {
   position: absolute;
-  content: '';
+  content: "";
 }
 .Loader:before {
   width: 5.2em;

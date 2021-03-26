@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { /* useDispatch, */ useSelector } from "react-redux";
 
 import CardContainer from "components/UI/CardContainer/cardContainer";
 import Square from "components/UI/square/square";
@@ -10,24 +10,26 @@ import { RootState } from "reduxState/store";
 import styles from "./teamInvites.module.scss";
 
 const TeamInvites = () => {
-  const dispatch = useDispatch();
-  const reduxState = useSelector((state: RootState) => state.login);
-
-  console.log(reduxState);
+  /* const dispatch = useDispatch(); */
+  const reduxState = useSelector(
+    (state: RootState) => state.login.userInformation
+  );
 
   return (
     <div className={styles.wrapper}>
       <CardContainer title="Team Invites">
         <div className={styles.innerWrapper}>
-          <Square>
-            <TeamInviteContent teamId={"xd"}>Team 1</TeamInviteContent>
-          </Square>
-          <Square>
-            <TeamInviteContent teamId={"xd"}>Team 2</TeamInviteContent>
-          </Square>
-          <Square>
-            <TeamInviteContent teamId={"xd"}>Team 3</TeamInviteContent>
-          </Square>
+          {reduxState.teamInvitation
+            ? reduxState.teamInvitation.map((el: any) => {
+                return (
+                  <Square>
+                    <TeamInviteContent teamId={el.id}>
+                      {el.name}
+                    </TeamInviteContent>
+                  </Square>
+                );
+              })
+            : "No invites :/"}
         </div>
       </CardContainer>
     </div>

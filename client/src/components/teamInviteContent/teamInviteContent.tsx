@@ -17,11 +17,11 @@ const TeamInviteContent = (props: Props) => {
   /* const dispatch = useDispatch(); */
 
   const acceptHandler = () => {
-    console.log(props.teamId);
+    /* console.log(props.teamId); */
   };
 
   const declineHandler = () => {
-    console.log(props.teamId);
+    /* console.log(props.teamId); */
   };
 
   return (

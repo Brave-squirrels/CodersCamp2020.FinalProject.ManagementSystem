@@ -7,7 +7,6 @@ import {
 import createUserReducer from "./createUserSlice";
 import loginReducer from "./loginSlice";
 import sideNavActionReducer from "./sideNavActionSlice";
-
 import sendForgotPassword from "./sendForgotPassword";
 import changePasswordLanding from "./changePasswordLoggedOut";
 import singleTeamData from './teamDataSlice';
