@@ -2,15 +2,18 @@
 
 .rightSideWrapper {
   display: flex;
-  justify-content:  flex-start;
+  justify-content: flex-start;
   align-items: center;
   height: 95%;
   width: 100%;
+
   .wrapper {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+    border: 1px red solid;
+
     .title {
       color: $secondFontColor;
       font-weight: 600;
@@ -20,11 +23,12 @@
 
 .container {
   width: 65vmax;
-  height: 35vmax;
+  height: 70vh;
   display: grid;
   grid-template-columns: 1.2fr 1fr 1fr;
   grid-gap: 0.5em;
   color: $secondFontColor;
+  max-height: 70vh;
   font-size: 1.2em;
   text-align: center;
   list-style: none;
@@ -33,9 +37,35 @@
   .firstColumn {
     display: grid;
     grid-gap: 0.5em;
-    height: 35vmax;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1.5fr;
 
   }
 
+}
+
+
+@media only screen and (max-width: 1400px),
+only screen and (max-height: 700px) {
+  .title {
+    font-size: 1.4em;
+  }
+}
+
+
+@media only screen and (max-width: 900px) {
+  .wrapper {
+    height: 80vh;
+
+  }
+  .container {
+    grid-template-rows: 3fr 1fr 1fr;
+    grid-template-columns: 1fr;
+    height: 100%;
+    width: 90%;
+  }
+
+  .firstColumn {
+    display: grid;
+    grid-template-rows: 1fr 1fr 2fr;
+  }
 }

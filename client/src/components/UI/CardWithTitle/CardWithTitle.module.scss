@@ -1,28 +1,37 @@
 @import "../../../styles//variables.scss";
 
 .wrapper {
-    height: 100%;
-    width: 100%;
-    font-size: 0.9em;
-    background-color: $backgroundLight;
-    box-shadow: 1px 1px 1px black;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow-y: auto;
-    scrollbar-width: thin;
-    @include scrollbar;
+  height: 100%;
+  width: 100%;
+  font-size: 0.9rem;
+  background-color: $backgroundLight;
+  box-shadow: 1px 1px 1px black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  @include scrollbar;
 }
 
 .tileTitle {
-    font-size: 1.1em;
-    border-bottom: 1px solid $fontActive;
-    color: $fontActive;
-    margin: 0;
-    padding: 0.3em 0;
-    width: 90%;
-  }
+  font-size: 1.1rem;
+  border-bottom: 1px solid $fontActive;
+  color: $fontActive;
+  margin: 0;
+  padding: 0.3rem 0;
+  width: 90%;
+}
 
-  .content {
-    padding: 0.3em;
+.content {
+  padding: 0.3em;
+}
+
+@media only screen and (max-width: 1400px), only screen and (max-height: 700px) {
+  .tileTitle {
+    font-size: 1em;
   }
+  .content {
+    font-size: 0.8em;
+  }
+}
