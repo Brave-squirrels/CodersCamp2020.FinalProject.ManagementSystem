@@ -107,6 +107,7 @@ export default class TeamController {
       `${this.path}/:teamId/removePending`,
       findTeam,
       findUserByBody,
+      auth,
       this.removePending
     );
 

@@ -5,6 +5,11 @@ const removePending = async (req: Request, res: Response) => {
 
   const team = res.locals.team;
   const user = res.locals.user;
+  const authId = req.userInfo._id
+
+  //Checking if user have permissions 
+  if (!team.moderatorsId.includes(authId))
+  return res.status(StatusCodes.UNAUTHORIZED).send("You don't have permission to change description");
   
   //Remove user from pending
   team.pendingUsers.forEach((pendingUser: string, i: number) => {
