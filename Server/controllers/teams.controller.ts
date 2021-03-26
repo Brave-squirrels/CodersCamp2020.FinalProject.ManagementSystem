@@ -36,16 +36,17 @@ export default class TeamController {
       auth,
       findUserByAuth,
       this.createNewTeam
-    ); 
+    );
 
-    this.router.delete(`${this.path}/:teamId`, findTeam, auth, this.deleteTeam); 
+    this.router.delete(`${this.path}/:teamId`, findTeam, auth, this.deleteTeam);
 
     this.router.get(`${this.path}/:teamId`, findTeam, auth, this.getTeam);
 
     this.router.put(
       `${this.path}/:teamId/addUser`,
       findTeam,
-      findUserByBody,
+      auth,
+      findUserByAuth,
       this.addUserToTeam
     );
 
@@ -55,7 +56,7 @@ export default class TeamController {
       findUserByBody,
       auth,
       this.addPending
-    ); 
+    );
 
     this.router.put(
       `${this.path}/:teamId/removeUser`,
@@ -63,7 +64,7 @@ export default class TeamController {
       findTeam,
       auth,
       this.removeUser
-    ); 
+    );
 
     this.router.put(
       `${this.path}/:teamId/leaveTeam`,
@@ -71,7 +72,7 @@ export default class TeamController {
       findUserByAuth,
       findTeam,
       this.leaveTeam
-    ); 
+    );
 
     this.router.put(
       `${this.path}/:teamId/addPermissions`,
@@ -84,14 +85,14 @@ export default class TeamController {
       `${this.path}/:teamId/removePermissions`,
       findTeam,
       auth,
-      this.removePermissions 
+      this.removePermissions
     );
 
     this.router.put(
       `${this.path}/:teamId/changeDescription`,
       findTeam,
       auth,
-      this.changeDescription 
+      this.changeDescription
     );
 
     this.router.put(
@@ -99,21 +100,21 @@ export default class TeamController {
       findTeam,
       auth,
       findAllTeams,
-      this.changeTeamName 
+      this.changeTeamName
     );
 
     this.router.put(
       `${this.path}/:teamId/removePending`,
       findTeam,
       findUserByBody,
-      this.removePending 
+      this.removePending
     );
 
     this.router.put(
       `${this.path}/:teamId/changeTeamOwner`,
       findTeam,
       auth,
-      this.changeTeamOwner 
+      this.changeTeamOwner
     );
 
   }
