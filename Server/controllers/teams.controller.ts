@@ -18,6 +18,7 @@ import changeDescription from "../src/teams/changeDescription";
 import changeTeamName from "../src/teams/changeTeamName";
 import addPending from "../src/teams/addPending";
 import removePending from "../src/teams/removePending";
+import rejectInvitation from "../src/teams/rejectInvitation";
 import changeTeamOwner from '../src/teams/changeTeamOwner'
 
 export default class TeamController {
@@ -112,6 +113,14 @@ export default class TeamController {
     );
 
     this.router.put(
+      `${this.path}/:teamId/rejectInvitation`,
+      findTeam,
+      auth,
+      findUserByAuth,
+      this.rejectInvitation
+    );
+
+    this.router.put(
       `${this.path}/:teamId/changeTeamOwner`,
       findTeam,
       auth,
@@ -162,6 +171,9 @@ export default class TeamController {
   }
   removePending(req: Request, res: Response) {
     removePending(req, res);
+  }
+  rejectInvitation(req: Request, res: Response) {
+    rejectInvitation(req, res);
   }
 
   changeTeamOwner(req: Request, res: Response) {

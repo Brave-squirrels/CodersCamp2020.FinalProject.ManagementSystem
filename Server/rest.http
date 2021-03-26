@@ -225,6 +225,14 @@ content-type: application/json
 }
 
 ###
+#REJECT INVITATION
+
+PUT http://localhost:5000/teams/605b41b261323a561c907ad3/rejectInvitation HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDU0ZDAzMzNmM2Y2NjA0ZjQwOWE0YTIiLCJuYW1lIjoiRG9kYWtvd3kgdXNlciIsImlhdCI6MTYxNjc4Nzg4Mn0.fVsOsR4gI7l-fC0EeOOmz29RvL5ZYJD3pFDN2bYQaec
+content-type: application/json
+
+
+###
 
 #ADDING USER TO TEAM
 
