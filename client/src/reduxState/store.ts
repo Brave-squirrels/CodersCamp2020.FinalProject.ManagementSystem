@@ -13,6 +13,7 @@ import singleTeamData from './teamDataSlice';
 import singleProjectData from "./projectDataSlice";
 import sendVerifyAgain from './sendVerifyAgain';
 import createTeamSlice from './createTeam';
+import handleTeamInvite from './teamInvites';
 
 import thunk from "redux-thunk";
 
@@ -27,6 +28,7 @@ export const store = configureStore({
     sendVerifyAgain: sendVerifyAgain,
     singleProjectData: singleProjectData,
     createTeamSlice:createTeamSlice,
+    handleTeamInvite: handleTeamInvite,
   },
   middleware: [
     ...getDefaultMiddleware({
