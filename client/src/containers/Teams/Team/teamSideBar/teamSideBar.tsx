@@ -1,14 +1,14 @@
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams, NavLink } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import * as types from "../../../../utils/types";
+import classes from "./teamSidebar.module.scss";
 
 import PrimaryActiveItem from "components/UI/sideBar/sidebarItems/primaryActiveItem/primaryActiveItem";
 import PrimaryInactiveItem from "components/UI/sideBar/sidebarItems/primaryInactiveItem/primaryInactiveItem";
 import SecondaryItem from "components/UI/sideBar/sidebarItems/secondaryItem/secondaryItem";
 import SideBar from "components/UI/sideBar/sideBar";
-import NavLink from "components/UI/sideBar/sidebarItems/navLink/navLink";
 import PrimaryList from "components/UI/sideBar/sidebarItems/primaryList/primaryList";
 import SecondaryList from "components/UI/sideBar/sidebarItems/secondaryList/secondaryList";
 import LiItem from "components/UI/sideBar/sidebarItems/liItem/liItem";
@@ -44,13 +44,19 @@ const TeamSidebar = () => {
                 <SecondaryList>
                   {userTeam.team.projects
                     ? userTeam.team.projects.map((project: any) => (
-                        <NavLink
-                          teamId={teamId}
-                          projectId={project.id}
-                          key={project.id}
-                        >
-                          <SecondaryItem id={project.id} name={project.name} />
-                        </NavLink>
+                        <>
+                          <NavLink
+                            to={`/teams/${teamId}/projects/${project.id}`}
+                            exact
+                            className={classes.navLink}
+                            key={project.id}
+                          >
+                            <SecondaryItem
+                              id={project.id}
+                              name={project.name}
+                            />
+                          </NavLink>
+                        </>
                       ))
                     : null}
                 </SecondaryList>
