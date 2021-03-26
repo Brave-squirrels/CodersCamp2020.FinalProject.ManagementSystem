@@ -12,7 +12,7 @@ import SideBar from "components/UI/sideBar/sideBar";
 import PrimaryList from "components/UI/sideBar/sidebarItems/primaryList/primaryList";
 import SecondaryList from "components/UI/sideBar/sidebarItems/secondaryList/secondaryList";
 import LiItem from "components/UI/sideBar/sidebarItems/liItem/liItem";
-import Spinner from "components/UI/Spinner/spinner";
+import SpinnerLight from "components/UI/spinnerLight/spinner";
 
 import { fetchTeam } from "reduxState/teamDataSlice";
 import { RootState } from "reduxState/store";
@@ -62,7 +62,7 @@ const TeamSidebar = () => {
                         </>
                       ))
                     ) : (
-                      <Spinner />
+                      <SpinnerLight />
                     )}
                   </SecondaryList>
                 </LiItem>
@@ -77,7 +77,7 @@ const TeamSidebar = () => {
             </>
           ))
         ) : (
-          <Spinner />
+          <SpinnerLight />
         )}
       </PrimaryList>
     </SideBar>

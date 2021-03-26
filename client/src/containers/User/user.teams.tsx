@@ -9,9 +9,13 @@ import Button from "components/UI/formElements/button/button";
 import NavigationItem from "components/UI/navigationItem/navigationItem";
 import CreateTeam from "../Teams/createTeam/createTeam";
 import Modal from "components/Modal/modal";
+import SpinnerLight from "components/UI/spinnerLight/spinner";
+
+import { RootState } from "reduxState/store";
 
 const UserTeams: FunctionComponent = () => {
-  const user = useSelector((state: any) => state.login.userInformation);
+  const user = useSelector((state: RootState) => state.login.userInformation);
+  const userStages = useSelector((state: RootState) => state.login);
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -23,18 +27,24 @@ const UserTeams: FunctionComponent = () => {
       </Modal>
       <CardContainer title="Your Teams">
         <div className={classes.innerWrapper}>
-          {user.teams && user.teams.length ? (
-            user.teams.map((el: any) => (
-              <NavigationItem path={`/teams/${el.id}`} key={el.id}>
-                <Card key={el.id}>
-                  <h3 className={classes.cardHeader}>{el.name}</h3>
-                </Card>
-              </NavigationItem>
-            ))
+          {userStages.loading ? (
+            <SpinnerLight />
           ) : (
-            <div>You have not joined any teams yet...</div>
+            <>
+              {user.teams && user.teams.length ? (
+                user.teams.map((el: any) => (
+                  <NavigationItem path={`/teams/${el.id}`} key={el.id}>
+                    <Card key={el.id}>
+                      <h3 className={classes.cardHeader}>{el.name}</h3>
+                    </Card>
+                  </NavigationItem>
+                ))
+              ) : (
+                <div>You have not joined any teams yet...</div>
+              )}
+              <Button clicked={() => setShowModal(true)}>New Team</Button>
+            </>
           )}
-          <Button clicked={() => setShowModal(true)}>New Team</Button>
         </div>
       </CardContainer>
     </>
