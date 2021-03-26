@@ -13,24 +13,25 @@ interface Action {
   id?: string;
   token?: string | null;
   error?: any;
+  data?: any;
 }
 
 interface InitState {
   loading: boolean;
   error: any;
-  id: string | null;
-  token: string | null;
+  token: string | null | undefined;
   success: boolean;
   isAuth: boolean;
+  userInformation: any;
 }
 
 const initialState: InitState = {
   loading: false,
   error: null,
-  id: null,
   token: null,
   success: false,
   isAuth: false,
+  userInformation: {}
 };
 
 export const loginSlice = createSlice({
@@ -39,35 +40,35 @@ export const loginSlice = createSlice({
   reducers: {
     login: (state) => {
       state.loading = true;
-      state.id = null;
-      state.token = null;
       state.success = false;
       state.isAuth = false;
+      state.userInformation = null;
+      state.token = null;
     },
     loginSuccess: (state, action: PayloadAction<Action>) => {
       state.loading = false;
       state.error = null;
-      state.id = action.payload.id as string;
-      state.token = action.payload.token as string;
+      state.token = action.payload.token;
+      state.userInformation = action.payload.data;
       state.success = true;
       state.isAuth = true;
     },
     loginFail: (state, action: PayloadAction<Action>) => {
       state.loading = false;
       state.error = action.payload as any;
-      state.id = null;
-      state.token = null;
       state.success = false;
       state.isAuth = false;
+      state.userInformation = null;
+      state.token = null;
     },
     logout: (state) => {
       localStorage.clear();
       state.loading = false;
       state.error = null;
-      state.id = null;
-      state.token = null;
       state.success = false;
       state.isAuth = false;
+      state.userInformation = null;
+      state.token = null;
     },
   },
 });
@@ -79,8 +80,11 @@ export const loginUser = (data: LoginData): AppThunk => (dispatch) => {
   axios
     .post("/login", data)
     .then((res) => {
-      const ob = { id: res.data._id, token: res.data.token };
-      dispatch(loginSuccess(ob));
+      const data = {
+        data: res.data,
+        token: res.data.token
+      }
+      dispatch(loginSuccess(data));
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("id", res.data.id);
     })
@@ -94,7 +98,10 @@ export const authUser = (): AppThunk => (dispatch) => {
   axios
     .get("/users/me", { headers: { "x-auth-token": `${token}` } })
     .then((res) => {
-      const data = { id: res.data._id, token: token };
+      const data = {
+        data: res.data,
+        token: token
+      }
       dispatch(loginSuccess(data));
     })
     .catch((error) => {
@@ -105,8 +112,8 @@ export const authUser = (): AppThunk => (dispatch) => {
 export const selectLoading = (state: RootState) => state.login.loading;
 export const selectError = (state: RootState) => state.login.error;
 export const selectSuccess = (state: RootState) => state.login.success;
-export const selectId = (state: RootState) => state.login.id;
 export const selectToken = (state: RootState) => state.login.token;
+export const selectTeamInformation = (state:RootState)=>state.login.userInformation;
 export const selectIsAuth = (state: RootState) => state.login.isAuth;
 
 export default loginSlice.reducer;

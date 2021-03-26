@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import classes from "./sidebar.module.scss";
 
 const SideBar = (props: any) => {
-  const [reveal, setReveal] = useState(false);
+  const [reveal, setReveal] = useState(true);
   const [navClasses, changeNavClasses] = useState([
     classes.sideBarShown,
     classes.sideBarHidden,
@@ -20,11 +20,16 @@ const SideBar = (props: any) => {
 
   return (
     <>
-      <div className={navClasses.join(" ")} onClick={changeReveal}>
+      <div
+        className={navClasses.join(" ")}
+        onClick={() => (reveal ? null : changeReveal())}
+      >
         <p className={classes.title}>{props.title}</p>
         {props.children}
-        <p className={classes.back} onClick={changeReveal}>
-          &#8617;
+        <p className={classes.backCon}>
+          <span onClick={changeReveal} className={classes.backBtn}>
+            &#8617;
+          </span>
         </p>
       </div>
     </>

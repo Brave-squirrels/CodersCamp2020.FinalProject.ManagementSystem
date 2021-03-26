@@ -9,7 +9,19 @@
 }
 .innerWrapper {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-gap: 2em;
-  grid-auto-rows: 140px;
+  grid-auto-rows: 180px;
+}
+
+@media (max-width: 600px) {
+  .innerWrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 450px) {
+  .innerWrapper {
+    grid-template-columns: 1fr;
+  }
 }

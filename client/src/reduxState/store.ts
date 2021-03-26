@@ -7,14 +7,13 @@ import {
 import createUserReducer from "./createUserSlice";
 import loginReducer from "./loginSlice";
 import sideNavActionReducer from "./sideNavActionSlice";
-
 import sendForgotPassword from "./sendForgotPassword";
 import changePasswordLanding from "./changePasswordLoggedOut";
-import userReducer from "./userSlice";
 import singleTeamData from './teamDataSlice';
 import singleProjectData from "./projectDataSlice";
 import sendVerifyAgain from './sendVerifyAgain';
 import createTeamSlice from './createTeam';
+import handleTeamInvite from './teamInvites';
 
 import thunk from "redux-thunk";
 
@@ -25,11 +24,11 @@ export const store = configureStore({
     sideNavAction: sideNavActionReducer,
     sendForgotPassword: sendForgotPassword,
     changePasswordLanding: changePasswordLanding,
-    user: userReducer,
     singleTeamData: singleTeamData,
     sendVerifyAgain: sendVerifyAgain,
     singleProjectData: singleProjectData,
     createTeamSlice:createTeamSlice,
+    handleTeamInvite: handleTeamInvite,
   },
   middleware: [
     ...getDefaultMiddleware({
