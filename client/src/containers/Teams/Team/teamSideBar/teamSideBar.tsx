@@ -1,14 +1,14 @@
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams, NavLink } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import * as types from "../../../../utils/types";
+import classes from "./teamSidebar.module.scss";
 
 import PrimaryActiveItem from "components/UI/sideBar/sidebarItems/primaryActiveItem/primaryActiveItem";
 import PrimaryInactiveItem from "components/UI/sideBar/sidebarItems/primaryInactiveItem/primaryInactiveItem";
 import SecondaryItem from "components/UI/sideBar/sidebarItems/secondaryItem/secondaryItem";
 import SideBar from "components/UI/sideBar/sideBar";
-import NavLink from "components/UI/sideBar/sidebarItems/navLink/navLink";
 import PrimaryList from "components/UI/sideBar/sidebarItems/primaryList/primaryList";
 import SecondaryList from "components/UI/sideBar/sidebarItems/secondaryList/secondaryList";
 import LiItem from "components/UI/sideBar/sidebarItems/liItem/liItem";
@@ -24,7 +24,6 @@ const TeamSidebar = () => {
   const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.login.userInformation);
   const userTeam = useSelector((state: RootState) => state.singleTeamData);
-  const loading = useSelector((state: RootState) => state.login.loading);
 
   // import list of teams and projects of current active team
   const changeTeam = (e: any) => {
@@ -38,21 +37,21 @@ const TeamSidebar = () => {
 
   return (
     <SideBar title={"Your teams"}>
-      {loading ? (
-        <Spinner />
-      ) : (
-        <PrimaryList>
-          {user.teams.map((team: any) => (
+      <PrimaryList>
+        {user.teams ? (
+          user.teams.map((team: any) => (
             <>
               {team.id === teamId ? (
                 <LiItem teamId={team.id}>
                   <PrimaryActiveItem name={team.name} />
                   <SecondaryList>
-                    {userTeam.team.projects
-                      ? userTeam.team.projects.map((project: any) => (
+                    {userTeam.team.projects ? (
+                      userTeam.team.projects.map((project: any) => (
+                        <>
                           <NavLink
-                            teamId={teamId}
-                            projectId={project.id}
+                            to={`/teams/${teamId}/projects/${project.id}`}
+                            exact
+                            className={classes.navLink}
                             key={project.id}
                           >
                             <SecondaryItem
@@ -60,8 +59,11 @@ const TeamSidebar = () => {
                               name={project.name}
                             />
                           </NavLink>
-                        ))
-                      : null}
+                        </>
+                      ))
+                    ) : (
+                      <Spinner />
+                    )}
                   </SecondaryList>
                 </LiItem>
               ) : (
@@ -73,9 +75,11 @@ const TeamSidebar = () => {
                 />
               )}
             </>
-          ))}
-        </PrimaryList>
-      )}
+          ))
+        ) : (
+          <Spinner />
+        )}
+      </PrimaryList>
     </SideBar>
   );
 };

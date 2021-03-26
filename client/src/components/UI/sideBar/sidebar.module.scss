@@ -21,9 +21,6 @@
 }
 
 .sideBarShown {
-  & > * {
-    transition: transform 0.3 ease-out;
-  }
   margin-top: 10%;
   margin-left: 0.5em;
   width: 35vh;
