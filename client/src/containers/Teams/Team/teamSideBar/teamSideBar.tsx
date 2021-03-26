@@ -12,16 +12,19 @@ import NavLink from "components/UI/sideBar/sidebarItems/navLink/navLink";
 import PrimaryList from "components/UI/sideBar/sidebarItems/primaryList/primaryList";
 import SecondaryList from "components/UI/sideBar/sidebarItems/secondaryList/secondaryList";
 import LiItem from "components/UI/sideBar/sidebarItems/liItem/liItem";
+import Spinner from "components/UI/Spinner/spinner";
 
 import { fetchTeam } from "reduxState/teamDataSlice";
+import { RootState } from "reduxState/store";
 
 const TeamSidebar = () => {
   const history = useHistory();
   const { teamId } = useParams<types.TParams>();
 
   const dispatch = useDispatch();
-  const user = useSelector((state: any) => state.login.userInformation);
-  const userTeam = useSelector((state: any) => state.singleTeamData);
+  const user = useSelector((state: RootState) => state.login.userInformation);
+  const userTeam = useSelector((state: RootState) => state.singleTeamData);
+  const loading = useSelector((state: RootState) => state.login.loading);
 
   // import list of teams and projects of current active team
   const changeTeam = (e: any) => {
@@ -35,37 +38,44 @@ const TeamSidebar = () => {
 
   return (
     <SideBar title={"Your teams"}>
-      <PrimaryList>
-        {user.teams.map((team: any) => (
-          <>
-            {team.id === teamId ? (
-              <LiItem teamId={team.id}>
-                <PrimaryActiveItem name={team.name} />
-                <SecondaryList>
-                  {userTeam.team.projects
-                    ? userTeam.team.projects.map((project: any) => (
-                        <NavLink
-                          teamId={teamId}
-                          projectId={project.id}
-                          key={project.id}
-                        >
-                          <SecondaryItem id={project.id} name={project.name} />
-                        </NavLink>
-                      ))
-                    : null}
-                </SecondaryList>
-              </LiItem>
-            ) : (
-              <PrimaryInactiveItem
-                key={team.id}
-                id={team.id}
-                name={team.name}
-                clickHandler={changeTeam}
-              />
-            )}
-          </>
-        ))}
-      </PrimaryList>
+      {loading ? (
+        <Spinner />
+      ) : (
+        <PrimaryList>
+          {user.teams.map((team: any) => (
+            <>
+              {team.id === teamId ? (
+                <LiItem teamId={team.id}>
+                  <PrimaryActiveItem name={team.name} />
+                  <SecondaryList>
+                    {userTeam.team.projects
+                      ? userTeam.team.projects.map((project: any) => (
+                          <NavLink
+                            teamId={teamId}
+                            projectId={project.id}
+                            key={project.id}
+                          >
+                            <SecondaryItem
+                              id={project.id}
+                              name={project.name}
+                            />
+                          </NavLink>
+                        ))
+                      : null}
+                  </SecondaryList>
+                </LiItem>
+              ) : (
+                <PrimaryInactiveItem
+                  key={team.id}
+                  id={team.id}
+                  name={team.name}
+                  clickHandler={changeTeam}
+                />
+              )}
+            </>
+          ))}
+        </PrimaryList>
+      )}
     </SideBar>
   );
 };
