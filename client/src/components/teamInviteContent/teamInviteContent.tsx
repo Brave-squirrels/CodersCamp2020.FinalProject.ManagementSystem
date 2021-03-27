@@ -1,7 +1,6 @@
 import React from "react";
 
 import Button from "../UI/formElements/button/button";
-import ButtonDanger from "../UI/formElements/buttonDanger/buttonDanger";
 import Square from "components/UI/square/square";
 
 import styles from "./teamInviteContent.module.scss";
@@ -17,7 +16,7 @@ const TeamInviteContent = (props: Props) => {
       <div className={styles.wrapper}>
         <span className={styles.inviteTitle}>{props.children}</span>
         <Button>Accept</Button>
-        <ButtonDanger>Decline</ButtonDanger>
+        <Button btnType="danger">Decline</Button>
       </div>
     </Square>
   );
