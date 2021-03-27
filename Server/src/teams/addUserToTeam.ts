@@ -4,17 +4,16 @@ import { StatusCodes } from "http-status-codes";
 import members from "../../interfaces/teamMembers.interface";
 
 const addUserToTeam = async (req: Request, res: Response) => {
-  const { error } = validateUserId(req.body);
   
   const { user, team } = res.locals;
 
   //check if user have invitation
-  if (!team.pendingUsers.includes(req.body.id))
+  if (!team.pendingUsers.includes(user.id))
     return res.status(StatusCodes.BAD_REQUEST).send("User don't have invite");
 
   //Remove user from pending
   team.pendingUsers.forEach((pendingUser: string, i: number) => {
-    if (pendingUser == req.body.id) team.pendingUsers.splice(i, 1);
+    if (pendingUser == user.id) team.pendingUsers.splice(i, 1);
   });
 
   //Add user to team

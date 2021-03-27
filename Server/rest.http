@@ -7,8 +7,8 @@ POST http://localhost:5000/login HTTP/1.1
 Content-Type: application/json
 
 {
-    "email": "sgmacpuhsmsveqfgfm@miucce.com",
-    "password": "12345678"
+    "email": "testMaciek2@test.com",
+    "password": "testowehaslo"
 }
 
 ###
@@ -204,47 +204,53 @@ content-type: application/json
 
 #ADDING USER TO PENDING
 
-PUT http://localhost:5000/teams/604f9fe465dc053a4c06b230/addPending HTTP/1.1
-x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDRmN2IyMWM2MzNhMTQ3YjAzYjFmNWQiLCJuYW1lIjoiVXNlciBQcmV6ZW50YWNqYSIsImlhdCI6MTYxNTgyMTYwMX0.CgXYrO9fe0AhZL9IfcTWEwkRLNsnhdd59lTWMeytW58
+PUT http://localhost:5000/teams/605b41b261323a561c907ad3/addPending HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDUzYTFkZDExZTc5ZjQwNGNmOGVmZmQiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE2Nzg3MTYzfQ.8Br0Bu6JcTlK1ucR1f364uAnUrhPj4a_GTdoI0Wxesk
 content-type: application/json
 
 {
-    "id": "604f7c52c633a147b03b1f5f"
+    "id": "6054d0333f3f6604f409a4a2"
 }
 
 ###
 
 #REMOVING USER FROM PENDING
 
-PUT http://localhost:5000/teams/603e5baec26c9f2ce88007e2/removePending HTTP/1.1
-Content-type: application/json
+PUT http://localhost:5000/teams/605b41b261323a561c907ad3/removePending HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDUzYTFkZDExZTc5ZjQwNGNmOGVmZmQiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE2Nzg3MTYzfQ.8Br0Bu6JcTlK1ucR1f364uAnUrhPj4a_GTdoI0Wxesk
+content-type: application/json
 
 {
-   "id": "604f7c52c633a147b03b1f5f" 
+   "id": "6054d0333f3f6604f409a4a2" 
 }
+
+###
+#REJECT INVITATION
+
+PUT http://localhost:5000/teams/605b41b261323a561c907ad3/rejectInvitation HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDU0ZDAzMzNmM2Y2NjA0ZjQwOWE0YTIiLCJuYW1lIjoiRG9kYWtvd3kgdXNlciIsImlhdCI6MTYxNjc4Nzg4Mn0.fVsOsR4gI7l-fC0EeOOmz29RvL5ZYJD3pFDN2bYQaec
+content-type: application/json
+
 
 ###
 
 #ADDING USER TO TEAM
 
-PUT http://localhost:5000/teams/604f9fe465dc053a4c06b230/addUser HTTP/1.1
-x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDRmN2IyMWM2MzNhMTQ3YjAzYjFmNWQiLCJuYW1lIjoiVXNlciBQcmV6ZW50YWNqYSIsImlhdCI6MTYxNTgyMTYwMX0.CgXYrO9fe0AhZL9IfcTWEwkRLNsnhdd59lTWMeytW58
+PUT http://localhost:5000/teams/605b41b261323a561c907ad3/addUser HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDU0ZDAzMzNmM2Y2NjA0ZjQwOWE0YTIiLCJuYW1lIjoiRG9kYWtvd3kgdXNlciIsImlhdCI6MTYxNjc4Nzg4Mn0.fVsOsR4gI7l-fC0EeOOmz29RvL5ZYJD3pFDN2bYQaec
 content-type: application/json
 
-{
-    "id": "604f7c52c633a147b03b1f5f"
-}
 
 ###
 
 #REMOVING USER FROM TEAM
 
-PUT http://localhost:5000/teams/604f7b8cc633a147b03b1f5e/removeUser HTTP/1.1
-x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDRmN2IyMWM2MzNhMTQ3YjAzYjFmNWQiLCJuYW1lIjoiVXNlciBQcmV6ZW50YWNqYSIsImlhdCI6MTYxNTgyMTYwMX0.CgXYrO9fe0AhZL9IfcTWEwkRLNsnhdd59lTWMeytW58
+PUT http://localhost:5000/teams/605b41b261323a561c907ad3/removeUser HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDUzYTFkZDExZTc5ZjQwNGNmOGVmZmQiLCJuYW1lIjoiTWFjaWVrIiwiaWF0IjoxNjE2Nzg3MTYzfQ.8Br0Bu6JcTlK1ucR1f364uAnUrhPj4a_GTdoI0Wxesk
 content-type: application/json
 
 {
-    "id": "604f7c52c633a147b03b1f5f"
+    "id": "6054d0333f3f6604f409a4a2"
 }
 
 ###

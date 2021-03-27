@@ -2,6 +2,6 @@
 .Wrapper {
   @include scrollbar;
   display: grid;
-  grid-template-columns: 20vw 1fr;
+  grid-template-columns: 42vh 1fr;
   height: 100%;
 }

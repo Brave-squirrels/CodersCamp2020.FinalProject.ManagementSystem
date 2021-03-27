@@ -12,7 +12,7 @@ const changeDescription = async (req: Request, res: Response) => {
 
   //Checking if user have permissions 
   if (!team.moderatorsId.includes(authId))
-  return res.status(StatusCodes.UNAUTHORIZED).send("You don't have permission to change description");
+  return res.status(StatusCodes.UNAUTHORIZED).send("You don't have permission to remove user invitation");
 
   team.description = req.body.newDescription;
 

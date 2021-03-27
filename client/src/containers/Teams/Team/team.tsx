@@ -10,6 +10,7 @@ import styles from "./team.module.scss";
 import TeamSidebar from "./teamSideBar/teamSideBar";
 import { CardWithTitle } from "components/UI/CardWithTitle/CardWithTitle";
 import Spinner from "components/UI/Spinner/spinner";
+import ErrorHandler from "components/errorHandler/errorHandler";
 
 import { fetchTeam } from "reduxState/teamDataSlice";
 
@@ -19,7 +20,6 @@ const Team = () => {
   const { teamId } = useParams<types.TParams>();
 
   const state = useSelector((state: RootState) => state.singleTeamData);
-  const loading = useSelector((state: RootState) => state.login.loading);
   useEffect(() => {
     dispatch(fetchTeam(teamId));
   }, [dispatch, teamId]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -33,8 +33,10 @@ const Team = () => {
   return (
     <ViewWithSidebar>
       <TeamSidebar />
-      {loading ? (
+      {state.loading ? (
         <Spinner />
+      ) : state.error ? (
+        <ErrorHandler>Something went wrong...</ErrorHandler>
       ) : (
         <div className={styles.rightSideWrapper}>
           <div className={styles.wrapper}>
