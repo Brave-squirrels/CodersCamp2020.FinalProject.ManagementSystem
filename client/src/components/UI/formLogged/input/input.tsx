@@ -12,6 +12,8 @@ interface Props {
   stateMain?: any;
   name?: string;
   turnOff?: boolean;
+  minLength?: number;
+  maxLength?: number;
 }
 
 const input: FunctionComponent<Props> = (props) => {
@@ -39,6 +41,8 @@ const input: FunctionComponent<Props> = (props) => {
             onChange={props.onChangeInput}
             required
             disabled={props.turnOff}
+            minLength={props.minLength}
+            maxLength={props.maxLength}
           />
           <span className={styles.label}>{props.label}</span>
         </label>

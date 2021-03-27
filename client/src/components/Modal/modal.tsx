@@ -42,7 +42,7 @@ const modal = (props: Props) => {
             onClick={(e: any) => {
               e.stopPropagation();
             }}
-            style={{ width: props.width, height: props.height }}
+            style={{ maxWidth: props.width, maxHeight: props.height }}
           >
             {props.children}
             <span onClick={props.onClose} className={styles.modalClose}>

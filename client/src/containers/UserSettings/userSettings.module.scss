@@ -25,25 +25,48 @@
       display: flex;
       justify-content: flex-start;
 
-      .icon {
-        font-size: 1.6rem;
-        align-self: center;
-        margin-left: 1rem;
-        color: $fontBlue;
-        transition: all 1s ease;
+      .btnContainer {
+        position: relative;
+        display: flex;
 
-        &:hover {
-          filter: brightness(1.2);
-          cursor: pointer;
+        .iconShow {
+          opacity: 1 !important;
         }
 
-        &:active {
-          transform: scale(0.9);
-        }
-      }
+        .icon {
+          font-size: 1.6rem;
+          align-self: center;
+          margin-left: 1rem;
+          color: $fontBlue;
+          position: absolute;
+          opacity: 0;
+          transition: opacity 0.6s ease-out;
 
-      Button {
-        margin-left: 1rem;
+          &:hover {
+            filter: brightness(1.2);
+            cursor: pointer;
+          }
+
+          &:active {
+            transform: scale(0.9);
+          }
+        }
+
+        Button {
+          position: absolute;
+          margin-left: 1rem;
+          position: relative;
+        }
+
+        .btnShift {
+          transform: translateX(2.6rem);
+          transition: transform 0.4s ease-in-out;
+        }
+
+        .btnReset {
+          transform: translateX(0);
+          transition: transform 0.4s ease-in-out;
+        }
       }
     }
   }
@@ -97,24 +120,6 @@
     div {
       display: flex;
       justify-content: space-around;
-
-      button {
-        outline: none;
-        border: none;
-        border-radius: 6px;
-        padding: 0.2rem 1.2rem;
-        height: 2.8rem;
-        font-size: 1rem;
-        text-transform: uppercase;
-        color: $secondFontColor;
-        background-color: $buttonBackgroundDangerHover;
-        filter: drop-shadow(2px 2px 2px #00000056);
-
-        &:hover {
-          cursor: pointer;
-          filter: brightness(0.9);
-        }
-      }
     }
   }
 }
