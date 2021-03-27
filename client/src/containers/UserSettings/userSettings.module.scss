@@ -1,0 +1,68 @@
+@import "../../styles/variables.scss";
+
+.userSettingsContainer {
+  max-width: 1444px;
+  margin: auto;
+  padding: 2rem 10%;
+  color: $secondFontColor;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  height: 100%;
+
+  h2 {
+    margin-bottom: 0;
+  }
+
+  .settingsLabel {
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+  }
+
+  .profile {
+    .name {
+      display: flex;
+      justify-content: flex-start;
+
+      Button {
+        margin-left: 1rem;
+      }
+    }
+  }
+
+  .password {
+    margin-top: 3rem;
+
+    .passwordContainer {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+
+      div {
+        margin-right: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      Button {
+        margin-bottom: 2rem;
+      }
+    }
+  }
+
+  .delete {
+    color: $buttonBackgroundDangerHover;
+    font-weight: 500;
+    cursor: pointer;
+    user-select: none;
+    margin-top: 3rem;
+
+    p:hover {
+      text-decoration: underline;
+    }
+
+    p:active {
+      filter: brightness(0.9);
+    }
+  }
+}
