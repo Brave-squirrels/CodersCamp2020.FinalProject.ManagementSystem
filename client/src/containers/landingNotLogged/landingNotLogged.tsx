@@ -215,7 +215,7 @@ const StartPage = () => {
             <Button
               clicked={() => changeView(true)}
               disabled={view}
-              btnType="disable"
+              btnType="disabled"
             >
               Sign In
             </Button>
