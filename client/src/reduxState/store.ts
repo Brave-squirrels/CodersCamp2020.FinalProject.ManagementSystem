@@ -6,14 +6,15 @@ import {
 } from "@reduxjs/toolkit";
 import createUserReducer from "./createUserSlice";
 import loginReducer from "./loginSlice";
+import settingsReducer from "./settingsSlice";
 import sideNavActionReducer from "./sideNavActionSlice";
 import sendForgotPassword from "./sendForgotPassword";
 import changePasswordLanding from "./changePasswordLoggedOut";
-import singleTeamData from './teamDataSlice';
+import singleTeamData from "./teamDataSlice";
 import singleProjectData from "./projectDataSlice";
-import sendVerifyAgain from './sendVerifyAgain';
-import createTeamSlice from './createTeam';
-import handleTeamInvite from './teamInvites';
+import sendVerifyAgain from "./sendVerifyAgain";
+import createTeamSlice from "./createTeam";
+import handleTeamInvite from "./teamInvites";
 
 import thunk from "redux-thunk";
 
@@ -21,13 +22,14 @@ export const store = configureStore({
   reducer: {
     createUser: createUserReducer,
     login: loginReducer,
+    settings: settingsReducer,
     sideNavAction: sideNavActionReducer,
     sendForgotPassword: sendForgotPassword,
     changePasswordLanding: changePasswordLanding,
     singleTeamData: singleTeamData,
     sendVerifyAgain: sendVerifyAgain,
     singleProjectData: singleProjectData,
-    createTeamSlice:createTeamSlice,
+    createTeamSlice: createTeamSlice,
     handleTeamInvite: handleTeamInvite,
   },
   middleware: [

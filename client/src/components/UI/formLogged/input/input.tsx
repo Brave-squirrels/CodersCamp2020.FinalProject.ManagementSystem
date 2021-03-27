@@ -26,7 +26,6 @@ const input: FunctionComponent<Props> = (props) => {
       selectOptions.push(props.stateMain.status.options[key]);
     }
   }
-  console.log(props);
 
   let input;
   switch (props.inputType) {
