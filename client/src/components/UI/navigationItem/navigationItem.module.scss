@@ -8,9 +8,14 @@
     text-decoration: none;
     color: $mainFontColor;
     &:hover,
-    &:active,
-    a.active {
+    &:active {
       color: $fontActive;
     }
   }
 }
+
+a.active {
+  color: $fontActive;
+}
+
+/* a.activeSideBar */
