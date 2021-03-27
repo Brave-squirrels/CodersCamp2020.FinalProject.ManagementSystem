@@ -5,10 +5,15 @@ import {
   selectOldPassword,
   selectNewPassword,
   selectConfirm,
-  setPasswordData,
+  setOldPassword,
+  setNewPassword,
+  setConfirm,
   changePassword,
   selectError,
+  selectSuccess,
+  toggleSuccess,
 } from "reduxState/settingsSlice";
+import Modal from "components/Modal/modal";
 import ErrorHandler from "components/errorHandler/errorHandler";
 import Input from "components/UI/formLogged/input/input";
 import Button from "components/UI/formElements/button/button";
@@ -22,10 +27,11 @@ const EditPassword = () => {
   const newPassword = useSelector(selectNewPassword);
   const confirm = useSelector(selectConfirm);
   const error = useSelector(selectError);
+  const success = useSelector(selectSuccess);
 
-  const handleChange = (e: E, type: string) => {
+  const handleChange = (e: E, callback: any) => {
     const { value } = e.currentTarget;
-    dispatch(setPasswordData({ [type]: value }));
+    dispatch(callback(value));
   };
 
   const editPassword = (e: React.FormEvent<HTMLFormElement>) => {
@@ -47,13 +53,13 @@ const EditPassword = () => {
           <Input
             type={"password"}
             inputValue={password}
-            onChangeInput={(e: E) => handleChange(e, "oldPassword")}
+            onChangeInput={(e: E) => handleChange(e, setOldPassword)}
             label={""}
-            validity={false}
-            touched={false}
-            inputType={"input"}
+            validity={true}
             minLength={8}
             maxLength={255}
+            touched={false}
+            inputType={"input"}
           />
         </div>
         <div>
@@ -61,7 +67,7 @@ const EditPassword = () => {
           <Input
             type={"password"}
             inputValue={newPassword}
-            onChangeInput={(e: E) => handleChange(e, "newPassword")}
+            onChangeInput={(e: E) => handleChange(e, setNewPassword)}
             label={""}
             validity={false}
             touched={false}
@@ -75,7 +81,7 @@ const EditPassword = () => {
           <Input
             type={"password"}
             inputValue={confirm}
-            onChangeInput={(e: E) => handleChange(e, "confirm")}
+            onChangeInput={(e: E) => handleChange(e, setConfirm)}
             label={""}
             validity={false}
             touched={false}
@@ -89,6 +95,20 @@ const EditPassword = () => {
       <div className={classes.error}>
         <ErrorHandler>{error}</ErrorHandler>
       </div>
+      <Modal
+        show={success}
+        onClose={() => dispatch(toggleSuccess(false))}
+        height={"200px"}
+        width={"400px"}
+      >
+        <div className={classes.modal}>
+          <h2 className={classes.success}>Success!</h2>
+          <br />
+          <div>
+            <Button clicked={() => dispatch(toggleSuccess(false))}>ok</Button>
+          </div>
+        </div>
+      </Modal>
     </>
   );
 };

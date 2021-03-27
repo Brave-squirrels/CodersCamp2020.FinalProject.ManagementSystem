@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "reduxState/store";
+import { useHistory } from "react-router";
 
+import { deleteUser } from "reduxState/settingsSlice";
 import Input from "components/UI/formLogged/input/input";
 import Button from "components/UI/formElements/button/button";
 import Modal from "components/Modal/modal";
@@ -12,6 +14,14 @@ import classes from "./userSettings.module.scss";
 const UserSettings = () => {
   const user = useSelector((state: RootState) => state.login.userInformation);
   const [modalState, setModalState] = useState(false);
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const deleteAccount = () => {
+    const id = `${localStorage.getItem("id")}`;
+    dispatch(deleteUser(id));
+    history.push("/logout");
+  };
 
   return (
     <div className={classes.userSettingsContainer}>
@@ -48,8 +58,12 @@ const UserSettings = () => {
             <h2>Are you sure you want to delete your account?</h2>
             <p>Thist action can't be undone</p>
             <div>
-              <Button btnType="danger">cancel</Button>
-              <Button btnType="danger">delete</Button>
+              <Button clicked={() => setModalState(false)} btnType="danger">
+                cancel
+              </Button>
+              <Button clicked={deleteAccount} btnType="danger">
+                delete
+              </Button>
             </div>
           </div>
         </Modal>

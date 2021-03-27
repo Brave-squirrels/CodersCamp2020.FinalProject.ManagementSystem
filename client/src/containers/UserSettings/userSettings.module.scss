@@ -121,6 +121,10 @@
     text-align: center;
     box-sizing: border-box;
 
+    .success {
+      color: $fontActive;
+    }
+
     div {
       display: flex;
       justify-content: space-around;
