@@ -16,7 +16,6 @@
     }
   }
   .input {
-    z-index: 0;
     color: $secondFontColor;
     max-width: 320px;
     width: 100%;
@@ -38,12 +37,10 @@
       color: $mainFontColor;
       background: $backgroundDark;
       padding: 0 0.8em;
-      z-index: 2;
     }
     &:focus,
     &:valid {
       border-color: $mainFontColor;
-      z-index: 2;
     }
     &:hover {
       cursor: pointer;
