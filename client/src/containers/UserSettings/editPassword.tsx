@@ -7,7 +7,9 @@ import {
   selectConfirm,
   setPasswordData,
   changePassword,
+  selectError,
 } from "reduxState/settingsSlice";
+import ErrorHandler from "components/errorHandler/errorHandler";
 import Input from "components/UI/formLogged/input/input";
 import Button from "components/UI/formElements/button/button";
 import classes from "./userSettings.module.scss";
@@ -19,6 +21,7 @@ const EditPassword = () => {
   const password = useSelector(selectOldPassword);
   const newPassword = useSelector(selectNewPassword);
   const confirm = useSelector(selectConfirm);
+  const error = useSelector(selectError);
 
   const handleChange = (e: E, type: string) => {
     const { value } = e.currentTarget;
@@ -27,14 +30,13 @@ const EditPassword = () => {
 
   const editPassword = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (newPassword === confirm)
-      dispatch(
-        changePassword({
-          oldPassword: password,
-          password: newPassword,
-          confirmPassword: confirm,
-        })
-      );
+    dispatch(
+      changePassword({
+        oldPassword: password,
+        password: newPassword,
+        confirmPassword: confirm,
+      })
+    );
   };
 
   return (
@@ -47,7 +49,7 @@ const EditPassword = () => {
             inputValue={password}
             onChangeInput={(e: E) => handleChange(e, "oldPassword")}
             label={""}
-            validity={true}
+            validity={false}
             touched={false}
             inputType={"input"}
             minLength={8}
@@ -61,7 +63,7 @@ const EditPassword = () => {
             inputValue={newPassword}
             onChangeInput={(e: E) => handleChange(e, "newPassword")}
             label={""}
-            validity={true}
+            validity={false}
             touched={false}
             inputType={"input"}
             minLength={8}
@@ -75,7 +77,7 @@ const EditPassword = () => {
             inputValue={confirm}
             onChangeInput={(e: E) => handleChange(e, "confirm")}
             label={""}
-            validity={true}
+            validity={false}
             touched={false}
             inputType={"input"}
             minLength={8}
@@ -84,6 +86,9 @@ const EditPassword = () => {
         </div>
         <Button>CHANGE</Button>
       </form>
+      <div className={classes.error}>
+        <ErrorHandler>{error}</ErrorHandler>
+      </div>
     </>
   );
 };

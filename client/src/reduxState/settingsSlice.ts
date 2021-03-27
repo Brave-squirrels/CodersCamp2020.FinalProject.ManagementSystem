@@ -25,6 +25,7 @@ interface InitState {
   oldPassword: string;
   newPassword: string;
   confirm: string;
+  error: string;
 }
 
 const initialState: InitState = {
@@ -34,6 +35,7 @@ const initialState: InitState = {
   oldPassword: "",
   newPassword: "",
   confirm: "",
+  error: "",
 };
 
 export const settingsSlice = createSlice({
@@ -56,6 +58,14 @@ export const settingsSlice = createSlice({
         state.newPassword = action.payload.newPassword;
       if (action.payload.confirm) state.confirm = action.payload.confirm;
     },
+    setError: (state, action: PayloadAction<string>) => {
+      state.error = action.payload;
+    },
+    resetPassword: (state) => {
+      state.oldPassword = "";
+      state.newPassword = "";
+      state.confirm = "";
+    },
   },
 });
 
@@ -64,6 +74,8 @@ export const {
   toggleActiveName,
   toggleBtnName,
   setPasswordData,
+  setError,
+  resetPassword,
 } = settingsSlice.actions;
 
 export const changeName = (data: nameData): AppThunk => async () => {
@@ -77,14 +89,18 @@ export const changeName = (data: nameData): AppThunk => async () => {
   }
 };
 
-export const changePassword = (data: passwordData): AppThunk => async () => {
+export const changePassword = (data: passwordData): AppThunk => async (
+  dispatch
+) => {
   const token = localStorage.getItem("token");
   try {
-    await axios.put("/users/password", data, {
+    await axios.put("/users/changepassword", data, {
       headers: { "x-auth-token": `${token}` },
     });
+    dispatch(setError(""));
+    dispatch(resetPassword());
   } catch (e) {
-    console.log("Error", e.response.data);
+    dispatch(setError(e.response.data));
   }
 };
 
@@ -96,5 +112,6 @@ export const selectOldPassword = (state: RootState) =>
 export const selectNewPassword = (state: RootState) =>
   state.settings.newPassword;
 export const selectConfirm = (state: RootState) => state.settings.confirm;
+export const selectError = (state: RootState) => state.settings.error;
 
 export default settingsSlice.reducer;

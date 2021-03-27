@@ -71,14 +71,25 @@ Content-Type: application/json
 
 ###
 # change password
+PUT http://localhost:5000/users/changepassword HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDUxYmJhMTBlMmQ0MzQxZjBjMzAxMGUiLCJuYW1lIjoiT2xlayIsImlhdCI6MTYxNjg2OTE5OH0.LCHnX2YmjZRy8y5j5_D-NBoj-5GkHAp0BSB2Y9PZ7wQ
+Content-Type: application/json
+
+{
+    "oldPassword": "12345678",
+    "password": "12345678",
+    "confirmPassword": "12345678"
+}
+
+###
+# new password
 PUT http://localhost:5000/users/password HTTP/1.1
 x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDUxYmJhMTBlMmQ0MzQxZjBjMzAxMGUiLCJuYW1lIjoiT2xlayIsImlhdCI6MTYxNjg2OTE5OH0.LCHnX2YmjZRy8y5j5_D-NBoj-5GkHAp0BSB2Y9PZ7wQ
 Content-Type: application/json
 
 {
-    "oldPassword": "123456789",
-    "password": "123456789",
-    "confirmPassword": "123456789"
+    "password": "12345678",
+    "confirmPassword": "12345678"
 }
 
 ###
