@@ -28,3 +28,15 @@
     background: $buttonBackground;
   }
 }
+
+.danger {
+  background: $buttonBackgroundDanger;
+  &:hover {
+    cursor: pointer;
+    background: $buttonBackgroundDangerHover;
+  }
+  &:disabled {
+    background: $buttonBackgroundDisabled;
+    pointer-events: none;
+  }
+}
