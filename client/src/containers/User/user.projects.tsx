@@ -1,14 +1,16 @@
 import React from "react";
+import { useHistory } from "react-router";
 import { useSelector } from "react-redux";
+
 import Card from "components/UI/Card/card";
 import CardContainer from "components/UI/CardContainer/cardContainer";
-import classes from "./user.module.scss";
-import { useHistory } from "react-router";
 import Button from "components/UI/formElements/button/button";
+import classes from "./user.module.scss";
 
 const UserProjects = () => {
   const user = useSelector((state: any) => state.login.userInformation);
   const history = useHistory();
+
   const buttonClicked = () => {
     history.push("/createProject");
   };

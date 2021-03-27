@@ -1,14 +1,13 @@
 import React, { FunctionComponent, useState } from "react";
-
 import { useSelector } from "react-redux";
 
 import Card from "components/UI/Card/card";
 import CardContainer from "components/UI/CardContainer/cardContainer";
-import classes from "./user.module.scss";
 import Button from "components/UI/formElements/button/button";
 import NavigationItem from "components/UI/navigationItem/navigationItem";
-import CreateTeam from "../Teams/createTeam/createTeam";
 import Modal from "components/Modal/modal";
+import CreateTeam from "../Teams/createTeam/createTeam";
+import classes from "./user.module.scss";
 
 const UserTeams: FunctionComponent = () => {
   const user = useSelector((state: any) => state.login.userInformation);
