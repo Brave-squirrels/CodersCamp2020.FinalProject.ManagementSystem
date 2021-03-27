@@ -22,7 +22,7 @@ const TeamInvites = () => {
           {reduxState.teamInvitation && reduxState.teamInvitation.length > 0 ? (
             reduxState.teamInvitation.map((el: any) => {
               return (
-                <TeamInviteContent teamId={el.id} key={el.id}>
+                <TeamInviteContent teamId={el.id} key={Math.random()}>
                   {el.name}
                 </TeamInviteContent>
               );
