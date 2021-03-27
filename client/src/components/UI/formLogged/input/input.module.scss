@@ -26,7 +26,19 @@
     border-radius: 3px;
     outline: none;
     transition: border-color 0.1s ease-out;
+    &:disabled + .label {
+      transition: 0.1s;
+      transform: translateY(-50%);
+      font-size: 0.8em;
+      color: $placeholderColor;
+      background: $backgroundDark;
+      padding: 0 0.8em;
+      pointer-events: none;
+    }
     &:disabled {
+      pointer-events: none;
+      border-color: $placeholderColor;
+      color: $placeholderColor;
     }
     @media (max-width: 650px) {
       width: 90%;

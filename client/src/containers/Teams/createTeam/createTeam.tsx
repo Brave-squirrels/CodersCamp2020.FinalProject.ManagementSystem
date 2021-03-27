@@ -18,10 +18,11 @@ const CreateTeam = () => {
 
   const [team, setTeam] = useState({
     teamName: {
-      val: "",
+      val: "SampleName",
       type: "text",
       inputType: "input",
       label: "Team Name",
+      disabled: true,
       validation: {
         required: true,
         minLength: 3,
