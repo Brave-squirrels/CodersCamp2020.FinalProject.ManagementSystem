@@ -7,6 +7,7 @@ type Props = {
   path: string;
   children: any;
   activeClass?: string;
+  clicked?: any;
 };
 
 const navigationItem: FunctionComponent<Props> = (props) => {
@@ -18,6 +19,7 @@ const navigationItem: FunctionComponent<Props> = (props) => {
         activeClassName={
           props.activeClass ? styles[props.activeClass] : styles.active
         }
+        onClick={props.clicked}
       >
         {props.children}
       </NavLink>
