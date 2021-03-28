@@ -4,11 +4,12 @@ import { RootState } from "reduxState/store";
 
 import Card from "components/UI/Card/card";
 import CardContainer from "components/UI/CardContainer/cardContainer";
-import Button from "components/UI/formElements/button/button";
 import NavigationItem from "components/UI/navigationItem/navigationItem";
 import SpinnerLight from "components/UI/spinnerLight/spinner";
 import Modal from "components/Modal/modal";
 import CreateTeam from "../Teams/createTeam/createTeam";
+import AddNew from "components/UI/addNew/addNew";
+
 import classes from "./user.module.scss";
 
 const UserTeams: FunctionComponent = () => {
@@ -25,7 +26,7 @@ const UserTeams: FunctionComponent = () => {
       </Modal>
       <CardContainer title="Your Teams">
         <div className={classes.createTeamWrapper}>
-          <Button clicked={() => setShowModal(true)}>New Team</Button>
+          <AddNew clicked={() => setShowModal(true)} />
         </div>
         <div className={classes.innerWrapper}>
           {userStages.loading ? (

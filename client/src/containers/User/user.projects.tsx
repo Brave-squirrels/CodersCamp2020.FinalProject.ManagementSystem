@@ -7,6 +7,7 @@ import Card from "components/UI/Card/card";
 import CardContainer from "components/UI/CardContainer/cardContainer";
 import Button from "components/UI/formElements/button/button";
 import SpinnerLight from "components/UI/spinnerLight/spinner";
+import NavigationItem from "components/UI/navigationItem/navigationItem";
 import classes from "./user.module.scss";
 
 const UserProjects = () => {
@@ -27,9 +28,14 @@ const UserProjects = () => {
           <>
             {user.projects && user.projects.length ? (
               user.projects.map((el: any) => (
-                <Card key={el.id}>
-                  <h3 className={classes.cardHeader}>{el.name}</h3>
-                </Card>
+                <NavigationItem
+                  key={el.id}
+                  path={`/teams/${el.teamId}/projects/${el.id}`}
+                >
+                  <Card key={el.id}>
+                    <h3 className={classes.cardHeader}>{el.name}</h3>
+                  </Card>
+                </NavigationItem>
               ))
             ) : (
               <div>You don't have any project yet...</div>
