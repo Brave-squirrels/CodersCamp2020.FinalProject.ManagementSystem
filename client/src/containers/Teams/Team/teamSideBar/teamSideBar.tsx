@@ -2,8 +2,6 @@ import { useHistory, useParams, NavLink } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { motion, AnimatePresence } from "framer-motion";
-
 import * as types from "../../../../utils/types";
 import classes from "./teamSidebar.module.scss";
 
