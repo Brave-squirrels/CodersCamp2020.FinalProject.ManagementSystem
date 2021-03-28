@@ -49,7 +49,7 @@ export const declineInvite = (id: string) : AppThunk => (dispatch) => {
         headers: {
             'x-auth-token': localStorage.getItem('token')
         }
-    }) //id
+    })
     .then(res=>{
         dispatch(success('Declined'))
     })
