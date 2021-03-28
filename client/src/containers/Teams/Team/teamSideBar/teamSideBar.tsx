@@ -2,8 +2,6 @@ import { useHistory, useParams, NavLink } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { motion, AnimatePresence } from "framer-motion";
-
 import * as types from "../../../../utils/types";
 import classes from "./teamSidebar.module.scss";
 
@@ -37,6 +35,30 @@ const TeamSidebar = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [teamId]);
 
+  let listContent: any = (
+    <SecondaryList>
+      {userTeam.team.projects.map((project: any) => (
+        <>
+          <NavLink
+            to={`/teams/${teamId}/projects/${project.id}`}
+            exact
+            className={classes.navLink}
+            key={project.id}
+          >
+            <SecondaryItem id={project.id} name={project.name} />
+          </NavLink>
+        </>
+      ))}
+    </SecondaryList>
+  );
+  if (userTeam.team.projects.length < 1) {
+    listContent = null;
+  }
+
+  if (userTeam.loading) {
+    listContent = <SpinnerLight />;
+  }
+
   return (
     <SideBar title={"Your teams"}>
       <PrimaryList>
@@ -46,28 +68,7 @@ const TeamSidebar = () => {
               {team.id === teamId ? (
                 <LiItem teamId={team.id}>
                   <PrimaryActiveItem name={team.name} />
-
-                  <SecondaryList>
-                    {userTeam.team.projects ? (
-                      userTeam.team.projects.map((project: any) => (
-                        <>
-                          <NavLink
-                            to={`/teams/${teamId}/projects/${project.id}`}
-                            exact
-                            className={classes.navLink}
-                            key={project.id}
-                          >
-                            <SecondaryItem
-                              id={project.id}
-                              name={project.name}
-                            />
-                          </NavLink>
-                        </>
-                      ))
-                    ) : (
-                      <SpinnerLight />
-                    )}
-                  </SecondaryList>
+                  {listContent}
                 </LiItem>
               ) : (
                 <PrimaryInactiveItem

@@ -14,12 +14,12 @@ const secondaryList = (props: any) => {
         animate={{
           opacity: 1,
           transition: {
-            delay: 0.3,
+            delay: 0.5,
             duration: 0.5,
           },
         }}
       >
-        <ul className={classes.secondaryList}> {props.children} </ul>{" "}
+        <ul className={classes.secondaryList}> {props.children} </ul>
       </motion.div>
     </AnimatePresence>
   );
