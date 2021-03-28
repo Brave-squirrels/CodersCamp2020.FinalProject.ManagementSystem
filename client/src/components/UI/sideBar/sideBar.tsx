@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
 import classes from "./sidebar.module.scss";
 
-const SideBar = (props: any) => {
+interface Props {
+  children: JSX.Element;
+  title: any;
+}
+
+const SideBar = (props: Props) => {
   const [reveal, setReveal] = useState(true);
   const [navClasses, changeNavClasses] = useState([
     classes.sideBarShown,
