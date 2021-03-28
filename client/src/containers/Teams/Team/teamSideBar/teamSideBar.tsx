@@ -2,6 +2,8 @@ import { useHistory, useParams, NavLink } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
+import { motion, AnimatePresence } from "framer-motion";
+
 import * as types from "../../../../utils/types";
 import classes from "./teamSidebar.module.scss";
 
@@ -44,6 +46,7 @@ const TeamSidebar = () => {
               {team.id === teamId ? (
                 <LiItem teamId={team.id}>
                   <PrimaryActiveItem name={team.name} />
+
                   <SecondaryList>
                     {userTeam.team.projects ? (
                       userTeam.team.projects.map((project: any) => (
