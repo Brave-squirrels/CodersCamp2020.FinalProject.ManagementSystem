@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { RootState } from "reduxState/store";
@@ -12,17 +12,11 @@ import { CardWithTitle } from "components/UI/CardWithTitle/CardWithTitle";
 import Spinner from "components/UI/Spinner/spinner";
 import ErrorHandler from "components/errorHandler/errorHandler";
 
-import { fetchTeam } from "reduxState/teamDataSlice";
-
 const Team = () => {
-  const dispatch = useDispatch();
-
   const { teamId } = useParams<types.TParams>();
 
   const state = useSelector((state: RootState) => state.singleTeamData);
-  useEffect(() => {
-    dispatch(fetchTeam(teamId));
-  }, [dispatch, teamId]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => {}, [teamId]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const moderatorsList = state.team.moderatorsId.map((moderatorId: string) =>
     state.team.members.map((member: any) =>
