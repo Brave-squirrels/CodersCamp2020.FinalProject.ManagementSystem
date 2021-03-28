@@ -24,6 +24,9 @@ const UserTeams: FunctionComponent = () => {
         </>
       </Modal>
       <CardContainer title="Your Teams">
+        <div className={classes.createTeamWrapper}>
+          <Button clicked={() => setShowModal(true)}>New Team</Button>
+        </div>
         <div className={classes.innerWrapper}>
           {userStages.loading ? (
             <SpinnerLight />
@@ -40,7 +43,6 @@ const UserTeams: FunctionComponent = () => {
               ) : (
                 <div>You have not joined any teams yet...</div>
               )}
-              <Button clicked={() => setShowModal(true)}>New Team</Button>
             </>
           )}
         </div>

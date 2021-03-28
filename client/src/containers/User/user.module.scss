@@ -39,6 +39,13 @@
   grid-auto-rows: 200px;
   grid-gap: 2em;
 }
+.createTeamWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  margin-bottom: 2em;
+}
 
 @media (max-width: 550px) {
   .innerWrapper {
