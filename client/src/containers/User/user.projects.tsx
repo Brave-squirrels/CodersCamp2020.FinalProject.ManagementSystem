@@ -9,6 +9,7 @@ import Button from "components/UI/formElements/button/button";
 import SpinnerLight from "components/UI/spinnerLight/spinner";
 import NavigationItem from "components/UI/navigationItem/navigationItem";
 import classes from "./user.module.scss";
+import EmptyNotification from "components/UI/emptyNotification/emptyNotification";
 
 const UserProjects = () => {
   const user = useSelector((state: RootState) => state.login.userInformation);
@@ -38,7 +39,9 @@ const UserProjects = () => {
                 </NavigationItem>
               ))
             ) : (
-              <div>You don't have any project yet...</div>
+              <EmptyNotification>
+                You don't have any project yet...
+              </EmptyNotification>
             )}
             <Button clicked={() => buttonClicked()}>New Project</Button>
           </>
