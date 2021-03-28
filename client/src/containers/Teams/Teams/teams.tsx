@@ -1,4 +1,4 @@
-import SideBar from "components/UI/sideBar/sideBar";
+import TeamSidebar from "../Team/teamSideBar/teamSideBar";
 import ViewWithSidebar from "hoc/viewWithSidebar/viewWithSidebar";
 import styles from "./teams.module.scss";
 
@@ -8,7 +8,7 @@ import Card from "components/UI/Card/card";
 const Teams = () => {
   return (
     <ViewWithSidebar>
-      <SideBar sidebarTitle="Your teams" />
+      <TeamSidebar />
       <div className={styles.rightSideWrapper}>
         <div className={styles.wrapper}>
           <CardContainer title="Your Teams">
