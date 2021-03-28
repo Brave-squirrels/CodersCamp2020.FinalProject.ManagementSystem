@@ -1,25 +1,5 @@
 @import "styles/variables.scss";
 
-.rightSideWrapper {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  height: 95%;
-  width: 100%;
-
-  .wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-
-    .title {
-      color: $secondFontColor;
-      font-weight: 600;
-    }
-  }
-}
-
 .container {
   width: 65vmax;
   height: 70vh;
@@ -32,30 +12,24 @@
   text-align: center;
   list-style: none;
 
-
   .firstColumn {
     display: grid;
     grid-gap: 0.5em;
     grid-template-rows: 1fr 1fr 1.5fr;
-
   }
-
 }
 
-
 @media only screen and (max-width: 1400px),
-only screen and (max-height: 700px) {
+  only screen and (max-height: 700px) {
   .title {
     font-size: 1.4em;
   }
 }
 
-
 @media only screen and (max-width: 900px) {
   .wrapper {
     height: 80vh;
     width: 90%;
-
   }
   .container {
     grid-template-rows: 3fr 1fr 1fr;
