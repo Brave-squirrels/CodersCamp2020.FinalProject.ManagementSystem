@@ -19,7 +19,7 @@ const CreateProject = () => {
       touched: false,
       valid: false,
     },
-    description: {
+    content: {
       val: "",
       inputType: "textarea",
       label: "Project Description",
