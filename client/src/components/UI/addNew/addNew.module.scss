@@ -1,0 +1,17 @@
+@import "../../../styles/variables.scss";
+
+.iconWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 0.3em;
+  font-weight: 600;
+  font-size: 1.2em;
+  color: $fontLightGreen;
+  &:hover + .plusIcon,
+  &:hover {
+    color: $fontActive;
+    cursor: pointer;
+  }
+}
