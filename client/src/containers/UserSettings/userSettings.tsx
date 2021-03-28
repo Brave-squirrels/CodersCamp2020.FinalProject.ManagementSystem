@@ -1,27 +1,15 @@
-import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import { RootState } from "reduxState/store";
-import { useHistory } from "react-router";
 
-import { deleteUser } from "reduxState/settingsSlice";
 import Input from "components/UI/formLogged/input/input";
-import Button from "components/UI/formElements/button/button";
-import Modal from "components/Modal/modal";
 import EditName from "./editName";
 import EditPassword from "./editPassword";
+import DeleteAccount from "./deleteAccount";
 import classes from "./userSettings.module.scss";
 
 const UserSettings = () => {
   const user = useSelector((state: RootState) => state.login.userInformation);
-  const [modalState, setModalState] = useState(false);
-  const dispatch = useDispatch();
-  const history = useHistory();
-
-  const deleteAccount = () => {
-    const id = `${localStorage.getItem("id")}`;
-    dispatch(deleteUser(id));
-    history.push("/logout");
-  };
 
   return (
     <div className={classes.userSettingsContainer}>
@@ -44,30 +32,7 @@ const UserSettings = () => {
         <h2>Password</h2>
         <EditPassword />
       </div>
-      <div className={classes.delete} onClick={() => setModalState(true)}>
-        <p>Delete account</p>
-      </div>
-      <div>
-        <Modal
-          show={modalState}
-          onClose={() => setModalState(false)}
-          height={"250px"}
-          width={"600px"}
-        >
-          <div className={classes.modal}>
-            <h2>Are you sure you want to delete your account?</h2>
-            <p>Thist action can't be undone</p>
-            <div>
-              <Button clicked={() => setModalState(false)} btnType="danger">
-                cancel
-              </Button>
-              <Button clicked={deleteAccount} btnType="danger">
-                delete
-              </Button>
-            </div>
-          </div>
-        </Modal>
-      </div>
+      <DeleteAccount />
     </div>
   );
 };
