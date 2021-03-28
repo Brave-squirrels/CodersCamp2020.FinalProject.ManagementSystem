@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 import { RootState } from "reduxState/store";
 import { fetchProject } from "reduxState/projectDataSlice";
 import { CardWithTitle } from "components/UI/CardWithTitle/CardWithTitle";
+import RightSideWrapper from "hoc/rightSideWrapper/rightSideWrapper";
 
 import * as types from "../../../utils/types";
 
@@ -25,46 +26,41 @@ const Project = () => {
   return (
     <ViewWithSidebar>
       <SideBar sidebarTitle="Your teams" />
-      <div className={styles.rightSideWrapper}>
-        <div className={styles.wrapper}>
-          <h1 className={styles.title}>{state.project.projectName}</h1>
-
-          {/* Container for project's info */}
-          <div className={styles.container}>
-            <div>
-              <CardWithTitle title={"Description"}>
-                {state.project.content}
-              </CardWithTitle>
-              <CardWithTitle title={"Start date"}>
-                {state.project.date}
-              </CardWithTitle>
-              <CardWithTitle title={"Deadline"}>
-                {state.project.deadline.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/)}
-              </CardWithTitle>
-              <CardWithTitle title={"Team owner"}>
-                {state.project.owner.name}
-              </CardWithTitle>
-            </div>
-
-            <CardWithTitle title={"Members"}>
-              {state.project.members.map((member: any) => member.name)}
+      <RightSideWrapper title={state.project.projectName}>
+        {/* Container for project's info */}
+        <div className={styles.container}>
+          <div>
+            <CardWithTitle title={"Description"}>
+              {state.project.content}
             </CardWithTitle>
-
-            <div>
-              <CardWithTitle title={"Project Menager"}>
-                {state.project.description}
-              </CardWithTitle>
-              <CardWithTitle title={"Scrum Master"}>
-                {state.project.description}
-              </CardWithTitle>
-              <CardWithTitle title={"Development Menager"}>
-                {state.project.description}
-              </CardWithTitle>
-            </div>
+            <CardWithTitle title={"Start date"}>
+              {state.project.date}
+            </CardWithTitle>
+            <CardWithTitle title={"Deadline"}>
+              {state.project.deadline.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/)}
+            </CardWithTitle>
+            <CardWithTitle title={"Team owner"}>
+              {state.project.owner.name}
+            </CardWithTitle>
           </div>
 
+          <CardWithTitle title={"Members"}>
+            {state.project.members.map((member: any) => member.name)}
+          </CardWithTitle>
+
+          <div>
+            <CardWithTitle title={"Project Menager"}>
+              {state.project.description}
+            </CardWithTitle>
+            <CardWithTitle title={"Scrum Master"}>
+              {state.project.description}
+            </CardWithTitle>
+            <CardWithTitle title={"Development Menager"}>
+              {state.project.description}
+            </CardWithTitle>
+          </div>
         </div>
-      </div>
+      </RightSideWrapper>
     </ViewWithSidebar>
   );
 };

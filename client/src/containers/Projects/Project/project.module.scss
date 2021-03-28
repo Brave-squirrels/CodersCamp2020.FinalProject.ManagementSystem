@@ -1,25 +1,5 @@
 @import "styles/variables.scss";
 
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-
-.rightSideWrapper {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  height: 95%;
-  width: 100%;
-}
-
-.title {
-  color: $secondFontColor;
-  font-weight: 600;
-}
-
 .container {
   width: 65vmax;
   height: 70vh;
@@ -29,31 +9,25 @@
   grid-template-columns: 1fr 1fr 1fr;
   text-align: center;
 
-
-
-  &> :first-child {
+  & > :first-child {
     display: grid;
     grid-gap: 0.5em;
     grid-template-rows: 1.7fr 1fr 1fr 1fr;
   }
 
-
-  &> :last-child {
+  & > :last-child {
     display: grid;
     grid-gap: 0.5em;
     grid-template-rows: 1fr 1fr 1fr;
   }
 }
 
-
-
 @media only screen and (max-width: 1400px),
-only screen and (max-height: 700px) {
+  only screen and (max-height: 700px) {
   .title {
     font-size: 1.4em;
   }
 }
-
 
 @media only screen and (max-width: 900px) {
   .wrapper {
