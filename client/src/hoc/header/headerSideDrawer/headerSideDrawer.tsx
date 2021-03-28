@@ -33,7 +33,6 @@ const ResHeader: FunctionComponent = () => {
         alt="hamburger"
       />
       <ul className={styles.navList}>
-        <NavigationItem path="/teams">Teams</NavigationItem>
         <NavigationItem path="/teaminvites">Team invites</NavigationItem>
         <NavigationItem path="/logout">Logout</NavigationItem>
         <NavigationItem path="/settings">

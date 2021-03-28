@@ -10,7 +10,6 @@ import ErrorHandler from "components/errorHandler/errorHandler";
 
 const Team = () => {
   const state = useSelector((state: RootState) => state.singleTeamData);
-
   const moderatorsList = state.team.moderatorsId.map((moderatorId: string) =>
     state.team.members.map((member: any) =>
       member.userId === state.team.ownerId ? member.userName : null
