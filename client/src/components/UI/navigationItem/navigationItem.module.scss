@@ -2,11 +2,10 @@
 .navItem {
   box-sizing: border-box;
   a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     text-decoration: none;
     color: $mainFontColor;
+    width: fit-content;
+
     &:hover,
     &:active {
       color: $fontActive;

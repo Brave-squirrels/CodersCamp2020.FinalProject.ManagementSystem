@@ -1,5 +1,11 @@
 @import "../../../styles/variables.scss";
 
+.title {
+  color: $secondFontColor;
+  font-weight: 600;
+  text-align: center;
+}
+
 .board {
   background: $backgroundLight;
   height: 100%;
@@ -9,10 +15,7 @@
   scrollbar-width: thin;
   box-shadow: $cardConShadow;
   border-radius: 4px;
+  box-sizing: border-box;
+
   @include scrollbar;
-}
-.title {
-  color: $secondFontColor;
-  font-weight: 600;
-  text-align: center;
 }
