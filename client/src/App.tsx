@@ -21,7 +21,6 @@ const LandingNotLogged = React.lazy(
 const Project = React.lazy(
   () => import("./containers/Projects/Project/project")
 );
-const Teams = React.lazy(() => import("./containers/Teams/Teams/teams"));
 const Team = React.lazy(() => import("./containers/Teams/Team/team"));
 const User = React.lazy(() => import("./containers/User/user"));
 const UserSettings = React.lazy(
@@ -94,7 +93,6 @@ const App = () => {
           <Switch>
             <Route exact path="/" render={() => <User />} />
             <Route exact path="/teams/:teamId" component={Team} />
-            <Route exact path="/teams" component={Teams} />
             <Route exact path="/createTeam" component={CreateTeam} />
             <Route
               exact
