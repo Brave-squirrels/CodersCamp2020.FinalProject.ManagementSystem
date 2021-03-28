@@ -61,9 +61,12 @@
 }
 
 .logoTitle {
-  padding-left: 1.5em;
+  padding-left: 0.5em;
   @media (max-width: 920px) and (min-width: 650px) {
     display: none;
+  }
+  @media (max-width: 400px) {
+    font-size: 0.8em;
   }
 }
 
