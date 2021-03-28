@@ -55,6 +55,7 @@ const formStructure = (props: Props) => {
         type={input.config.type}
         inputType={input.config.inputType}
         inputValue={input.config.val}
+        turnOff={input.config.disabled}
         onChangeInput={(e: { target: HTMLInputElement }) =>
           onChangeInput(e, input.id)
         }

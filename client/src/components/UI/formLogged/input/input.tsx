@@ -11,6 +11,9 @@ interface Props {
   inputType: string;
   stateMain?: any;
   name?: string;
+  turnOff?: boolean;
+  minLength?: number;
+  maxLength?: number;
 }
 
 const input: FunctionComponent<Props> = (props) => {
@@ -37,6 +40,9 @@ const input: FunctionComponent<Props> = (props) => {
             value={props.inputValue}
             onChange={props.onChangeInput}
             required
+            disabled={props.turnOff}
+            minLength={props.minLength}
+            maxLength={props.maxLength}
           />
           <span className={styles.label}>{props.label}</span>
         </label>
@@ -50,6 +56,7 @@ const input: FunctionComponent<Props> = (props) => {
             value={props.inputValue}
             onChange={props.onChangeInput}
             required
+            disabled={props.turnOff}
           />
           <span className={styles.label}>{props.label}</span>
         </label>
@@ -64,6 +71,7 @@ const input: FunctionComponent<Props> = (props) => {
             onChange={props.onChangeInput}
             className={[styles.select, styles.input].join(" ")}
             required
+            disabled={props.turnOff}
           >
             {selectOptions.map((option) => {
               return (

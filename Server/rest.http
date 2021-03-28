@@ -7,8 +7,8 @@ POST http://localhost:5000/login HTTP/1.1
 Content-Type: application/json
 
 {
-    "email": "testMaciek2@test.com",
-    "password": "testowehaslo"
+    "email": "olo.a@wp.pl",
+    "password": "12345678"
 }
 
 ###
@@ -71,13 +71,25 @@ Content-Type: application/json
 
 ###
 # change password
-PUT http://localhost:5000/users/password HTTP/1.1
-x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDMyMjcxZGJjMmM1NjAxOTA5NmIyMTciLCJpYXQiOjE2MTM5MDc2MzF9.c-rfYIqw-jXZL9834jtusjtSpQq5yeHWXZ_73aQdxX4
+PUT http://localhost:5000/users/changepassword HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDUxYmJhMTBlMmQ0MzQxZjBjMzAxMGUiLCJuYW1lIjoiT2xlayIsImlhdCI6MTYxNjg2OTE5OH0.LCHnX2YmjZRy8y5j5_D-NBoj-5GkHAp0BSB2Y9PZ7wQ
 Content-Type: application/json
 
 {
-    "password": "123456",
-    "confirmPassword": "123456"
+    "oldPassword": "12345678",
+    "password": "12345678",
+    "confirmPassword": "12345678"
+}
+
+###
+# new password
+PUT http://localhost:5000/users/password HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDUxYmJhMTBlMmQ0MzQxZjBjMzAxMGUiLCJuYW1lIjoiT2xlayIsImlhdCI6MTYxNjg2OTE5OH0.LCHnX2YmjZRy8y5j5_D-NBoj-5GkHAp0BSB2Y9PZ7wQ
+Content-Type: application/json
+
+{
+    "password": "12345678",
+    "confirmPassword": "12345678"
 }
 
 ###
@@ -92,12 +104,12 @@ GET http://localhost:5000/teams/603ff6c5a7e58805f6daa320/projects/6040c166773cd7
 
 ###
 # CREATE NEW PROJECT IN TEAM
-POST http://localhost:5000/teams/604f7b8cc633a147b03b1f5e/projects HTTP/1.1
-x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDRmN2IyMWM2MzNhMTQ3YjAzYjFmNWQiLCJuYW1lIjoiVXNlciBQcmV6ZW50YWNqYSIsImlhdCI6MTYxNTgyMTYwMX0.CgXYrO9fe0AhZL9IfcTWEwkRLNsnhdd59lTWMeytW58
+POST http://localhost:5000/teams/605fa5ce35561f136c8986ba/projects HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDVmYTU4YjM1NTYxZjEzNmM4OTg2YjkiLCJuYW1lIjoiT2xlazEyMyIsImlhdCI6MTYxNjkyMDIzMH0.nn-74rr89cyDhB9vqxO2pB4EU9tXmejKXNvnptqa_5A
 content-type: application/json
 
 {
-    "projectName": "Obiad",
+    "projectName": "Znaleść wieczne pióro",
     "deadline" : "2021-06-24T17:06:34.928+00:00"
 }
 
@@ -185,11 +197,11 @@ DELETE http://localhost:5000/teams/602daad612d3182dc04f8050/projects/6036e58865e
 #CREATE TEAM
 
 POST http://localhost:5000/teams HTTP/1.1
-x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDRmN2IyMWM2MzNhMTQ3YjAzYjFmNWQiLCJuYW1lIjoiVXNlciBQcmV6ZW50YWNqYSIsImlhdCI6MTYxNTgyMTYwMX0.CgXYrO9fe0AhZL9IfcTWEwkRLNsnhdd59lTWMeytW58
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDVmYTU4YjM1NTYxZjEzNmM4OTg2YjkiLCJuYW1lIjoiT2xlazEyMyIsImlhdCI6MTYxNjkyMDIzMH0.nn-74rr89cyDhB9vqxO2pB4EU9tXmejKXNvnptqa_5A
 content-type: application/json
 
 {
-    "teamName": "Tofiki"
+    "teamName": "Grayowie"
 }
 
 ###

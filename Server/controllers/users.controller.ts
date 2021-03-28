@@ -6,12 +6,13 @@ import getUser from "../src/users/getUser";
 import getUserMe from "../src/users/getUserMe";
 import deleteUser from "../src/users/deleteUser";
 import changePassword from "../src/users/changePassword";
+import newPassword from "../src/users/newPassword";
 import changeName from "../src/users/changeName";
 import confirmation from "../src/users/confirmation";
 import sendEmailToUser from "../src/users/sendEmail";
 import searchUser from "../src/users/searchUser";
 import findUser from "../middleware/findUser";
-import sendResetMail from '../src/users/changePasswordMail';
+import sendResetMail from "../src/users/changePasswordMail";
 
 /**
  * UserControll Class,
@@ -33,11 +34,11 @@ export default class UserController {
     this.router.post(`${this.path}/create`, this.createUser);
     this.router.post(`${this.path}/sendreset`, this.sendResetMail);
     this.router.post(`${this.path}/email`, this.sendEmailToUser);
-    this.router.put(`${this.path}/password`, auth, this.changePassword);
+    this.router.put(`${this.path}/password`, auth, this.newPassword);
+    this.router.put(`${this.path}/changepassword`, auth, this.changePassword);
     this.router.put(`${this.path}/name`, auth, this.changeName);
     this.router.delete(`${this.path}/:id`, this.deleteUser);
     this.router.get(`${this.path}/search/:email?`, this.searchUser);
-
   }
 
   getAllUsers(req: Request, res: Response) {
@@ -68,6 +69,10 @@ export default class UserController {
     changePassword(req, res);
   }
 
+  newPassword(req: Request, res: Response) {
+    newPassword(req, res);
+  }
+
   changeName(req: Request, res: Response) {
     changeName(req, res);
   }
@@ -79,7 +84,7 @@ export default class UserController {
   searchUser(req: Request, res: Response) {
     searchUser(req, res);
   }
-  
+
   sendResetMail(req: Request, res: Response) {
     sendResetMail(req, res);
   }

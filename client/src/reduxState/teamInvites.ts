@@ -45,8 +45,11 @@ export const {start, success, failed} = handleTeamInvite.actions;
  
 export const declineInvite = (id: string) : AppThunk => (dispatch) => {
     dispatch(start());
-    const data = {id: localStorage.getItem('id')}
-    axios.put(`/teams/${id}/removePending`, data) //id
+    axios.put(`/teams/${id}/removePending`, {
+        headers: {
+            'x-auth-token': localStorage.getItem('token')
+        }
+    }) //id
     .then(res=>{
         dispatch(success('Declined'))
     })
@@ -57,8 +60,7 @@ export const declineInvite = (id: string) : AppThunk => (dispatch) => {
 
 export const acceptInvite = (id: string) : AppThunk => (dispatch) => {
     dispatch(start());
-    const data = {id: localStorage.getItem('id')}
-    axios.put(`/teams/${id}/addUser`, data, {
+    axios.put(`/teams/${id}/addUser`, {
         headers: {
             'x-auth-token': localStorage.getItem('token')
         }
