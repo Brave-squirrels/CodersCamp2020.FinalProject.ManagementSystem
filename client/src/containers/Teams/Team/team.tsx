@@ -1,9 +1,5 @@
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
-import { useParams } from "react-router-dom";
 import { RootState } from "reduxState/store";
-
-import * as types from "utils/types";
 
 import ViewWithSidebar from "hoc/viewWithSidebar/viewWithSidebar";
 import styles from "./team.module.scss";
@@ -13,11 +9,7 @@ import Spinner from "components/UI/Spinner/spinner";
 import ErrorHandler from "components/errorHandler/errorHandler";
 
 const Team = () => {
-  const { teamId } = useParams<types.TParams>();
-
   const state = useSelector((state: RootState) => state.singleTeamData);
-  useEffect(() => {}, [teamId]); // eslint-disable-line react-hooks/exhaustive-deps
-
   const moderatorsList = state.team.moderatorsId.map((moderatorId: string) =>
     state.team.members.map((member: any) =>
       member.userId === state.team.ownerId ? member.userName : null
