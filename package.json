@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "client": "cd client && yarn start",
-    "server": "cd Server && yarn start",
+    "server": "cd Server && yarn dev",
     "client:i": "cd client && yarn install",
     "server:i": "cd Server && yarn install",
     "current:i": "concurrently \"yarn client:i\" \"yarn server:i\"",
