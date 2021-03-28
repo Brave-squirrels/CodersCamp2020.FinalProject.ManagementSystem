@@ -9,6 +9,7 @@ import SpinnerLight from "components/UI/spinnerLight/spinner";
 import Modal from "components/Modal/modal";
 import CreateTeam from "../Teams/createTeam/createTeam";
 import AddNew from "components/UI/addNew/addNew";
+import EmptyNotification from "components/UI/emptyNotification/emptyNotification";
 
 import classes from "./user.module.scss";
 
@@ -42,7 +43,9 @@ const UserTeams: FunctionComponent = () => {
                   </NavigationItem>
                 ))
               ) : (
-                <div>You have not joined any teams yet...</div>
+                <EmptyNotification>
+                  You have not joined any teams yet...
+                </EmptyNotification>
               )}
             </>
           )}
