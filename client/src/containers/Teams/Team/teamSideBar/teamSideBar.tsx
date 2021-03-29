@@ -39,9 +39,9 @@ const TeamSidebar = () => {
     <SideBar title={"Your teams"}>
       <PrimaryList>
         {user.teams ? (
-          user.teams.map((team: any) => (
-            <>
-              {team.id === teamId ? (
+          user.teams.map((team: any) => {
+            if (team.id === teamId) {
+              return (
                 <LiItem teamId={`${team.id}LiTem`} key={team.id}>
                   <PrimaryActiveItem name={team.name} key={`${team.id}pri`} />
 
@@ -69,16 +69,18 @@ const TeamSidebar = () => {
                       : null}
                   </SecondaryList>
                 </LiItem>
-              ) : (
+              );
+            } else {
+              return (
                 <PrimaryInactiveItem
                   key={team.id}
                   id={team.id}
                   name={team.name}
                   clickHandler={changeTeam}
                 />
-              )}
-            </>
-          ))
+              );
+            }
+          })
         ) : (
           <SpinnerLight />
         )}
