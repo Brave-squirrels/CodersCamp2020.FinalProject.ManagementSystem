@@ -39,44 +39,48 @@ const TeamSidebar = () => {
     <SideBar title={"Your teams"}>
       <PrimaryList>
         {user.teams ? (
-          user.teams.map((team: any) => (
-            <>
-              {team.id === teamId ? (
-                <LiItem teamId={team.id}>
-                  <PrimaryActiveItem name={team.name} />
+          user.teams.map((team: any) => {
+            if (team.id === teamId) {
+              return (
+                <LiItem teamId={`${team.id}LiTem`} key={team.id}>
+                  <PrimaryActiveItem name={team.name} key={`${team.id}pri`} />
 
-                  <SecondaryList>
-                    {userTeam.team.projects ? (
-                      userTeam.team.projects.map((project: any) => (
-                        <>
-                          <NavLink
-                            to={`/teams/${teamId}/projects/${project.id}`}
-                            exact
-                            className={classes.navLink}
-                            key={project.id}
-                          >
-                            <SecondaryItem
-                              id={project.id}
-                              name={project.name}
-                            />
-                          </NavLink>
-                        </>
-                      ))
-                    ) : (
-                      <SpinnerLight />
-                    )}
+                  <SecondaryList key={`${team.id}List`}>
+                    {userTeam.team.projects
+                      ? user.projects.map((project: any) => {
+                          if (project.teamId === teamId) {
+                            return (
+                              <NavLink
+                                to={`/teams/${teamId}/projects/${project.id}`}
+                                exact
+                                className={classes.navLink}
+                                key={project.id}
+                              >
+                                <SecondaryItem
+                                  id={project.id}
+                                  name={project.name}
+                                  key={project.id}
+                                />
+                              </NavLink>
+                            );
+                          }
+                          return null;
+                        })
+                      : null}
                   </SecondaryList>
                 </LiItem>
-              ) : (
+              );
+            } else {
+              return (
                 <PrimaryInactiveItem
                   key={team.id}
                   id={team.id}
                   name={team.name}
                   clickHandler={changeTeam}
                 />
-              )}
-            </>
-          ))
+              );
+            }
+          })
         ) : (
           <SpinnerLight />
         )}
