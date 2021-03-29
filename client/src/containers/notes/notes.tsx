@@ -29,7 +29,7 @@ const Notes = () => {
   return (
     <>
       <Modal show={modalDisplay} onClose={() => changeDisplay(false)}>
-        <CreateNote />
+        <CreateNote doneAction={() => changeDisplay(false)} />
       </Modal>
       <ViewWithSidebar>
         <ProjectSidebar />

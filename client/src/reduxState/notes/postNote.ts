@@ -27,12 +27,12 @@ const notesCreate = createSlice({
         success: (state)=>{
             state.loading = false;
             state.error = null;
-            state.notes = true;
+            state.success = true;
         },
         failed: (state,action) => {
             state.loading = false;
             state.error = action.payload;
-            state.notes = false;
+            state.success = false;
         }
     }
 })

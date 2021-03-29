@@ -13,7 +13,7 @@ import { RootState } from "reduxState/store";
 
 import styles from "./crateNote.module.scss";
 
-const CreateNote = () => {
+const CreateNote = (props: any) => {
   const dispatch = useDispatch();
   const state = useSelector((state: RootState) => state.notesCreate);
   const { teamId, projectId } = useParams<types.TParams>();
@@ -71,8 +71,8 @@ const CreateNote = () => {
   if (state.loading) {
     content = <Spinner />;
   }
-
   if (state.success) {
+    props.doneAction();
   }
 
   return <div className={styles.formWrapper}>{content}</div>;
