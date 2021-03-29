@@ -16,7 +16,6 @@ import SpinnerLight from "components/UI/spinnerLight/spinner";
 
 import { RootState } from "reduxState/store";
 import { fetchProject } from "reduxState/projectDataSlice";
-import { fetchTeam } from "reduxState/teamDataSlice";
 
 const ProjectSidebar = () => {
   const dispatch = useDispatch();
@@ -29,8 +28,7 @@ const ProjectSidebar = () => {
 
   useEffect(() => {
     dispatch(fetchProject(teamId, projectId));
-    dispatch(fetchTeam(teamId));
-  }, [dispatch, projectId]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [projectId, teamId]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const changeProject = (e: any) => {
     history.push(`/teams/${teamId}/projects/${e.target.id}`);

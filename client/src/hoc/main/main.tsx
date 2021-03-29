@@ -31,6 +31,7 @@ const main = (props: any) => {
       ctx.closePath();
     },
   };
+
   return (
     <main className={styles.mainCon}>
       {props.children} <ParticlesBg type="custom" config={config} bg={true} />
