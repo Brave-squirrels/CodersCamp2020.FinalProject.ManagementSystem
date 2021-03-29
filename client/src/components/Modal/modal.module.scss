@@ -11,7 +11,7 @@
   @include scrollbar;
   overflow-y: auto;
   display: none;
-  z-index: 1;
+  z-index: 9999;
 }
 .modalContent {
   width: 50%;
