@@ -10,12 +10,12 @@
   box-sizing: border-box;
   border-radius: 4px;
   min-width: 200px;
-  max-width: 200px;
   display: flex;
   align-items: center;
   justify-content: space-around;
   padding: 1rem;
   transition: 0.2s;
+  flex: 1;
 
   &:hover {
     cursor: pointer;
