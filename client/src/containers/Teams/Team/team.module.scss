@@ -19,18 +19,7 @@
   }
 }
 
-@media only screen and (max-width: 1400px),
-  only screen and (max-height: 700px) {
-  .title {
-    font-size: 1.4em;
-  }
-}
-
 @media only screen and (max-width: 900px) {
-  .wrapper {
-    height: 80vh;
-    width: 90%;
-  }
   .container {
     grid-template-rows: 3fr 1fr 1fr;
     grid-template-columns: 1fr;
