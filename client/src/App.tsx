@@ -43,6 +43,8 @@ const TeamInvites = React.lazy(
   () => import("./containers/teamInvites/teamInvites")
 );
 
+const Notes = React.lazy(() => import("./containers/notes/notes"));
+
 const App = () => {
   const loginState = useSelector((state: RootState) => state.login);
   const dispatch = useDispatch();
@@ -98,6 +100,11 @@ const App = () => {
               exact
               path="/teams/:teamId/projects/:projectId"
               component={Project}
+            />
+            <Route
+              exact
+              path="/teams/:teamId/projects/:projectId/notes"
+              component={Notes}
             />
             <Route exact path="/createProject" component={CreateProject} />
             <Route exact path="/teams" render={() => <h1>Teams</h1>} />

@@ -1,0 +1,29 @@
+@import "styles/variables.scss";
+
+.container {
+  padding: 1.5em;
+  position: relative;
+  width: 65vmax;
+  height: 70vh;
+  color: $secondFontColor;
+  text-align: center;
+  background: $backgroundLight;
+  box-shadow: $cardConShadow;
+  border-radius: 4px;
+  @media only screen and (max-width: 900px) {
+    height: 100%;
+    width: 100%;
+  }
+  .createBtnWrapper {
+    position: absolute;
+    top: 1em;
+    right: 1em;
+  }
+}
+a {
+  color: $fontActive;
+  text-decoration: none;
+  &:hover {
+    color: $placeholderColor;
+  }
+}

@@ -173,7 +173,6 @@ content-type: application/json
 {   
     "content": "Note description",
     "name": "Test Note",
-    "author": {"name": "Maciek", "id": "604f7b21c633a147b03b1f5d"}
 }
 
 ###

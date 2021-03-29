@@ -45,7 +45,7 @@ const CreateTeam = () => {
     formValid: false,
   });
 
-  const createTeamHandler = async (e: any) => {
+  const createTeamHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     /* Transform data to axios format */
     const formData = mutateToAxios(team);
