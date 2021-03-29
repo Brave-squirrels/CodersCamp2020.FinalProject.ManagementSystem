@@ -7,8 +7,8 @@ POST http://localhost:5000/login HTTP/1.1
 Content-Type: application/json
 
 {
-    "email": "test123@test.com",
-    "password": "12345678"
+    "email": "testMaciek2@test.com",
+    "password": "testowehaslo"
 }
 
 ###
@@ -36,7 +36,7 @@ GET http://localhost:5000/users/confirmation/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ
 
 ###
 # search user by email
-GET http://localhost:5000/users/search/test@mail.com HTTP/1.1
+GET http://localhost:5000/users/search/maciek@gmail.com HTTP/1.1
 
 ###
 # create users
@@ -249,7 +249,7 @@ content-type: application/json
 #ADDING USER TO TEAM
 
 PUT http://localhost:5000/teams/605b41b261323a561c907ad3/addUser HTTP/1.1
-x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDU0ZDAzMzNmM2Y2NjA0ZjQwOWE0YTIiLCJuYW1lIjoiRG9kYWtvd3kgdXNlciIsImlhdCI6MTYxNjc4Nzg4Mn0.fVsOsR4gI7l-fC0EeOOmz29RvL5ZYJD3pFDN2bYQaec
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDU0ZDAzMzNmM2Y2NjA0ZjQwOWE0YTIiLCJuYW1lIjoiRG9kYWtvd3kgdXNlciIsImlhdCI6MTYxNzA1MTQ4MX0.6vFi7MCGfjilMFp5QuBMDMeT60NEaN7GEmUC-a94fWk
 content-type: application/json
 
 
