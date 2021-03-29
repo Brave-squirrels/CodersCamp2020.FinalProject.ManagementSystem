@@ -110,9 +110,12 @@ export const changePassword = (data: passwordData): AppThunk => async (
   }
 };
 
-export const deleteUser = (data: string): AppThunk => async (dispatch) => {
+export const deleteUser = (data: string): AppThunk => async () => {
+  const token = localStorage.getItem("token");
   try {
-    await axios.delete(`/users/${data}`);
+    await axios.delete(`/users`, {
+      headers: { "x-auth-token": `${token}` },
+    });
   } catch (e) {
     console.log(e.response.data);
   }
