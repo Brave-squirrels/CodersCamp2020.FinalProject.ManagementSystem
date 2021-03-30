@@ -19,6 +19,7 @@ import createProjectSlice from './createProject';
 import notesData from './notes/fetchNotes';
 import notesCreate from './notes/postNote';
 import deleteNote from './notes/removeNote';
+import changeNote from './notes/editNotes';
 
 import thunk from "redux-thunk";
 
@@ -39,6 +40,7 @@ export const store = configureStore({
     notesData: notesData,
     notesCreate:notesCreate,
     deleteNote: deleteNote,
+    changeNote: changeNote,
   },
   middleware: [
     ...getDefaultMiddleware({

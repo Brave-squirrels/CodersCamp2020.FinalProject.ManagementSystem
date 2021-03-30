@@ -16,10 +16,13 @@ import CreateNote from "./createNote/createNote";
 import EmptyNotification from "components/UI/emptyNotification/emptyNotification";
 import SpinnerLight from "components/UI/spinnerLight/spinner";
 import ErrorHandler from "components/errorHandler/errorHandler";
+import FormStructure from "components/UI/formLogged/formStructure/formStructure";
 
+import { mutateToAxios } from "utils/onChangeForm";
 import { fetchNotes } from "reduxState/notes/fetchNotes";
 import { RootState } from "reduxState/store";
 import { deleteNoteFetch } from "reduxState/notes/removeNote";
+import { changeNoteFetch } from "reduxState/notes/editNotes";
 
 import styles from "./notes.module.scss";
 
@@ -33,6 +36,40 @@ const Notes = () => {
     (state: RootState) => state.singleProjectData
   );
   const teamData = useSelector((state: RootState) => state.singleTeamData);
+
+  const [edit, setEdit] = useState({
+    edit: false,
+    editedNote: "",
+  });
+
+  const [form, setForm] = useState({
+    name: {
+      val: "",
+      inputType: "input",
+      type: "text",
+      label: "Title",
+      validation: {
+        required: true,
+        minLength: 3,
+        maxLength: 24,
+      },
+      touched: false,
+      valid: true,
+    },
+    content: {
+      val: "",
+      inputType: "textarea",
+      label: "Note content",
+      validation: {
+        required: true,
+        minLength: 0,
+        maxLength: 254,
+      },
+      touched: false,
+      valid: true,
+    },
+    formValid: true,
+  });
 
   const { teamId, projectId } = useParams<types.TParams>();
 
@@ -74,8 +111,34 @@ const Notes = () => {
   };
 
   const editHandler = (id: string) => {
-    console.log(id);
+    setEdit((prevState) => {
+      return {
+        ...prevState,
+        edit: !prevState.edit,
+        editedNote: id,
+      };
+    });
+    const currentNote = notesData.notes.find((el: any) => el._id === id);
+    setForm((prevState) => {
+      return {
+        ...prevState,
+        name: {
+          ...prevState.name,
+          val: currentNote.name,
+        },
+        content: {
+          ...prevState.content,
+          val: currentNote.content,
+        },
+      };
+    });
   };
+
+  const sendEdit = (id: string) => {
+    const data = mutateToAxios(form);
+    dispatch(changeNoteFetch(teamId, projectId, id, data));
+  };
+
   const removeHandler = (id: string) => {
     dispatch(deleteNoteFetch(teamId, projectId, id));
   };
@@ -103,8 +166,23 @@ const Notes = () => {
                     <div className={styles.buttonsWrapper}>
                       {checkPermissions(el.author.id, el._id)}
                     </div>
-                    <span className={styles.noteTitle}>{el.name}</span>
-                    <div className={styles.noteContent}>{el.content}</div>
+
+                    {edit.edit && edit.editedNote === el._id ? (
+                      <FormStructure
+                        state={form}
+                        setState={setForm}
+                        btnText="Edit"
+                        formTitle="Edit note"
+                        submitted={() => sendEdit(el._id)}
+                        checkPass={false}
+                      />
+                    ) : (
+                      <>
+                        <span className={styles.noteTitle}>{el.name}</span>
+                        <div className={styles.noteContent}>{el.content}</div>
+                      </>
+                    )}
+
                     <span className={styles.noteAuthor}>{el.author.name}</span>
                   </div>
                 ))}

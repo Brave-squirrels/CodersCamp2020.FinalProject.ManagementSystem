@@ -60,7 +60,7 @@ a {
   word-wrap: break-word;
   word-break: break-all;
   .noteTitle {
-    height: 30px;
+    height: 40px;
     font-weight: 600;
     font-size: 1.1em;
     display: flex;
@@ -68,7 +68,7 @@ a {
     align-items: center;
   }
   .noteContent {
-    height: 190px;
+    height: 180px;
     overflow-y: auto;
     @include scrollbar;
   }
