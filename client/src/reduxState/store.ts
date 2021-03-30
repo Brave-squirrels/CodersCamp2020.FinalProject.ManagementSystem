@@ -18,6 +18,7 @@ import handleTeamInvite from "./teamInvites";
 import createProjectSlice from './createProject';
 import notesData from './notes/fetchNotes';
 import notesCreate from './notes/postNote';
+import deleteNote from './notes/removeNote';
 
 import thunk from "redux-thunk";
 
@@ -37,6 +38,7 @@ export const store = configureStore({
     createProjectSlice:createProjectSlice,
     notesData: notesData,
     notesCreate:notesCreate,
+    deleteNote: deleteNote,
   },
   middleware: [
     ...getDefaultMiddleware({

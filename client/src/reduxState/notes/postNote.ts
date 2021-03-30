@@ -9,7 +9,13 @@ interface Data {
     content: string,
 }
 
-const initialState: any = {
+interface State {
+    loading: boolean;
+    error: any;
+    success: boolean;
+}
+
+const initialState: State = {
     loading: false,
     error: null,
     success: false,
