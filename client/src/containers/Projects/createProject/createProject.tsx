@@ -1,10 +1,22 @@
 import React, { useState } from "react";
-import { mutateToAxios } from "utils/onChangeForm";
-import axios from "axios/axiosMain";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import FormStructure from "components/UI/formLogged/formStructure/formStructure";
+import Spinner from "components/UI/Spinner/spinner";
+import ErrorHandler from "components/errorHandler/errorHandler";
+
+import { mutateToAxios } from "utils/onChangeForm";
+
+import { createProject } from "reduxState/createProject";
+import { RootState } from "reduxState/store";
 
 const CreateProject = () => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const createProjectState = useSelector(
+    (state: RootState) => state.createProjectSlice
+  );
   const [project, setProject] = useState({
     projectName: {
       val: "",
@@ -46,26 +58,40 @@ const CreateProject = () => {
     formValid: false,
   });
 
-  const submitForm = (e: any) => {
+  const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const formData = mutateToAxios(project);
-    axios
-      .post("/teams/605a457b0282ce3c5cb9fd46/projects", formData, {
-        headers: { "x-auth-token": localStorage.getItem("token") },
-      })
-      .then(() => console.log("succes!"))
-      .catch((err) => console.log(err.response.data));
+    const data = mutateToAxios(project);
+    dispatch(createProject("605a457b0282ce3c5cb9fd46", data));
   };
 
+  if (createProjectState.success) {
+    history.push(
+      `/teams/${createProjectState.project.data.team.id}/projects/${createProjectState.project.data._id}`
+    );
+  }
+
   return (
-    <FormStructure
-      state={project}
-      setState={setProject}
-      btnText="Create"
-      formTitle="Create project"
-      submitted={submitForm}
-      checkPass={false}
-    />
+    <>
+      {createProjectState.loading ? (
+        <Spinner />
+      ) : (
+        <>
+          <FormStructure
+            state={project}
+            setState={setProject}
+            btnText="Create"
+            formTitle="Create project"
+            submitted={submitForm}
+            checkPass={false}
+          />
+          {createProjectState.error ? (
+            <ErrorHandler>
+              {createProjectState.error.response.data}
+            </ErrorHandler>
+          ) : null}
+        </>
+      )}
+    </>
   );
 };
 
