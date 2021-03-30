@@ -12,13 +12,13 @@ interface Data {
 interface State {
     loading: boolean;
     error: any;
-    notes: any;
+    success: boolean;
 }
 
 const initialState: State = {
     loading: false,
     error: null,
-    notes: {},
+    success: false,
 }
 
 const changeNote = createSlice({
@@ -28,15 +28,17 @@ const changeNote = createSlice({
         start: (state)=>{
             state.loading = true;
             state.error = null;
+            state.success = false;
         },
         success: (state,action)=>{
             state.loading = false;
             state.error = null 
-            state.notes = action.payload;
+            state.success = true;
         },
         failed: (state,action) => {
             state.loading = false;
             state.error = action.payload;
+            state.success = false;
         }
     }
 })
@@ -59,7 +61,7 @@ export const changeNoteFetch = (teamId: string, projectId: string, noteId: strin
 }
 
 export const selectLoading = (state:RootState)=> state.changeNote.loading;
-export const selectNotes = (state:RootState) => state.changeNote.notes;
+export const selectSuccess = (state:RootState) => state.changeNote.success;
 export const selectError = (state: RootState) => state.changeNote.error;
 
 export default changeNote.reducer;
