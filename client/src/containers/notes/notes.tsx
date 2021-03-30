@@ -35,12 +35,26 @@ const Notes = () => {
   const projectData = useSelector(
     (state: RootState) => state.singleProjectData
   );
+  const changeNote = useSelector((state: RootState) => state.changeNote);
   const teamData = useSelector((state: RootState) => state.singleTeamData);
 
   const [edit, setEdit] = useState({
     edit: false,
     editedNote: "",
   });
+
+  const { teamId, projectId } = useParams<types.TParams>();
+
+  useEffect(() => {
+    dispatch(fetchNotes(teamId, projectId));
+  }, [
+    teamId,
+    projectId,
+    deleteState.success,
+    createState.success,
+    changeNote.success,
+    dispatch,
+  ]);
 
   const [form, setForm] = useState({
     name: {
@@ -70,12 +84,6 @@ const Notes = () => {
     },
     formValid: true,
   });
-
-  const { teamId, projectId } = useParams<types.TParams>();
-
-  useEffect(() => {
-    dispatch(fetchNotes(teamId, projectId));
-  }, [teamId, projectId, deleteState.success, createState.success]); // eslint-disable-line react-hooks/exhaustive-deps
 
   /* Render component base on permissions */
   const checkPermissions = (id: string, noteId: string): JSX.Element | null => {
@@ -110,6 +118,7 @@ const Notes = () => {
     return null;
   };
 
+  /* Enable edit mode */
   const editHandler = (id: string) => {
     setEdit((prevState) => {
       return {
@@ -134,11 +143,15 @@ const Notes = () => {
     });
   };
 
-  const sendEdit = (id: string) => {
+  /* Dispatch PUT fetch */
+  const sendEdit = (e: React.FormEvent<HTMLFormElement>, id: string) => {
+    e.preventDefault();
     const data = mutateToAxios(form);
     dispatch(changeNoteFetch(teamId, projectId, id, data));
+    setEdit({ edit: false, editedNote: "" });
   };
 
+  /* Dispatch DELETE fetch */
   const removeHandler = (id: string) => {
     dispatch(deleteNoteFetch(teamId, projectId, id));
   };
@@ -155,7 +168,7 @@ const Notes = () => {
             <div className={styles.createBtnWrapper}>
               <AddNew clicked={() => changeDisplay(true)} />
             </div>
-            {notesData.loading ? (
+            {notesData.loading || changeNote.loading ? (
               <SpinnerLight />
             ) : notesData.error ? (
               <ErrorHandler>{notesData.error.response.data}</ErrorHandler>
@@ -168,14 +181,21 @@ const Notes = () => {
                     </div>
 
                     {edit.edit && edit.editedNote === el._id ? (
-                      <FormStructure
-                        state={form}
-                        setState={setForm}
-                        btnText="Edit"
-                        formTitle="Edit note"
-                        submitted={() => sendEdit(el._id)}
-                        checkPass={false}
-                      />
+                      <>
+                        <FormStructure
+                          state={form}
+                          setState={setForm}
+                          btnText="Edit"
+                          formTitle="Edit note"
+                          submitted={(e: any) => sendEdit(e, el._id)}
+                          checkPass={false}
+                        />
+                        {changeNote.error ? (
+                          <ErrorHandler>
+                            {changeNote.error.response.data}
+                          </ErrorHandler>
+                        ) : null}
+                      </>
                     ) : (
                       <>
                         <span className={styles.noteTitle}>{el.name}</span>
