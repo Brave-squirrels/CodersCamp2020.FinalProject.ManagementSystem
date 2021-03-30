@@ -49,7 +49,14 @@ const ProjectSidebar = () => {
               if (prj.id === projectId) {
                 return (
                   <LiItem teamId={prj.id} key={prj.id}>
-                    <PrimaryActiveItem name={prj.name} />
+                    <NavLink
+                      to={`/teams/${teamId}/projects/${prj.id}`}
+                      exact
+                      key={`${prj.id}prj`}
+                    >
+                      <PrimaryActiveItem name={prj.name} />
+                    </NavLink>
+
                     <SecondaryList>
                       <NavLink
                         to={`/teams/${teamId}/projects/${prj.id}/notes`}

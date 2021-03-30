@@ -10,11 +10,10 @@ import Spinner from "components/UI/Spinner/spinner";
 import { mutateToAxios } from "../../../utils/onChangeForm";
 import { createNote } from "reduxState/notes/postNote";
 import { RootState } from "reduxState/store";
-import { reset } from "reduxState/notes/postNote";
 
 import styles from "./crateNote.module.scss";
 
-const CreateNote = (props: any) => {
+const CreateNote = () => {
   const dispatch = useDispatch();
   const state = useSelector((state: RootState) => state.notesCreate);
   const { teamId, projectId } = useParams<types.TParams>();
@@ -71,10 +70,6 @@ const CreateNote = (props: any) => {
 
   if (state.loading) {
     content = <Spinner />;
-  }
-  if (state.success) {
-    props.doneAction();
-    dispatch(reset());
   }
 
   return <div className={styles.formWrapper}>{content}</div>;
