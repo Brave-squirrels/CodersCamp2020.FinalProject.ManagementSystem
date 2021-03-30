@@ -10,6 +10,7 @@ import Spinner from "components/UI/Spinner/spinner";
 import { mutateToAxios } from "../../../utils/onChangeForm";
 import { createNote } from "reduxState/notes/postNote";
 import { RootState } from "reduxState/store";
+import { reset } from "reduxState/notes/postNote";
 
 import styles from "./crateNote.module.scss";
 
@@ -73,6 +74,7 @@ const CreateNote = (props: any) => {
   }
   if (state.success) {
     props.doneAction();
+    dispatch(reset());
   }
 
   return <div className={styles.formWrapper}>{content}</div>;
