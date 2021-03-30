@@ -49,6 +49,7 @@ const Notes = () => {
 
   useEffect(() => {
     dispatch(fetchNotes(teamId, projectId));
+    changeDisplay(false);
   }, [
     teamId,
     projectId,
@@ -162,7 +163,7 @@ const Notes = () => {
   return (
     <>
       <Modal show={modalDisplay} onClose={() => changeDisplay(false)}>
-        <CreateNote doneAction={() => changeDisplay(false)} />
+        <CreateNote />
       </Modal>
       <ViewWithSidebar>
         <ProjectSidebar />
