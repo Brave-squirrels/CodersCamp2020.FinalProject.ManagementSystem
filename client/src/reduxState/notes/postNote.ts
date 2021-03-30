@@ -9,7 +9,13 @@ interface Data {
     content: string,
 }
 
-const initialState: any = {
+interface State {
+    loading: boolean;
+    error: any;
+    success: boolean;
+}
+
+const initialState: State = {
     loading: false,
     error: null,
     success: false,
@@ -33,11 +39,16 @@ const notesCreate = createSlice({
             state.loading = false;
             state.error = action.payload;
             state.success = false;
+        },
+        reset: (state)=> {
+            state.loading = false;
+            state.error = null;
+            state.success = false;
         }
     }
 })
 
-export const {start, success, failed} = notesCreate.actions;
+export const {start, success, failed, reset} = notesCreate.actions;
 
 export const createNote = (teamId: string, projectId: string, data: Data) : AppThunk =>  (dispatch) => {
     dispatch(start());

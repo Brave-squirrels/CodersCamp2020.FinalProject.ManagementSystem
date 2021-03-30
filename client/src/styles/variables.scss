@@ -42,7 +42,7 @@ $robotoFont: "Roboto", sans-serif;
 $cardShadow: 0px 4px 13px rgba(0, 0, 0, 0.25);
 
 @mixin scrollbar(
-  $scrollSize: 0.5rem,
+  $scrollSize: 4px,
   $backgroundTrack: #333845,
   $backgroundThumb: #83868e,
   $scrollRadius: 0px
