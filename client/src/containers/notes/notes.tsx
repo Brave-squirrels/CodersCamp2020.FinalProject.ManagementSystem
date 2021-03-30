@@ -38,6 +38,8 @@ const Notes = () => {
   const changeNote = useSelector((state: RootState) => state.changeNote);
   const teamData = useSelector((state: RootState) => state.singleTeamData);
 
+  const [modalEdit, setModalEdit] = useState(false);
+
   const [edit, setEdit] = useState({
     edit: false,
     editedNote: "",
@@ -127,6 +129,7 @@ const Notes = () => {
         editedNote: id,
       };
     });
+    setModalEdit(true);
     const currentNote = notesData.notes.find((el: any) => el._id === id);
     setForm((prevState) => {
       return {
@@ -181,28 +184,29 @@ const Notes = () => {
                     </div>
 
                     {edit.edit && edit.editedNote === el._id ? (
-                      <>
-                        <FormStructure
-                          state={form}
-                          setState={setForm}
-                          btnText="Edit"
-                          formTitle="Edit note"
-                          submitted={(e: any) => sendEdit(e, el._id)}
-                          checkPass={false}
-                        />
-                        {changeNote.error ? (
-                          <ErrorHandler>
-                            {changeNote.error.response.data}
-                          </ErrorHandler>
-                        ) : null}
-                      </>
-                    ) : (
-                      <>
-                        <span className={styles.noteTitle}>{el.name}</span>
-                        <div className={styles.noteContent}>{el.content}</div>
-                      </>
-                    )}
-
+                      <Modal
+                        show={modalEdit}
+                        onClose={() => setModalEdit(false)}
+                      >
+                        <>
+                          <FormStructure
+                            state={form}
+                            setState={setForm}
+                            btnText="Edit"
+                            formTitle="Edit note"
+                            submitted={(e: any) => sendEdit(e, el._id)}
+                            checkPass={false}
+                          />
+                          {changeNote.error ? (
+                            <ErrorHandler>
+                              {changeNote.error.response.data}
+                            </ErrorHandler>
+                          ) : null}
+                        </>
+                      </Modal>
+                    ) : null}
+                    <span className={styles.noteTitle}>{el.name}</span>
+                    <div className={styles.noteContent}>{el.content}</div>
                     <span className={styles.noteAuthor}>{el.author.name}</span>
                   </div>
                 ))}
