@@ -119,7 +119,7 @@ const Notes = () => {
     //Enable remove if user is project owner or team moderator
     else if (
       projectData.project.owner.id === id ||
-      teamData.team.moderatosId.includes(id)
+      teamData.team.moderatorsId.includes(id)
     ) {
       return (
         <div className={styles.buttonsWrapper}>

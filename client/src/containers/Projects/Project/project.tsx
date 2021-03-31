@@ -45,15 +45,9 @@ const Project = () => {
             </CardWithTitle>
 
             <div>
-              <CardWithTitle title={"Project Menager"}>
-                {state.project.description}
-              </CardWithTitle>
-              <CardWithTitle title={"Scrum Master"}>
-                {state.project.description}
-              </CardWithTitle>
-              <CardWithTitle title={"Development Menager"}>
-                {state.project.description}
-              </CardWithTitle>
+              <CardWithTitle title={"Project Menager"}>blank</CardWithTitle>
+              <CardWithTitle title={"Scrum Master"}>blank</CardWithTitle>
+              <CardWithTitle title={"Development Menager"}>blank</CardWithTitle>
             </div>
           </div>
         </RightSideWrapper>

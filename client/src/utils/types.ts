@@ -65,6 +65,7 @@ export interface ProjectData {
   tasks: Task[];
   note: Note[];
   date: string;
+  content: string;
 }
 
 export const baseProjectSetup: ProjectData = {
@@ -80,6 +81,7 @@ export const baseProjectSetup: ProjectData = {
   members: [],
   tasks: [],
   note: [],
+  content: '',
 };
 
 export interface TaskData {
