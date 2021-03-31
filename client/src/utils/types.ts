@@ -64,6 +64,7 @@ export interface ProjectData {
   members: ProjectMember[];
   tasks: Task[];
   note: Note[];
+  date: string;
 }
 
 export const baseProjectSetup: ProjectData = {
@@ -75,6 +76,7 @@ export const baseProjectSetup: ProjectData = {
   owner: { id: "", name: "" },
   projectName: "",
   deadline: "",
+  date: '',
   members: [],
   tasks: [],
   note: [],

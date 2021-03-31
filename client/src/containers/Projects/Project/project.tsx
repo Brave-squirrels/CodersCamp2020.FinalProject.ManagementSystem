@@ -30,7 +30,7 @@ const Project = () => {
                 {state.project.content}
               </CardWithTitle>
               <CardWithTitle title={"Start date"}>
-                {state.project.date}
+                {state.project.date.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/)}
               </CardWithTitle>
               <CardWithTitle title={"Deadline"}>
                 {state.project.deadline.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/)}
