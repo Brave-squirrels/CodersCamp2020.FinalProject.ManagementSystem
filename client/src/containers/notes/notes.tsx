@@ -17,6 +17,7 @@ import EmptyNotification from "components/UI/emptyNotification/emptyNotification
 import SpinnerLight from "components/UI/spinnerLight/spinner";
 import ErrorHandler from "components/errorHandler/errorHandler";
 import FormStructure from "components/UI/formLogged/formStructure/formStructure";
+import CardNote from "components/UI/CardNote/cardNote";
 
 import { mutateToAxios } from "utils/onChangeForm";
 import { fetchNotes } from "reduxState/notes/fetchNotes";
@@ -27,26 +28,32 @@ import { changeNoteFetch } from "reduxState/notes/editNotes";
 import styles from "./notes.module.scss";
 
 const Notes = () => {
+  //Modal for add new note
   const [modalDisplay, changeDisplay] = useState(false);
+  //Modal for edit note
+  const [modalEdit, setModalEdit] = useState(false);
+  //Store ID of current edit note
+  const [edit, setEdit] = useState("");
+
   const dispatch = useDispatch();
+  //Get notes data
   const notesData = useSelector((state: RootState) => state.notesData);
+  //Delete notes data
   const deleteState = useSelector((state: RootState) => state.deleteNote);
+  //Create notes data
   const createState = useSelector((state: RootState) => state.notesCreate);
+  //Edit notes data
+  const changeNote = useSelector((state: RootState) => state.changeNote);
+  //Current project data
   const projectData = useSelector(
     (state: RootState) => state.singleProjectData
   );
-  const changeNote = useSelector((state: RootState) => state.changeNote);
+  //Current team data
   const teamData = useSelector((state: RootState) => state.singleTeamData);
-
-  const [modalEdit, setModalEdit] = useState(false);
-
-  const [edit, setEdit] = useState({
-    edit: false,
-    editedNote: "",
-  });
-
+  //Params from URL
   const { teamId, projectId } = useParams<types.TParams>();
 
+  //Update notes in UI after every action
   useEffect(() => {
     dispatch(fetchNotes(teamId, projectId));
     changeDisplay(false);
@@ -59,6 +66,7 @@ const Notes = () => {
     dispatch,
   ]);
 
+  //Form for edit note object
   const [form, setForm] = useState({
     name: {
       val: "",
@@ -88,11 +96,12 @@ const Notes = () => {
     formValid: true,
   });
 
-  /* Render component base on permissions */
+  //Render button to edit/remove base on permission
   const checkPermissions = (id: string, noteId: string): JSX.Element | null => {
+    //Enable remove and edit for note author
     if (id === localStorage.getItem("id")) {
       return (
-        <>
+        <div className={styles.buttonsWrapper}>
           <FontAwesomeIcon
             icon={faEdit}
             className={styles.iconEdit}
@@ -104,34 +113,34 @@ const Notes = () => {
             className={styles.iconRemove}
             onClick={() => removeHandler(noteId)}
           />
-        </>
+        </div>
       );
-    } else if (
+    }
+    //Enable remove if user is project owner or team moderator
+    else if (
       projectData.project.owner.id === id ||
       teamData.team.moderatosId.includes(id)
     ) {
       return (
-        <FontAwesomeIcon
-          icon={faTrash}
-          className={styles.iconRemove}
-          onClick={() => removeHandler(noteId)}
-        />
+        <div className={styles.buttonsWrapper}>
+          <FontAwesomeIcon
+            icon={faTrash}
+            className={styles.iconRemove}
+            onClick={() => removeHandler(noteId)}
+          />
+        </div>
       );
     }
     return null;
   };
 
-  /* Enable edit mode */
+  //Enable edit note mode
   const editHandler = (id: string) => {
-    setEdit((prevState) => {
-      return {
-        ...prevState,
-        edit: !prevState.edit,
-        editedNote: id,
-      };
-    });
+    //Set clicked note in edit mode and display modal
+    setEdit(id);
     setModalEdit(true);
     const currentNote = notesData.notes.find((el: any) => el._id === id);
+    //Set default value in form
     setForm((prevState) => {
       return {
         ...prevState,
@@ -147,15 +156,15 @@ const Notes = () => {
     });
   };
 
-  /* Dispatch PUT fetch */
+  //Submit  edit note fetch
   const sendEdit = (e: React.FormEvent<HTMLFormElement>, id: string) => {
     e.preventDefault();
     const data = mutateToAxios(form);
     dispatch(changeNoteFetch(teamId, projectId, id, data));
-    setEdit({ edit: false, editedNote: "" });
+    setEdit("");
   };
 
-  /* Dispatch DELETE fetch */
+  //Submit remove fetch
   const removeHandler = (id: string) => {
     dispatch(deleteNoteFetch(teamId, projectId, id));
   };
@@ -172,44 +181,46 @@ const Notes = () => {
             <div className={styles.createBtnWrapper}>
               <AddNew clicked={() => changeDisplay(true)} />
             </div>
-            {notesData.loading || changeNote.loading ? (
+            {notesData.loading ? (
               <SpinnerLight />
             ) : notesData.error ? (
               <ErrorHandler>{notesData.error.response.data}</ErrorHandler>
             ) : notesData.notes.length > 0 ? (
               <div className={styles.innerWrapper}>
                 {notesData.notes.map((el: any) => (
-                  <div key={el._id} className={styles.noteCard}>
-                    <div className={styles.buttonsWrapper}>
+                  <CardNote
+                    key={el._id}
+                    title={el.name}
+                    content={el.content}
+                    author={el.author.name}
+                  >
+                    <>
                       {checkPermissions(el.author.id, el._id)}
-                    </div>
 
-                    {edit.edit && edit.editedNote === el._id ? (
-                      <Modal
-                        show={modalEdit}
-                        onClose={() => setModalEdit(false)}
-                      >
-                        <>
-                          <FormStructure
-                            state={form}
-                            setState={setForm}
-                            btnText="Edit"
-                            formTitle="Edit note"
-                            submitted={(e: any) => sendEdit(e, el._id)}
-                            checkPass={false}
-                          />
-                          {changeNote.error ? (
-                            <ErrorHandler>
-                              {changeNote.error.response.data}
-                            </ErrorHandler>
-                          ) : null}
-                        </>
-                      </Modal>
-                    ) : null}
-                    <span className={styles.noteTitle}>{el.name}</span>
-                    <div className={styles.noteContent}>{el.content}</div>
-                    <span className={styles.noteAuthor}>{el.author.name}</span>
-                  </div>
+                      {modalEdit && edit === el._id ? (
+                        <Modal
+                          show={modalEdit}
+                          onClose={() => setModalEdit(false)}
+                        >
+                          <>
+                            <FormStructure
+                              state={form}
+                              setState={setForm}
+                              btnText="Edit"
+                              formTitle="Edit note"
+                              submitted={(e: any) => sendEdit(e, el._id)}
+                              checkPass={false}
+                            />
+                            {changeNote.error ? (
+                              <ErrorHandler>
+                                {changeNote.error.response.data}
+                              </ErrorHandler>
+                            ) : null}
+                          </>
+                        </Modal>
+                      ) : null}
+                    </>
+                  </CardNote>
                 ))}
               </div>
             ) : (
