@@ -66,7 +66,7 @@ const CreateProject = () => {
 
   if (createProjectState.success) {
     history.push(
-      `/teams/${createProjectState.project.data.team.id}/projects/${createProjectState.project.data._id}`
+      `/teams/${createProjectState.teamId}/projects/${createProjectState.projectId}`
     );
   }
 

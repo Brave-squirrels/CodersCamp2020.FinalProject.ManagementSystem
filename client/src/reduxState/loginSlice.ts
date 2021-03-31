@@ -13,7 +13,7 @@ interface Action {
   id?: string;
   token?: string | null;
   error?: any;
-  data?: any;
+  data?: Date;
 }
 
 interface InitState {

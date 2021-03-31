@@ -6,14 +6,16 @@ interface State {
     success: boolean;
     loading: boolean;
     error: any;
-    project: any;
+    projectId: string;
+    teamId: string;
 }
 
 const initialState : State = {
     success: false,
     loading: false,
     error: null,
-    project: {}
+    projectId: '', 
+    teamId: '',
 }
 
 interface Data{
@@ -35,7 +37,8 @@ export const createProjectSlice = createSlice({
             state.loading = false;
             state.error = null;
             state.success = true;
-            state.project = action.payload;
+            state.projectId = action.payload.prjId;
+            state.teamId = action.payload.teamId;
         },
         failed: (state, action)=> {
             state.loading = false;
@@ -54,7 +57,7 @@ export const createProject = (teamId: string,data: Data) : AppThunk => (dispatch
             'x-auth-token': localStorage.getItem('token')
         }
     }).then(res=>{
-        dispatch(success(res));
+        dispatch(success({prjId: res.data._id, teamId:  res.data.team.id}));
     })
     .catch(err=>{
         dispatch(failed(err));
@@ -67,6 +70,8 @@ export const selectError = (state:RootState) => state.createProjectSlice.error;
 
 export const selectSuccess = (state:RootState) => state.createProjectSlice.success;
 
-export const selectProject = (state: RootState) => state.createProjectSlice.project;
+export const selectProjectId = (state: RootState) => state.createProjectSlice.projectId;
+
+export const selectTeamId = (state: RootState) => state.createProjectSlice.teamId;
 
 export default createProjectSlice.reducer;
