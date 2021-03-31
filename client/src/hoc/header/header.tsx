@@ -33,6 +33,7 @@ const Header: FunctionComponent = () => {
       />
       <div className={styles.navDisplay}>
         <ul className={styles.navList}>
+          <NavigationItem path="/">Home</NavigationItem>
           <NavigationItem path="/teaminvites">Team invites</NavigationItem>
           <NavigationItem path="/logout">Logout</NavigationItem>
           <NavigationItem path="/settings">
