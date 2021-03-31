@@ -5,7 +5,13 @@ import * as types from "../utils/types";
 
 import axios from 'axios/axiosMain';
 
-const initialState: any = {
+interface State {
+  team: types.TeamData;
+  loading: boolean;
+  error: any;
+}
+
+const initialState: State = {
   team: {
     ...types.baseTeamSetup
   },
@@ -13,7 +19,6 @@ const initialState: any = {
   error: null,
 };
 
-/* let initialState: any = {}; */
 const singleTeamData = createSlice({
   name: "teamData",
   initialState,

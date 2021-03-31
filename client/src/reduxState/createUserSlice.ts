@@ -51,7 +51,7 @@ export const createUserSlice = createSlice({
     failed: (state, action: PayloadAction<Action>) => {
       state.loading = false;
       state.success = false;
-      state.error = action.payload as any;
+      state.error = action.payload;
     },
   },
 });

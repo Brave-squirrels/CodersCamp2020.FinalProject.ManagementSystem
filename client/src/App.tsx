@@ -42,6 +42,7 @@ const CreateProject = React.lazy(
 const TeamInvites = React.lazy(
   () => import("./containers/teamInvites/teamInvites")
 );
+const Tasks = React.lazy(() => import("./containers/Tasks/tasks"));
 
 const Notes = React.lazy(() => import("./containers/notes/notes"));
 
@@ -111,6 +112,11 @@ const App = () => {
             <Route exact path="/confirmed" render={() => <Confirmed />} />
             <Route exact path="/teaminvites" render={() => <TeamInvites />} />
             <Route exact path="/settings" render={() => <UserSettings />} />
+            <Route
+              exact
+              path="/teams/:teamId/projects/:projectId/tasks"
+              render={() => <Tasks />}
+            />
             <Route exact path="/logout" />
             <Route component={ErrorPage} />
           </Switch>

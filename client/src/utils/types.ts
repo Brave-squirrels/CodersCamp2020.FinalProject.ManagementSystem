@@ -82,4 +82,24 @@ export const baseProjectSetup: ProjectData = {
   note: [],
 };
 
+export interface TaskData {
+status: string;
+commentsId: string[];
+projectId: string;
+name: string;
+content: string;
+deadline: string;
+startData: string
+}
+
+export const baseTaskSetup: TaskData = {
+  status: '',
+  commentsId: [],
+  projectId: '',
+  name: '',
+  content: '',
+  deadline: '',
+  startData: '',
+}
+
 export type TParams = { teamId: string; projectId: string };

@@ -5,7 +5,13 @@ import * as types from "../utils/types";
 
 import axios from "../axios/axiosMain";
 
-const initialState: any = {
+interface State {
+  project: types.ProjectData;
+  loading: boolean;
+  error: any;
+}
+
+const initialState: State = {
   project: {
     ...types.baseProjectSetup,
   },
@@ -13,7 +19,6 @@ const initialState: any = {
   error: null,
 };
 
-/* let initialState: any = {}; */
 const singleProjectData = createSlice({
   name: "projectData",
   initialState,
