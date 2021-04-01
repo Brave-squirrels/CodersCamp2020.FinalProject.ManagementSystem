@@ -27,19 +27,33 @@ const breakPoints = [
 ];
 
 const Tasks = () => {
+  const dispatch = useDispatch();
+
   const [createModal, setCreateModal] = useState(false);
   const [singleTaskModal, setSingleTaskModal] = useState(false);
   const [currentTask, setCurrentTask] = useState("");
-  const createStages = useSelector((state: RootState) => state.createTask);
+
+  const { teamId, projectId } = useParams<types.TParams>();
   const tasks = useSelector((state: RootState) => state.getTasks);
   const project = useSelector((state: RootState) => state.singleProjectData);
 
-  const dispatch = useDispatch();
-  const { teamId, projectId } = useParams<types.TParams>();
+  const createStages = useSelector((state: RootState) => state.createTask);
   useEffect(() => {
     setCreateModal(false);
     dispatch(fetchTasks(teamId, projectId));
   }, [createStages.success, teamId, projectId, dispatch]);
+
+  let titleContent =
+    project.project.owner.id === localStorage.getItem("id") ? (
+      <>
+        New
+        <div className={styles.addBtnWrapper}>
+          <AddNew clicked={() => setCreateModal(true)} />
+        </div>
+      </>
+    ) : (
+      "New"
+    );
 
   return (
     <>
@@ -53,11 +67,6 @@ const Tasks = () => {
         <ProjectSidebar />
         <RightSideWrapper title={"Tasks"}>
           <div className={styles.container}>
-            {project.project.owner.id === localStorage.getItem("id") && (
-              <div className={styles.addBtnWrapper}>
-                <AddNew clicked={() => setCreateModal(true)} />
-              </div>
-            )}
             {tasks.loading ? (
               <Spinner />
             ) : (
@@ -71,7 +80,10 @@ const Tasks = () => {
                   outerSpacing={0}
                   itemPadding={[10, 10]}
                 >
-                  <CardWithTitle title="New">
+                  <CardWithTitle
+                    title={titleContent}
+                    additionalClass={"taskTitle"}
+                  >
                     <div className={styles.taskCon}>
                       {tasks.tasks
                         .filter((tsk: types.TaskData) => tsk.status === "NEW")
@@ -88,7 +100,10 @@ const Tasks = () => {
                         ))}
                     </div>
                   </CardWithTitle>
-                  <CardWithTitle title="In progress">
+                  <CardWithTitle
+                    title="In progress"
+                    additionalClass={"taskTitle"}
+                  >
                     <div className={styles.taskCon}>
                       {tasks.tasks
                         .filter(
@@ -107,7 +122,7 @@ const Tasks = () => {
                         ))}
                     </div>
                   </CardWithTitle>
-                  <CardWithTitle title="Done">
+                  <CardWithTitle title="Done" additionalClass={"taskTitle"}>
                     <div className={styles.taskCon}>
                       {tasks.tasks
                         .filter((tsk: types.TaskData) => tsk.status === "DONE")
