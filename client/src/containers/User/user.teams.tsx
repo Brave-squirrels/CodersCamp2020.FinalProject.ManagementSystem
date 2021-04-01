@@ -28,7 +28,7 @@ const UserTeams: FunctionComponent = () => {
       </Modal>
       <CardContainer title="Your Teams">
         <div className={classes.createTeamWrapper}>
-          <AddNew clicked={() => setShowModal(true)} />
+          <AddNew clicked={() => setShowModal(true)} title={"New"} />
         </div>
         <div className={classes.innerWrapper}>
           {userStages.loading ? (
