@@ -183,7 +183,7 @@ const Notes = () => {
         <RightSideWrapper title={"Notes"}>
           <div className={styles.container}>
             <div className={styles.createBtnWrapper}>
-              <AddNew clicked={() => changeDisplay(true)} />
+              <AddNew clicked={() => changeDisplay(true)} title={"New"} />
             </div>
             {notesData.loading ? (
               <SpinnerLight />
@@ -201,7 +201,7 @@ const Notes = () => {
                     <>
                       {checkPermissions(el.author.id, el._id)}
 
-                      {modalEdit && edit === el._id ? (
+                      {modalEdit && edit === el._id && (
                         <Modal
                           show={modalEdit}
                           onClose={() => setModalEdit(false)}
@@ -224,7 +224,7 @@ const Notes = () => {
                             ) : null}
                           </>
                         </Modal>
-                      ) : null}
+                      )}
                     </>
                   </CardNote>
                 ))}
