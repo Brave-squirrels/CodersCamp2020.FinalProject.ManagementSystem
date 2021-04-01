@@ -15,12 +15,12 @@
   }
   overflow-y: auto;
   @include scrollbar;
-  .addBtnWrapper {
+  /*  .addBtnWrapper {
     position: absolute;
     top: 1em;
-    left: 2em;
+    left: 1em;
     z-index: 1;
-  }
+  } */
 }
 
 a {
