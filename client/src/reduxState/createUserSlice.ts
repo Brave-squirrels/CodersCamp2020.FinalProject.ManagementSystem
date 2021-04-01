@@ -58,9 +58,9 @@ export const createUserSlice = createSlice({
 
 export const { create, success, failed } = createUserSlice.actions;
 
-export const createUser = (data: PostData): AppThunk => (dispatch) => {
+export const createUser = (data: PostData): AppThunk => async (dispatch) => {
   dispatch(create());
-  axios
+  await axios
     .post("/users/create", data)
     .then((res) => {
       dispatch(success());

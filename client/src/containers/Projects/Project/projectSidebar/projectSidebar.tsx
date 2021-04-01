@@ -44,7 +44,7 @@ const ProjectSidebar = () => {
     >
       <PrimaryList>
         {user.projects ? (
-          user.projects.map((prj: any) => {
+          user.projects.map((prj: types.UserProject) => {
             if (prj.teamId === teamId) {
               if (prj.id === projectId) {
                 return (

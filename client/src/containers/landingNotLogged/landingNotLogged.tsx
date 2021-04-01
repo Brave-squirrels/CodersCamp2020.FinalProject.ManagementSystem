@@ -120,12 +120,10 @@ const StartPage = () => {
 
   /* Handle animation */
   const [view, changeView] = useState(true);
-  let classes;
-  if (!view) {
-    classes = [styles.container, styles.signUpMode];
-  } else {
-    classes = [styles.container];
-  }
+
+  let classes = view
+    ? [styles.container]
+    : [styles.container, styles.signUpMode];
 
   /* Create user after submit */
   const createUserHandler = (event: React.FormEvent<HTMLFormElement>) => {
@@ -186,16 +184,16 @@ const StartPage = () => {
         <div className={styles.signInSignUp}>
           <div className={styles.signUpForm}>
             {signUpContent}
-            {signUpState.error ? (
+            {signUpState.error && (
               <ErrorHandler>{signUpState.error.response.data}</ErrorHandler>
-            ) : null}
+            )}
           </div>
 
           <div className={styles.signInForm}>
             {signInContent}
-            {signInState.error ? (
+            {signInState.error && (
               <ErrorHandler>{signInState.error.response.data}</ErrorHandler>
-            ) : null}
+            )}
           </div>
         </div>
       </div>

@@ -5,9 +5,9 @@ import styles from "./navigationItem.module.scss";
 
 type Props = {
   path: string;
-  children: any;
+  children: JSX.Element | JSX.Element[] | string;
   activeClass?: string;
-  clicked?: any;
+  clicked?: () => void;
 };
 
 const navigationItem: FunctionComponent<Props> = (props) => {

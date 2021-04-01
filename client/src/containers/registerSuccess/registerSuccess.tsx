@@ -25,24 +25,25 @@ const RegisterSuccess = (props: Props) => {
     dispatch(sendEmailAgain(data));
   };
 
-  let content: JSX.Element = (
-    <form onSubmit={(event) => sendAgain(event)}>
-      <Notification
-        title="A verification link has been sent to your email account"
-        subTitle="Please click on the link that has been sent to your email account to verify your email and finish the registration process."
-        btnText="SEND AGAIN"
-        img={mailIcon}
-      />
-      {reduxState.error ? (
-        <ErrorHandler> Something went wrong, try again!</ErrorHandler>
-      ) : null}
-    </form>
+  return (
+    <>
+      {reduxState.loading ? (
+        <Spinner />
+      ) : (
+        <form onSubmit={(event) => sendAgain(event)}>
+          <Notification
+            title="A verification link has been sent to your email account"
+            subTitle="Please click on the link that has been sent to your email account to verify your email and finish the registration process."
+            btnText="SEND AGAIN"
+            img={mailIcon}
+          />
+          {reduxState.error && (
+            <ErrorHandler> Something went wrong, try again!</ErrorHandler>
+          )}
+        </form>
+      )}
+    </>
   );
-  if (reduxState.loading) {
-    content = <Spinner />;
-  }
-
-  return <>{content}</>;
 };
 
 export default RegisterSuccess;

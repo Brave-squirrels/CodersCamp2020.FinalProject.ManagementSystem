@@ -1,19 +1,24 @@
 import {createSlice} from '@reduxjs/toolkit';
 
 import {AppThunk, RootState} from '../store';
+import * as types from 'utils/types';
 
 import axios from 'axios/axiosMain';
 
 interface State {
     loading: boolean;
     error: any;
-    notes: any;
+    notes: types.NotesData[];
 }
 
 const initialState: State = {
     loading: false,
     error: null,
-    notes: {},
+    notes: [
+        {
+            ...types.baseNotesSetup
+        }
+    ],
 }
 
 const notesData = createSlice({

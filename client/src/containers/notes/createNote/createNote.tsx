@@ -52,27 +52,27 @@ const CreateNote = () => {
     dispatch(createNote(teamId, projectId, formData));
   };
 
-  let content: JSX.Element = (
-    <>
-      <FormStructure
-        state={inputs}
-        setState={setInputs}
-        btnText="Create"
-        formTitle="Create Note"
-        submitted={createNoteHandler}
-        checkPass={false}
-      />
-      {state.error ? (
-        <ErrorHandler>{state.error.response.data}</ErrorHandler>
-      ) : null}
-    </>
+  return (
+    <div className={styles.formWrapper}>
+      {state.loading ? (
+        <Spinner />
+      ) : (
+        <>
+          <FormStructure
+            state={inputs}
+            setState={setInputs}
+            btnText="Create"
+            formTitle="Create Note"
+            submitted={createNoteHandler}
+            checkPass={false}
+          />
+          {state.error && (
+            <ErrorHandler>{state.error.response.data}</ErrorHandler>
+          )}
+        </>
+      )}
+    </div>
   );
-
-  if (state.loading) {
-    content = <Spinner />;
-  }
-
-  return <div className={styles.formWrapper}>{content}</div>;
 };
 
 export default CreateNote;

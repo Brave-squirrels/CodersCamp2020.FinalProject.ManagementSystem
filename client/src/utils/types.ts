@@ -1,13 +1,29 @@
-interface Member {
-  userId: string;
-  userName: string;
+
+
+export interface ProjectMember {
+  id: string;
+  name: string;
+  role: string;
+}
+export interface UserProject {
+  name: string;
+  id: string;
+  teamId: string;
 }
 
+export interface Invite {
+  id: string;
+  name: string;
+}
 interface Project {
   projectName: string;
   projectId: string;
 }
 
+interface Member {
+  userId: string;
+  userName: string;
+}
 export interface TeamData {
   description: string;
   members: Member[];
@@ -30,21 +46,14 @@ export const baseTeamSetup: TeamData = {
   teamName: "",
 };
 
-interface Team {
+export interface UserTeam {
   id: string;
   name: string;
 }
-
 interface Owner {
   id: string;
   name: string;
 }
-
-interface ProjectMember {
-  id: string;
-  name: string;
-}
-
 interface Task {
   id: string;
   name: string;
@@ -57,7 +66,7 @@ interface Note {
 
 export interface ProjectData {
   status: string;
-  team: Team;
+  team: UserTeam;
   owner: Owner;
   projectName: string;
   deadline: string;
@@ -85,6 +94,7 @@ export const baseProjectSetup: ProjectData = {
 };
 
 export interface TaskData {
+  _id: string;
 status: string;
 commentsId: string[];
 projectId: string;
@@ -95,6 +105,7 @@ startData: string
 }
 
 export const baseTaskSetup: TaskData = {
+  _id: '',
   status: '',
   commentsId: [],
   projectId: '',
@@ -103,5 +114,25 @@ export const baseTaskSetup: TaskData = {
   deadline: '',
   startData: '',
 }
+
+export interface NotesData {
+  _id: string;
+  content: string;
+  projectId: string;
+  name: string;
+  author: Owner;
+}
+
+export const baseNotesSetup : NotesData = {
+  _id: '',
+  content: '',
+  projectId: '',
+  name: '',
+  author: {
+    id: '',
+    name: ''
+  }
+}
+
 
 export type TParams = { teamId: string; projectId: string };

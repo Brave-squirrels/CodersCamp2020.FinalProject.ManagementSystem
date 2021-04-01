@@ -1,13 +1,14 @@
-import ViewWithSidebar from "hoc/viewWithSidebar/viewWithSidebar";
-import styles from "./project.module.scss";
-
 import { useSelector } from "react-redux";
+import * as types from "utils/types";
 
+import ViewWithSidebar from "hoc/viewWithSidebar/viewWithSidebar";
 import { CardWithTitle } from "components/UI/CardWithTitle/CardWithTitle";
 import RightSideWrapper from "hoc/rightSideWrapper/rightSideWrapper";
 import Spinner from "components/UI/Spinner/spinner";
 import ErrorHandler from "components/errorHandler/errorHandler";
 import ProjectSidebar from "./projectSidebar/projectSidebar";
+
+import styles from "./project.module.scss";
 
 import { RootState } from "reduxState/store";
 
@@ -41,7 +42,9 @@ const Project = () => {
             </div>
 
             <CardWithTitle title={"Members"}>
-              {state.project.members.map((member: any) => member.name)}
+              {state.project.members.map(
+                (member: types.ProjectMember) => member.name
+              )}
             </CardWithTitle>
 
             <div>

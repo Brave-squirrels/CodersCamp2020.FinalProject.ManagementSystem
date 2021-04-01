@@ -139,21 +139,25 @@ const Notes = () => {
     //Set clicked note in edit mode and display modal
     setEdit(id);
     setModalEdit(true);
-    const currentNote = notesData.notes.find((el: any) => el._id === id);
+    const currentNote = notesData.notes.find(
+      (el: types.NotesData) => el._id === id
+    );
     //Set default value in form
-    setForm((prevState) => {
-      return {
-        ...prevState,
-        name: {
-          ...prevState.name,
-          val: currentNote.name,
-        },
-        content: {
-          ...prevState.content,
-          val: currentNote.content,
-        },
-      };
-    });
+    if (currentNote) {
+      setForm((prevState) => {
+        return {
+          ...prevState,
+          name: {
+            ...prevState.name,
+            val: currentNote.name,
+          },
+          content: {
+            ...prevState.content,
+            val: currentNote.content,
+          },
+        };
+      });
+    }
   };
 
   //Submit  edit note fetch
@@ -187,7 +191,7 @@ const Notes = () => {
               <ErrorHandler>{notesData.error.response.data}</ErrorHandler>
             ) : notesData.notes.length > 0 ? (
               <div className={styles.innerWrapper}>
-                {notesData.notes.map((el: any) => (
+                {notesData.notes.map((el: types.NotesData) => (
                   <CardNote
                     key={el._id}
                     title={el.name}
@@ -208,7 +212,9 @@ const Notes = () => {
                               setState={setForm}
                               btnText="Edit"
                               formTitle="Edit note"
-                              submitted={(e: any) => sendEdit(e, el._id)}
+                              submitted={(
+                                e: React.FormEvent<HTMLFormElement>
+                              ) => sendEdit(e, el._id)}
                               checkPass={false}
                             />
                             {changeNote.error ? (

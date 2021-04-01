@@ -43,9 +43,9 @@ export const handleTeamInvite = createSlice({
 
 export const {start, success, failed} = handleTeamInvite.actions;
  
-export const declineInvite = (id: string) : AppThunk => (dispatch) => {
+export const declineInvite = (id: string) : AppThunk => async (dispatch) => {
     dispatch(start());
-    axios.put(`/teams/${id}/removePending`, {
+    await axios.put(`/teams/${id}/removePending`, {
         headers: {
             'x-auth-token': localStorage.getItem('token')
         }
@@ -58,9 +58,9 @@ export const declineInvite = (id: string) : AppThunk => (dispatch) => {
     })
 }
 
-export const acceptInvite = (id: string) : AppThunk => (dispatch) => {
+export const acceptInvite = (id: string) : AppThunk => async (dispatch) => {
     dispatch(start());
-    axios.put(`/teams/${id}/addUser`, {
+    await axios.put(`/teams/${id}/addUser`, {
         headers: {
             'x-auth-token': localStorage.getItem('token')
         }
