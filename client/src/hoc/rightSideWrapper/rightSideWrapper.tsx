@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import styles from "./rightSideWrapper.module.scss";
 
 interface Props {
-  children: JSX.Element;
+  children: JSX.Element | JSX.Element[];
   title: string;
 }
 
