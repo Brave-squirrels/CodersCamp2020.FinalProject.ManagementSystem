@@ -75,9 +75,9 @@ export const loginSlice = createSlice({
 
 export const { login, loginSuccess, loginFail, logout } = loginSlice.actions;
 
-export const loginUser = (data: LoginData): AppThunk => (dispatch) => {
+export const loginUser = (data: LoginData): AppThunk => async (dispatch) => {
   dispatch(login());
-  axios
+  await axios
     .post("/login", data)
     .then((res) => {
       const data = {
@@ -93,9 +93,9 @@ export const loginUser = (data: LoginData): AppThunk => (dispatch) => {
     });
 };
 
-export const authUser = (): AppThunk => (dispatch) => {
+export const authUser = (): AppThunk => async (dispatch) => {
   const token = localStorage.getItem("token");
-  axios
+  await axios
     .get("/users/me", { headers: { "x-auth-token": `${token}` } })
     .then((res) => {
       const data = {

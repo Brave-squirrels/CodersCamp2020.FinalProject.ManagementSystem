@@ -56,45 +56,40 @@ const ForgotPassword = () => {
     dispatch(sendChangePassword(data));
   };
 
-  let sendResetContent: JSX.Element = (
-    <FormStructure
-      state={forgot}
-      setState={setForgot}
-      btnText="RESET"
-      formTitle="Reset password"
-      submitted={sendResetPassword}
-      checkPass={false}
-    />
-  );
-  if (reduxState.loading) {
-    sendResetContent = <Spinner />;
-  }
-  if (reduxState.success) {
-    sendResetContent = (
-      <form
-        className={styles.notificationSuccess}
-        onSubmit={(e) => goBackHandler(e)}
-      >
-        <Notification
-          title="Link yo reset your password has been sent to your email account"
-          subTitle="Please click on the link that has been sent to your email account to change your password."
-          btnText="GO BACK"
-          img={checkMark}
-        />
-      </form>
-    );
-  }
-
   return (
     <div className={styles.forgotContainer}>
       <div className={styles.goBackBtn}>
         <Button clicked={goBackHandler}>Go back</Button>
       </div>
 
-      {sendResetContent}
-      {reduxState.error ? (
+      {reduxState.loading ? (
+        <Spinner />
+      ) : reduxState.success ? (
+        <FormStructure
+          state={forgot}
+          setState={setForgot}
+          btnText="RESET"
+          formTitle="Reset password"
+          submitted={sendResetPassword}
+          checkPass={false}
+        />
+      ) : (
+        <form
+          className={styles.notificationSuccess}
+          onSubmit={(e) => goBackHandler(e)}
+        >
+          <Notification
+            title="Link yo reset your password has been sent to your email account"
+            subTitle="Please click on the link that has been sent to your email account to change your password."
+            btnText="GO BACK"
+            img={checkMark}
+          />
+        </form>
+      )}
+
+      {reduxState.error && (
         <ErrorHandler>{reduxState.error.response.data}</ErrorHandler>
-      ) : null}
+      )}
     </div>
   );
 };

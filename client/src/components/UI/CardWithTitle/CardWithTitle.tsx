@@ -1,6 +1,11 @@
 import styles from "./CardWithTitle.module.scss";
 
-export const CardWithTitle = (props: any) => {
+interface Props {
+  title: string;
+  children: any;
+}
+
+export const CardWithTitle = (props: Props) => {
   return (
     <div className={styles.wrapper}>
       <p className={styles.tileTitle}>{props.title}</p>

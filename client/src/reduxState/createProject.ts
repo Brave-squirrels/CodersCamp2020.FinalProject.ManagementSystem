@@ -50,9 +50,9 @@ export const createProjectSlice = createSlice({
 
 export const {start, success, failed} = createProjectSlice.actions;
 
-export const createProject = (teamId: string,data: Data) : AppThunk => (dispatch) => {
+export const createProject = (teamId: string,data: Data) : AppThunk => async (dispatch) => {
     dispatch(start());
-    axios.post(`/teams/${teamId}/projects`, data, {
+    await axios.post(`/teams/${teamId}/projects`, data, {
         headers: {
             'x-auth-token': localStorage.getItem('token')
         }

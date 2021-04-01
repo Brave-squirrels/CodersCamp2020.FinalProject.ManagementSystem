@@ -37,9 +37,9 @@ export const sendVerifyAgain = createSlice({
 
 export const {start, success, fail} = sendVerifyAgain.actions;
 
-export const sendEmailAgain = (data: Data): AppThunk => (dispatch)=>{
+export const sendEmailAgain = (data: Data): AppThunk => async  (dispatch)=>{
     dispatch(start());
-    axios.post('/users/email',data)
+    await axios.post('/users/email',data)
     .then(res=>{
         dispatch(success());
     })

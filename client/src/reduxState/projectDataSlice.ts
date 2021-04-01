@@ -23,16 +23,16 @@ const singleProjectData = createSlice({
   name: "projectData",
   initialState,
   reducers: {
-    start (state){
+    start:  (state) =>{
       state.loading = true;
       state.error = null;
     },
-    setProjectData(state, action: PayloadAction<types.ProjectData>) {
+    setProjectData: (state, action: PayloadAction<types.ProjectData>) => {
       state.project = action.payload;
       state.loading = false;
       state.error = false;
     },
-    failed (state,action){
+    failed: (state,action) =>{
       state.loading = false;
       state.error = action.payload;
     }

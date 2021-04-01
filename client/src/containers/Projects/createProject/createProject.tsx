@@ -84,11 +84,11 @@ const CreateProject = () => {
             submitted={submitForm}
             checkPass={false}
           />
-          {createProjectState.error ? (
+          {createProjectState.error && (
             <ErrorHandler>
               {createProjectState.error.response.data}
             </ErrorHandler>
-          ) : null}
+          )}
         </>
       )}
     </>

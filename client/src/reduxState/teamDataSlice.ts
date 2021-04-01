@@ -23,16 +23,16 @@ const singleTeamData = createSlice({
   name: "teamData",
   initialState,
   reducers: {
-    start (state) {
+    start: (state) => {
       state.loading = true;
       state.error = null;
     },
-    setTeamData(state, action: PayloadAction<types.TeamData>) {
+    setTeamData: (state, action: PayloadAction<types.TeamData>) => {
       state.team = action.payload;
       state.loading = false ;
       state.error = null;
     },
-    failed(state, action) {
+    failed: (state, action)=> {
       state.loading = false;
       state.error = action.payload;
     }

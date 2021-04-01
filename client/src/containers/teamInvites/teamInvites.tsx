@@ -1,5 +1,6 @@
 import React from "react";
 import { /* useDispatch, */ useSelector } from "react-redux";
+import * as types from "utils/types";
 
 import CardContainer from "components/UI/CardContainer/cardContainer";
 import TeamInviteContent from "components/teamInviteContent/teamInviteContent";
@@ -20,7 +21,7 @@ const TeamInvites = () => {
       <CardContainer title="Team Invites">
         <div className={styles.innerWrapper}>
           {reduxState.teamInvitation && reduxState.teamInvitation.length > 0 ? (
-            reduxState.teamInvitation.map((el: any) => {
+            reduxState.teamInvitation.map((el: types.Invite) => {
               return (
                 <TeamInviteContent teamId={el.id} key={Math.random()}>
                   {el.name}

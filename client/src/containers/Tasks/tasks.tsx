@@ -11,6 +11,7 @@ import TaskCard from "components/UI/taskCard/taskCard";
 import AddNew from "components/UI/addNew/addNew";
 import Modal from "components/Modal/modal";
 import CreateTask from "./createTasks/createTask";
+import Spinner from "components/UI/Spinner/spinner";
 
 import { RootState } from "reduxState/store";
 import { fetchTasks } from "reduxState/tasks/getTasks";
@@ -38,36 +39,44 @@ const Tasks = () => {
         <ProjectSidebar />
         <RightSideWrapper title={"Tasks"}>
           <div className={styles.container}>
-            <div className={styles.addBtnWrapper}>
-              <AddNew clicked={() => setCreateModal(true)} />
-            </div>
-            <CardWithTitle title="New">
-              <div className={styles.taskCon}>
-                {tasks.tasks
-                  .filter((tsk: any) => tsk.status === "NEW")
-                  .map((el: any) => (
-                    <TaskCard key={el._id}>{el.name}</TaskCard>
-                  ))}
-              </div>
-            </CardWithTitle>
-            <CardWithTitle title="In progress">
-              <div className={styles.taskCon}>
-                {tasks.tasks
-                  .filter((tsk: any) => tsk.status === "INPROGRESS")
-                  .map((el: any) => (
-                    <TaskCard key={el._id}>{el.name}</TaskCard>
-                  ))}
-              </div>
-            </CardWithTitle>
-            <CardWithTitle title="Done">
-              <div className={styles.taskCon}>
-                {tasks.tasks
-                  .filter((tsk: any) => tsk.status === "DONE")
-                  .map((el: any) => (
-                    <TaskCard key={el._id}>{el.name}</TaskCard>
-                  ))}
-              </div>
-            </CardWithTitle>
+            {tasks.loading ? (
+              <Spinner />
+            ) : (
+              <>
+                <div className={styles.addBtnWrapper}>
+                  <AddNew clicked={() => setCreateModal(true)} />
+                </div>
+                <CardWithTitle title="New">
+                  <div className={styles.taskCon}>
+                    {tasks.tasks
+                      .filter((tsk: types.TaskData) => tsk.status === "NEW")
+                      .map((el: types.TaskData) => (
+                        <TaskCard key={el._id}>{el.name}</TaskCard>
+                      ))}
+                  </div>
+                </CardWithTitle>
+                <CardWithTitle title="In progress">
+                  <div className={styles.taskCon}>
+                    {tasks.tasks
+                      .filter(
+                        (tsk: types.TaskData) => tsk.status === "INPROGRESS"
+                      )
+                      .map((el: types.TaskData) => (
+                        <TaskCard key={el._id}>{el.name}</TaskCard>
+                      ))}
+                  </div>
+                </CardWithTitle>
+                <CardWithTitle title="Done">
+                  <div className={styles.taskCon}>
+                    {tasks.tasks
+                      .filter((tsk: types.TaskData) => tsk.status === "DONE")
+                      .map((el: types.TaskData) => (
+                        <TaskCard key={el._id}>{el.name}</TaskCard>
+                      ))}
+                  </div>
+                </CardWithTitle>
+              </>
+            )}
           </div>
         </RightSideWrapper>
       </ViewWithSidebar>

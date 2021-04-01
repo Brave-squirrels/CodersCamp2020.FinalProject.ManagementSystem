@@ -97,17 +97,18 @@ export const changePassword = (data: passwordData): AppThunk => async (
   dispatch
 ) => {
   const token = localStorage.getItem("token");
-  try {
     await axios.put("/users/changepassword", data, {
       headers: { "x-auth-token": `${token}` },
-    });
-    dispatch(setError(""));
-    dispatch(resetPassword());
-    dispatch(toggleSuccess(true));
-  } catch (e) {
-    dispatch(setError(e.response.data));
-    dispatch(toggleSuccess(false));
-  }
+    })
+    .then(res=>{
+      dispatch(setError(""));
+      dispatch(resetPassword());
+      dispatch(toggleSuccess(true));
+    })
+    .catch(err=>{
+      dispatch(setError(err.response.data));
+      dispatch(toggleSuccess(false));
+    })
 };
 
 export const deleteUser = (data: string): AppThunk => async () => {

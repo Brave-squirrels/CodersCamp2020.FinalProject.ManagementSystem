@@ -2,7 +2,7 @@ import React from "react";
 import classes from "./primaryList.module.scss";
 
 interface Props {
-  children: any;
+  children: JSX.Element;
 }
 
 const primaryList = (props: Props) => {

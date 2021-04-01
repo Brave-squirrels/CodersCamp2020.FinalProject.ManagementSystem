@@ -3,7 +3,7 @@ import classes from "./sidebar.module.scss";
 
 interface Props {
   children: JSX.Element;
-  title: any;
+  title: string | JSX.Element;
 }
 
 const SideBar = (props: Props) => {
@@ -27,7 +27,7 @@ const SideBar = (props: Props) => {
     <>
       <div
         className={navClasses.join(" ")}
-        onClick={() => (reveal ? null : changeReveal())}
+        onClick={() => !reveal && changeReveal()}
       >
         <p className={classes.title}>{props.title}</p>
         {props.children}

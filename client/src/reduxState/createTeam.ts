@@ -55,9 +55,9 @@ export const createTeamSlice = createSlice({
 export const {start, success, failed, clear} = createTeamSlice.actions;
 
 
-export const createTeam = (data: FormData) : AppThunk => (dispatch) => {
+export const createTeam = (data: FormData) : AppThunk => async (dispatch) => {
     dispatch(start());
-    axios.post('/teams', data, {
+    await axios.post('/teams', data, {
         headers: {
             'x-auth-token': localStorage.getItem('token')
         }

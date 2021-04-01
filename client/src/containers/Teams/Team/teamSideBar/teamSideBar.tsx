@@ -46,27 +46,26 @@ const TeamSidebar = () => {
                   <PrimaryActiveItem name={team.name} key={`${team.id}pri`} />
 
                   <SecondaryList key={`${team.id}List`}>
-                    {userTeam.team.projects
-                      ? user.projects.map((project: any) => {
-                          if (project.teamId === teamId) {
-                            return (
-                              <NavLink
-                                to={`/teams/${teamId}/projects/${project.id}`}
-                                exact
-                                className={classes.navLink}
+                    {userTeam.team.projects &&
+                      user.projects.map((project: any) => {
+                        if (project.teamId === teamId) {
+                          return (
+                            <NavLink
+                              to={`/teams/${teamId}/projects/${project.id}`}
+                              exact
+                              className={classes.navLink}
+                              key={project.id}
+                            >
+                              <SecondaryItem
+                                id={project.id}
+                                name={project.name}
                                 key={project.id}
-                              >
-                                <SecondaryItem
-                                  id={project.id}
-                                  name={project.name}
-                                  key={project.id}
-                                />
-                              </NavLink>
-                            );
-                          }
-                          return null;
-                        })
-                      : null}
+                              />
+                            </NavLink>
+                          );
+                        }
+                        return null;
+                      })}
                   </SecondaryList>
                 </LiItem>
               );
