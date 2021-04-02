@@ -38,10 +38,13 @@ const Tasks = () => {
   const project = useSelector((state: RootState) => state.singleProjectData);
 
   const createStages = useSelector((state: RootState) => state.createTask);
+  const deleteStages = useSelector((state: RootState) => state.deleteTask);
+
   useEffect(() => {
     setCreateModal(false);
+    setSingleTaskModal(false);
     dispatch(fetchTasks(teamId, projectId));
-  }, [createStages.success, teamId, projectId, dispatch]);
+  }, [createStages.success, teamId, projectId, dispatch, deleteStages.success]);
 
   let titleContent =
     project.project.owner.id === localStorage.getItem("id") ? (

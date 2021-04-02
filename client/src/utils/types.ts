@@ -95,13 +95,14 @@ export const baseProjectSetup: ProjectData = {
 
 export interface TaskData {
   _id: string;
-status: string;
-commentsId: string[];
-projectId: string;
-name: string;
-content: string;
-deadline: string;
-startData: string
+  status: string;
+  commentsId: string[];
+  projectId: string;
+  name: string;
+  content: string;
+  deadlineDate: string;
+  startDate: string;
+  members: UserTeam[];
 }
 
 export const baseTaskSetup: TaskData = {
@@ -111,8 +112,9 @@ export const baseTaskSetup: TaskData = {
   projectId: '',
   name: '',
   content: '',
-  deadline: '',
-  startData: '',
+  deadlineDate: '',
+  startDate: '',
+  members: [{id: '', name: ''},]
 }
 
 export interface NotesData {
