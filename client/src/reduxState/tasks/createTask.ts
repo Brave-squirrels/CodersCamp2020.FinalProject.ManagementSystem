@@ -50,9 +50,9 @@ export const createTaskFetch = (
   teamId: string,
   projectId: string,
   data: Data
-): AppThunk => (dispatch) => {
+): AppThunk => async (dispatch) => {
   dispatch(start());
-  axios
+  await axios
     .post(`/teams/${teamId}/projects/${projectId}/tasks`, data, {
       headers: {
         "x-auth-token": localStorage.getItem("token"),

@@ -10,14 +10,21 @@ interface State {
   success: boolean;
 }
 
+interface Data {
+    name?: string;
+    content?:string;
+    deadlineDate?: Date;
+    status?: string;
+}
+
 const initialState: State = {
   loading: false,
   error: null,
   success: false,
 };
 
-const deleteTask = createSlice({
-  name: "deleteTask",
+const editTask = createSlice({
+  name: "editTask",
   initialState,
   reducers: {
     start: (state) => {
@@ -38,16 +45,17 @@ const deleteTask = createSlice({
   },
 });
 
-export const { start, success, failed } = deleteTask.actions;
+export const { start, success, failed } = editTask.actions;
 
-export const deleteTaskFetch = (
+export const editTaskFetch = (
   teamId: string,
   projectId: string,
-  taskId: string
+  taskId: string,
+  data: Data
 ): AppThunk => async (dispatch) => {
   dispatch(start());
   await axios
-    .delete(`/teams/${teamId}/projects/${projectId}/tasks/${taskId}`, {
+    .put(`/teams/${teamId}/projects/${projectId}/tasks/${taskId}`, data, {
       headers: {
         "x-auth-token": localStorage.getItem("token"),
       },
@@ -60,8 +68,8 @@ export const deleteTaskFetch = (
     });
 };
 
-export const selectLoading = (state: RootState) => state.deleteTask.loading;
-export const selectError = (state: RootState) => state.deleteTask.error;
-export const selectSuccess = (state: RootState) => state.deleteTask.success;
+export const selectLoading = (state: RootState) => state.editTask.loading;
+export const selectError = (state: RootState) => state.editTask.error;
+export const selectSuccess = (state: RootState) => state.editTask.success;
 
-export default deleteTask.reducer;
+export default editTask.reducer;
