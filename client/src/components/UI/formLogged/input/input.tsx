@@ -69,13 +69,17 @@ const input: FunctionComponent<Props> = (props) => {
             name={props.name}
             value={props.inputValue}
             onChange={props.onChangeInput}
-            className={[styles.select, styles.input].join(" ")}
+            className={[styles.input, styles.select].join(" ")}
             required
             disabled={props.turnOff}
           >
             {selectOptions.map((option) => {
               return (
-                <option value={option.val} key={option.val}>
+                <option
+                  value={option.val}
+                  key={option.val}
+                  className={styles.option}
+                >
                   {option.name}
                 </option>
               );
