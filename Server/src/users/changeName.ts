@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
+import mongoose from "mongoose";
 import _ from "lodash";
 import validateName from "./validateName";
 import userModel from "../../models/user.model";
@@ -7,6 +8,7 @@ import projectModel from "../../models/projects.model";
 import teamsModel from "../../models/teams.model";
 import tasksModel from "../../models/tasks.model";
 import commentsModel from "../../models/comment.model";
+import { Project } from "../../interfaces/project.interface";
 
 const changeName = async (req: Request, res: Response) => {
   const { error } = validateName(req.body);
@@ -29,6 +31,12 @@ const changeName = async (req: Request, res: Response) => {
     });
     await project.save();
   });
+
+  // Update project owner name
+  await projectModel.updateMany(
+    { "owner.id": req.userInfo._id },
+    { "owner.name": req.body.name }
+  );
 
   const teams = await teamsModel.find({ "members.userId": req.userInfo._id });
   teams.forEach(async (team) => {

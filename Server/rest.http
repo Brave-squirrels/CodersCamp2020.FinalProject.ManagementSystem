@@ -7,7 +7,7 @@ POST http://localhost:5000/login HTTP/1.1
 Content-Type: application/json
 
 {
-    "email": "test123@test.com",
+    "email": "olo.a@wp.pl",
     "password": "12345678"
 }
 
@@ -27,7 +27,7 @@ GET http://localhost:5000/users/60423d0e1208b54b60241d21 HTTP/1.1
 ###
 # get me
 GET http://localhost:5000/users/me HTTP/1.1
-x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDNmZjVmN2E3ZTU4ODA1ZjZkYWEzMWYiLCJuYW1lIjoiTWljaGFsIiwiaWF0IjoxNjE0ODA0NDk0fQ.iXhX7CyHE2aWX-ie3i9E-ZppAiZyfqKksxYjEC6vq7g
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDVmYTU4YjM1NTYxZjEzNmM4OTg2YjkiLCJuYW1lIjoiT2xlazEyMyIsImlhdCI6MTYxNzM4NjA4Nn0.pmSpM6ghDJSBCgTaqseMmZ9-8XfhZiCCi2ONcuUK0FE
 
 
 ###
@@ -62,11 +62,11 @@ Content-Type: application/json
 ###
 # change name
 PUT http://localhost:5000/users/name HTTP/1.1
-x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDNlOGUxY2UwNmJiYzBmMzBkNTdlMzMiLCJuYW1lIjoiT2xlayIsImlhdCI6MTYxNDc3OTYwNH0.yCGN6HTHIa91ZivXOscS5JF2xGxoVewLPAQ9X-eIGX0
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDVmYTU4YjM1NTYxZjEzNmM4OTg2YjkiLCJuYW1lIjoiT2xlazEyMyIsImlhdCI6MTYxNzM4NjA4Nn0.pmSpM6ghDJSBCgTaqseMmZ9-8XfhZiCCi2ONcuUK0FE
 Content-Type: application/json
 
 {
-    "name": "testUser3"
+    "name": "Olek"
 }
 
 ###
