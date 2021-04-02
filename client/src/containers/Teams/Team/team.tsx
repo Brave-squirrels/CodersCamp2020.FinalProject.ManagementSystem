@@ -24,6 +24,11 @@ const Team = () => {
     )
   );
 
+  const isModerator = state.team.moderatorsId.includes(localStorage.getItem("id")!)
+
+  const isOwner = state.team.ownerId === localStorage.getItem("id")
+  
+
   return (
     <>
       <Modal show={showModal} onClose={() => setShowModal(false)}>
@@ -63,7 +68,7 @@ const Team = () => {
                 {state.team.members.map((member: any) => (
                   <div>{member.userName}</div>
                 ))}
-                <AddNew clicked={() => setShowModal(true)} />
+                {isModerator ? (<AddNew clicked={() => setShowModal(true)} />) : null}
               </CardWithTitle>
               <CardWithTitle title={"Moderators"}>
                 {moderatorsList}

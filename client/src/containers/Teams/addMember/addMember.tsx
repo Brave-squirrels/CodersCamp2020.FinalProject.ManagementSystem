@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { mutateToAxios } from "utils/onChangeForm";
-import { Redirect } from "react-router-dom";
 
 import axios from "axios/axiosMain";
 
@@ -10,12 +9,28 @@ import styles from "./addMember.module.scss";
 import FormStructure from "components/UI/formLogged/formStructure/formStructure";
 import Spinner from "components/UI/Spinner/spinner";
 import ErrorHandler from "components/errorHandler/errorHandler";
+import SuccessHandler from "components/successHandler/successHandler";
 
-import { createTeam, clear } from "reduxState/createTeam";
-import { RootState } from "reduxState/store";
 
 const AddMember = () => {
-  const teamId = useSelector((state: RootState) => state.singleTeamData.team._id);
+  const teamId = useSelector((state: any) => state.singleTeamData.team._id);
+
+  const emailStart = {
+    email: {
+      val: "",
+      type: "text",
+      inputType: "input",
+      label: "New member email",
+      validation: {
+        required: true,
+        minLength: 3,
+        maxLength: 24,
+      },
+      touched: false,
+      valid: false,
+    },
+    formValid: true,
+  };
 
   const [member, setMember] = useState({
     email: {
@@ -33,8 +48,12 @@ const AddMember = () => {
     },
     formValid: false,
   });
+  const [inviteStatus, setInviteStatus] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const addMemberHandler = (e: any) => {
+  const findUser = (e: any) => {
+    setInviteStatus('')
+    setLoading(true);
     e.preventDefault();
     const formData = mutateToAxios(member);
     axios
@@ -42,31 +61,51 @@ const AddMember = () => {
         headers: { "x-auth-token": localStorage.getItem("token") },
       })
       .then((response) => addMemberToTeam(response.data._id))
-      .catch((err) => console.log(err.response.data));
+      .catch((err) => {
+        setInviteStatus(err.response.data);
+        setLoading(false);
+      });
   };
 
-  
-  const addMemberToTeam = (memberId : any) => {
+  const addMemberToTeam = (memberId: any) => {
     const memberObj = {
-      id: memberId
-    }
+      id: memberId,
+    };
     axios
       .put(`/teams/${teamId}/addPending`, memberObj, {
         headers: { "x-auth-token": localStorage.getItem("token") },
       })
-      .then(() => console.log("succes!"))
-      .catch((err) => console.log(err.response.data));
+      .then(() => {
+        setInviteStatus("Send invite!");
+        setMember({ ...emailStart });
+        setLoading(false);
+      })
+      .catch((err) => {
+        setInviteStatus(err.response.data);
+        setLoading(false);
+      });
   };
 
   return (
-    <FormStructure
-      state={member}
-      setState={setMember}
-      btnText="Send invite"
-      formTitle="Add new member"
-      submitted={addMemberHandler}
-      checkPass={false}
-    />
+    <div className={styles.formWrapper}>
+      {loading ? (
+        <Spinner />
+      ) : (
+        <FormStructure
+          state={member}
+          setState={setMember}
+          btnText="Send invite"
+          formTitle="Add new member"
+          submitted={findUser}
+          checkPass={false}
+        />
+      )}
+      {inviteStatus === "Send invite!" ? (
+        <SuccessHandler>{inviteStatus}</SuccessHandler>
+      ) : (
+        <ErrorHandler>{inviteStatus}</ErrorHandler>
+      )}
+    </div>
   );
 };
 
