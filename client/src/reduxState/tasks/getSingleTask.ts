@@ -44,11 +44,11 @@ const getTask = createSlice({
 
 export const { start, success, failed } = getTask.actions;
 
-export const fetchTask = (teamId: string, projectId: string, taskId: string): AppThunk => (
+export const fetchTask = (teamId: string, projectId: string, taskId: string): AppThunk =>  async (
   dispatch
 ) => {
   dispatch(start());
-  axios
+  await axios
     .get(`/teams/${teamId}/projects/${projectId}/tasks/${taskId}`, {
       headers: {
         "x-auth-token": localStorage.getItem("token"),
