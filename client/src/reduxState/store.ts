@@ -23,6 +23,7 @@ import changeNote from './notes/editNotes';
 import createTask from './tasks/createTask';
 import getTasks from './tasks/getTasks';
 import getTask from './tasks/getSingleTask';
+import deleteTask from './tasks/deleteTask';
 
 import thunk from "redux-thunk";
 
@@ -47,6 +48,7 @@ export const store = configureStore({
     createTask: createTask,
     getTasks: getTasks,
     getTask: getTask,
+    deleteTask: deleteTask,
   },
   middleware: [
     ...getDefaultMiddleware({

@@ -1,0 +1,56 @@
+@import "styles/variables.scss";
+
+.wrapper {
+  height: 100%;
+  padding: 1em;
+}
+
+.taskInfoWrapper {
+  position: relative;
+  display: grid;
+  grid-template-rows: 30px 140px 30px;
+  grid-template-columns: repeat(2, 1fr);
+  color: $secondFontColor;
+  .taskContent {
+    grid-column: span 2;
+  }
+  .buttonsWrapper {
+    position: absolute;
+    right: 2.5em;
+    display: flex;
+    flex-direction: row;
+    gap: 0.3em;
+    .iconEdit {
+      &:hover {
+        cursor: pointer;
+        color: $mainFontColor;
+      }
+    }
+    .iconRemove {
+      &:hover {
+        cursor: pointer;
+        color: $invalidInputBorder;
+      }
+    }
+  }
+  .taskDeadline {
+    color: $invalidInputBorder;
+  }
+  .taskDate {
+    color: $fontLightGreen;
+  }
+  .taskName {
+    color: $fontBlue;
+    font-weight: 600;
+    font-size: 1.1em;
+  }
+  .taskStatus {
+    font-size: 0.9em;
+    text-transform: lowercase;
+  }
+  .taskDeadline,
+  .taskDate {
+    font-style: italic;
+    font-size: 0.8em;
+  }
+}
