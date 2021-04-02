@@ -16,6 +16,7 @@ import { fetchTask } from "reduxState/tasks/getSingleTask";
 import { deleteTaskFetch } from "reduxState/tasks/deleteTask";
 import { editTaskFetch } from "reduxState/tasks/editTask";
 import { mutateToAxios } from "utils/onChangeForm";
+import { editTaskMembersFetch } from "reduxState/tasks/editTaskMembers";
 
 import styles from "./singleTask.module.scss";
 interface Props {
@@ -32,10 +33,14 @@ const SingleTask = (props: Props) => {
   );
   const deleteTask = useSelector((state: RootState) => state.deleteTask);
   const editTask = useSelector((state: RootState) => state.editTask);
+  /* const editMembersRedux = useSelector(
+    (state: RootState) => state.editTaskMembers
+  ); */
 
   const { teamId, projectId } = useParams<types.TParams>();
 
   const [editMode, setEditMode] = useState(false);
+  const [editMembers, setEditMembers] = useState(false);
 
   const [form, setForm] = useState({
     name: {
@@ -145,6 +150,27 @@ const SingleTask = (props: Props) => {
     dispatch(editTaskFetch(teamId, projectId, props.id, data));
   };
 
+  const handleEditMembers = () => {
+    const membersArray = Array.from(document.querySelectorAll("#memberEdit"));
+    let data: any;
+    membersArray.forEach((el: any) => {
+      const memberr = projectData.project.members.find(
+        (e: any) => e.id === el.value
+      );
+      if (memberr) {
+        data = {
+          member: {
+            id: memberr.id,
+            role: memberr.role,
+            name: memberr.name,
+          },
+          delete: !el.checked,
+        };
+        dispatch(editTaskMembersFetch(teamId, projectId, props.id, data));
+      }
+    });
+  };
+
   return (
     <div className={styles.wrapper}>
       {deleteTask.loading ? (
@@ -219,6 +245,36 @@ const SingleTask = (props: Props) => {
           )}
         </div>
       )}
+      <div className={styles.membersContainer}>
+        <span>Members</span>
+        {taskData.task.members.map((el: any) => (
+          <span key={el.id}>{el.name}</span>
+        ))}
+        <button onClick={() => setEditMembers(!editMembers)}>
+          Add members
+        </button>
+        {editMembers && (
+          <>
+            {projectData.project.members.map((el: any) => (
+              <div key={el.id}>
+                <input
+                  type="checkbox"
+                  value={el.id}
+                  id="memberEdit"
+                  key={el.id}
+                  checked={
+                    taskData.task.members.find((e: any) => e.id === el.id)
+                      ? true
+                      : false
+                  }
+                />{" "}
+                {el.name}
+              </div>
+            ))}
+            <button onClick={handleEditMembers}>Submit</button>
+          </>
+        )}
+      </div>
     </div>
   );
 };

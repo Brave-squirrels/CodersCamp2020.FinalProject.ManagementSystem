@@ -25,6 +25,7 @@ import getTasks from './tasks/getTasks';
 import getTask from './tasks/getSingleTask';
 import deleteTask from './tasks/deleteTask';
 import editTask from './tasks/editTask';
+import editTaskMembers from './tasks/editTaskMembers';
 
 import thunk from "redux-thunk";
 
@@ -51,6 +52,7 @@ export const store = configureStore({
     getTask: getTask,
     deleteTask: deleteTask,
     editTask: editTask,
+    editTaskMembers: editTaskMembers,
   },
   middleware: [
     ...getDefaultMiddleware({

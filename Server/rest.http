@@ -388,13 +388,13 @@ content-type: application/json
 
 ### UPDATE/DELETE TASK USERS
 
-PUT http://localhost:5000/teams/604f7b8cc633a147b03b1f5e/projects/604f7f65c633a147b03b1f60/tasks/604f920420ac7b18a00c8958/members
-x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDRmN2IyMWM2MzNhMTQ3YjAzYjFmNWQiLCJuYW1lIjoiVXNlciBQcmV6ZW50YWNqYSIsImlhdCI6MTYxNTgyMTYwMX0.CgXYrO9fe0AhZL9IfcTWEwkRLNsnhdd59lTWMeytW58
+PUT http://localhost:5000/teams/605a457b0282ce3c5cb9fd46/projects/605e4ce7cb685415d07d31ec/tasks/60662fa348a3390294b33546/members
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDRmOGI5NDI2MzU5NzRhMzQ5Y2FlNDEiLCJuYW1lIjoiU2ltcGxlIE5hbWUiLCJpYXQiOjE2MTczMDM0NDR9.Z3TgvxmbSaipleDFlC7nzK1d3WfGtYPsaRsX7_K2gH4
 content-type: application/json
 
 {
     "member": {"id": "66324aea104714127c8f418b", "role": "Designer", "name": "asda"},
-    "delete": true
+    "delete": false
 }
 
 ################################ COMMENTS ###############################
