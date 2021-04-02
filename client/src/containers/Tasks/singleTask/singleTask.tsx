@@ -101,9 +101,12 @@ const SingleTask = (props: Props) => {
     },
     formValid: true,
   });
-
   useEffect(() => {
     dispatch(fetchTask(teamId, projectId, props.id));
+    let date: any;
+    if (taskData.task.deadlineDate) {
+      date = taskData.task.deadlineDate.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/);
+    }
     setForm((prevState: any) => {
       return {
         ...prevState,
@@ -121,7 +124,7 @@ const SingleTask = (props: Props) => {
         },
         deadlineDate: {
           ...prevState.deadlineDate,
-          val: taskData.task.deadlineDate.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/),
+          val: date ? date[0] : "",
         },
       };
     });
@@ -166,18 +169,39 @@ const SingleTask = (props: Props) => {
             </div>
           )}
           {editMode ? (
-            <FormStructure
-              state={form}
-              setState={setForm}
-              btnText="Edit"
-              formTitle="Edit task"
-              submitted={editTaskHandler}
-              checkPass={false}
-            />
-          ) : (
             <>
+              {editTask.loading ? (
+                <Spinner />
+              ) : (
+                <div className={styles.editTaskWrapper}>
+                  <FormStructure
+                    state={form}
+                    setState={setForm}
+                    btnText="Edit"
+                    formTitle="Edit task"
+                    submitted={editTaskHandler}
+                    checkPass={false}
+                  />
+                  {editTask.error && (
+                    <ErrorHandler>{editTask.error.response.data}</ErrorHandler>
+                  )}
+                </div>
+              )}
+            </>
+          ) : taskData.loading ? (
+            <Spinner />
+          ) : (
+            <div className={styles.innerTaskWrapper}>
               <span className={styles.taskName}>{taskData.task.name}</span>
-              <span className={styles.taskStatus}>{taskData.task.status}</span>
+              <span className={styles.taskStatus}>
+                {taskData.task.status === "NEW"
+                  ? "New"
+                  : taskData.task.status === "INPROGRESS"
+                  ? "In progress"
+                  : taskData.task.status === "DONE"
+                  ? "Done"
+                  : ""}
+              </span>
               <span className={styles.taskContent}>
                 {taskData.task.content}
               </span>
@@ -191,7 +215,7 @@ const SingleTask = (props: Props) => {
               {deleteTask.error && (
                 <ErrorHandler>{deleteTask.error.response.data}</ErrorHandler>
               )}
-            </>
+            </div>
           )}
         </div>
       )}
