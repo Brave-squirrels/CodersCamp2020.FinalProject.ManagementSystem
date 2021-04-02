@@ -41,6 +41,7 @@ const SingleTask = (props: Props) => {
 
   const [editMode, setEditMode] = useState(false);
   const [editMembers, setEditMembers] = useState(false);
+  const [checkbox, setCheckbox] = useState([""]);
 
   const [form, setForm] = useState({
     name: {
@@ -106,12 +107,18 @@ const SingleTask = (props: Props) => {
     },
     formValid: true,
   });
+
   useEffect(() => {
+    /* Fetch tasks */
     dispatch(fetchTask(teamId, projectId, props.id));
+
+    /* Set date */
     let date: any;
     if (taskData.task.deadlineDate) {
       date = taskData.task.deadlineDate.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/);
     }
+
+    /* Set form with initial data from api */
     setForm((prevState: any) => {
       return {
         ...prevState,
@@ -144,6 +151,10 @@ const SingleTask = (props: Props) => {
     taskData.task.content,
   ]);
 
+  useEffect(() => {
+    setCheckbox(Array.from(taskData.task.members.map((el) => el.id)));
+  }, [taskData.task.members]);
+
   const editTaskHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data = mutateToAxios(form);
@@ -154,21 +165,32 @@ const SingleTask = (props: Props) => {
     const membersArray = Array.from(document.querySelectorAll("#memberEdit"));
     let data: any;
     membersArray.forEach((el: any) => {
-      const memberr = projectData.project.members.find(
+      const currentMember = projectData.project.members.find(
         (e: any) => e.id === el.value
       );
-      if (memberr) {
+      if (currentMember) {
         data = {
           member: {
-            id: memberr.id,
-            role: memberr.role,
-            name: memberr.name,
+            id: currentMember.id,
+            role: currentMember.role,
+            name: currentMember.name,
           },
           delete: !el.checked,
         };
         dispatch(editTaskMembersFetch(teamId, projectId, props.id, data));
       }
     });
+  };
+
+  const changeCheckbox = (e: any) => {
+    const checkboxes = [...checkbox];
+    if (e.target.checked) {
+      checkboxes.push(e.target.value);
+    } else {
+      const index = checkboxes.findIndex((ch) => ch === e.target.value);
+      checkboxes.splice(index, 1);
+    }
+    setCheckbox(checkboxes);
   };
 
   return (
@@ -262,12 +284,9 @@ const SingleTask = (props: Props) => {
                   value={el.id}
                   id="memberEdit"
                   key={el.id}
-                  checked={
-                    taskData.task.members.find((e: any) => e.id === el.id)
-                      ? true
-                      : false
-                  }
-                />{" "}
+                  checked={checkbox.find((e) => e === el.id) ? true : false}
+                  onChange={(e) => changeCheckbox(e)}
+                />
                 {el.name}
               </div>
             ))}
