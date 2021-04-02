@@ -1,13 +1,24 @@
 import {createSlice} from '@reduxjs/toolkit';
 
 import {AppThunk, RootState} from '../store';
+import * as types from 'utils/types';
 
 import axios from 'axios/axiosMain';
 
-const initialState: any = {
+interface State {
+    loading: boolean;
+    error: any;
+    notes: types.NotesData[];
+}
+
+const initialState: State = {
     loading: false,
     error: null,
-    notes: {}
+    notes: [
+        {
+            ...types.baseNotesSetup
+        }
+    ],
 }
 
 const notesData = createSlice({
@@ -48,7 +59,7 @@ export const fetchNotes = (teamId: string, projectId: string) : AppThunk =>  (di
 }
 
 export const selectLoading = (state:RootState)=> state.notesData.loading;
-export const selectSuccess = (state:RootState) => state.notesData.notes;
+export const selectNotes = (state:RootState) => state.notesData.notes;
 export const selectError = (state: RootState) => state.notesData.error;
 
 export default notesData.reducer;

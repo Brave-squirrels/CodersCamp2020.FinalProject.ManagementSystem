@@ -43,9 +43,9 @@ export const changePassword = createSlice({
 
 export const {start, success, fail} = changePassword.actions;
 
-export const changePasswordLanding = (data: Data, token: string): AppThunk => (dispatch)=>{
+export const changePasswordLanding = (data: Data, token: string): AppThunk => async (dispatch)=>{
     dispatch(start());
-    axios.put('/users/password', data, {
+    await axios.put('/users/password', data, {
         headers: {
             'x-auth-token': `${token}`,
         }

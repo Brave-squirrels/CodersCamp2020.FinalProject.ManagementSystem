@@ -22,8 +22,17 @@
   padding: 0.3rem 0;
   width: 90%;
 }
+.taskTitle {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5em;
+  text-align: center;
+}
 
 .content {
   padding: 0.5em;
   word-break: break-all;
+  width: 100%;
 }

@@ -1,13 +1,14 @@
-import ViewWithSidebar from "hoc/viewWithSidebar/viewWithSidebar";
-import styles from "./project.module.scss";
-
 import { useSelector } from "react-redux";
+import * as types from "utils/types";
 
+import ViewWithSidebar from "hoc/viewWithSidebar/viewWithSidebar";
 import { CardWithTitle } from "components/UI/CardWithTitle/CardWithTitle";
 import RightSideWrapper from "hoc/rightSideWrapper/rightSideWrapper";
 import Spinner from "components/UI/Spinner/spinner";
 import ErrorHandler from "components/errorHandler/errorHandler";
 import ProjectSidebar from "./projectSidebar/projectSidebar";
+
+import styles from "./project.module.scss";
 
 import { RootState } from "reduxState/store";
 
@@ -30,7 +31,7 @@ const Project = () => {
                 {state.project.content}
               </CardWithTitle>
               <CardWithTitle title={"Start date"}>
-                {state.project.date}
+                {state.project.date.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/)}
               </CardWithTitle>
               <CardWithTitle title={"Deadline"}>
                 {state.project.deadline.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/)}
@@ -41,19 +42,15 @@ const Project = () => {
             </div>
 
             <CardWithTitle title={"Members"}>
-              {state.project.members.map((member: any) => member.name)}
+              {state.project.members.map(
+                (member: types.ProjectMember) => member.name
+              )}
             </CardWithTitle>
 
             <div>
-              <CardWithTitle title={"Project Menager"}>
-                {state.project.description}
-              </CardWithTitle>
-              <CardWithTitle title={"Scrum Master"}>
-                {state.project.description}
-              </CardWithTitle>
-              <CardWithTitle title={"Development Menager"}>
-                {state.project.description}
-              </CardWithTitle>
+              <CardWithTitle title={"Project Menager"}>blank</CardWithTitle>
+              <CardWithTitle title={"Scrum Master"}>blank</CardWithTitle>
+              <CardWithTitle title={"Development Menager"}>blank</CardWithTitle>
             </div>
           </div>
         </RightSideWrapper>

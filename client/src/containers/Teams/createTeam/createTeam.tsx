@@ -52,32 +52,32 @@ const CreateTeam = () => {
     dispatch(createTeam(formData));
   };
 
-  let content: JSX.Element = (
-    <>
-      <FormStructure
-        state={team}
-        setState={setTeam}
-        btnText="Create"
-        formTitle="Create team"
-        submitted={createTeamHandler}
-        checkPass={false}
-      />
-      {reduxState.error ? (
-        <ErrorHandler>{reduxState.error.response.data}</ErrorHandler>
-      ) : null}
-    </>
-  );
-  if (reduxState.loading) {
-    content = <Spinner />;
-  }
   if (reduxState.success) {
-    content = <Redirect to={`/teams/${reduxState.teamId}`} />;
     setTimeout(() => {
       dispatch(clear());
     }, 2000);
   }
 
-  return <div className={styles.formWrapper}>{content}</div>;
+  return (
+    <div className={styles.formWrapper}>
+      {reduxState.loading ? (
+        <Spinner />
+      ) : (
+        <FormStructure
+          state={team}
+          setState={setTeam}
+          btnText="Create"
+          formTitle="Create team"
+          submitted={createTeamHandler}
+          checkPass={false}
+        />
+      )}
+      {reduxState.error && (
+        <ErrorHandler>{reduxState.error.response.data}</ErrorHandler>
+      )}
+      {reduxState.success && <Redirect to={`/teams/${reduxState.teamId}`} />}
+    </div>
+  );
 };
 
 export default CreateTeam;

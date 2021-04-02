@@ -2,6 +2,7 @@ import React from "react";
 import { useHistory } from "react-router";
 import { useSelector } from "react-redux";
 import { RootState } from "reduxState/store";
+import * as types from "utils/types";
 
 import Card from "components/UI/Card/card";
 import CardContainer from "components/UI/CardContainer/cardContainer";
@@ -28,7 +29,7 @@ const UserProjects = () => {
         ) : (
           <>
             {user.projects && user.projects.length ? (
-              user.projects.map((el: any) => (
+              user.projects.map((el: types.UserProject) => (
                 <NavigationItem
                   key={el.id}
                   path={`/teams/${el.teamId}/projects/${el.id}`}

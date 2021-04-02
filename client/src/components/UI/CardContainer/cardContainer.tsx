@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./cardContainer.module.scss";
 interface Props {
-  children: any;
+  children: JSX.Element[] | JSX.Element | string;
   title: string;
 }
 const CardContainer = (props: Props) => {

@@ -35,6 +35,9 @@ const ResHeader: FunctionComponent = () => {
         <NavigationItem path="/" clicked={() => dispatch(clickHamburger())}>
           <img src={logo} alt="Site logo" className={styles.logo} />
         </NavigationItem>
+        <NavigationItem path="/" clicked={() => dispatch(clickHamburger())}>
+          Home
+        </NavigationItem>
         <NavigationItem
           path="/teaminvites"
           clicked={() => dispatch(clickHamburger())}

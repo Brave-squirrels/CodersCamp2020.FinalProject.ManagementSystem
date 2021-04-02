@@ -1,6 +1,12 @@
 import classes from "./primaryInactiveItem.module.scss";
 
-const PrimaryInactiveItem = (props: any) => (
+interface Props {
+  name: string;
+  clickHandler: (e: any) => void;
+  id: string;
+}
+
+const PrimaryInactiveItem = (props: Props) => (
   <li
     key={props.id}
     id={props.id}

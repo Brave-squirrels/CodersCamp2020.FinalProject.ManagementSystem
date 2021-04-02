@@ -42,9 +42,9 @@ export const sendForgotPassword = createSlice({
 
 export const {start, success, fail} = sendForgotPassword.actions;
 
-export const sendChangePassword = (data: Data): AppThunk => (dispatch)=>{
+export const sendChangePassword = (data: Data): AppThunk => async (dispatch)=>{
     dispatch(start());
-    axios.post('/users/sendreset',data)
+    await axios.post('/users/sendreset',data)
     .then(res=>{
         dispatch(success());
     })

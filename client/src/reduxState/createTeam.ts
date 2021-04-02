@@ -11,14 +11,14 @@ interface State {
     success: boolean;
     loading: boolean;
     error: any;
-    teamId: string | null;
+    teamId: string;
 }
 
 const initialState: State = {
     loading: false,
     success: false,
     error: null,
-    teamId: null,
+    teamId: '',
 }
 
 export const createTeamSlice = createSlice({
@@ -29,7 +29,7 @@ export const createTeamSlice = createSlice({
             state.loading = true;
             state.error = null;
             state.success = false;
-            state.teamId = null;
+            state.teamId = '';
         },
         success: (state, action)=>{
             state.loading = false;
@@ -40,13 +40,14 @@ export const createTeamSlice = createSlice({
         failed: (state, action) => {
             state.loading = false;
             state.success = false;
-            state.error = action.payload
+            state.error = action.payload;
+            state.teamId = '';
         },
         clear: (state) => {
             state.loading = false;
             state.success = false;
             state.error = null;
-            state.teamId = null;
+            state.teamId = '';
         }
     }
 })
@@ -54,9 +55,9 @@ export const createTeamSlice = createSlice({
 export const {start, success, failed, clear} = createTeamSlice.actions;
 
 
-export const createTeam = (data: FormData) : AppThunk => (dispatch) => {
+export const createTeam = (data: FormData) : AppThunk => async (dispatch) => {
     dispatch(start());
-    axios.post('/teams', data, {
+    await axios.post('/teams', data, {
         headers: {
             'x-auth-token': localStorage.getItem('token')
         }

@@ -4,7 +4,11 @@ import { motion, AnimatePresence } from "framer-motion";
 
 import classes from "./secondaryList.module.scss";
 
-const secondaryList = (props: any) => {
+interface Props {
+  children: JSX.Element[];
+}
+
+const secondaryList = (props: Props) => {
   return (
     <AnimatePresence>
       <motion.div

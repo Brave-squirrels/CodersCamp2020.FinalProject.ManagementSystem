@@ -2,7 +2,7 @@ import React from "react";
 
 interface Props {
   teamId: string;
-  children: any;
+  children: JSX.Element[];
 }
 
 const liItem = (props: Props) => {

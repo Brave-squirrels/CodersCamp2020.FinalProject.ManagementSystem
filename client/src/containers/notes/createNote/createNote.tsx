@@ -13,7 +13,7 @@ import { RootState } from "reduxState/store";
 
 import styles from "./crateNote.module.scss";
 
-const CreateNote = (props: any) => {
+const CreateNote = () => {
   const dispatch = useDispatch();
   const state = useSelector((state: RootState) => state.notesCreate);
   const { teamId, projectId } = useParams<types.TParams>();
@@ -52,30 +52,27 @@ const CreateNote = (props: any) => {
     dispatch(createNote(teamId, projectId, formData));
   };
 
-  let content: JSX.Element = (
-    <>
-      <FormStructure
-        state={inputs}
-        setState={setInputs}
-        btnText="Create"
-        formTitle="Create Note"
-        submitted={createNoteHandler}
-        checkPass={false}
-      />
-      {state.error ? (
-        <ErrorHandler>{state.error.response.data}</ErrorHandler>
-      ) : null}
-    </>
+  return (
+    <div className={styles.formWrapper}>
+      {state.loading ? (
+        <Spinner />
+      ) : (
+        <>
+          <FormStructure
+            state={inputs}
+            setState={setInputs}
+            btnText="Create"
+            formTitle="Create Note"
+            submitted={createNoteHandler}
+            checkPass={false}
+          />
+          {state.error && (
+            <ErrorHandler>{state.error.response.data}</ErrorHandler>
+          )}
+        </>
+      )}
+    </div>
   );
-
-  if (state.loading) {
-    content = <Spinner />;
-  }
-  if (state.success) {
-    props.doneAction();
-  }
-
-  return <div className={styles.formWrapper}>{content}</div>;
 };
 
 export default CreateNote;

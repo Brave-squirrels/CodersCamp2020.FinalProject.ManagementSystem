@@ -1,13 +1,29 @@
-interface Member {
-  userId: string;
-  userName: string;
+
+
+export interface ProjectMember {
+  id: string;
+  name: string;
+  role: string;
+}
+export interface UserProject {
+  name: string;
+  id: string;
+  teamId: string;
 }
 
+export interface Invite {
+  id: string;
+  name: string;
+}
 interface Project {
   projectName: string;
   projectId: string;
 }
 
+interface Member {
+  userId: string;
+  userName: string;
+}
 export interface TeamData {
   description: string;
   members: Member[];
@@ -30,21 +46,14 @@ export const baseTeamSetup: TeamData = {
   teamName: "",
 };
 
-interface Team {
+export interface UserTeam {
   id: string;
   name: string;
 }
-
 interface Owner {
   id: string;
   name: string;
 }
-
-interface ProjectMember {
-  id: string;
-  name: string;
-}
-
 interface Task {
   id: string;
   name: string;
@@ -57,13 +66,15 @@ interface Note {
 
 export interface ProjectData {
   status: string;
-  team: Team;
+  team: UserTeam;
   owner: Owner;
   projectName: string;
   deadline: string;
   members: ProjectMember[];
   tasks: Task[];
   note: Note[];
+  date: string;
+  content: string;
 }
 
 export const baseProjectSetup: ProjectData = {
@@ -75,9 +86,55 @@ export const baseProjectSetup: ProjectData = {
   owner: { id: "", name: "" },
   projectName: "",
   deadline: "",
+  date: '',
   members: [],
   tasks: [],
   note: [],
+  content: '',
 };
+
+export interface TaskData {
+  _id: string;
+  status: string;
+  commentsId: string[];
+  projectId: string;
+  name: string;
+  content: string;
+  deadlineDate: string;
+  startDate: string;
+  members: UserTeam[];
+}
+
+export const baseTaskSetup: TaskData = {
+  _id: '',
+  status: '',
+  commentsId: [],
+  projectId: '',
+  name: '',
+  content: '',
+  deadlineDate: '',
+  startDate: '',
+  members: [{id: '', name: ''},]
+}
+
+export interface NotesData {
+  _id: string;
+  content: string;
+  projectId: string;
+  name: string;
+  author: Owner;
+}
+
+export const baseNotesSetup : NotesData = {
+  _id: '',
+  content: '',
+  projectId: '',
+  name: '',
+  author: {
+    id: '',
+    name: ''
+  }
+}
+
 
 export type TParams = { teamId: string; projectId: string };

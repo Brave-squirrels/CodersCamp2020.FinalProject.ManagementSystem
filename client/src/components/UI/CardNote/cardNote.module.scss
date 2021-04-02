@@ -1,0 +1,37 @@
+@import "styles/variables.scss";
+
+.noteCard {
+  position: relative;
+  background: $backgroundCard;
+  box-shadow: $cardShadow;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  text-align: left;
+  flex-direction: column;
+  padding: 2em 1em;
+  text-align: left;
+  word-wrap: break-word;
+  word-break: break-all;
+  .noteTitle {
+    height: 40px;
+    font-weight: 600;
+    font-size: 1.1em;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+  }
+  .noteContent {
+    height: 180px;
+    overflow-y: auto;
+    @include scrollbar;
+  }
+  .noteAuthor {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    height: 30px;
+    font-style: italic;
+    font-size: 0.8em;
+  }
+}

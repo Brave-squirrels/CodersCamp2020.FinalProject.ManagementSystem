@@ -1,9 +1,18 @@
 import styles from "./CardWithTitle.module.scss";
 
-export const CardWithTitle = (props: any) => {
+interface Props {
+  title: string | JSX.Element | JSX.Element[];
+  children: any;
+  additionalClass?: string;
+}
+
+export const CardWithTitle = (props: Props) => {
+  let classes = props.additionalClass
+    ? [styles.tileTitle, styles[props.additionalClass]]
+    : [styles.tileTitle];
   return (
     <div className={styles.wrapper}>
-      <p className={styles.tileTitle}>{props.title}</p>
+      <p className={classes.join(" ")}>{props.title}</p>
       <div className={styles.content}>{props.children}</div>
     </div>
   );
