@@ -58,9 +58,7 @@ const Tasks = () => {
     project.project.owner.id === localStorage.getItem("id") ? (
       <>
         New
-        <div className={styles.addBtnWrapper}>
-          <AddNew clicked={() => setCreateModal(true)} />
-        </div>
+        <AddNew clicked={() => setCreateModal(true)} />
       </>
     ) : (
       "New"
