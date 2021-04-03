@@ -6,6 +6,7 @@ import * as types from "utils/types";
 import Spinner from "components/UI/Spinner/spinner";
 import ErrorHandler from "components/errorHandler/errorHandler";
 import FormStructure from "components/UI/formLogged/formStructure/formStructure";
+import Checkbox from "components/UI/checkbox/checkbox";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
@@ -162,7 +163,7 @@ const SingleTask = (props: Props) => {
   };
 
   const handleEditMembers = () => {
-    const membersArray = Array.from(document.querySelectorAll("#memberEdit"));
+    const membersArray = Array.from(document.querySelectorAll(".memberEdit"));
     let data: any;
     membersArray.forEach((el: any) => {
       const currentMember = projectData.project.members.find(
@@ -272,22 +273,24 @@ const SingleTask = (props: Props) => {
         {taskData.task.members.map((el: any) => (
           <span key={el.id}>{el.name}</span>
         ))}
-        <button onClick={() => setEditMembers(!editMembers)}>
-          Add members
-        </button>
+        {localStorage.getItem("id") === projectData.project.owner.id && (
+          <button onClick={() => setEditMembers(!editMembers)}>
+            Add members
+          </button>
+        )}
+
         {editMembers && (
           <>
             {projectData.project.members.map((el: any) => (
               <div key={el.id}>
-                <input
-                  type="checkbox"
+                <Checkbox
                   value={el.id}
-                  id="memberEdit"
-                  key={el.id}
+                  id={el.id}
+                  class={"memberEdit"}
                   checked={checkbox.find((e) => e === el.id) ? true : false}
-                  onChange={(e) => changeCheckbox(e)}
+                  change={(e: any) => changeCheckbox(e)}
+                  name={el.name}
                 />
-                {el.name}
               </div>
             ))}
             <button onClick={handleEditMembers}>Submit</button>
