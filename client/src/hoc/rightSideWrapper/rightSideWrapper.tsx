@@ -1,6 +1,6 @@
 import React from "react";
 
-import { motion, AnimatePresence } from "framer-motion";
+import OpacityAnimation from "hoc/opacityWrapper/opacityWrapper";
 
 import styles from "./rightSideWrapper.module.scss";
 
@@ -11,26 +11,14 @@ interface Props {
 
 const rightSideWrapper = (props: Props) => {
   return (
-    <AnimatePresence>
-      <motion.div
-        initial={{
-          opacity: 0,
-        }}
-        animate={{
-          opacity: 1,
-          transition: {
-            duration: 0.3,
-          },
-        }}
-      >
-        <div className={styles.rightSideWrapper}>
-          <div className={styles.wrapper}>
-            <h1 className={styles.title}>{props.title}</h1>
-            {props.children}
-          </div>
+    <OpacityAnimation>
+      <div className={styles.rightSideWrapper}>
+        <div className={styles.wrapper}>
+          <h1 className={styles.title}>{props.title}</h1>
+          {props.children}
         </div>
-      </motion.div>
-    </AnimatePresence>
+      </div>
+    </OpacityAnimation>
   );
 };
 

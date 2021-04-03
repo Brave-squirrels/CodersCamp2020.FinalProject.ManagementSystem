@@ -20,6 +20,10 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       grid-gap: 1em;
+      @media only screen and (max-width: 740px) {
+        grid-template-columns: 1fr;
+      }
+
       .singleMember {
         display: flex;
         flex-direction: row;
@@ -45,6 +49,9 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       grid-gap: 1em;
+      @media only screen and (max-width: 900px) {
+        grid-template-columns: 1fr;
+      }
     }
     .addMembersBtnWrapper {
       font-size: 0.8em;
