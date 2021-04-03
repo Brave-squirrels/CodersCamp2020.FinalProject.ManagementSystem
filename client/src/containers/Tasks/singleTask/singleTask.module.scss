@@ -3,6 +3,9 @@
 .wrapper {
   height: 100%;
   padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
 }
 
 .taskInfoWrapper {
@@ -57,6 +60,7 @@
     font-size: 0.8em;
   }
   .editTaskWrapper {
+    font-size: 0.8em;
     padding: 1em 0;
   }
 }

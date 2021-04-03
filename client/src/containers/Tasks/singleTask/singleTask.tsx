@@ -8,6 +8,7 @@ import ErrorHandler from "components/errorHandler/errorHandler";
 import FormStructure from "components/UI/formLogged/formStructure/formStructure";
 import SingleTaskMembers from "containers/Tasks/singleTaskMembers/singleTaskMembers";
 import OpacityAnimation from "hoc/opacityWrapper/opacityWrapper";
+import TaskComments from "containers/Comments/taskComments";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
@@ -17,6 +18,7 @@ import { RootState } from "reduxState/store";
 import { fetchTask } from "reduxState/tasks/getSingleTask";
 import { deleteTaskFetch } from "reduxState/tasks/deleteTask";
 import { editTaskFetch } from "reduxState/tasks/editTask";
+import { fetchComments } from "reduxState/comments/getComments";
 import { mutateToAxios } from "utils/onChangeForm";
 
 import styles from "./singleTask.module.scss";
@@ -38,6 +40,7 @@ const SingleTask = (props: Props) => {
   const editMembersRedux = useSelector(
     (state: RootState) => state.editTaskMembers
   );
+  const postComment = useSelector((state: RootState) => state.commentCreate);
 
   // Params from URL
   const { teamId, projectId } = useParams<types.TParams>();
@@ -116,6 +119,8 @@ const SingleTask = (props: Props) => {
     /* Fetch tasks */
     dispatch(fetchTask(teamId, projectId, props.id));
 
+    /* Fetch comments */
+    dispatch(fetchComments(teamId, projectId, props.id));
     /* Set date */
     let date: RegExpMatchArray | null;
     if (taskData.task.deadlineDate) {
@@ -154,6 +159,7 @@ const SingleTask = (props: Props) => {
     taskData.task.status,
     taskData.task.content,
     editMembersRedux.success,
+    postComment.success,
   ]);
 
   // Handle submit edit task info
@@ -247,6 +253,8 @@ const SingleTask = (props: Props) => {
 
       {/* Task members component */}
       <SingleTaskMembers id={props.id} />
+      {/* Task comments */}
+      <TaskComments id={props.id} />
     </div>
   );
 };

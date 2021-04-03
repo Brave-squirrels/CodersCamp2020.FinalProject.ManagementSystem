@@ -56,8 +56,10 @@ const SingleTaskMembers = (props: Props) => {
 
   // Function to handle fetch on each checkbox when edit members
   const handleEditMembers = () => {
+    // Get all checkboxes
     const membersArray = Array.from(document.querySelectorAll(".memberEdit"));
     let data: Data;
+    // Get members base on checkbox value and mutate data to dispatch fetch
     membersArray.forEach((checkboxNode: any) => {
       const currentMember = projectData.project.members.find(
         (inputCheckbox: types.ProjectMember) =>
@@ -135,6 +137,7 @@ const SingleTaskMembers = (props: Props) => {
                   {projectData.project.members.map(
                     (projectMember: types.ProjectMember) => (
                       <Checkbox
+                        key={projectMember.id}
                         value={projectMember.id}
                         id={projectMember.id}
                         class={"memberEdit"}

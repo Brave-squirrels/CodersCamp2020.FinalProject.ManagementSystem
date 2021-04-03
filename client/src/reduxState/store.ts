@@ -26,6 +26,8 @@ import getTask from './tasks/getSingleTask';
 import deleteTask from './tasks/deleteTask';
 import editTask from './tasks/editTask';
 import editTaskMembers from './tasks/editTaskMembers';
+import commentCreate from './comments/postComment';
+import commentsData from './comments/getComments';
 
 import thunk from "redux-thunk";
 
@@ -35,24 +37,26 @@ export const store = configureStore({
     login: loginReducer,
     settings: settingsReducer,
     sideNavAction: sideNavActionReducer,
-    sendForgotPassword: sendForgotPassword,
-    changePasswordLanding: changePasswordLanding,
-    singleTeamData: singleTeamData,
-    sendVerifyAgain: sendVerifyAgain,
-    singleProjectData: singleProjectData,
-    createTeamSlice: createTeamSlice,
-    handleTeamInvite: handleTeamInvite,
-    createProjectSlice:createProjectSlice,
-    notesData: notesData,
-    notesCreate:notesCreate,
-    deleteNote: deleteNote,
-    changeNote: changeNote,
-    createTask: createTask,
-    getTasks: getTasks,
-    getTask: getTask,
-    deleteTask: deleteTask,
-    editTask: editTask,
-    editTaskMembers: editTaskMembers,
+    sendForgotPassword,
+    changePasswordLanding,
+    singleTeamData,
+    sendVerifyAgain,
+    singleProjectData,
+    createTeamSlice,
+    handleTeamInvite,
+    createProjectSlice,
+    notesData,
+    notesCreate,
+    deleteNote,
+    changeNote,
+    createTask,
+    getTasks,
+    getTask,
+    deleteTask,
+    editTask,
+    editTaskMembers,
+    commentCreate,
+    commentsData,
   },
   middleware: [
     ...getDefaultMiddleware({
