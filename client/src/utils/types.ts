@@ -1,5 +1,3 @@
-
-
 export interface ProjectMember {
   id: string;
   name: string;
@@ -134,6 +132,28 @@ export const baseNotesSetup : NotesData = {
     id: '',
     name: ''
   }
+}
+
+export interface CommentData{
+  _id: string;
+  taskId: string;
+  content: string;
+  creator: {
+    id: string;
+    name: string;
+  },
+  date: string
+}
+
+export const baseCommentSetup : CommentData = {
+  _id: '',
+  taskId: '',
+  content: '',
+  creator: {
+    id: '',
+    name: '',
+  },
+  date: '',
 }
 
 

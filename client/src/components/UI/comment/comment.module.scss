@@ -1,0 +1,18 @@
+@import "styles/variables.scss";
+.commentWrapper {
+  color: $secondFontColor;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+  .author {
+    font-weight: 600;
+    font-size: 0.9em;
+  }
+  .content {
+    font-size: 1em;
+  }
+  .date {
+    font-style: italic;
+    font-size: 0.7em;
+  }
+}
