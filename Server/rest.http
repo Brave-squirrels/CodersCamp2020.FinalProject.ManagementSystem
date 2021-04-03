@@ -66,7 +66,7 @@ x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDVmYTU4YjM1NTYxZ
 Content-Type: application/json
 
 {
-    "name": "Olek"
+    "name": "Aleksander"
 }
 
 ###
@@ -469,8 +469,8 @@ content-type: application/json
 
 # CREATE NEW NOTE
 
-POST http://localhost:5000/teams/604f9c2e48e4d03fe893a9ce/projects/604f9c3548e4d03fe893a9cf/notes HTTP/1.1
-x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDRmN2IyMWM2MzNhMTQ3YjAzYjFmNWQiLCJuYW1lIjoiVXNlciBQcmV6ZW50YWNqYSIsImlhdCI6MTYxNTgyMTYwMX0.CgXYrO9fe0AhZL9IfcTWEwkRLNsnhdd59lTWMeytW58
+POST http://localhost:5000/teams/605fa5ce35561f136c8986ba/projects/60603ec1a390ae38a854559f/notes HTTP/1.1
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDVmYTU4YjM1NTYxZjEzNmM4OTg2YjkiLCJuYW1lIjoiT2xlazEyMyIsImlhdCI6MTYxNzM4NjA4Nn0.pmSpM6ghDJSBCgTaqseMmZ9-8XfhZiCCi2ONcuUK0FE
 content-type: application/json
 
 {   

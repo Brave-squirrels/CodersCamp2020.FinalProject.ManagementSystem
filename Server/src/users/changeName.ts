@@ -1,14 +1,13 @@
 import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
-import mongoose from "mongoose";
 import _ from "lodash";
 import validateName from "./validateName";
 import userModel from "../../models/user.model";
 import projectModel from "../../models/projects.model";
 import teamsModel from "../../models/teams.model";
 import tasksModel from "../../models/tasks.model";
+import notesModel from "../../models/notes.model";
 import commentsModel from "../../models/comment.model";
-import { Project } from "../../interfaces/project.interface";
 
 const changeName = async (req: Request, res: Response) => {
   const { error } = validateName(req.body);
@@ -65,6 +64,12 @@ const changeName = async (req: Request, res: Response) => {
     }
     await comment.save();
   });
+
+  // Update note author name
+  await notesModel.updateMany(
+    { "author.id": req.userInfo._id },
+    { "author.name": req.body.name }
+  );
 
   res.status(StatusCodes.OK).send(_.pick(user, ["_id", "name", "email"]));
 };
