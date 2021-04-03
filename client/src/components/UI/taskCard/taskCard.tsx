@@ -5,11 +5,19 @@ import styles from "./taskCard.module.scss";
 interface Props {
   children: string;
   clicked?: any;
+  highLight: boolean;
 }
 
 const taskCard = (props: Props) => {
   return (
-    <li className={styles.taskCard} onClick={props.clicked}>
+    <li
+      className={
+        props.highLight
+          ? [styles.taskCard, styles.highlight].join(" ")
+          : styles.taskCard
+      }
+      onClick={props.clicked}
+    >
       {props.children}
     </li>
   );

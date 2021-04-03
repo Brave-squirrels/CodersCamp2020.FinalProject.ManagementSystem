@@ -96,15 +96,23 @@ const Tasks = () => {
                     <div className={styles.taskCon}>
                       {tasks.tasks
                         .filter((tsk: types.TaskData) => tsk.status === "NEW")
-                        .map((el: types.TaskData) => (
+                        .map((task: types.TaskData) => (
                           <TaskCard
                             clicked={() => {
                               setSingleTaskModal(true);
-                              setCurrentTask(el._id);
+                              setCurrentTask(task._id);
                             }}
-                            key={el._id}
+                            key={task._id}
+                            highLight={
+                              task.members.find(
+                                (member: types.ProjectMember) =>
+                                  member.id === localStorage.getItem("id")
+                              )
+                                ? true
+                                : false
+                            }
                           >
-                            {el.name}
+                            {task.name}
                           </TaskCard>
                         ))}
                     </div>
@@ -118,15 +126,23 @@ const Tasks = () => {
                         .filter(
                           (tsk: types.TaskData) => tsk.status === "INPROGRESS"
                         )
-                        .map((el: types.TaskData) => (
+                        .map((task: types.TaskData) => (
                           <TaskCard
                             clicked={() => {
                               setSingleTaskModal(true);
-                              setCurrentTask(el._id);
+                              setCurrentTask(task._id);
                             }}
-                            key={el._id}
+                            key={task._id}
+                            highLight={
+                              task.members.find(
+                                (member: types.ProjectMember) =>
+                                  member.id === localStorage.getItem("id")
+                              )
+                                ? true
+                                : false
+                            }
                           >
-                            {el.name}
+                            {task.name}
                           </TaskCard>
                         ))}
                     </div>
@@ -135,15 +151,23 @@ const Tasks = () => {
                     <div className={styles.taskCon}>
                       {tasks.tasks
                         .filter((tsk: types.TaskData) => tsk.status === "DONE")
-                        .map((el: types.TaskData) => (
+                        .map((task: types.TaskData) => (
                           <TaskCard
                             clicked={() => {
                               setSingleTaskModal(true);
-                              setCurrentTask(el._id);
+                              setCurrentTask(task._id);
                             }}
-                            key={el._id}
+                            key={task._id}
+                            highLight={
+                              task.members.find(
+                                (member: types.ProjectMember) =>
+                                  member.id === localStorage.getItem("id")
+                              )
+                                ? true
+                                : false
+                            }
                           >
-                            {el.name}
+                            {task.name}
                           </TaskCard>
                         ))}
                     </div>

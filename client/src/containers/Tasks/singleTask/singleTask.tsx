@@ -19,6 +19,7 @@ import { editTaskFetch } from "reduxState/tasks/editTask";
 import { mutateToAxios } from "utils/onChangeForm";
 
 import styles from "./singleTask.module.scss";
+import { motion, AnimatePresence } from "framer-motion";
 interface Props {
   id: string;
 }
@@ -193,19 +194,42 @@ const SingleTask = (props: Props) => {
               {editTask.loading ? (
                 <Spinner />
               ) : (
-                <div className={styles.editTaskWrapper}>
-                  <FormStructure
-                    state={form}
-                    setState={setForm}
-                    btnText="Edit"
-                    formTitle="Edit task"
-                    submitted={editTaskHandler}
-                    checkPass={false}
-                  />
-                  {editTask.error && (
-                    <ErrorHandler>{editTask.error.response.data}</ErrorHandler>
-                  )}
-                </div>
+                <AnimatePresence>
+                  <motion.div
+                    initial={{
+                      opacity: 0,
+                    }}
+                    animate={{
+                      opacity: 1,
+                      transition: {
+                        duration: 0.3,
+                      },
+                    }}
+                    exit={{
+                      opacity: 0,
+                      transition: {
+                        delay: 0.2,
+                        duration: 0.3,
+                      },
+                    }}
+                  >
+                    <div className={styles.editTaskWrapper}>
+                      <FormStructure
+                        state={form}
+                        setState={setForm}
+                        btnText="Edit"
+                        formTitle="Edit task"
+                        submitted={editTaskHandler}
+                        checkPass={false}
+                      />
+                      {editTask.error && (
+                        <ErrorHandler>
+                          {editTask.error.response.data}
+                        </ErrorHandler>
+                      )}
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
               )}
             </>
           ) : taskData.loading ? (
