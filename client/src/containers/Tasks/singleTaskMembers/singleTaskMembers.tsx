@@ -6,6 +6,8 @@ import * as types from "utils/types";
 import Checkbox from "components/UI/checkbox/checkbox";
 import Button from "components/UI/formElements/button/button";
 import ErrorHandler from "components/errorHandler/errorHandler";
+import OpacityAnimation from "hoc/opacityWrapper/opacityWrapper";
+import Spinner from "components/UI/Spinner/spinner";
 
 import { editTaskMembersFetch } from "reduxState/tasks/editTaskMembers";
 import { RootState } from "reduxState/store";
@@ -97,8 +99,12 @@ const SingleTaskMembers = (props: Props) => {
           <div className={styles.membersDataWrapper}>
             {taskData.task.members.map((member: types.ProjectMember) => (
               <div className={styles.singleMember} key={member.id}>
-                <span className={styles.memberName}>{member.name}</span>
-                <span className={styles.memberRole}>{member.role}</span>
+                <span className={styles.memberName} key={`${member.id}name`}>
+                  {member.name}
+                </span>
+                <span className={styles.memberRole} key={`${member.id}role`}>
+                  {member.role}
+                </span>
               </div>
             ))}
           </div>
@@ -119,38 +125,47 @@ const SingleTaskMembers = (props: Props) => {
 
       {/* Edit members wrapper */}
       {editMembers && (
-        <div className={styles.membersEditWrapper}>
-          <div className={styles.membersCheckboxesWrapper}>
-            {projectData.project.members.map(
-              (projectMember: types.ProjectMember) => (
-                <Checkbox
-                  value={projectMember.id}
-                  id={projectMember.id}
-                  class={"memberEdit"}
-                  checked={
-                    checkbox.find(
-                      (checkboxId: string) => checkboxId === projectMember.id
+        <>
+          {editMembersRedux.loading ? (
+            <Spinner />
+          ) : (
+            <OpacityAnimation>
+              <div className={styles.membersEditWrapper}>
+                <div className={styles.membersCheckboxesWrapper}>
+                  {projectData.project.members.map(
+                    (projectMember: types.ProjectMember) => (
+                      <Checkbox
+                        value={projectMember.id}
+                        id={projectMember.id}
+                        class={"memberEdit"}
+                        checked={
+                          checkbox.find(
+                            (checkboxId: string) =>
+                              checkboxId === projectMember.id
+                          )
+                            ? true
+                            : false
+                        }
+                        change={(e: React.ChangeEvent<HTMLInputElement>) =>
+                          changeCheckbox(e)
+                        }
+                        name={projectMember.name}
+                      />
                     )
-                      ? true
-                      : false
-                  }
-                  change={(e: React.ChangeEvent<HTMLInputElement>) =>
-                    changeCheckbox(e)
-                  }
-                  name={projectMember.name}
-                />
-              )
-            )}
-          </div>
-          <div className={styles.addMembersBtnWrapper}>
-            <Button clicked={handleEditMembers}>Submit</Button>
-            {editMembersRedux.error && (
-              <ErrorHandler>
-                {editMembersRedux.error.response.data}
-              </ErrorHandler>
-            )}
-          </div>
-        </div>
+                  )}
+                </div>
+                <div className={styles.addMembersBtnWrapper}>
+                  <Button clicked={handleEditMembers}>Submit</Button>
+                  {editMembersRedux.error && (
+                    <ErrorHandler>
+                      {editMembersRedux.error.response.data}
+                    </ErrorHandler>
+                  )}
+                </div>
+              </div>
+            </OpacityAnimation>
+          )}
+        </>
       )}
     </div>
   );
