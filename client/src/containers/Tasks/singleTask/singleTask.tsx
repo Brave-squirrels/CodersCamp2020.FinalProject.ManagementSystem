@@ -6,8 +6,7 @@ import * as types from "utils/types";
 import Spinner from "components/UI/Spinner/spinner";
 import ErrorHandler from "components/errorHandler/errorHandler";
 import FormStructure from "components/UI/formLogged/formStructure/formStructure";
-import Checkbox from "components/UI/checkbox/checkbox";
-import Button from "components/UI/formElements/button/button";
+import SingleTaskMembers from "containers/Tasks/singleTaskMembers/singleTaskMembers";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
@@ -18,7 +17,6 @@ import { fetchTask } from "reduxState/tasks/getSingleTask";
 import { deleteTaskFetch } from "reduxState/tasks/deleteTask";
 import { editTaskFetch } from "reduxState/tasks/editTask";
 import { mutateToAxios } from "utils/onChangeForm";
-import { editTaskMembersFetch } from "reduxState/tasks/editTaskMembers";
 
 import styles from "./singleTask.module.scss";
 interface Props {
@@ -45,8 +43,6 @@ const SingleTask = (props: Props) => {
 
   // Local store for UI handle
   const [editMode, setEditMode] = useState(false);
-  const [editMembers, setEditMembers] = useState(false);
-  const [checkbox, setCheckbox] = useState([""]);
 
   // Form creator object
   const [form, setForm] = useState({
@@ -120,13 +116,13 @@ const SingleTask = (props: Props) => {
     dispatch(fetchTask(teamId, projectId, props.id));
 
     /* Set date */
-    let date: any;
+    let date: RegExpMatchArray | null;
     if (taskData.task.deadlineDate) {
       date = taskData.task.deadlineDate.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/);
     }
 
     /* Set form with initial data from api */
-    setForm((prevState: any) => {
+    setForm((prevState) => {
       return {
         ...prevState,
         name: {
@@ -159,50 +155,11 @@ const SingleTask = (props: Props) => {
     editMembersRedux.success,
   ]);
 
-  //Use effect for array of all checkboxes
-  useEffect(() => {
-    setCheckbox(Array.from(taskData.task.members.map((el) => el.id)));
-  }, [taskData.task.members]);
-
   // Handle submit edit task info
-  const editTaskHandler = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const editTaskHandler = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     const data = mutateToAxios(form);
     dispatch(editTaskFetch(teamId, projectId, props.id, data));
-  };
-
-  // Function to handle fetch on each checkbox when edit members
-  const handleEditMembers = () => {
-    const membersArray = Array.from(document.querySelectorAll(".memberEdit"));
-    let data: any;
-    membersArray.forEach((el: any) => {
-      const currentMember = projectData.project.members.find(
-        (e: any) => e.id === el.value
-      );
-      if (currentMember) {
-        data = {
-          member: {
-            id: currentMember.id,
-            role: currentMember.role,
-            name: currentMember.name,
-          },
-          delete: !el.checked,
-        };
-        dispatch(editTaskMembersFetch(teamId, projectId, props.id, data));
-      }
-    });
-  };
-
-  // Function to handle onChange checkbox
-  const changeCheckbox = (e: any) => {
-    const checkboxes = [...checkbox];
-    if (e.target.checked) {
-      checkboxes.push(e.target.value);
-    } else {
-      const index = checkboxes.findIndex((ch) => ch === e.target.value);
-      checkboxes.splice(index, 1);
-    }
-    setCheckbox(checkboxes);
   };
 
   return (
@@ -283,55 +240,8 @@ const SingleTask = (props: Props) => {
         </div>
       )}
 
-      {/* Display members wrapper */}
-      <div className={styles.memberContainerWrapper}>
-        <div className={styles.membersWrapper}>
-          <span className={styles.membersTitle}>Members</span>
-          {taskData.task.members.length > 0 ? (
-            <div className={styles.membersDataWrapper}>
-              {taskData.task.members.map((el: any) => (
-                <div className={styles.singleMember} key={el.id}>
-                  <span className={styles.memberName}>{el.name}</span>
-                  <span className={styles.memberRole}>{el.role}</span>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <span className={styles.noMembers}>
-              There is no member of this task
-            </span>
-          )}
-
-          {localStorage.getItem("id") === projectData.project.owner.id && (
-            <div className={styles.enableAddMembersBtnWrapper}>
-              <Button clicked={() => setEditMembers(!editMembers)}>
-                Add members
-              </Button>
-            </div>
-          )}
-        </div>
-
-        {/* Edit members wrapper */}
-        {editMembers && (
-          <div className={styles.membersEditWrapper}>
-            <div className={styles.membersCheckboxesWrapper}>
-              {projectData.project.members.map((el: any) => (
-                <Checkbox
-                  value={el.id}
-                  id={el.id}
-                  class={"memberEdit"}
-                  checked={checkbox.find((e) => e === el.id) ? true : false}
-                  change={(e: any) => changeCheckbox(e)}
-                  name={el.name}
-                />
-              ))}
-            </div>
-            <div className={styles.addMembersBtnWrapper}>
-              <Button clicked={handleEditMembers}>Submit</Button>
-            </div>
-          </div>
-        )}
-      </div>
+      {/* Task members component */}
+      <SingleTaskMembers id={props.id} />
     </div>
   );
 };

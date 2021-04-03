@@ -1,7 +1,9 @@
 const Joi = require("joi-oid");
 import ROLES from '../../enums/projectRoles';
 
-export const firstPartAuth = (data: any) => {
+import Data from '../../interfaces/taskMemberUpdate.interface';
+
+export const firstPartAuth = (data: Data) => {
     const schema = Joi.object({
       member: Joi.object({
         id: Joi.objectId().required(),

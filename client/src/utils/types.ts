@@ -102,7 +102,7 @@ export interface TaskData {
   content: string;
   deadlineDate: string;
   startDate: string;
-  members: UserTeam[];
+  members: ProjectMember[];
 }
 
 export const baseTaskSetup: TaskData = {
@@ -114,7 +114,7 @@ export const baseTaskSetup: TaskData = {
   content: '',
   deadlineDate: '',
   startDate: '',
-  members: [{id: '', name: ''},]
+  members: [{id: '', name: '', role: ''},]
 }
 
 export interface NotesData {
