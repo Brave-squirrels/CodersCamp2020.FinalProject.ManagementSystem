@@ -2,6 +2,8 @@ import {Request, Response} from 'express';
 import {StatusCodes} from 'http-status-codes';
 import { firstPartAuth} from './validateTaskUsers';
 
+import Member from '../../interfaces/projectMember.interface';
+
 const updateTaskMembers = async (req: Request, res: Response) => {
     const task = res.locals.task;
 
@@ -15,7 +17,7 @@ const updateTaskMembers = async (req: Request, res: Response) => {
     if(!req.body.delete){
 
         //Check if user is already in team
-        task.members.forEach((el:any)=>{
+        task.members.forEach((el:Member)=>{
             if(el.id==req.body.member.id){
                 check = true; 
             }
@@ -25,7 +27,7 @@ const updateTaskMembers = async (req: Request, res: Response) => {
     }
     //Remove user
     else{
-        task.members.forEach((member: any, index: number)=>{
+        task.members.forEach((member: Member, index: number)=>{
             if(member.id == req.body.member.id){
                 task.members.splice(index,1);
             }

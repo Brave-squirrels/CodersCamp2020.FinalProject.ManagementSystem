@@ -1,0 +1,52 @@
+@import "styles/variables.scss";
+.memberContainerWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  .membersWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    .noMembers {
+      color: $invalidInputBorder;
+    }
+    .membersTitle {
+      font-weight: 600;
+      font-size: 1.1em;
+      color: $secondFontColor;
+    }
+    .membersDataWrapper {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 1em;
+      .singleMember {
+        display: flex;
+        flex-direction: row;
+        gap: 2em;
+        .memberName {
+          color: $secondFontColor;
+        }
+        .memberRole {
+          color: $fontActive;
+          font-size: 0.9em;
+        }
+      }
+    }
+    .enableAddMembersBtnWrapper {
+      font-size: 0.8em;
+    }
+  }
+  .membersEditWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    .membersCheckboxesWrapper {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 1em;
+    }
+    .addMembersBtnWrapper {
+      font-size: 0.8em;
+    }
+  }
+}
