@@ -24,23 +24,29 @@ const Team = () => {
   const state = useSelector((state: RootState) => state.singleTeamData);
 
   const moderatorsList = state.team.moderatorsId.map((moderatorId: string) =>
-    state.team.members.map((member: any) =>
-      (<div key={member.userId}>{member.userId === moderatorId ? member.userName : null}</div>)
-    )
+    state.team.members.map((member: any) => (
+      <div key={member.userId}>
+        {member.userId === moderatorId ? member.userName : null}
+      </div>
+    ))
   );
 
-  const isModerator = state.team.moderatorsId.includes(localStorage.getItem("id")!)
+  const isModerator = state.team.moderatorsId.includes(
+    localStorage.getItem("id")!
+  );
 
-  const isOwner = state.team.ownerId === localStorage.getItem("id")
-  
+  const isOwner = state.team.ownerId === localStorage.getItem("id");
 
   return (
     <>
       <Modal show={showMemberModal} onClose={() => setShowMemberModal(false)}>
-        <><AddMember /></>
+        <AddMember />
       </Modal>
-      <Modal show={showModeratorModal} onClose={() => setShowModeratorModal(false)}>
-        <>< ChangeModerator team={state.team}/></>
+      <Modal
+        show={showModeratorModal}
+        onClose={() => setShowModeratorModal(false)}
+      >
+        <ChangeModerator />
       </Modal>
 
       <ViewWithSidebar>
@@ -76,11 +82,21 @@ const Team = () => {
                 {state.team.members.map((member: any) => (
                   <div key={member.userId}>{member.userName}</div>
                 ))}
-                {isModerator ? (<AddNew title={'Send invite'}  clicked={() => setShowMemberModal(true)} />) : null}
+                {isModerator ? (
+                  <AddNew
+                    title={"Send invite"}
+                    clicked={() => setShowMemberModal(true)}
+                  />
+                ) : null}
               </CardWithTitle>
               <CardWithTitle title={"Moderators"}>
                 {moderatorsList}
-                {isOwner ? (<ChangeButton title={'Change moderators'} clicked={() => setShowModeratorModal(true)} />) : null}
+                {isOwner ? (
+                  <ChangeButton
+                    title={"Change moderators"}
+                    clicked={() => setShowModeratorModal(true)}
+                  />
+                ) : null}
               </CardWithTitle>
             </div>
           </RightSideWrapper>
