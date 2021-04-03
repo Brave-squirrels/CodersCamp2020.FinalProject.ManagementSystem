@@ -2,7 +2,16 @@ import React from "react";
 
 import styles from "./checkbox.module.scss";
 
-const checkbox = (props: any) => {
+interface Props {
+  value: string;
+  checked: boolean;
+  change: (e: any) => void;
+  id: string;
+  class: string;
+  name: string;
+}
+
+const checkbox = (props: Props) => {
   return (
     <div>
       <input
@@ -11,9 +20,12 @@ const checkbox = (props: any) => {
         checked={props.checked}
         onChange={props.change}
         id={props.id}
-        className={props.class}
+        className={[props.class, styles.styledCheckbox].join(" ")}
       />
-      <label htmlFor={props.id}> {props.name} </label>
+      <label htmlFor={props.id} className={styles.checkboxLabel}>
+        {" "}
+        {props.name}{" "}
+      </label>
     </div>
   );
 };
