@@ -6,11 +6,13 @@ interface Props {
   name: string;
   content: string;
   date: string;
+  children?: any;
 }
 
 const comment = (props: Props) => {
   return (
     <div className={styles.commentWrapper}>
+      {props.children}
       <div className={styles.author}>{props.name}</div>
       <div className={styles.content}>{props.content}</div>
       <div className={styles.date}>

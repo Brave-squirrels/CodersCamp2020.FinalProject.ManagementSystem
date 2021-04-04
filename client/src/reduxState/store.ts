@@ -28,6 +28,8 @@ import editTask from './tasks/editTask';
 import editTaskMembers from './tasks/editTaskMembers';
 import commentCreate from './comments/postComment';
 import commentsData from './comments/getComments';
+import commentsDelete from './comments/deleteComment';
+import commentEdit from './comments/editComment';
 
 import thunk from "redux-thunk";
 
@@ -57,6 +59,8 @@ export const store = configureStore({
     editTaskMembers,
     commentCreate,
     commentsData,
+    commentsDelete,
+    commentEdit,
   },
   middleware: [
     ...getDefaultMiddleware({
