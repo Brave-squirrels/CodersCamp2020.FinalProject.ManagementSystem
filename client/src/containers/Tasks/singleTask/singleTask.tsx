@@ -41,6 +41,8 @@ const SingleTask = (props: Props) => {
     (state: RootState) => state.editTaskMembers
   );
   const postComment = useSelector((state: RootState) => state.commentCreate);
+  const deleteComment = useSelector((state: RootState) => state.commentsDelete);
+  const editComment = useSelector((state: RootState) => state.commentEdit);
 
   // Params from URL
   const { teamId, projectId } = useParams<types.TParams>();
@@ -160,6 +162,8 @@ const SingleTask = (props: Props) => {
     taskData.task.content,
     editMembersRedux.success,
     postComment.success,
+    deleteComment.success,
+    editComment.success,
   ]);
 
   // Handle submit edit task info
