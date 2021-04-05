@@ -34,10 +34,10 @@ const Team = () => {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
+  const closeModeratorHanlder = () => {
     dispatch(fetchTeam(state.team._id));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [showModeratorModal]);
+    setShowModeratorModal(false)
+  }
 
 
   const isModerator = state.team.moderatorsId.includes(
@@ -53,7 +53,7 @@ const Team = () => {
       </Modal>
       <Modal
         show={showModeratorModal}
-        onClose={() => setShowModeratorModal(false)}
+        onClose={closeModeratorHanlder}
       >
         <ChangeModerator />
       </Modal>
