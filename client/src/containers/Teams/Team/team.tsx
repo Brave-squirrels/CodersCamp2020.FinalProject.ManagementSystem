@@ -64,7 +64,7 @@ const Team = () => {
         show={showOwnerModal}
         onClose={() => setShowOwnerModal(false)}
       >
-        <ChangeOwner />
+        <ChangeOwner onClose={() => setShowOwnerModal(false)} />
       </Modal>
 
       <ViewWithSidebar>
@@ -86,11 +86,11 @@ const Team = () => {
                       : null
                   )}
                   {isOwner ? (
-                  <ChangeButton
-                    title={"Change owner"}
-                    clicked={() => setShowOwnerModal(true)}
-                  />
-                ) : null}
+                    <ChangeButton
+                      title={"Change owner"}
+                      clicked={() => setShowOwnerModal(true)}
+                    />
+                  ) : null}
                 </CardWithTitle>
 
                 <CardWithTitle title={"Creation date"}>
