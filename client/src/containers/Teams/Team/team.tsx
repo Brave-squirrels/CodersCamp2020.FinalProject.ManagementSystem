@@ -15,11 +15,12 @@ import Modal from "components/Modal/modal";
 
 import AddMember from "containers/Teams/addMember/addMember";
 import ChangeModerator from "containers/Teams/changeModerator/changeModerator";
+import ChangeOwner from "containers/Teams/changeOwner/changeOwner";
 import { fetchTeam } from "reduxState/teamDataSlice";
 
 const Team = () => {
   const [showMemberModal, setShowMemberModal] = useState(false);
-
+  const [showOwnerModal, setShowOwnerModal] = useState(false);
   const [showModeratorModal, setShowModeratorModal] = useState(false);
 
   const state = useSelector((state: any) => state.singleTeamData);
@@ -34,7 +35,7 @@ const Team = () => {
 
   const dispatch = useDispatch();
 
-  const closeModeratorHanlder = () => {
+  const closeHandler = () => {
     dispatch(fetchTeam(state.team._id));
     setShowModeratorModal(false)
   }
@@ -51,11 +52,19 @@ const Team = () => {
       <Modal show={showMemberModal} onClose={() => setShowMemberModal(false)}>
         <AddMember />
       </Modal>
+
       <Modal
         show={showModeratorModal}
-        onClose={closeModeratorHanlder}
+        onClose={closeHandler}
       >
         <ChangeModerator />
+      </Modal>
+
+      <Modal
+        show={showOwnerModal}
+        onClose={() => setShowOwnerModal(false)}
+      >
+        <ChangeOwner />
       </Modal>
 
       <ViewWithSidebar>
@@ -76,6 +85,12 @@ const Team = () => {
                       ? member.userName
                       : null
                   )}
+                  {isOwner ? (
+                  <ChangeButton
+                    title={"Change owner"}
+                    clicked={() => setShowOwnerModal(true)}
+                  />
+                ) : null}
                 </CardWithTitle>
 
                 <CardWithTitle title={"Creation date"}>
@@ -92,7 +107,7 @@ const Team = () => {
                   <div key={member.userId}>{member.userName}</div>
                 ))}
                 {isModerator ? (
-                  <AddNew
+                  <ChangeButton
                     title={"Send invite"}
                     clicked={() => setShowMemberModal(true)}
                   />
