@@ -3,11 +3,10 @@
 .wrapper {
   color: $secondFontColor;
   height: 90%;
-  width: 70%;
   display: grid;
-  grid-template-rows: 1fr 1fr;
-  border: 2px solid $secondFontColor;
-  border-radius: 10px;
+  & > div {
+    width: 80%;
+  }
 
   h2 {
     text-align: center;
@@ -18,9 +17,9 @@
 }
 
 .moderators {
-  padding: 0 20px;
-  margin: 0 10px;
-  border-bottom: 2px solid $secondFontColor;
+ 
+  padding: 0 30px;
+  margin: 0 0px;
   & > div {
     padding: 5px;
     box-shadow: 2px 2px 5px #00000073;
@@ -30,10 +29,13 @@
 }
 
 .degrade {
+  cursor: pointer;
   color: $buttonBackgroundDangerHover;
   font-weight: 600;
 }
 .promote {
+  margin-left: 30px;
+  cursor: pointer;
   color: $fontGreen;
   font-weight: 600;
 }

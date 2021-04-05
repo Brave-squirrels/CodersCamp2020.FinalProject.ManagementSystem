@@ -1,6 +1,6 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "reduxState/store";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ViewWithSidebar from "hoc/viewWithSidebar/viewWithSidebar";
 import styles from "./team.module.scss";
 import TeamSidebar from "./teamSideBar/teamSideBar";
@@ -15,13 +15,14 @@ import Modal from "components/Modal/modal";
 
 import AddMember from "containers/Teams/addMember/addMember";
 import ChangeModerator from "containers/Teams/changeModerator/changeModerator";
+import { fetchTeam } from "reduxState/teamDataSlice";
 
 const Team = () => {
   const [showMemberModal, setShowMemberModal] = useState(false);
 
   const [showModeratorModal, setShowModeratorModal] = useState(false);
 
-  const state = useSelector((state: RootState) => state.singleTeamData);
+  const state = useSelector((state: any) => state.singleTeamData);
 
   const moderatorsList = state.team.moderatorsId.map((moderatorId: string) =>
     state.team.members.map((member: any) => (
@@ -30,6 +31,14 @@ const Team = () => {
       </div>
     ))
   );
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchTeam(state.team._id));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showModeratorModal]);
+
 
   const isModerator = state.team.moderatorsId.includes(
     localStorage.getItem("id")!
