@@ -12,7 +12,7 @@ export const CardWithTitle = (props: Props) => {
     : [styles.tileTitle];
   return (
     <div className={styles.wrapper}>
-      <p className={classes.join(" ")}>{props.title}</p>
+      <span className={classes.join(" ")}>{props.title}</span>
       <div className={styles.content}>{props.children}</div>
     </div>
   );

@@ -6,6 +6,9 @@ import * as types from "utils/types";
 import Spinner from "components/UI/Spinner/spinner";
 import ErrorHandler from "components/errorHandler/errorHandler";
 import FormStructure from "components/UI/formLogged/formStructure/formStructure";
+import SingleTaskMembers from "containers/Tasks/singleTaskMembers/singleTaskMembers";
+import OpacityAnimation from "hoc/opacityWrapper/opacityWrapper";
+import TaskComments from "containers/Comments/taskComments";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
@@ -15,6 +18,7 @@ import { RootState } from "reduxState/store";
 import { fetchTask } from "reduxState/tasks/getSingleTask";
 import { deleteTaskFetch } from "reduxState/tasks/deleteTask";
 import { editTaskFetch } from "reduxState/tasks/editTask";
+import { fetchComments } from "reduxState/comments/getComments";
 import { mutateToAxios } from "utils/onChangeForm";
 
 import styles from "./singleTask.module.scss";
@@ -26,17 +30,27 @@ interface Props {
 const SingleTask = (props: Props) => {
   const dispatch = useDispatch();
 
+  // Redux store to handle fetch data and stages
   const taskData = useSelector((state: RootState) => state.getTask);
   const projectData = useSelector(
     (state: RootState) => state.singleProjectData
   );
   const deleteTask = useSelector((state: RootState) => state.deleteTask);
   const editTask = useSelector((state: RootState) => state.editTask);
+  const editMembersRedux = useSelector(
+    (state: RootState) => state.editTaskMembers
+  );
+  const postComment = useSelector((state: RootState) => state.commentCreate);
+  const deleteComment = useSelector((state: RootState) => state.commentsDelete);
+  const editComment = useSelector((state: RootState) => state.commentEdit);
 
+  // Params from URL
   const { teamId, projectId } = useParams<types.TParams>();
 
+  // Local store for UI handle
   const [editMode, setEditMode] = useState(false);
 
+  // Form creator object
   const [form, setForm] = useState({
     name: {
       val: "",
@@ -101,13 +115,22 @@ const SingleTask = (props: Props) => {
     },
     formValid: true,
   });
+
+  // Main useEffect to fetch task data on change
   useEffect(() => {
+    /* Fetch tasks */
     dispatch(fetchTask(teamId, projectId, props.id));
-    let date: any;
+
+    /* Fetch comments */
+    dispatch(fetchComments(teamId, projectId, props.id));
+    /* Set date */
+    let date: RegExpMatchArray | null;
     if (taskData.task.deadlineDate) {
       date = taskData.task.deadlineDate.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/);
     }
-    setForm((prevState: any) => {
+
+    /* Set form with initial data from api */
+    setForm((prevState) => {
       return {
         ...prevState,
         name: {
@@ -137,10 +160,15 @@ const SingleTask = (props: Props) => {
     taskData.task.deadlineDate,
     taskData.task.status,
     taskData.task.content,
+    editMembersRedux.success,
+    postComment.success,
+    deleteComment.success,
+    editComment.success,
   ]);
 
-  const editTaskHandler = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  // Handle submit edit task info
+  const editTaskHandler = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     const data = mutateToAxios(form);
     dispatch(editTaskFetch(teamId, projectId, props.id, data));
   };
@@ -151,6 +179,7 @@ const SingleTask = (props: Props) => {
         <Spinner />
       ) : (
         <div className={styles.taskInfoWrapper}>
+          {/* Edit and remove buttons */}
           {projectData.project.owner.id === localStorage.getItem("id") && (
             <div className={styles.buttonsWrapper}>
               <FontAwesomeIcon
@@ -168,24 +197,30 @@ const SingleTask = (props: Props) => {
               />
             </div>
           )}
+
+          {/* Task info + edit */}
           {editMode ? (
             <>
               {editTask.loading ? (
                 <Spinner />
               ) : (
-                <div className={styles.editTaskWrapper}>
-                  <FormStructure
-                    state={form}
-                    setState={setForm}
-                    btnText="Edit"
-                    formTitle="Edit task"
-                    submitted={editTaskHandler}
-                    checkPass={false}
-                  />
-                  {editTask.error && (
-                    <ErrorHandler>{editTask.error.response.data}</ErrorHandler>
-                  )}
-                </div>
+                <OpacityAnimation>
+                  <div className={styles.editTaskWrapper}>
+                    <FormStructure
+                      state={form}
+                      setState={setForm}
+                      btnText="Edit"
+                      formTitle="Edit task"
+                      submitted={editTaskHandler}
+                      checkPass={false}
+                    />
+                    {editTask.error && (
+                      <ErrorHandler>
+                        {editTask.error.response.data}
+                      </ErrorHandler>
+                    )}
+                  </div>
+                </OpacityAnimation>
               )}
             </>
           ) : taskData.loading ? (
@@ -219,6 +254,11 @@ const SingleTask = (props: Props) => {
           )}
         </div>
       )}
+
+      {/* Task members component */}
+      <SingleTaskMembers id={props.id} />
+      {/* Task comments */}
+      <TaskComments id={props.id} />
     </div>
   );
 };

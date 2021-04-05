@@ -1,5 +1,3 @@
-
-
 export interface ProjectMember {
   id: string;
   name: string;
@@ -102,7 +100,7 @@ export interface TaskData {
   content: string;
   deadlineDate: string;
   startDate: string;
-  members: UserTeam[];
+  members: ProjectMember[];
 }
 
 export const baseTaskSetup: TaskData = {
@@ -114,7 +112,7 @@ export const baseTaskSetup: TaskData = {
   content: '',
   deadlineDate: '',
   startDate: '',
-  members: [{id: '', name: ''},]
+  members: [{id: '', name: '', role: ''},]
 }
 
 export interface NotesData {
@@ -134,6 +132,28 @@ export const baseNotesSetup : NotesData = {
     id: '',
     name: ''
   }
+}
+
+export interface CommentData{
+  _id: string;
+  taskId: string;
+  content: string;
+  creator: {
+    id: string;
+    name: string;
+  },
+  date: string
+}
+
+export const baseCommentSetup : CommentData = {
+  _id: '',
+  taskId: '',
+  content: '',
+  creator: {
+    id: '',
+    name: '',
+  },
+  date: '',
 }
 
 
