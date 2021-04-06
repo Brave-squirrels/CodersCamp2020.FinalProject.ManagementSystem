@@ -7,12 +7,9 @@ export const firstPartAuth = (member: Object) => {
       id: Joi.objectId().required(),
       role: Joi.string().valid(
         ROLES.BACKENDDEV,
-        ROLES.DESIGNER,
         ROLES.FRONTENDDEV,
-        ROLES.NORMAL,
-        ROLES.QAENGINEER,
-        ROLES.SCRUMMASTER,
-        ROLES.OWNER
+        ROLES.OWNER,
+        ROLES.DEVOPS,
         )
         .required(),
       name: Joi.string().min(3).max(24).required(),

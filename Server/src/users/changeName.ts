@@ -6,6 +6,7 @@ import userModel from "../../models/user.model";
 import projectModel from "../../models/projects.model";
 import teamsModel from "../../models/teams.model";
 import tasksModel from "../../models/tasks.model";
+import notesModel from "../../models/notes.model";
 import commentsModel from "../../models/comment.model";
 
 const changeName = async (req: Request, res: Response) => {
@@ -29,6 +30,12 @@ const changeName = async (req: Request, res: Response) => {
     });
     await project.save();
   });
+
+  // Update project owner name
+  await projectModel.updateMany(
+    { "owner.id": req.userInfo._id },
+    { "owner.name": req.body.name }
+  );
 
   const teams = await teamsModel.find({ "members.userId": req.userInfo._id });
   teams.forEach(async (team) => {
@@ -57,6 +64,12 @@ const changeName = async (req: Request, res: Response) => {
     }
     await comment.save();
   });
+
+  // Update note author name
+  await notesModel.updateMany(
+    { "author.id": req.userInfo._id },
+    { "author.name": req.body.name }
+  );
 
   res.status(StatusCodes.OK).send(_.pick(user, ["_id", "name", "email"]));
 };

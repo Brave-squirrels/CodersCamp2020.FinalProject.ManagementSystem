@@ -1,0 +1,25 @@
+@import "styles/variables.scss";
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .notification {
+    font-weight: 600;
+    color: $fontLightGreen;
+  }
+  .innerWrapper {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1.5em;
+    .inviteTitle {
+      text-align: center;
+      grid-column: span 2;
+      font-weight: 600;
+      color: $secondFontColor;
+      font-size: 1.2em;
+    }
+  }
+}

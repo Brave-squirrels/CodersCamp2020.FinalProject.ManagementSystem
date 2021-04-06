@@ -8,16 +8,13 @@
   &:hover {
     cursor: pointer;
     transform: translateX(-80%);
-    background-color: rgba(255, 255, 255, 0.103);
+    background-color: $sideBarHover;
     transition: transform 0.1s ease-in;
 
-    
-@media only screen and (max-width: 800px) { 
-  transform: translateX(-90%);
-  background-color: $backgroundLight;
-}
-
-
+    @media only screen and (max-width: 800px) {
+      transform: translateX(-90%);
+      background-color: $backgroundLight;
+    }
   }
   .sideBarShown {
     pointer-events: none;
@@ -35,7 +32,7 @@
   padding: 0;
   height: 85vh;
   background-color: $backgroundLight;
-  box-shadow: 1px 1px 3px black;
+  box-shadow: $cardShadow;
   transition: transform 0.3s ease-out;
   word-wrap: break-word;
   overflow: auto;
