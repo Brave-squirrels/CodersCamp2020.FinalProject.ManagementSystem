@@ -47,6 +47,10 @@ const Tasks = () => {
   const deleteStages = useSelector((state: RootState) => state.deleteTask);
   // Edit task data
   const editStages = useSelector((state: RootState) => state.editTask);
+  // Edit members
+  const editMembersStages = useSelector(
+    (state: RootState) => state.editTaskMembers
+  );
 
   useEffect(() => {
     setCreateModal(false);
@@ -59,6 +63,7 @@ const Tasks = () => {
     dispatch,
     deleteStages.success,
     editStages.success,
+    editMembersStages.success,
   ]);
 
   // Render add new task base on permission
