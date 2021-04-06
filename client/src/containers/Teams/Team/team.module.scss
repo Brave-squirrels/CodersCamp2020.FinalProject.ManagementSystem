@@ -1,6 +1,7 @@
 @import "styles/variables.scss";
 
 .container {
+  // position: relative;
   width: 65vmax;
   height: 70vh;
   display: grid;
@@ -13,9 +14,23 @@
   list-style: none;
 
   .firstColumn {
+    position: relative;
     display: grid;
     grid-gap: 0.5em;
     grid-template-rows: 1fr 1fr 1.5fr;
+  }
+}
+
+.buttonsWrapper {
+  position: absolute;
+  .iconEdit {
+    font-size: 1em;
+    font-weight: 600;
+    color: $mainFontColor;
+    &:hover {
+      cursor: pointer;
+      color: $fontActive;
+    }
   }
 }
 
@@ -26,9 +41,10 @@
     height: 100%;
     width: 100%;
   }
-
   .firstColumn {
     display: grid;
     grid-template-rows: 1fr 1fr 2fr;
   }
 }
+
+
