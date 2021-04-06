@@ -53,12 +53,12 @@ const TaskComments = (props: Props) => {
       valid: false,
       touched: false,
     },
-    formValid: false,
+    formValid: true,
   });
 
   useEffect(() => {
     const currentValue =
-      currentEditComment === ""
+      currentEditComment === "" || !currentEditComment
         ? ""
         : commentsData.comments.find(
             (el: types.CommentData) => el._id === currentEditComment
@@ -91,6 +91,7 @@ const TaskComments = (props: Props) => {
     dispatch(
       editCommentFetch(teamId, projectId, props.id, commentId, formData)
     );
+    setEditComment(false);
   };
 
   const checkPermission = (commentId: string, authorId: string) => {
@@ -143,7 +144,8 @@ const TaskComments = (props: Props) => {
                     key={comment._id}
                   >
                     {checkPermission(comment._id, comment.creator.id)}
-                    {editStages.loading ? (
+                    {editStages.loading &&
+                    currentCommentDelete === comment._id ? (
                       <Spinner key={comment._id} />
                     ) : (
                       <>
@@ -168,7 +170,6 @@ const TaskComments = (props: Props) => {
                                 {editStages.error.response.data}
                               </ErrorHandler>
                             )}
-                            {editStages.success && setEditComment(false)}
                           </div>
                         ) : (
                           <Comment
