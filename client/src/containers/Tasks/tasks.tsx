@@ -29,16 +29,23 @@ const breakPoints = [
 const Tasks = () => {
   const dispatch = useDispatch();
 
+  // Local UI states
   const [createModal, setCreateModal] = useState(false);
   const [singleTaskModal, setSingleTaskModal] = useState(false);
   const [currentTask, setCurrentTask] = useState("");
 
+  // Params from URL
   const { teamId, projectId } = useParams<types.TParams>();
-  const tasks = useSelector((state: RootState) => state.getTasks);
-  const project = useSelector((state: RootState) => state.singleProjectData);
 
+  // Tasks from project
+  const tasks = useSelector((state: RootState) => state.getTasks);
+  // Project data
+  const project = useSelector((state: RootState) => state.singleProjectData);
+  // Create task data
   const createStages = useSelector((state: RootState) => state.createTask);
+  // Delete task data
   const deleteStages = useSelector((state: RootState) => state.deleteTask);
+  // Edit task data
   const editStages = useSelector((state: RootState) => state.editTask);
 
   useEffect(() => {
@@ -54,6 +61,7 @@ const Tasks = () => {
     editStages.success,
   ]);
 
+  // Render add new task base on permission
   let titleContent =
     project.project.owner.id === localStorage.getItem("id") ? (
       <>
