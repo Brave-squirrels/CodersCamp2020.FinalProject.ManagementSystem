@@ -24,13 +24,30 @@
 .buttonsWrapper {
   position: absolute;
   .iconEdit {
-    font-size: 1em;
+    height: 1.3em;
     font-weight: 600;
+    width: auto;
     color: $mainFontColor;
     &:hover {
       cursor: pointer;
-      color: $fontActive;
+      color: $mainFontColor;
     }
+  }
+}
+
+@media only screen and (max-width: 1400px) {
+  .buttonsWrapper {
+    position: absolute;
+    transform: translate(17.5em, 1.1em);
+  }
+}
+
+
+
+@media only screen and (max-height: 700px) {
+  .buttonsWrapper {
+    position: absolute;
+    transform: translate(17.5em, 1.1em);
   }
 }
 
@@ -40,6 +57,10 @@
     grid-template-columns: 1fr;
     height: 100%;
     width: 100%;
+  }
+  .buttonsWrapper {
+    position: absolute;
+    transform: translate(17em, 1.3em);
   }
   .firstColumn {
     display: grid;

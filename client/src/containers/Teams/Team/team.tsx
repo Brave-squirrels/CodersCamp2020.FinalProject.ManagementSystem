@@ -11,11 +11,9 @@ import RightSideWrapper from "hoc/rightSideWrapper/rightSideWrapper";
 import ChangeButton from "components/UI/changeButton/changeButton";
 import Modal from "components/Modal/modal";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEdit } from "@fortawesome/free-solid-svg-icons";
-
 import AddMember from "containers/Teams/addMember/addMember";
 import ChangeTitle from "containers/Teams/changeTitle/changeTitle";
+import ChangeDescription from "containers/Teams/changeDescription/changeDescription";
 import ChangeModerator from "containers/Teams/changeModerator/changeModerator";
 import ChangeOwner from "containers/Teams/changeOwner/changeOwner";
 import { fetchTeam } from "reduxState/teamDataSlice";
@@ -25,6 +23,7 @@ const Team = () => {
   const [showOwnerModal, setShowOwnerModal] = useState(false);
   const [showModeratorModal, setShowModeratorModal] = useState(false);
   const [showTitleModal, setShowTitleModal] = useState(false);
+  const [showDescriptionModal, setShowDescriptionModal] = useState(false);
 
   const state = useSelector((state: any) => state.singleTeamData);
 
@@ -41,7 +40,8 @@ const Team = () => {
   const closeHandler = () => {
     dispatch(fetchTeam(state.team._id));
     setShowModeratorModal(false);
-    setShowTitleModal(false)
+    setShowTitleModal(false);
+    setShowDescriptionModal(false)
   };
 
   const isModerator = state.team.moderatorsId.includes(
@@ -58,6 +58,10 @@ const Team = () => {
 
       <Modal show={showTitleModal} onClose={closeHandler}>
         <ChangeTitle />
+      </Modal>
+
+      <Modal show={showDescriptionModal}onClose={closeHandler}>
+        <ChangeDescription />
       </Modal>
 
       <Modal show={showModeratorModal} onClose={closeHandler}>
@@ -81,9 +85,9 @@ const Team = () => {
             <div className={styles.buttonsWrapper}>
               {isOwner ? (
                 <ChangeButton
-                title={"Change Team Name"}
-                clicked={() => setShowTitleModal(true)}
-              />
+                  title={"Change Team Name"}
+                  clicked={() => setShowTitleModal(true)}
+                />
               ) : null}
             </div>
 
@@ -109,6 +113,12 @@ const Team = () => {
 
                 <CardWithTitle title={"Description"}>
                   {state.team.description}
+                  {isModerator ? (
+                  <ChangeButton
+                    title={"Change description"}
+                    clicked={() => setShowDescriptionModal(true)}
+                  />
+                ) : null}
                 </CardWithTitle>
               </div>
 
