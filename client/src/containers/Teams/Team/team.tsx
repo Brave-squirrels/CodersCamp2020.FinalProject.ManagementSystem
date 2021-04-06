@@ -12,6 +12,8 @@ import ChangeButton from "components/UI/changeButton/changeButton";
 import Modal from "components/Modal/modal";
 
 import AddMember from "containers/Teams/addMember/addMember";
+import ChangeTitle from "containers/Teams/changeTitle/changeTitle";
+import ChangeDescription from "containers/Teams/changeDescription/changeDescription";
 import ChangeModerator from "containers/Teams/changeModerator/changeModerator";
 import ChangeOwner from "containers/Teams/changeOwner/changeOwner";
 import { fetchTeam } from "reduxState/teamDataSlice";
@@ -20,6 +22,8 @@ const Team = () => {
   const [showMemberModal, setShowMemberModal] = useState(false);
   const [showOwnerModal, setShowOwnerModal] = useState(false);
   const [showModeratorModal, setShowModeratorModal] = useState(false);
+  const [showTitleModal, setShowTitleModal] = useState(false);
+  const [showDescriptionModal, setShowDescriptionModal] = useState(false);
 
   const state = useSelector((state: any) => state.singleTeamData);
 
@@ -35,9 +39,10 @@ const Team = () => {
 
   const closeHandler = () => {
     dispatch(fetchTeam(state.team._id));
-    setShowModeratorModal(false)
-  }
-
+    setShowModeratorModal(false);
+    setShowTitleModal(false);
+    setShowDescriptionModal(false)
+  };
 
   const isModerator = state.team.moderatorsId.includes(
     localStorage.getItem("id")!
@@ -51,17 +56,19 @@ const Team = () => {
         <AddMember />
       </Modal>
 
-      <Modal
-        show={showModeratorModal}
-        onClose={closeHandler}
-      >
+      <Modal show={showTitleModal} onClose={closeHandler}>
+        <ChangeTitle />
+      </Modal>
+
+      <Modal show={showDescriptionModal}onClose={closeHandler}>
+        <ChangeDescription />
+      </Modal>
+
+      <Modal show={showModeratorModal} onClose={closeHandler}>
         <ChangeModerator />
       </Modal>
 
-      <Modal
-        show={showOwnerModal}
-        onClose={() => setShowOwnerModal(false)}
-      >
+      <Modal show={showOwnerModal} onClose={() => setShowOwnerModal(false)}>
         <ChangeOwner onClose={() => setShowOwnerModal(false)} />
       </Modal>
 
@@ -74,6 +81,15 @@ const Team = () => {
         ) : (
           <RightSideWrapper title={state.team.teamName}>
             {/* Container for team's info */}
+
+            <div className={styles.buttonsWrapper}>
+              {isOwner ? (
+                <ChangeButton
+                  title={"Change Team Name"}
+                  clicked={() => setShowTitleModal(true)}
+                />
+              ) : null}
+            </div>
 
             <div className={styles.container}>
               <div className={styles.firstColumn}>
@@ -97,6 +113,12 @@ const Team = () => {
 
                 <CardWithTitle title={"Description"}>
                   {state.team.description}
+                  {isModerator ? (
+                  <ChangeButton
+                    title={"Change description"}
+                    clicked={() => setShowDescriptionModal(true)}
+                  />
+                ) : null}
                 </CardWithTitle>
               </div>
 

@@ -1,6 +1,7 @@
 @import "styles/variables.scss";
 
 .container {
+  // position: relative;
   width: 65vmax;
   height: 70vh;
   display: grid;
@@ -13,9 +14,40 @@
   list-style: none;
 
   .firstColumn {
+    position: relative;
     display: grid;
     grid-gap: 0.5em;
     grid-template-rows: 1fr 1fr 1.5fr;
+  }
+}
+
+.buttonsWrapper {
+  position: absolute;
+  .iconEdit {
+    height: 1.3em;
+    font-weight: 600;
+    width: auto;
+    color: $mainFontColor;
+    &:hover {
+      cursor: pointer;
+      color: $mainFontColor;
+    }
+  }
+}
+
+@media only screen and (max-width: 1400px) {
+  .buttonsWrapper {
+    position: absolute;
+    transform: translate(17.5em, 1.1em);
+  }
+}
+
+
+
+@media only screen and (max-height: 700px) {
+  .buttonsWrapper {
+    position: absolute;
+    transform: translate(17.5em, 1.1em);
   }
 }
 
@@ -26,9 +58,14 @@
     height: 100%;
     width: 100%;
   }
-
+  .buttonsWrapper {
+    position: absolute;
+    transform: translate(17em, 1.3em);
+  }
   .firstColumn {
     display: grid;
     grid-template-rows: 1fr 1fr 2fr;
   }
 }
+
+
