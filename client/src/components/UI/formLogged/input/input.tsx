@@ -22,6 +22,10 @@ const input: FunctionComponent<Props> = (props) => {
     inputClasses = [styles.inputContainer, styles.invalidInput];
   }
 
+  if (props.validity) {
+    inputClasses = [styles.inputContainer, styles.inputTouched];
+  }
+
   let selectOptions = [];
   if (props.inputType === "select") {
     for (let key in props.stateMain.status.options) {
@@ -42,6 +46,7 @@ const input: FunctionComponent<Props> = (props) => {
             disabled={props.turnOff}
             minLength={props.minLength}
             maxLength={props.maxLength}
+            required
           />
           <span className={styles.label}>{props.label}</span>
         </label>
@@ -55,6 +60,7 @@ const input: FunctionComponent<Props> = (props) => {
             value={props.inputValue}
             onChange={props.onChangeInput}
             disabled={props.turnOff}
+            required
           />
           <span className={styles.label}>{props.label}</span>
         </label>
@@ -69,6 +75,7 @@ const input: FunctionComponent<Props> = (props) => {
             onChange={props.onChangeInput}
             className={[styles.input, styles.select].join(" ")}
             disabled={props.turnOff}
+            required
           >
             {selectOptions.map((option) => {
               return (
