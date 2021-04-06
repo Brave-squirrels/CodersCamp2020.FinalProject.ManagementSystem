@@ -1,9 +1,9 @@
 import React from "react";
-import { /* useDispatch, */ useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import * as types from "utils/types";
 
 import CardContainer from "components/UI/CardContainer/cardContainer";
-import TeamInviteContent from "components/teamInviteContent/teamInviteContent";
+import TeamInviteContent from "./teamInviteContent/teamInviteContent";
 import EmptyNotification from "components/UI/emptyNotification/emptyNotification";
 
 import { RootState } from "reduxState/store";
@@ -11,7 +11,6 @@ import { RootState } from "reduxState/store";
 import styles from "./teamInvites.module.scss";
 
 const TeamInvites = () => {
-  /* const dispatch = useDispatch(); */
   const reduxState = useSelector(
     (state: RootState) => state.login.userInformation
   );
@@ -21,10 +20,10 @@ const TeamInvites = () => {
       <CardContainer title="Team Invites">
         <div className={styles.innerWrapper}>
           {reduxState.teamInvitation && reduxState.teamInvitation.length > 0 ? (
-            reduxState.teamInvitation.map((el: types.Invite) => {
+            reduxState.teamInvitation.map((invite: types.Invite) => {
               return (
-                <TeamInviteContent teamId={el.id} key={Math.random()}>
-                  {el.name}
+                <TeamInviteContent teamId={invite.teamId} key={invite.teamId}>
+                  {invite.teamName}
                 </TeamInviteContent>
               );
             })

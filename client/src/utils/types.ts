@@ -10,8 +10,9 @@ export interface UserProject {
 }
 
 export interface Invite {
-  id: string;
-  name: string;
+  _id: string;
+  teamId: string;
+  teamName: string;
 }
 interface Project {
   projectName: string;

@@ -121,8 +121,6 @@ const SingleTask = (props: Props) => {
     /* Fetch tasks */
     dispatch(fetchTask(teamId, projectId, props.id));
 
-    /* Fetch comments */
-    dispatch(fetchComments(teamId, projectId, props.id));
     /* Set date */
     let date: RegExpMatchArray | null;
     if (taskData.task.deadlineDate) {
@@ -161,9 +159,19 @@ const SingleTask = (props: Props) => {
     taskData.task.status,
     taskData.task.content,
     editMembersRedux.success,
+  ]);
+
+  useEffect(() => {
+    /* Fetch comments */
+    dispatch(fetchComments(teamId, projectId, props.id));
+  }, [
     postComment.success,
     deleteComment.success,
     editComment.success,
+    dispatch,
+    teamId,
+    projectId,
+    props.id,
   ]);
 
   // Handle submit edit task info

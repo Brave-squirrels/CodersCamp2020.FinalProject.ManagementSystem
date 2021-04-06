@@ -55,8 +55,8 @@ const Notes = () => {
 
   //Update notes in UI after every action
   useEffect(() => {
-    dispatch(fetchNotes(teamId, projectId));
     changeDisplay(false);
+    dispatch(fetchNotes(teamId, projectId));
   }, [
     teamId,
     projectId,
