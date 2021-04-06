@@ -1,6 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "reduxState/store";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import ViewWithSidebar from "hoc/viewWithSidebar/viewWithSidebar";
 import styles from "./team.module.scss";
 import TeamSidebar from "./teamSideBar/teamSideBar";
@@ -9,7 +8,6 @@ import Spinner from "components/UI/Spinner/spinner";
 import ErrorHandler from "components/errorHandler/errorHandler";
 import RightSideWrapper from "hoc/rightSideWrapper/rightSideWrapper";
 
-import AddNew from "components/UI/addNew/addNew";
 import ChangeButton from "components/UI/changeButton/changeButton";
 import Modal from "components/Modal/modal";
 

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styles from "./changeOwner.module.scss";
 import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "reduxState/store";
 import Button from "components/UI/formElements/button/button";
 
 import { fetchTeam } from "reduxState/teamDataSlice";
@@ -28,12 +27,6 @@ const ChangeOwner = (props: any) => {
                 console.log('Success!')
             })
             .catch((err) => console.log('Something went wrong!'));
-    }
-
-    const onClickHandler = (aa: any) => {
-        console.log(aa)
-        dispatch(fetchTeam(state.team._id))
-        props.onClose()
     }
 
     const dispatch = useDispatch();

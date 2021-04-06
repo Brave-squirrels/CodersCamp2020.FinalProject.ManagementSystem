@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styles from "./changeModerator.module.scss";
 import { useSelector } from "react-redux";
-import { RootState } from "reduxState/store";
 
 
 import axios from "axios/axiosMain";
