@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import * as types from "utils/types";
 
 import CardContainer from "components/UI/CardContainer/cardContainer";
-import TeamInviteContent from "components/teamInviteContent/teamInviteContent";
+import TeamInviteContent from "./teamInviteContent/teamInviteContent";
 import EmptyNotification from "components/UI/emptyNotification/emptyNotification";
 
 import { RootState } from "reduxState/store";
