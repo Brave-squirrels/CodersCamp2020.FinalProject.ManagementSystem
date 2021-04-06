@@ -39,7 +39,6 @@ const input: FunctionComponent<Props> = (props) => {
             type={props.type}
             value={props.inputValue}
             onChange={props.onChangeInput}
-            required
             disabled={props.turnOff}
             minLength={props.minLength}
             maxLength={props.maxLength}
@@ -55,7 +54,6 @@ const input: FunctionComponent<Props> = (props) => {
             className={[styles.input, styles.textarea].join(" ")}
             value={props.inputValue}
             onChange={props.onChangeInput}
-            required
             disabled={props.turnOff}
           />
           <span className={styles.label}>{props.label}</span>
@@ -70,7 +68,6 @@ const input: FunctionComponent<Props> = (props) => {
             value={props.inputValue}
             onChange={props.onChangeInput}
             className={[styles.input, styles.select].join(" ")}
-            required
             disabled={props.turnOff}
           >
             {selectOptions.map((option) => {
