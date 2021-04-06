@@ -31,6 +31,7 @@
   width: 35vh;
   padding: 0;
   height: 85vh;
+  max-width: 320px;
   background-color: $backgroundLight;
   box-shadow: $cardShadow;
   transition: transform 0.3s ease-out;

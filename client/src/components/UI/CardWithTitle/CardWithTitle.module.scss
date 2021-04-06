@@ -12,6 +12,9 @@
   overflow-y: auto;
   scrollbar-width: thin;
   @include scrollbar;
+  @media (max-width: 1100px) {
+    min-height: 200px;
+  }
 }
 
 .tileTitle {
