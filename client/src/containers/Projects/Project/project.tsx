@@ -11,6 +11,11 @@ import ProjectSidebar from "./projectSidebar/projectSidebar";
 import AddNew from "components/UI/addNew/addNew";
 import Modal from "components/Modal/modal";
 import ChangeInfo from "./changeDescription/changeInfo";
+import ChangeMembers from "./changeMembers/changeMembers";
+import AddFrontend from "./addFrontend/addFrontend";
+import AddBackend from "./addBackend/addBackend";
+import AddDevOps from "./addDevOps/addDevOps";
+import ChangeOwner from "./changeOwner/changeOwner";
 
 import styles from "./project.module.scss";
 
@@ -21,11 +26,15 @@ const Project = () => {
   const editStages = useSelector((state: RootState) => state.updateProjectInfo);
 
   const [descModal, setDescModal] = useState(false);
-
-  const updateInfo = () => {};
+  const [memberModal, setMemberModal] = useState(false);
+  const [frontModal, setFrontModal] = useState(false);
+  const [backModal, setBackModal] = useState(false);
+  const [devModal, setDevModal] = useState(false);
+  const [ownerModal, setOwnerModal] = useState(false);
 
   useEffect(() => {
     setDescModal(false);
+    setMemberModal(false);
   }, [editStages.success]);
 
   const allowed =
@@ -35,6 +44,21 @@ const Project = () => {
     <ViewWithSidebar>
       <Modal show={descModal} onClose={() => setDescModal(false)}>
         <ChangeInfo />
+      </Modal>
+      <Modal show={memberModal} onClose={() => setMemberModal(false)}>
+        <ChangeMembers />
+      </Modal>
+      <Modal show={frontModal} onClose={() => setFrontModal(false)}>
+        <AddFrontend />
+      </Modal>
+      <Modal show={backModal} onClose={() => setBackModal(false)}>
+        <AddBackend />
+      </Modal>
+      <Modal show={devModal} onClose={() => setDevModal(false)}>
+        <AddDevOps />
+      </Modal>
+      <Modal show={ownerModal} onClose={() => setOwnerModal(false)}>
+        <ChangeOwner />
       </Modal>
       <ProjectSidebar />
       {state.loading ? (
@@ -72,7 +96,7 @@ const Project = () => {
                   allowed ? (
                     <>
                       {" "}
-                      Team owner <AddNew clicked={updateInfo} />
+                      Team owner <AddNew clicked={() => setOwnerModal(true)} />
                     </>
                   ) : (
                     "Team owner"
@@ -89,7 +113,7 @@ const Project = () => {
                 allowed ? (
                   <>
                     {" "}
-                    Members <AddNew clicked={updateInfo} />
+                    Members <AddNew clicked={() => setMemberModal(true)} />
                   </>
                 ) : (
                   "Members"
@@ -108,7 +132,7 @@ const Project = () => {
                   allowed ? (
                     <>
                       {" "}
-                      Frontend <AddNew clicked={updateInfo} />
+                      Frontend <AddNew clicked={() => setFrontModal(true)} />
                     </>
                   ) : (
                     "Frontend"
@@ -123,7 +147,7 @@ const Project = () => {
                   allowed ? (
                     <>
                       {" "}
-                      Backend <AddNew clicked={updateInfo} />
+                      Backend <AddNew clicked={() => setBackModal(true)} />
                     </>
                   ) : (
                     "Backend"
@@ -138,7 +162,7 @@ const Project = () => {
                   allowed ? (
                     <>
                       {" "}
-                      DevOps <AddNew clicked={updateInfo} />
+                      DevOps <AddNew clicked={() => setDevModal(true)} />
                     </>
                   ) : (
                     "DevOps"
