@@ -7,6 +7,7 @@ import RightSideWrapper from "hoc/rightSideWrapper/rightSideWrapper";
 import Spinner from "components/UI/Spinner/spinner";
 import ErrorHandler from "components/errorHandler/errorHandler";
 import ProjectSidebar from "./projectSidebar/projectSidebar";
+import AddNew from "../../../components/UI/addNew/addNew";
 
 import styles from "./project.module.scss";
 
@@ -14,6 +15,8 @@ import { RootState } from "reduxState/store";
 
 const Project = () => {
   const state = useSelector((state: RootState) => state.singleProjectData);
+
+  const updateInfo = () => {};
 
   return (
     <ViewWithSidebar>
@@ -28,6 +31,7 @@ const Project = () => {
           <div className={styles.container}>
             <div>
               <CardWithTitle title={"Description"}>
+                <AddNew clicked={updateInfo} />
                 {state.project.content}
               </CardWithTitle>
               <CardWithTitle title={"Start date"}>
@@ -42,6 +46,7 @@ const Project = () => {
             </div>
 
             <CardWithTitle title={"Members"}>
+              <AddNew clicked={() => console.log(1)} />
               {state.project.members.map(
                 (member: types.ProjectMember) => member.name
               )}
