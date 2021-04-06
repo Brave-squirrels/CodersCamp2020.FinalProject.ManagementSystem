@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import Button from "../UI/formElements/button/button";
+import Button from "components/UI/formElements/button/button";
 import Square from "components/UI/square/square";
 import SpinnerCard from "components/UI/SpinnerCard/spinner";
 import ErrorHandler from "components/errorHandler/errorHandler";

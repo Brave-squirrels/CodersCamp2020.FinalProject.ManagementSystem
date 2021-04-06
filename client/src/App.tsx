@@ -102,11 +102,7 @@ const App = () => {
               path="/teams/:teamId/projects/:projectId"
               component={Project}
             />
-            <Route
-              exact
-              path="/teams/:teamId/projects/:projectId/notes"
-              component={Notes}
-            />
+
             <Route exact path="/createProject" component={CreateProject} />
             <Route exact path="/teams" render={() => <h1>Teams</h1>} />
             <Route exact path="/confirmed" render={() => <Confirmed />} />
@@ -116,6 +112,11 @@ const App = () => {
               exact
               path="/teams/:teamId/projects/:projectId/tasks"
               render={() => <Tasks />}
+            />
+            <Route
+              exact
+              path="/teams/:teamId/projects/:projectId/notes"
+              component={Notes}
             />
             <Route exact path="/logout" />
             <Route component={ErrorPage} />
