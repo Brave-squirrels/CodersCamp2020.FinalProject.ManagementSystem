@@ -1,0 +1,52 @@
+@import "../../../styles/variables.scss";
+
+.wrapper {
+  color: $secondFontColor;
+  height: 90%;
+  display: grid;
+  & > div {
+    width: 80%;
+  }
+
+  h2 {
+    text-align: center;
+    color: $fontBlue;
+    font-weight: 500;
+    border-bottom: 1px solid $fontBlue;
+  }
+}
+
+.moderators {
+ 
+  padding: 0 30px;
+  margin: 0 0px;
+  & > div {
+    padding: 5px;
+    box-shadow: 2px 2px 5px #00000073;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.degrade {
+  cursor: pointer;
+  color: $buttonBackgroundDangerHover;
+  font-weight: 600;
+}
+.promote {
+  margin-left: 30px;
+  cursor: pointer;
+  color: $fontGreen;
+  font-weight: 600;
+}
+
+.members {
+  padding: 0 30px;
+  & > div {
+    padding: 5px;
+    box-shadow: 2px 2px 5px #00000073;
+    
+    display: flex;
+    justify-content: space-between;
+  }
+}
