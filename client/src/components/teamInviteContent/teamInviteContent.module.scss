@@ -1,10 +1,16 @@
 @import "../../styles/variables.scss";
-.wrapper {
+.innerWrapper {
   height: 100%;
   width: 100%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 1.5em;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .inviteTitle {
@@ -13,4 +19,9 @@
   font-weight: 600;
   color: $secondFontColor;
   font-size: 1.2em;
+}
+
+.notification {
+  font-weight: 600;
+  color: $fontLightGreen;
 }
