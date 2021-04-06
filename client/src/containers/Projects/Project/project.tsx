@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import * as types from "utils/types";
 
@@ -7,7 +8,9 @@ import RightSideWrapper from "hoc/rightSideWrapper/rightSideWrapper";
 import Spinner from "components/UI/Spinner/spinner";
 import ErrorHandler from "components/errorHandler/errorHandler";
 import ProjectSidebar from "./projectSidebar/projectSidebar";
-import AddNew from "../../../components/UI/addNew/addNew";
+import AddNew from "components/UI/addNew/addNew";
+import Modal from "components/Modal/modal";
+import ChangeInfo from "./changeDescription/changeInfo";
 
 import styles from "./project.module.scss";
 
@@ -15,14 +18,24 @@ import { RootState } from "reduxState/store";
 
 const Project = () => {
   const state = useSelector((state: RootState) => state.singleProjectData);
+  const editStages = useSelector((state: RootState) => state.updateProjectInfo);
+
+  const [descModal, setDescModal] = useState(false);
 
   const updateInfo = () => {};
+
+  useEffect(() => {
+    setDescModal(false);
+  }, [editStages.success]);
 
   const allowed =
     state.project.owner.id === localStorage.getItem("id") ? true : false;
 
   return (
     <ViewWithSidebar>
+      <Modal show={descModal} onClose={() => setDescModal(false)}>
+        <ChangeInfo />
+      </Modal>
       <ProjectSidebar />
       {state.loading ? (
         <Spinner />
@@ -38,7 +51,7 @@ const Project = () => {
                   allowed ? (
                     <>
                       {" "}
-                      Description <AddNew clicked={updateInfo} />
+                      Description <AddNew clicked={() => setDescModal(true)} />
                     </>
                   ) : (
                     "Description"
@@ -51,24 +64,7 @@ const Project = () => {
               <CardWithTitle title={"Start date"}>
                 {state.project.date.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/)}
               </CardWithTitle>
-              <CardWithTitle
-                title={
-                  allowed ? (
-                    <>
-                      {" "}
-                      Deadline{" "}
-                      <AddNew
-                        clicked={() => {
-                          console.log("xd");
-                        }}
-                      />{" "}
-                    </>
-                  ) : (
-                    "Deadline"
-                  )
-                }
-                additionalClass={allowed ? "taskTitle" : ""}
-              >
+              <CardWithTitle title={"Deadline"}>
                 {state.project.deadline.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/)}
               </CardWithTitle>
               <CardWithTitle

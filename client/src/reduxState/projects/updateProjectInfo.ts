@@ -6,7 +6,8 @@ import axios from '../../axios/axiosMain';
 
 interface Data {
     projectName: string,
-    content: string
+    content: string,
+    deadline: string,
 }
 
 interface State {
@@ -45,9 +46,9 @@ const updateProjectInfo = createSlice({
 
 export const {start, success, failed} = updateProjectInfo.actions;
 
-export const updateProjectInfoFetch = (teamId: string, projectId: string, noteId: string, data: Data) : AppThunk =>  (dispatch) => {
+export const updateProjectInfoFetch = (teamId: string, projectId: string, data: Data) : AppThunk =>  (dispatch) => {
     dispatch(start());
-    axios.put(`/teams/${teamId}/projects/${projectId}/members`,data, {
+    axios.put(`/teams/${teamId}/projects/${projectId}/info`,data, {
         headers: {
             'x-auth-token': localStorage.getItem('token')
         }
