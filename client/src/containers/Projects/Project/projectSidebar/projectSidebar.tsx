@@ -30,11 +30,21 @@ const ProjectSidebar = () => {
   const changeStatusStages = useSelector(
     (state: RootState) => state.updateProjectStatus
   );
+  const changeMembers = useSelector(
+    (state: RootState) => state.updateMemberInProject
+  );
 
   useEffect(() => {
     dispatch(fetchProject(teamId, projectId));
     dispatch(fetchTeam(teamId));
-  }, [projectId, teamId, editStages.success, changeStatusStages.success]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [
+    projectId,
+    teamId,
+    editStages.success,
+    changeStatusStages.success,
+    changeMembers.success,
+    dispatch,
+  ]);
 
   const changeProject = (e: any) => {
     history.push(`/teams/${teamId}/projects/${e.target.id}`);

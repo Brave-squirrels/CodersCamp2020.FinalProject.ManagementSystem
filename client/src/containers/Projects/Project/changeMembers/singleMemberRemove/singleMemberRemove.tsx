@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import * as types from "utils/types";
 
-import Spinner from "components/UI/Spinner/spinner";
 import ErrorHandler from "components/errorHandler/errorHandler";
 
 import { updateMemberInProjectFetch } from "reduxState/projects/updateMember";
@@ -40,20 +39,16 @@ const SingleMemberRemove = (props: Props) => {
   };
 
   return (
-    <div>
-      {removeMemberStages.loading ? (
-        <Spinner />
-      ) : (
-        <>
-          <span>{props.userName}</span>
-          <span>{props.userRole}</span>
-          <FontAwesomeIcon
-            icon={faTrash}
-            className={styles.iconRemove}
-            onClick={removeHandler}
-          />
-        </>
-      )}
+    <div className={styles.wrapper}>
+      <span className={styles.name}>{props.userName}</span>
+      <div className={styles.roleWrapper}>
+        <span className={styles.role}>{props.userRole}</span>
+        <FontAwesomeIcon
+          icon={faTrash}
+          className={styles.iconRemove}
+          onClick={removeHandler}
+        />
+      </div>
       {removeMemberStages.error && (
         <ErrorHandler>{removeMemberStages.error.response.data}</ErrorHandler>
       )}

@@ -129,7 +129,7 @@ const Project = () => {
             >
               {projectData.project.members.map(
                 (member: types.ProjectMember) => (
-                  <div className={styles.memberWrapper}>
+                  <div className={styles.memberWrapper} key={member.id}>
                     <span className={styles.memberName}>{member.name}</span>
                     <span className={styles.memberRole}>{member.role}</span>
                   </div>
