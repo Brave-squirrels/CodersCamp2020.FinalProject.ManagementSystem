@@ -118,8 +118,8 @@ const Notes = () => {
     }
     //Enable remove if user is project owner or team moderator
     else if (
-      projectData.project.owner.id === id ||
-      teamData.team.moderatorsId.includes(id)
+      projectData.project.owner.id === localStorage.getItem("id") ||
+      teamData.team.moderatorsId.includes(localStorage.getItem("id")!)
     ) {
       return (
         <div className={styles.buttonsWrapper}>

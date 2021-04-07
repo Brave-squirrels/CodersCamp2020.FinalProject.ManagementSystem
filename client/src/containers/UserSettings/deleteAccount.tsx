@@ -32,11 +32,9 @@ const DeleteAccount = () => {
         >
           <div className={classes.modal}>
             <h2>Are you sure you want to delete your account?</h2>
-            <p>Thist action can't be undone</p>
+            <p>This action can't be undone</p>
             <div>
-              <Button clicked={() => setModalState(false)} btnType="danger">
-                cancel
-              </Button>
+              <Button clicked={() => setModalState(false)}>cancel</Button>
               <Button clicked={deleteProfile} btnType="danger">
                 delete
               </Button>

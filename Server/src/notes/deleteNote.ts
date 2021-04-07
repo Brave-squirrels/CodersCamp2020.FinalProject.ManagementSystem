@@ -7,7 +7,7 @@ const deleteNote = async (req: Request, res: Response) => {
   const project = res.locals.project;
   if (!note) return res.status(StatusCodes.NOT_FOUND).send("Note not found");
 
-  if(req.userInfo._id != note.author!.id || req.userInfo._id != project.owner.id){
+  if(req.userInfo._id != note.author!.id && req.userInfo._id != project.owner.id){
     return res.status(StatusCodes.BAD_REQUEST).send("You are not allowed to do that!");
   }
 
