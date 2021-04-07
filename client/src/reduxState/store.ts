@@ -33,6 +33,8 @@ import commentEdit from './comments/editComment';
 import updateMemberInProject from './projects/updateMember';
 import updateProjectStatus from "./projects/updateStatus";
 import updateProjectInfo from "./projects/updateProjectInfo";
+import deleteProject from './projects/deleteProject';
+
 import thunk from "redux-thunk";
 
 export const store = configureStore({
@@ -66,6 +68,7 @@ export const store = configureStore({
     updateMemberInProject,
     updateProjectStatus,
     updateProjectInfo,
+    deleteProject,
   },
   middleware: [
     ...getDefaultMiddleware({
