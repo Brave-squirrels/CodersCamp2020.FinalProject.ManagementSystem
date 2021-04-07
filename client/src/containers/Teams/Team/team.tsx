@@ -4,9 +4,11 @@ import ViewWithSidebar from "hoc/viewWithSidebar/viewWithSidebar";
 import styles from "./team.module.scss";
 import TeamSidebar from "./teamSideBar/teamSideBar";
 import { CardWithTitle } from "components/UI/CardWithTitle/CardWithTitle";
+import { CardWithoutTitle } from "components/UI/CardWithoutTitle/CardWithoutTitle";
 import Spinner from "components/UI/Spinner/spinner";
 import ErrorHandler from "components/errorHandler/errorHandler";
 import RightSideWrapper from "hoc/rightSideWrapper/rightSideWrapper";
+import Button from "components/UI/formElements/button/button";
 
 import ChangeButton from "components/UI/changeButton/changeButton";
 import Modal from "components/Modal/modal";
@@ -16,6 +18,7 @@ import ChangeTitle from "containers/Teams/changeTitle/changeTitle";
 import ChangeDescription from "containers/Teams/changeDescription/changeDescription";
 import ChangeModerator from "containers/Teams/changeModerator/changeModerator";
 import ChangeOwner from "containers/Teams/changeOwner/changeOwner";
+import LeaveTeam from "containers/Teams/leaveTeam/leaveTeam";
 import { fetchTeam } from "reduxState/teamDataSlice";
 
 const Team = () => {
@@ -24,6 +27,7 @@ const Team = () => {
   const [showModeratorModal, setShowModeratorModal] = useState(false);
   const [showTitleModal, setShowTitleModal] = useState(false);
   const [showDescriptionModal, setShowDescriptionModal] = useState(false);
+  const [showLeaveModal, setShowLeaveModal] = useState(false);
 
   const state = useSelector((state: any) => state.singleTeamData);
 
@@ -54,6 +58,16 @@ const Team = () => {
     <>
       <Modal show={showMemberModal} onClose={() => setShowMemberModal(false)}>
         <AddMember />
+      </Modal>
+
+      <Modal show={showLeaveModal} onClose={() => setShowLeaveModal(false)}>
+        <div className={styles.confirmWrapper}>
+          <h2>Are you sure?</h2>
+          <div className={styles.confirmModal}>
+            <Button clicked={() => setShowLeaveModal(false)}>Cancel</Button>
+            <LeaveTeam />
+          </div>
+        </div>
       </Modal>
 
       <Modal show={showTitleModal} onClose={closeHandler}>
@@ -133,7 +147,7 @@ const Team = () => {
                   <div key={member.userId}>{member.userName}</div>
                 ))}
               </CardWithTitle>
-              <div className={styles.lastChild}>
+              <div className={styles.lastColumn}>
                 <CardWithTitle title={"Moderators"}>
                   {isOwner && (
                     <ChangeButton
@@ -143,6 +157,14 @@ const Team = () => {
                   )}
                   {moderatorsList}
                 </CardWithTitle>
+                <CardWithoutTitle>
+                  <span
+                    className={styles.leaveSpan}
+                    onClick={() => setShowLeaveModal(true)}
+                  >
+                    Leave Team
+                  </span>
+                </CardWithoutTitle>
               </div>
             </div>
           </RightSideWrapper>
