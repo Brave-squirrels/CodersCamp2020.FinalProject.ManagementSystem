@@ -14,6 +14,7 @@ import ChangeInfo from "./changeDescription/changeInfo";
 import ChangeMembers from "./changeMembers/changeMembers";
 import ChangeStatus from "./changeStatus/changeStatus";
 import DeleteProject from "./deleteProject/deleteProject";
+import ChangeButton from "components/UI/changeButton/changeButton";
 
 import styles from "./project.module.scss";
 
@@ -68,8 +69,11 @@ const Project = () => {
                 title={
                   allowed ? (
                     <>
-                      {" "}
-                      Description <AddNew clicked={() => setDescModal(true)} />
+                      Description
+                      <ChangeButton
+                        title="Change project info"
+                        clicked={() => setDescModal(true)}
+                      />
                     </>
                   ) : (
                     "Description"
@@ -108,7 +112,11 @@ const Project = () => {
                   allowed ? (
                     <>
                       {" "}
-                      Status <AddNew clicked={() => setStatusModal(true)} />
+                      Status{" "}
+                      <ChangeButton
+                        title="Change project status"
+                        clicked={() => setStatusModal(true)}
+                      />
                     </>
                   ) : (
                     "Status"
