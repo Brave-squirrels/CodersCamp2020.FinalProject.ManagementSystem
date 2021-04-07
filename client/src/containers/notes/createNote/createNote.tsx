@@ -6,12 +6,11 @@ import * as types from "utils/types";
 import FormStructure from "components/UI/formLogged/formStructure/formStructure";
 import ErrorHandler from "components/errorHandler/errorHandler";
 import Spinner from "components/UI/Spinner/spinner";
+import AlignVert from "hoc/alignVert/alignVert";
 
 import { mutateToAxios } from "../../../utils/onChangeForm";
 import { createNote } from "reduxState/notes/postNote";
 import { RootState } from "reduxState/store";
-
-import styles from "./crateNote.module.scss";
 
 const CreateNote = () => {
   const dispatch = useDispatch();
@@ -53,7 +52,7 @@ const CreateNote = () => {
   };
 
   return (
-    <div className={styles.formWrapper}>
+    <AlignVert>
       {state.loading ? (
         <Spinner />
       ) : (
@@ -71,7 +70,7 @@ const CreateNote = () => {
           )}
         </>
       )}
-    </div>
+    </AlignVert>
   );
 };
 

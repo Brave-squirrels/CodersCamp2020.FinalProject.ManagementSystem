@@ -6,13 +6,12 @@ import * as types from "utils/types";
 import FormStructure from "components/UI/formLogged/formStructure/formStructure";
 import Spinner from "components/UI/Spinner/spinner";
 import ErrorHandler from "components/errorHandler/errorHandler";
+import AlignVert from "hoc/alignVert/alignVert";
 
 import { mutateToAxios } from "utils/onChangeForm";
 
 import { RootState } from "reduxState/store";
 import { updateProjectStatusFetch } from "reduxState/projects/updateStatus";
-
-import styles from "./changeStatus.module.scss";
 
 const ChangeStatus = () => {
   const dispatch = useDispatch();
@@ -72,7 +71,7 @@ const ChangeStatus = () => {
   };
 
   return (
-    <div className={styles.formWrapper}>
+    <AlignVert>
       {changeStatusStages.loading ? (
         <Spinner />
       ) : (
@@ -94,7 +93,7 @@ const ChangeStatus = () => {
           )}
         </>
       )}
-    </div>
+    </AlignVert>
   );
 };
 

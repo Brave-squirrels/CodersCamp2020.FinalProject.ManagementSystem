@@ -5,6 +5,7 @@ import Button from "components/UI/formElements/button/button";
 import Square from "components/UI/square/square";
 import SpinnerCard from "components/UI/SpinnerCard/spinner";
 import ErrorHandler from "components/errorHandler/errorHandler";
+import AlignVert from "hoc/alignVert/alignVert";
 
 import { declineInvite, acceptInvite } from "reduxState/teamInvites";
 
@@ -31,7 +32,7 @@ const TeamInviteContent = (props: Props) => {
 
   return (
     <Square>
-      <div className={styles.wrapper}>
+      <AlignVert>
         {handleStages.loading && handleStages.teamId === props.teamId ? (
           <SpinnerCard />
         ) : handleStages.success && handleStages.teamId === props.teamId ? (
@@ -53,7 +54,7 @@ const TeamInviteContent = (props: Props) => {
             )}
           </>
         )}
-      </div>
+      </AlignVert>
     </Square>
   );
 };

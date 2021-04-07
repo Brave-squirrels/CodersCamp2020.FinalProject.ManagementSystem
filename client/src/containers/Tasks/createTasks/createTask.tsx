@@ -6,12 +6,11 @@ import * as types from "utils/types";
 import FormStructure from "components/UI/formLogged/formStructure/formStructure";
 import ErrorHandler from "components/errorHandler/errorHandler";
 import Spinner from "components/UI/Spinner/spinner";
+import AlignVert from "hoc/alignVert/alignVert";
 
 import { mutateToAxios } from "utils/onChangeForm";
 import { createTaskFetch } from "reduxState/tasks/createTask";
 import { RootState } from "reduxState/store";
-
-import styles from "./createTask.module.scss";
 
 const CreateTask = () => {
   const dispatch = useDispatch();
@@ -67,7 +66,7 @@ const CreateTask = () => {
   };
 
   return (
-    <div className={styles.formWrapper}>
+    <AlignVert>
       {createStages.loading ? (
         <Spinner />
       ) : (
@@ -85,7 +84,7 @@ const CreateTask = () => {
           )}
         </>
       )}
-    </div>
+    </AlignVert>
   );
 };
 

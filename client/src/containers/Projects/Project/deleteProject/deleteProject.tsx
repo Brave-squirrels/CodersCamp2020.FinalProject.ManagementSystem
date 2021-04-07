@@ -7,6 +7,7 @@ import * as types from "utils/types";
 import Spinner from "components/UI/Spinner/spinner";
 import ErrorHandler from "components/errorHandler/errorHandler";
 import Button from "components/UI/formElements/button/button";
+import AlignVert from "hoc/alignVert/alignVert";
 
 import { RootState } from "reduxState/store";
 import { deleteProjectFetch } from "reduxState/projects/deleteProject";
@@ -30,7 +31,7 @@ const DeleteProject = (props: Props) => {
   };
 
   return (
-    <div className={styles.wrapper}>
+    <AlignVert>
       {deleteStages.loading ? (
         <Spinner />
       ) : (
@@ -45,7 +46,7 @@ const DeleteProject = (props: Props) => {
           )}
         </div>
       )}
-    </div>
+    </AlignVert>
   );
 };
 

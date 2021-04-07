@@ -4,13 +4,11 @@ import { mutateToAxios } from "utils/onChangeForm";
 
 import axios from "axios/axiosMain";
 
-import styles from "./changeDescription.module.scss";
-
 import FormStructure from "components/UI/formLogged/formStructure/formStructure";
 import Spinner from "components/UI/Spinner/spinner";
 import ErrorHandler from "components/errorHandler/errorHandler";
 import SuccessHandler from "components/successHandler/successHandler";
-
+import AlignVert from "hoc/alignVert/alignVert";
 
 const ChangeDescription = () => {
   const teamId = useSelector((state: any) => state.singleTeamData.team._id);
@@ -31,7 +29,6 @@ const ChangeDescription = () => {
     },
     formValid: true,
   };
-  
 
   const [description, setDescription] = useState({
     newDescription: {
@@ -63,7 +60,7 @@ const ChangeDescription = () => {
       .then((response) => {
         setChangeStatus("Description changed!");
         setDescription({ ...descriptionStart });
-        setLoading(false)
+        setLoading(false);
       })
       .catch((err) => {
         setChangeStatus(err.response.data);
@@ -71,9 +68,8 @@ const ChangeDescription = () => {
       });
   };
 
-
   return (
-    <div className={styles.formWrapper}>
+    <AlignVert>
       {loading ? (
         <Spinner />
       ) : (
@@ -91,7 +87,7 @@ const ChangeDescription = () => {
       ) : (
         <ErrorHandler>{changeStatus}</ErrorHandler>
       )}
-    </div>
+    </AlignVert>
   );
 };
 
