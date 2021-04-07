@@ -21,10 +21,17 @@ import styles from "./project.module.scss";
 import { RootState } from "reduxState/store";
 
 const Project = () => {
-  const state = useSelector((state: RootState) => state.singleProjectData);
   const editStages = useSelector((state: RootState) => state.updateProjectInfo);
   const changeStatusStages = useSelector(
     (state: RootState) => state.updateProjectStatus
+  );
+  const deleteProjectStages = useSelector(
+    (state: RootState) => state.deleteProject
+  );
+
+  const teamData = useSelector((state: RootState) => state.singleTeamData);
+  const projectData = useSelector(
+    (state: RootState) => state.singleProjectData
   );
 
   const [descModal, setDescModal] = useState(false);
@@ -36,10 +43,15 @@ const Project = () => {
     setDescModal(false);
     setMemberModal(false);
     setStatusModal(false);
-  }, [editStages.success, changeStatusStages.success]);
+    setDeleteProject(false);
+  }, [
+    editStages.success,
+    changeStatusStages.success,
+    deleteProjectStages.success,
+  ]);
 
   const allowed =
-    state.project.owner.id === localStorage.getItem("id") ? true : false;
+    projectData.project.owner.id === localStorage.getItem("id") ? true : false;
 
   return (
     <ViewWithSidebar>
@@ -52,17 +64,34 @@ const Project = () => {
       <Modal show={statusModal} onClose={() => setStatusModal(false)}>
         <ChangeStatus />
       </Modal>
-      <Modal show={deleteProject} onClose={() => setDeleteProject(false)}>
+      <Modal
+        show={deleteProject}
+        onClose={() => setDeleteProject(false)}
+        height={"250px"}
+        width={"600px"}
+      >
         <DeleteProject close={() => setDeleteProject(false)} />
       </Modal>
       <ProjectSidebar />
-      {state.loading ? (
+      {projectData.loading ? (
         <Spinner />
-      ) : state.error ? (
+      ) : projectData.error ? (
         <ErrorHandler>Something went wrong...</ErrorHandler>
       ) : (
-        <RightSideWrapper title={state.project.projectName}>
+        <RightSideWrapper title={projectData.project.projectName}>
           {/* Container for project's info */}
+          <>
+            {localStorage.getItem("id") ===
+              (projectData.project.owner.id || teamData.team.ownerId) && (
+              <div className={styles.buttonsWrapper}>
+                <ChangeButton
+                  title={"Delete project"}
+                  clicked={() => setDeleteProject(true)}
+                />
+              </div>
+            )}
+          </>
+
           <div className={styles.container}>
             <div>
               <CardWithTitle
@@ -81,7 +110,7 @@ const Project = () => {
                 }
                 additionalClass={allowed ? "taskTitle" : ""}
               >
-                {state.project.content}
+                {projectData.project.content}
               </CardWithTitle>
             </div>
 
@@ -98,12 +127,14 @@ const Project = () => {
               }
               additionalClass={allowed ? "taskTitle" : ""}
             >
-              {state.project.members.map((member: types.ProjectMember) => (
-                <div className={styles.memberWrapper}>
-                  <span className={styles.memberName}>{member.name}</span>
-                  <span className={styles.memberRole}>{member.role}</span>
-                </div>
-              ))}
+              {projectData.project.members.map(
+                (member: types.ProjectMember) => (
+                  <div className={styles.memberWrapper}>
+                    <span className={styles.memberName}>{member.name}</span>
+                    <span className={styles.memberRole}>{member.role}</span>
+                  </div>
+                )
+              )}
             </CardWithTitle>
 
             <div>
@@ -124,16 +155,18 @@ const Project = () => {
                 }
                 additionalClass={allowed ? "taskTitle" : ""}
               >
-                {state.project.status}
+                {projectData.project.status}
               </CardWithTitle>
               <CardWithTitle title={"Start date"}>
-                {state.project.date.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/)}
+                {projectData.project.date.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/)}
               </CardWithTitle>
               <CardWithTitle title={"Deadline"}>
-                {state.project.deadline.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/)}
+                {projectData.project.deadline.match(
+                  /[0-9]{4}-[0-9]{2}-[0-9]{2}/
+                )}
               </CardWithTitle>
               <CardWithTitle title={"Project owner"}>
-                {state.project.owner.name}
+                {projectData.project.owner.name}
               </CardWithTitle>
             </div>
           </div>

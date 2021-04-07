@@ -41,7 +41,7 @@ const Team = () => {
     dispatch(fetchTeam(state.team._id));
     setShowModeratorModal(false);
     setShowTitleModal(false);
-    setShowDescriptionModal(false)
+    setShowDescriptionModal(false);
   };
 
   const isModerator = state.team.moderatorsId.includes(
@@ -60,7 +60,7 @@ const Team = () => {
         <ChangeTitle />
       </Modal>
 
-      <Modal show={showDescriptionModal}onClose={closeHandler}>
+      <Modal show={showDescriptionModal} onClose={closeHandler}>
         <ChangeDescription />
       </Modal>
 
@@ -83,12 +83,12 @@ const Team = () => {
             {/* Container for team's info */}
 
             <div className={styles.buttonsWrapper}>
-              {isOwner ? (
+              {isOwner && (
                 <ChangeButton
                   title={"Change Team Name"}
                   clicked={() => setShowTitleModal(true)}
                 />
-              ) : null}
+              )}
             </div>
 
             <div className={styles.container}>
@@ -114,11 +114,11 @@ const Team = () => {
                 <CardWithTitle title={"Description"}>
                   {state.team.description}
                   {isModerator ? (
-                  <ChangeButton
-                    title={"Change description"}
-                    clicked={() => setShowDescriptionModal(true)}
-                  />
-                ) : null}
+                    <ChangeButton
+                      title={"Change description"}
+                      clicked={() => setShowDescriptionModal(true)}
+                    />
+                  ) : null}
                 </CardWithTitle>
               </div>
 
