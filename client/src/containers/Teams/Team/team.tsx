@@ -133,15 +133,17 @@ const Team = () => {
                   <div key={member.userId}>{member.userName}</div>
                 ))}
               </CardWithTitle>
-              <CardWithTitle title={"Moderators"}>
-                {isOwner && (
-                  <ChangeButton
-                    title={"Change moderators"}
-                    clicked={() => setShowModeratorModal(true)}
-                  />
-                )}
-                {moderatorsList}
-              </CardWithTitle>
+              <div className={styles.lastChild}>
+                <CardWithTitle title={"Moderators"}>
+                  {isOwner && (
+                    <ChangeButton
+                      title={"Change moderators"}
+                      clicked={() => setShowModeratorModal(true)}
+                    />
+                  )}
+                  {moderatorsList}
+                </CardWithTitle>
+              </div>
             </div>
           </RightSideWrapper>
         )}

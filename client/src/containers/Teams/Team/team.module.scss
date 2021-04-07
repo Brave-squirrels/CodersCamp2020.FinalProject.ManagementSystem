@@ -1,7 +1,6 @@
 @import "styles/variables.scss";
 
 .container {
-  // position: relative;
   width: 65vmax;
   height: 70vh;
   display: grid;
@@ -12,7 +11,11 @@
   font-size: 1.2em;
   text-align: center;
   list-style: none;
-
+  .lastChild {
+    @media (max-width: 1100px) {
+      padding-bottom: 2em;
+    }
+  }
   .firstColumn {
     position: relative;
     display: grid;
@@ -36,6 +39,7 @@
     grid-template-columns: 1fr;
     height: 100%;
     width: 100%;
+    padding-bottom: 2em;
   }
   .firstColumn {
     display: grid;
