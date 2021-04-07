@@ -94,17 +94,17 @@ const Team = () => {
             <div className={styles.container}>
               <div className={styles.firstColumn}>
                 <CardWithTitle title={"Owner"}>
+                  {isOwner && (
+                    <ChangeButton
+                      title={"Change owner"}
+                      clicked={() => setShowOwnerModal(true)}
+                    />
+                  )}
                   {state.team.members.map((member: any) =>
                     member.userId === state.team.ownerId
                       ? member.userName
                       : null
                   )}
-                  {isOwner ? (
-                    <ChangeButton
-                      title={"Change owner"}
-                      clicked={() => setShowOwnerModal(true)}
-                    />
-                  ) : null}
                 </CardWithTitle>
 
                 <CardWithTitle title={"Creation date"}>
@@ -112,35 +112,35 @@ const Team = () => {
                 </CardWithTitle>
 
                 <CardWithTitle title={"Description"}>
-                  {state.team.description}
-                  {isModerator ? (
+                  {isModerator && (
                     <ChangeButton
                       title={"Change description"}
                       clicked={() => setShowDescriptionModal(true)}
                     />
-                  ) : null}
+                  )}
+                  {state.team.description}
                 </CardWithTitle>
               </div>
 
               <CardWithTitle title={"Members"}>
-                {state.team.members.map((member: any) => (
-                  <div key={member.userId}>{member.userName}</div>
-                ))}
-                {isModerator ? (
+                {isModerator && (
                   <ChangeButton
                     title={"Send invite"}
                     clicked={() => setShowMemberModal(true)}
                   />
-                ) : null}
+                )}
+                {state.team.members.map((member: any) => (
+                  <div key={member.userId}>{member.userName}</div>
+                ))}
               </CardWithTitle>
               <CardWithTitle title={"Moderators"}>
-                {moderatorsList}
-                {isOwner ? (
+                {isOwner && (
                   <ChangeButton
                     title={"Change moderators"}
                     clicked={() => setShowModeratorModal(true)}
                   />
-                ) : null}
+                )}
+                {moderatorsList}
               </CardWithTitle>
             </div>
           </RightSideWrapper>
