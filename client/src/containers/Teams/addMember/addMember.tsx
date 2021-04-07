@@ -4,13 +4,11 @@ import { mutateToAxios } from "utils/onChangeForm";
 
 import axios from "axios/axiosMain";
 
-import styles from "./addMember.module.scss";
-
 import FormStructure from "components/UI/formLogged/formStructure/formStructure";
 import Spinner from "components/UI/Spinner/spinner";
 import ErrorHandler from "components/errorHandler/errorHandler";
 import SuccessHandler from "components/successHandler/successHandler";
-
+import AlignVert from "hoc/alignVert/alignVert";
 
 const AddMember = () => {
   const teamId = useSelector((state: any) => state.singleTeamData.team._id);
@@ -52,7 +50,7 @@ const AddMember = () => {
   const [loading, setLoading] = useState(false);
 
   const findUser = (e: any) => {
-    setInviteStatus('')
+    setInviteStatus("");
     setLoading(true);
     e.preventDefault();
     const formData = mutateToAxios(member);
@@ -87,7 +85,7 @@ const AddMember = () => {
   };
 
   return (
-    <div className={styles.formWrapper}>
+    <AlignVert>
       {loading ? (
         <Spinner />
       ) : (
@@ -105,7 +103,7 @@ const AddMember = () => {
       ) : (
         <ErrorHandler>{inviteStatus}</ErrorHandler>
       )}
-    </div>
+    </AlignVert>
   );
 };
 

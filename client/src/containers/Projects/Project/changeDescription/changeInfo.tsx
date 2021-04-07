@@ -6,12 +6,11 @@ import * as types from "utils/types";
 import FormStructure from "components/UI/formLogged/formStructure/formStructure";
 import ErrorHandler from "components/errorHandler/errorHandler";
 import Spinner from "components/UI/Spinner/spinner";
+import AlignVert from "hoc/alignVert/alignVert";
 
 import { mutateToAxios } from "utils/onChangeForm";
 import { updateProjectInfoFetch } from "reduxState/projects/updateProjectInfo";
 import { RootState } from "reduxState/store";
-
-import styles from "./changeDescription.module.scss";
 
 const ChangeInfo = () => {
   const dispatch = useDispatch();
@@ -98,7 +97,7 @@ const ChangeInfo = () => {
   };
 
   return (
-    <div className={styles.formWrapper}>
+    <AlignVert>
       {editStages.loading ? (
         <Spinner />
       ) : (
@@ -118,7 +117,7 @@ const ChangeInfo = () => {
           )}
         </>
       )}
-    </div>
+    </AlignVert>
   );
 };
 

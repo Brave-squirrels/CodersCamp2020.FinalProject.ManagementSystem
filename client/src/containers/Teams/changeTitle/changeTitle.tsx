@@ -4,13 +4,11 @@ import { mutateToAxios } from "utils/onChangeForm";
 
 import axios from "axios/axiosMain";
 
-import styles from "./changeTitle.module.scss";
-
 import FormStructure from "components/UI/formLogged/formStructure/formStructure";
 import Spinner from "components/UI/Spinner/spinner";
 import ErrorHandler from "components/errorHandler/errorHandler";
 import SuccessHandler from "components/successHandler/successHandler";
-
+import AlignVert from "hoc/alignVert/alignVert";
 
 const ChangeTitle = () => {
   const teamId = useSelector((state: any) => state.singleTeamData.team._id);
@@ -31,7 +29,6 @@ const ChangeTitle = () => {
     },
     formValid: true,
   };
-  
 
   const [title, setTitle] = useState({
     newTeamName: {
@@ -63,7 +60,7 @@ const ChangeTitle = () => {
       .then((response) => {
         setChangeStatus("Team name changed!");
         setTitle({ ...titleStart });
-        setLoading(false)
+        setLoading(false);
       })
       .catch((err) => {
         setChangeStatus(err.response.data);
@@ -71,9 +68,8 @@ const ChangeTitle = () => {
       });
   };
 
-
   return (
-    <div className={styles.formWrapper}>
+    <AlignVert>
       {loading ? (
         <Spinner />
       ) : (
@@ -91,7 +87,7 @@ const ChangeTitle = () => {
       ) : (
         <ErrorHandler>{changeStatus}</ErrorHandler>
       )}
-    </div>
+    </AlignVert>
   );
 };
 

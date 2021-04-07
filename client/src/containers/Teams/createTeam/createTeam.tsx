@@ -3,11 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { mutateToAxios } from "utils/onChangeForm";
 import { Redirect } from "react-router-dom";
 
-import styles from "./createTeam.module.scss";
-
 import FormStructure from "components/UI/formLogged/formStructure/formStructure";
 import Spinner from "components/UI/Spinner/spinner";
 import ErrorHandler from "components/errorHandler/errorHandler";
+import AlignVert from "hoc/alignVert/alignVert";
 
 import { createTeam, clear } from "reduxState/createTeam";
 import { RootState } from "reduxState/store";
@@ -59,7 +58,7 @@ const CreateTeam = () => {
   }
 
   return (
-    <div className={styles.formWrapper}>
+    <AlignVert>
       {reduxState.loading ? (
         <Spinner />
       ) : (
@@ -76,7 +75,7 @@ const CreateTeam = () => {
         <ErrorHandler>{reduxState.error.response.data}</ErrorHandler>
       )}
       {reduxState.success && <Redirect to={`/teams/${reduxState.teamId}`} />}
-    </div>
+    </AlignVert>
   );
 };
 
