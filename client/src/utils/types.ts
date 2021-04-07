@@ -19,7 +19,7 @@ interface Project {
   projectId: string;
 }
 
-interface Member {
+export interface Member {
   userId: string;
   userName: string;
 }

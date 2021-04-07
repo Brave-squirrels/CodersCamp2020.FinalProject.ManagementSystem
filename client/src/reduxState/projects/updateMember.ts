@@ -49,7 +49,7 @@ const updateMemberInProject = createSlice({
 
 export const {start, success, failed} = updateMemberInProject.actions;
 
-export const updateMemberInProjectFetch = (teamId: string, projectId: string, noteId: string, data: Data) : AppThunk =>  async (dispatch) => {
+export const updateMemberInProjectFetch = (teamId: string, projectId: string, data: Data) : AppThunk =>  async (dispatch) => {
     dispatch(start());
     await axios.put(`/teams/${teamId}/projects/${projectId}/members`,data, {
         headers: {
