@@ -162,7 +162,6 @@ const Team = () => {
                     className={styles.leaveSpan}
                     onClick={() => setShowLeaveModal(true)}
                   >
-                    {" "}
                     Leave Team
                   </span>
                 </CardWithoutTitle>

@@ -33,21 +33,25 @@ const TeamInviteContent = (props: Props) => {
   return (
     <Square>
       <AlignVert>
-        {handleStages.loading && handleStages.teamId === props.teamId ? (
-          <SpinnerCard />
-        ) : handleStages.success && handleStages.teamId === props.teamId ? (
+        {handleStages.success && handleStages.teamId === props.teamId ? (
           <span className={styles.notification}>
             {" "}
             {handleStages.information}{" "}
           </span>
         ) : (
           <>
-            <div className={styles.innerWrapper}>
-              <span className={styles.inviteTitle}>{props.children}</span>
-              <Button clicked={handleAccept}>Accept</Button>
-              <Button btnType="danger" clicked={handleDecline}>
-                Decline
-              </Button>
+            <div className={styles.wrapper}>
+              {handleStages.loading && handleStages.teamId === props.teamId ? (
+                <SpinnerCard />
+              ) : (
+                <div className={styles.innerWrapper}>
+                  <span className={styles.inviteTitle}>{props.children}</span>
+                  <Button clicked={handleAccept}>Accept</Button>
+                  <Button btnType="danger" clicked={handleDecline}>
+                    Decline
+                  </Button>
+                </div>
+              )}
             </div>
             {handleStages.error && handleStages.teamId === props.teamId && (
               <ErrorHandler>{handleStages.error.response.data}</ErrorHandler>
