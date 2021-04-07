@@ -19,6 +19,7 @@ import ChangeDescription from "containers/Teams/changeDescription/changeDescript
 import ChangeModerator from "containers/Teams/changeModerator/changeModerator";
 import ChangeOwner from "containers/Teams/changeOwner/changeOwner";
 import LeaveTeam from "containers/Teams/leaveTeam/leaveTeam";
+import DeleteTeam from "containers/Teams/deleteTeam/deleteTeam";
 import { fetchTeam } from "reduxState/teamDataSlice";
 
 const Team = () => {
@@ -28,6 +29,7 @@ const Team = () => {
   const [showTitleModal, setShowTitleModal] = useState(false);
   const [showDescriptionModal, setShowDescriptionModal] = useState(false);
   const [showLeaveModal, setShowLeaveModal] = useState(false);
+  const [showDeleteTeamModal, setShowDeleteTeamModal] = useState(false);
 
   const state = useSelector((state: any) => state.singleTeamData);
 
@@ -66,6 +68,19 @@ const Team = () => {
           <div className={styles.confirmModal}>
             <Button clicked={() => setShowLeaveModal(false)}>Cancel</Button>
             <LeaveTeam />
+          </div>
+        </div>
+      </Modal>
+
+      <Modal
+        show={showDeleteTeamModal}
+        onClose={() => setShowDeleteTeamModal(false)}
+      >
+        <div className={styles.confirmWrapper}>
+          <h2>Are you sure that you want delete this team?</h2>
+          <div className={styles.confirmModal}>
+            <Button clicked={() => setShowDeleteTeamModal(false)}>Cancel</Button>
+            <DeleteTeam />
           </div>
         </div>
       </Modal>
@@ -122,7 +137,17 @@ const Team = () => {
                 </CardWithTitle>
 
                 <CardWithTitle title={"Creation date"}>
-                  {state.team.startDate.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/)}
+                  <div>
+                    {state.team.startDate.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/)}
+                  </div>
+                  {isOwner && (
+                    <div
+                      className={styles.deleteTeamSpan}
+                      onClick={() => setShowDeleteTeamModal(true)}
+                    >
+                      Delete This Team
+                    </div>
+                  )}
                 </CardWithTitle>
 
                 <CardWithTitle title={"Description"}>

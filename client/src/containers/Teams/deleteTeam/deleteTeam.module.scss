@@ -1,0 +1,8 @@
+@import "../../../styles/variables.scss";
+
+.error {
+    font-weight: 600;
+    color: $invalidInputBorder;
+    position: absolute;
+    transform: translate(-20%, 4em);
+}
