@@ -23,12 +23,14 @@ const DeleteProject = (props: Props) => {
   const history = useHistory();
   const { teamId, projectId } = useParams<types.TParams>();
   const deleteStages = useSelector((state: RootState) => state.deleteProject);
+
   const handleDeleteProject = () => {
     dispatch(deleteProjectFetch(teamId, projectId));
-    if (deleteStages.success) {
-      history.push(`/teams/${teamId}`);
-    }
   };
+
+  if (deleteStages.success) {
+    history.push(`/teams/${teamId}`);
+  }
 
   return (
     <AlignVert>
