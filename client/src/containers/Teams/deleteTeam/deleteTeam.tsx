@@ -3,17 +3,17 @@ import Button from "components/UI/formElements/button/button";
 import { useSelector} from "react-redux";
 import axios from "axios/axiosMain";
 import { useHistory } from "react-router-dom";
-import styles from "./leaveTeam.module.scss";
+import styles from "./deleteTeam.module.scss";
 
-const LeaveTeam = () => {
+const DeleteTeam = () => {
     const history = useHistory();
     const state = useSelector((state: any) => state.singleTeamData);
     const teamId = state.team._id;
     const [showError, setShowError] = useState('')
 
-    const leaveTeamHandler = () => {
+    const deleteTeamHandler = () => {
         axios
-            .put(`/teams/${teamId}/leaveTeam`, {} , {
+            .delete(`/teams/${teamId}`, {
                 headers: { "x-auth-token": localStorage.getItem("token") },
             })
             .then(() => {
@@ -26,7 +26,7 @@ const LeaveTeam = () => {
 
   return (
     <>
-    <Button clicked={leaveTeamHandler} btnType="danger">
+    <Button clicked={deleteTeamHandler} btnType="danger">
       Yes
     </Button>
     <div className={styles.error}>{showError}</div>
@@ -34,4 +34,4 @@ const LeaveTeam = () => {
   );
 };
 
-export default LeaveTeam
+export default DeleteTeam
