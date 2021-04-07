@@ -34,11 +34,16 @@ const deleteProject = createSlice({
             state.loading = false;
             state.error = action.payload;
             state.success = false; 
+        },
+        reset: (state)=>{
+            state.loading = false;
+            state.error = null;
+            state.success = false;
         }
     }
 })
 
-export const {start,success,failed} = deleteProject.actions;
+export const {start,success,failed, reset} = deleteProject.actions;
 
 export const deleteProjectFetch = (teamId:string, projectId:string) : AppThunk => async (dispatch) => {
     dispatch(start());
@@ -49,6 +54,9 @@ export const deleteProjectFetch = (teamId:string, projectId:string) : AppThunk =
     })
     .then(res=>{
         dispatch(success());
+        setTimeout(() => {
+            dispatch(reset());
+        }, 2000);
     })
     .catch(err=>{
         dispatch(failed(err));
