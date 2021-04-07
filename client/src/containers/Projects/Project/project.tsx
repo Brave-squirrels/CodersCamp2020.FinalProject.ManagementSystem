@@ -53,7 +53,7 @@ const Project = () => {
         <ChangeStatus />
       </Modal>
       <Modal show={deleteProject} onClose={() => setDeleteProject(false)}>
-        <DeleteProject />
+        <DeleteProject close={() => setDeleteProject(false)} />
       </Modal>
       <ProjectSidebar />
       {state.loading ? (

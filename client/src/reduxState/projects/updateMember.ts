@@ -34,7 +34,7 @@ const updateMemberInProject = createSlice({
             state.error = null;
             state.success = false;
         },
-        success: (state,action)=>{
+        success: (state)=>{
             state.loading = false;
             state.error = null 
             state.success = true;
@@ -49,15 +49,15 @@ const updateMemberInProject = createSlice({
 
 export const {start, success, failed} = updateMemberInProject.actions;
 
-export const updateMemberInProjectFetch = (teamId: string, projectId: string, noteId: string, data: Data) : AppThunk =>  (dispatch) => {
+export const updateMemberInProjectFetch = (teamId: string, projectId: string, noteId: string, data: Data) : AppThunk =>  async (dispatch) => {
     dispatch(start());
-    axios.put(`/teams/${teamId}/projects/${projectId}/members`,data, {
+    await axios.put(`/teams/${teamId}/projects/${projectId}/members`,data, {
         headers: {
             'x-auth-token': localStorage.getItem('token')
         }
     })
     .then(res=>{
-        dispatch(success(res.data));
+        dispatch(success());
     })
     .catch(err=>{
         dispatch(failed(err));
