@@ -94,22 +94,13 @@ const Project = () => {
 
           <div className={styles.container}>
             <div>
-              <CardWithTitle
-                title={
-                  allowed ? (
-                    <>
-                      Description
-                      <ChangeButton
-                        title="Change project info"
-                        clicked={() => setDescModal(true)}
-                      />
-                    </>
-                  ) : (
-                    "Description"
-                  )
-                }
-                additionalClass={allowed ? "taskTitle" : ""}
-              >
+              <CardWithTitle title={"Description"}>
+                {allowed && (
+                  <ChangeButton
+                    title="Change project info"
+                    clicked={() => setDescModal(true)}
+                  />
+                )}
                 {projectData.project.content}
               </CardWithTitle>
             </div>
@@ -138,23 +129,13 @@ const Project = () => {
             </CardWithTitle>
 
             <div>
-              <CardWithTitle
-                title={
-                  allowed ? (
-                    <>
-                      {" "}
-                      Status{" "}
-                      <ChangeButton
-                        title="Change project status"
-                        clicked={() => setStatusModal(true)}
-                      />
-                    </>
-                  ) : (
-                    "Status"
-                  )
-                }
-                additionalClass={allowed ? "taskTitle" : ""}
-              >
+              <CardWithTitle title={"Status"}>
+                {allowed && (
+                  <ChangeButton
+                    title="Change project status"
+                    clicked={() => setStatusModal(true)}
+                  />
+                )}
                 {projectData.project.status}
               </CardWithTitle>
               <CardWithTitle title={"Start date"}>
