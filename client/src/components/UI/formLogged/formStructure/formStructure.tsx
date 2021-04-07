@@ -18,10 +18,11 @@ interface Props {
   state: any;
   setState: any;
   btnText: string;
-  formTitle: string;
+  formTitle?: string | undefined;
   submitted: any;
   children?: JSX.Element;
   checkPass: boolean;
+  additionalClass?: string | undefined;
 }
 
 const formStructure = (props: Props) => {
@@ -68,8 +69,13 @@ const formStructure = (props: Props) => {
   });
 
   return (
-    <form onSubmit={(event) => props.submitted(event)} className={styles.form}>
-      <FormTitle>{props.formTitle}</FormTitle>
+    <form
+      onSubmit={(event) => props.submitted(event)}
+      className={
+        props.additionalClass ? styles[props.additionalClass] : styles.form
+      }
+    >
+      {props.formTitle && <FormTitle>{props.formTitle}</FormTitle>}
       {form} {props.children}{" "}
       <Button disabled={!props.state.formValid}>{props.btnText}</Button>
     </form>
