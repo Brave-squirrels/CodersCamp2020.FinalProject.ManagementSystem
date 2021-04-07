@@ -6,8 +6,6 @@
   top: 0;
   left: 0;
   background: $backgroundModal;
-  justify-content: center;
-  align-items: center;
   @include scrollbar;
   overflow-y: auto;
   display: none;
@@ -20,13 +18,16 @@
   box-shadow: $cardConShadow;
   border-radius: 4px;
   background: $backgroundDark;
-  position: relative;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   padding: 0.5em;
   overflow-y: auto;
   @include scrollbar;
 }
 .display {
-  display: flex;
+  display: block;
 }
 
 .modalClose {

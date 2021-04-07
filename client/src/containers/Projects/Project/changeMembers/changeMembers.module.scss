@@ -1,5 +1,33 @@
-.membersWrapper {
-}
+@import "styles/variables.scss";
 
-.addMembersWrapper {
+.wrapper {
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  .membersWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1em;
+  }
+
+  .addMembersWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1em;
+  }
+
+  .title {
+    font-weight: 600;
+    color: $secondFontColor;
+  }
+
+  .emptyNotification {
+    font-size: 0.8em;
+    color: $secondFontColor;
+  }
 }

@@ -7,6 +7,7 @@ import { updateMemberInProjectFetch } from "reduxState/projects/updateMember";
 import { RootState } from "reduxState/store";
 
 import FormStructure from "components/UI/formLogged/formStructure/formStructure";
+import ErrorHandler from "components/errorHandler/errorHandler";
 
 import styles from "./singleMemberAdd.module.scss";
 
@@ -19,10 +20,13 @@ const SingleMemberAdd = (props: Props) => {
   const dispatch = useDispatch();
 
   const { teamId, projectId } = useParams<types.TParams>();
+  const editMember = useSelector(
+    (state: RootState) => state.updateMemberInProject
+  );
 
   const [form, setForm] = useState({
     status: {
-      val: "",
+      val: "FrontendDev",
       inputType: "select",
       label: "Role",
       validation: {
@@ -46,8 +50,8 @@ const SingleMemberAdd = (props: Props) => {
           name: "Designer",
         },
       },
-      touched: false,
-      valid: false,
+      touched: true,
+      valid: true,
     },
     formValid: true,
   });
@@ -66,17 +70,26 @@ const SingleMemberAdd = (props: Props) => {
   };
 
   return (
-    <div className={styles.addUserWrapper}>
-      <span>{props.userName}</span>
-      <FormStructure
-        state={form}
-        setState={setForm}
-        btnText="Add"
-        checkPass={false}
-        submitted={(e: React.FormEvent<HTMLFormElement>) => handleAddMember(e)}
-        additionalClass="formRow"
-      />
-    </div>
+    <>
+      <div className={styles.addUserWrapper}>
+        <span>{props.userName}</span>
+        <div className={styles.formWrapper}>
+          <FormStructure
+            state={form}
+            setState={setForm}
+            btnText="Add"
+            checkPass={false}
+            submitted={(e: React.FormEvent<HTMLFormElement>) =>
+              handleAddMember(e)
+            }
+            additionalClass="formRow"
+          />
+        </div>
+      </div>
+      {editMember.error && (
+        <ErrorHandler>{editMember.error.response.data}</ErrorHandler>
+      )}
+    </>
   );
 };
 
