@@ -44,7 +44,7 @@ const updateProjectStatus = createSlice({
 
 export const {start, success, failed} = updateProjectStatus.actions;
 
-export const updateProjectStatusFetch = (teamId: string, projectId: string, noteId: string, data: Data) : AppThunk =>  (dispatch) => {
+export const updateProjectStatusFetch = (teamId: string, projectId: string, data: Data) : AppThunk =>  (dispatch) => {
     dispatch(start());
     axios.put(`/teams/${teamId}/projects/${projectId}/status`,data, {
         headers: {

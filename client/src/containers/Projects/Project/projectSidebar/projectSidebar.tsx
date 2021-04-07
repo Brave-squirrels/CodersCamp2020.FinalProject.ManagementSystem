@@ -26,10 +26,13 @@ const ProjectSidebar = () => {
   const state = useSelector((state: RootState) => state.singleProjectData);
   const user = useSelector((state: RootState) => state.login.userInformation);
   const editStages = useSelector((state: RootState) => state.updateProjectInfo);
+  const changeStatusStages = useSelector(
+    (state: RootState) => state.updateProjectStatus
+  );
 
   useEffect(() => {
     dispatch(fetchProject(teamId, projectId));
-  }, [projectId, teamId, editStages.success]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [projectId, teamId, editStages.success, changeStatusStages.success]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const changeProject = (e: any) => {
     history.push(`/teams/${teamId}/projects/${e.target.id}`);

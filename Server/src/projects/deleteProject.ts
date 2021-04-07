@@ -14,6 +14,10 @@ const deleteProject = async (req: Request, res: Response) => {
   if(req.userInfo._id == project.owner.id && project.members.length > 1){
     return res.status(StatusCodes.BAD_REQUEST).send('You cannot delete project as its owner while other members are in, please choose another owner or delete every other member first')
   }
+
+  if(req.userInfo._id != project.owner.id && req.userInfo._id != team.owner.id){
+    return res.status(StatusCodes.UNAUTHORIZED).send('Permission denied');
+  }
   
   await notesModel.deleteMany({ projectId: project._id });
   

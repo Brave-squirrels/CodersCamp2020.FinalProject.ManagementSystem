@@ -13,6 +13,7 @@ export const firstPartAuth = (data: Data) => {
             ROLES.FRONTENDDEV,
             ROLES.OWNER,
             ROLES.DEVOPS,
+            ROLES.DESIGNER,
           )
           .required(),
         name: Joi.string().min(3).max(24),

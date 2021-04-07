@@ -12,10 +12,9 @@ import AddNew from "components/UI/addNew/addNew";
 import Modal from "components/Modal/modal";
 import ChangeInfo from "./changeDescription/changeInfo";
 import ChangeMembers from "./changeMembers/changeMembers";
-import AddFrontend from "./addFrontend/addFrontend";
-import AddBackend from "./addBackend/addBackend";
-import AddDevOps from "./addDevOps/addDevOps";
-import ChangeOwner from "./changeOwner/changeOwner";
+import ChangeStatus from "./changeStatus/changeStatus";
+import DeleteProject from "./deleteProject/deleteProject";
+import ChangeButton from "components/UI/changeButton/changeButton";
 
 import styles from "./project.module.scss";
 
@@ -24,18 +23,20 @@ import { RootState } from "reduxState/store";
 const Project = () => {
   const state = useSelector((state: RootState) => state.singleProjectData);
   const editStages = useSelector((state: RootState) => state.updateProjectInfo);
+  const changeStatusStages = useSelector(
+    (state: RootState) => state.updateProjectStatus
+  );
 
   const [descModal, setDescModal] = useState(false);
   const [memberModal, setMemberModal] = useState(false);
-  const [frontModal, setFrontModal] = useState(false);
-  const [backModal, setBackModal] = useState(false);
-  const [devModal, setDevModal] = useState(false);
-  const [ownerModal, setOwnerModal] = useState(false);
+  const [statusModal, setStatusModal] = useState(false);
+  const [deleteProject, setDeleteProject] = useState(false);
 
   useEffect(() => {
     setDescModal(false);
     setMemberModal(false);
-  }, [editStages.success]);
+    setStatusModal(false);
+  }, [editStages.success, changeStatusStages.success]);
 
   const allowed =
     state.project.owner.id === localStorage.getItem("id") ? true : false;
@@ -48,17 +49,11 @@ const Project = () => {
       <Modal show={memberModal} onClose={() => setMemberModal(false)}>
         <ChangeMembers />
       </Modal>
-      <Modal show={frontModal} onClose={() => setFrontModal(false)}>
-        <AddFrontend />
+      <Modal show={statusModal} onClose={() => setStatusModal(false)}>
+        <ChangeStatus />
       </Modal>
-      <Modal show={backModal} onClose={() => setBackModal(false)}>
-        <AddBackend />
-      </Modal>
-      <Modal show={devModal} onClose={() => setDevModal(false)}>
-        <AddDevOps />
-      </Modal>
-      <Modal show={ownerModal} onClose={() => setOwnerModal(false)}>
-        <ChangeOwner />
+      <Modal show={deleteProject} onClose={() => setDeleteProject(false)}>
+        <DeleteProject />
       </Modal>
       <ProjectSidebar />
       {state.loading ? (
@@ -74,8 +69,11 @@ const Project = () => {
                 title={
                   allowed ? (
                     <>
-                      {" "}
-                      Description <AddNew clicked={() => setDescModal(true)} />
+                      Description
+                      <ChangeButton
+                        title="Change project info"
+                        clicked={() => setDescModal(true)}
+                      />
                     </>
                   ) : (
                     "Description"
@@ -84,27 +82,6 @@ const Project = () => {
                 additionalClass={allowed ? "taskTitle" : ""}
               >
                 {state.project.content}
-              </CardWithTitle>
-              <CardWithTitle title={"Start date"}>
-                {state.project.date.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/)}
-              </CardWithTitle>
-              <CardWithTitle title={"Deadline"}>
-                {state.project.deadline.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/)}
-              </CardWithTitle>
-              <CardWithTitle
-                title={
-                  allowed ? (
-                    <>
-                      {" "}
-                      Team owner <AddNew clicked={() => setOwnerModal(true)} />
-                    </>
-                  ) : (
-                    "Team owner"
-                  )
-                }
-                additionalClass={allowed ? "taskTitle" : ""}
-              >
-                {state.project.owner.name}
               </CardWithTitle>
             </div>
 
@@ -121,9 +98,12 @@ const Project = () => {
               }
               additionalClass={allowed ? "taskTitle" : ""}
             >
-              {state.project.members.map(
-                (member: types.ProjectMember) => member.name
-              )}
+              {state.project.members.map((member: types.ProjectMember) => (
+                <div className={styles.memberWrapper}>
+                  <span className={styles.memberName}>{member.name}</span>
+                  <span className={styles.memberRole}>{member.role}</span>
+                </div>
+              ))}
             </CardWithTitle>
 
             <div>
@@ -132,45 +112,28 @@ const Project = () => {
                   allowed ? (
                     <>
                       {" "}
-                      Frontend <AddNew clicked={() => setFrontModal(true)} />
+                      Status{" "}
+                      <ChangeButton
+                        title="Change project status"
+                        clicked={() => setStatusModal(true)}
+                      />
                     </>
                   ) : (
-                    "Frontend"
+                    "Status"
                   )
                 }
                 additionalClass={allowed ? "taskTitle" : ""}
               >
-                blank
+                {state.project.status}
               </CardWithTitle>
-              <CardWithTitle
-                title={
-                  allowed ? (
-                    <>
-                      {" "}
-                      Backend <AddNew clicked={() => setBackModal(true)} />
-                    </>
-                  ) : (
-                    "Backend"
-                  )
-                }
-                additionalClass={allowed ? "taskTitle" : ""}
-              >
-                blank
+              <CardWithTitle title={"Start date"}>
+                {state.project.date.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/)}
               </CardWithTitle>
-              <CardWithTitle
-                title={
-                  allowed ? (
-                    <>
-                      {" "}
-                      DevOps <AddNew clicked={() => setDevModal(true)} />
-                    </>
-                  ) : (
-                    "DevOps"
-                  )
-                }
-                additionalClass={allowed ? "taskTitle" : ""}
-              >
-                blank
+              <CardWithTitle title={"Deadline"}>
+                {state.project.deadline.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/)}
+              </CardWithTitle>
+              <CardWithTitle title={"Project owner"}>
+                {state.project.owner.name}
               </CardWithTitle>
             </div>
           </div>
