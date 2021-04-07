@@ -10,6 +10,7 @@ export const firstPartAuth = (member: Object) => {
         ROLES.FRONTENDDEV,
         ROLES.OWNER,
         ROLES.DEVOPS,
+        ROLES.DESIGNER,
         )
         .required(),
       name: Joi.string().min(3).max(24).required(),
