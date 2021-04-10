@@ -11,10 +11,16 @@
     "client:i": "cd client && yarn install",
     "server:i": "cd Server && yarn install",
     "current:i": "concurrently \"yarn client:i\" \"yarn server:i\"",
+    "client:to": "cd client && yarn cypress:open",
+    "client:tr": "cd client && yarn cypress:run",
+    "client:open": "cd client && yarn open",
     "dev": "concurrently \"yarn server\" \"yarn client\"",
-    "dev:i": "yarn install && yarn current:i"
+    "dev:i": "yarn install && yarn current:i",
+    "test:o": "concurrently \"yarn server\" \"yarn client:to\"",
+    "test:r": "concurrently \"yarn server\" \"yarn client:tr\" \"yarn client:open\""
   },
   "devDependencies": {
+    "@testing-library/cypress": "^7.0.5",
     "concurrently": "^6.0.0"
   },
   "dependencies": {

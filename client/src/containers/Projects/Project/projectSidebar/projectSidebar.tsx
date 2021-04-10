@@ -33,6 +33,7 @@ const ProjectSidebar = () => {
   const changeMembers = useSelector(
     (state: RootState) => state.updateMemberInProject
   );
+  const deleteProject = useSelector((state: RootState) => state.deleteProject);
 
   useEffect(() => {
     dispatch(fetchProject(teamId, projectId));
@@ -44,6 +45,7 @@ const ProjectSidebar = () => {
     changeStatusStages.success,
     changeMembers.success,
     dispatch,
+    deleteProject.success,
   ]);
 
   const changeProject = (e: any) => {
