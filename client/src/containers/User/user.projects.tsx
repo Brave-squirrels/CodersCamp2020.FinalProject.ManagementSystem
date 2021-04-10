@@ -1,12 +1,10 @@
 import React from "react";
-import { useHistory } from "react-router";
 import { useSelector } from "react-redux";
 import { RootState } from "reduxState/store";
 import * as types from "utils/types";
 
 import Card from "components/UI/Card/card";
 import CardContainer from "components/UI/CardContainer/cardContainer";
-import Button from "components/UI/formElements/button/button";
 import SpinnerLight from "components/UI/spinnerLight/spinner";
 import NavigationItem from "components/UI/navigationItem/navigationItem";
 import classes from "./user.module.scss";
@@ -15,11 +13,6 @@ import EmptyNotification from "components/UI/emptyNotification/emptyNotification
 const UserProjects = () => {
   const user = useSelector((state: RootState) => state.login.userInformation);
   const userStages = useSelector((state: RootState) => state.login);
-  const history = useHistory();
-
-  const buttonClicked = () => {
-    history.push("/createProject");
-  };
 
   return (
     <CardContainer title="Your projects">
@@ -44,7 +37,6 @@ const UserProjects = () => {
                 You don't have any project yet...
               </EmptyNotification>
             )}
-            <Button clicked={() => buttonClicked()}>New Project</Button>
           </>
         )}
       </div>

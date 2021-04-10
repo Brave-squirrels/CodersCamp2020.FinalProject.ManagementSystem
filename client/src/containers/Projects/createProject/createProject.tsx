@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
+import * as types from "utils/types";
 
 import FormStructure from "components/UI/formLogged/formStructure/formStructure";
 import Spinner from "components/UI/Spinner/spinner";
 import ErrorHandler from "components/errorHandler/errorHandler";
+import AlignVert from "hoc/alignVert/alignVert";
 
 import { mutateToAxios } from "utils/onChangeForm";
 
@@ -14,6 +16,7 @@ import { RootState } from "reduxState/store";
 const CreateProject = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const { teamId } = useParams<types.TParams>();
   const createProjectState = useSelector(
     (state: RootState) => state.createProjectSlice
   );
@@ -61,7 +64,7 @@ const CreateProject = () => {
   const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data = mutateToAxios(project);
-    dispatch(createProject("605a457b0282ce3c5cb9fd46", data));
+    dispatch(createProject(teamId, data));
   };
 
   if (createProjectState.success) {
@@ -71,7 +74,7 @@ const CreateProject = () => {
   }
 
   return (
-    <>
+    <AlignVert>
       {createProjectState.loading ? (
         <Spinner />
       ) : (
@@ -91,7 +94,7 @@ const CreateProject = () => {
           )}
         </>
       )}
-    </>
+    </AlignVert>
   );
 };
 

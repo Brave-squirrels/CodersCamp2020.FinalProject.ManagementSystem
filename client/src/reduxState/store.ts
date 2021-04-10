@@ -34,6 +34,12 @@ import updateMemberInProject from './projects/updateMember';
 import updateProjectStatus from "./projects/updateStatus";
 import updateProjectInfo from "./projects/updateProjectInfo";
 import deleteProject from './projects/deleteProject';
+import changeTeamDesc from './teams/changeDescription';
+import changeTeamTitle from './teams/changeTitle';
+import leaveTeam from './teams/leaveTeam';
+import deleteTeam from './teams/deleteTeam';
+import addTeamMember from './teams/addMember';
+import findUser from './teams/findUser';
 
 import thunk from "redux-thunk";
 
@@ -69,6 +75,12 @@ export const store = configureStore({
     updateProjectStatus,
     updateProjectInfo,
     deleteProject,
+    changeTeamDesc,
+    changeTeamTitle,
+    leaveTeam,
+    deleteTeam,
+    addTeamMember,
+    findUser,
   },
   middleware: [
     ...getDefaultMiddleware({

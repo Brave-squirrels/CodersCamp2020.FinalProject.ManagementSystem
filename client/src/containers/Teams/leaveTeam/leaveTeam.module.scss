@@ -1,8 +1,10 @@
-@import "../../../styles/variables.scss";
-
-.error {
-    font-weight: 600;
-    color: $invalidInputBorder;
-    position: absolute;
-    transform: translate(-20%, 4em);
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  & > :first-child {
+    grid-column: span 2;
+  }
+  width: 60%;
+  grid-gap: 1em;
 }
