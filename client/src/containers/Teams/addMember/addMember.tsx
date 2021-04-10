@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import * as types from "utils/types";
 
+import SuccessHandler from "components/successHandler/successHandler";
 import FormStructure from "components/UI/formLogged/formStructure/formStructure";
 import Spinner from "components/UI/Spinner/spinner";
 import ErrorHandler from "components/errorHandler/errorHandler";
@@ -54,6 +55,7 @@ const AddMember = () => {
             submitted={addMember}
             checkPass={false}
           />
+          {addPending.success && <SuccessHandler>Invite send!</SuccessHandler>}
           {addPending.error ? (
             <ErrorHandler>{addPending.error.response.data}</ErrorHandler>
           ) : (
