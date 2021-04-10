@@ -1,5 +1,8 @@
 import { useSelector, useDispatch } from "react-redux";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import * as types from "utils/types";
+
 import ViewWithSidebar from "hoc/viewWithSidebar/viewWithSidebar";
 import styles from "./team.module.scss";
 import TeamSidebar from "./teamSideBar/teamSideBar";
@@ -20,7 +23,10 @@ import ChangeModerator from "containers/Teams/changeModerator/changeModerator";
 import ChangeOwner from "containers/Teams/changeOwner/changeOwner";
 import LeaveTeam from "containers/Teams/leaveTeam/leaveTeam";
 import DeleteTeam from "containers/Teams/deleteTeam/deleteTeam";
+import CreateProject from "containers/Projects/createProject/createProject";
+
 import { fetchTeam } from "reduxState/teamDataSlice";
+import { RootState } from "reduxState/store";
 
 const Team = () => {
   const [showMemberModal, setShowMemberModal] = useState(false);
@@ -30,8 +36,14 @@ const Team = () => {
   const [showDescriptionModal, setShowDescriptionModal] = useState(false);
   const [showLeaveModal, setShowLeaveModal] = useState(false);
   const [showDeleteTeamModal, setShowDeleteTeamModal] = useState(false);
+  const [createProjectModal, setCreateProjectModal] = useState(false);
 
-  const state = useSelector((state: any) => state.singleTeamData);
+  const state = useSelector((state: RootState) => state.singleTeamData);
+
+  const changeDesc = useSelector((state: RootState) => state.changeTeamDesc);
+  const changeTitleState = useSelector(
+    (state: RootState) => state.changeTeamTitle
+  );
 
   const moderatorsList = state.team.moderatorsId.map((moderatorId: string) =>
     state.team.members.map((member: any) => (
@@ -43,12 +55,24 @@ const Team = () => {
 
   const dispatch = useDispatch();
 
+  const { teamId } = useParams<types.TParams>();
+
   const closeHandler = () => {
-    dispatch(fetchTeam(state.team._id));
     setShowModeratorModal(false);
     setShowTitleModal(false);
     setShowDescriptionModal(false);
+    setCreateProjectModal(false);
+    setShowLeaveModal(false);
+    setShowMemberModal(false);
+    setShowLeaveModal(false);
+    setShowDeleteTeamModal(false);
+    setShowOwnerModal(false);
   };
+
+  useEffect(() => {
+    dispatch(fetchTeam(teamId));
+    closeHandler();
+  }, [teamId, dispatch, changeDesc.success, changeTitleState.success]);
 
   const isModerator = state.team.moderatorsId.includes(
     localStorage.getItem("id")!
@@ -58,32 +82,32 @@ const Team = () => {
 
   return (
     <>
-      <Modal show={showMemberModal} onClose={() => setShowMemberModal(false)}>
+      <Modal show={showMemberModal} onClose={() => closeHandler()}>
         <AddMember />
       </Modal>
 
-      <Modal show={showLeaveModal} onClose={() => setShowLeaveModal(false)}>
+      <Modal
+        show={showLeaveModal}
+        onClose={() => closeHandler()}
+        height={"250px"}
+        width={"600px"}
+      >
         <div className={styles.confirmWrapper}>
-          <h2>Are you sure?</h2>
-          <div className={styles.confirmModal}>
-            <Button clicked={() => setShowLeaveModal(false)}>Cancel</Button>
-            <LeaveTeam />
-          </div>
+          <LeaveTeam close={() => closeHandler()} />
         </div>
+      </Modal>
+      <Modal show={createProjectModal} onClose={() => closeHandler()}>
+        <CreateProject />
       </Modal>
 
       <Modal
         show={showDeleteTeamModal}
-        onClose={() => setShowDeleteTeamModal(false)}
+        onClose={() => closeHandler()}
+        height={"250px"}
+        width={"600px"}
       >
         <div className={styles.confirmWrapper}>
-          <h2>Are you sure that you want delete this team?</h2>
-          <div className={styles.confirmModal}>
-            <Button clicked={() => setShowDeleteTeamModal(false)}>
-              Cancel
-            </Button>
-            <DeleteTeam />
-          </div>
+          <DeleteTeam close={() => closeHandler()} />
         </div>
       </Modal>
 
@@ -99,8 +123,8 @@ const Team = () => {
         <ChangeModerator />
       </Modal>
 
-      <Modal show={showOwnerModal} onClose={() => setShowOwnerModal(false)}>
-        <ChangeOwner onClose={() => setShowOwnerModal(false)} />
+      <Modal show={showOwnerModal} onClose={() => closeHandler()}>
+        <ChangeOwner onClose={() => closeHandler()} />
       </Modal>
 
       <ViewWithSidebar>
@@ -136,11 +160,13 @@ const Team = () => {
                       ? member.userName
                       : null
                   )}
-                  { isModerator && <div className={styles.addProjWrapper}>
-                    <Button clicked={() => console.log('project')}>
-                      New Project
-                    </Button>
-                  </div> }
+                  {isModerator && (
+                    <div className={styles.addProjWrapper}>
+                      <Button clicked={() => setCreateProjectModal(true)}>
+                        New Project
+                      </Button>
+                    </div>
+                  )}
                 </CardWithTitle>
 
                 <CardWithTitle title={"Creation date"}>

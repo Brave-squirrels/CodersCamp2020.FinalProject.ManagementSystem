@@ -1,34 +1,26 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { mutateToAxios } from "utils/onChangeForm";
-
-import axios from "axios/axiosMain";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
+import * as types from "utils/types";
 
 import FormStructure from "components/UI/formLogged/formStructure/formStructure";
 import Spinner from "components/UI/Spinner/spinner";
 import ErrorHandler from "components/errorHandler/errorHandler";
-import SuccessHandler from "components/successHandler/successHandler";
 import AlignVert from "hoc/alignVert/alignVert";
 
-const ChangeTitle = () => {
-  const teamId = useSelector((state: any) => state.singleTeamData.team._id);
+import { changeTitle } from "reduxState/teams/changeTitle";
+import { mutateToAxios } from "utils/onChangeForm";
+import { RootState } from "reduxState/store";
 
-  const titleStart = {
-    newTeamName: {
-      val: "",
-      type: "text",
-      inputType: "input",
-      label: "Change team name",
-      validation: {
-        required: true,
-        minLength: 3,
-        maxLength: 20,
-      },
-      touched: false,
-      valid: false,
-    },
-    formValid: true,
-  };
+const ChangeTeamTitle = () => {
+  const dispatch = useDispatch();
+  const teamData = useSelector((state: RootState) => state.singleTeamData.team);
+
+  const changeTitleState = useSelector(
+    (state: RootState) => state.changeTeamTitle
+  );
+
+  const { teamId } = useParams<types.TParams>();
 
   const [title, setTitle] = useState({
     newTeamName: {
@@ -39,56 +31,53 @@ const ChangeTitle = () => {
       validation: {
         required: true,
         minLength: 3,
-        maxLength: 20,
+        maxLength: 24,
       },
-      touched: false,
-      valid: false,
+      touched: true,
+      valid: true,
     },
-    formValid: false,
+    formValid: true,
   });
-  const [loading, setLoading] = useState(false);
-  const [changeStatus, setChangeStatus] = useState("");
 
-  const changeTeamName = (e: any) => {
-    setLoading(true);
+  useEffect(() => {
+    setTitle((prevState) => {
+      return {
+        ...prevState,
+        newTeamName: {
+          ...prevState.newTeamName,
+          val: teamData.teamName,
+        },
+      };
+    });
+  }, [teamData.teamName]);
+
+  const changeTeamName = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = mutateToAxios(title);
-    axios
-      .put(`/teams/${teamId}/changeTeamName`, formData, {
-        headers: { "x-auth-token": localStorage.getItem("token") },
-      })
-      .then((response) => {
-        setChangeStatus("Team name changed!");
-        setTitle({ ...titleStart });
-        setLoading(false);
-      })
-      .catch((err) => {
-        setChangeStatus(err.response.data);
-        setLoading(false);
-      });
+    dispatch(changeTitle(teamId, formData));
   };
 
   return (
     <AlignVert>
-      {loading ? (
+      {changeTitleState.loading ? (
         <Spinner />
       ) : (
-        <FormStructure
-          state={title}
-          setState={setTitle}
-          btnText="Change team name"
-          formTitle="New team name"
-          submitted={changeTeamName}
-          checkPass={false}
-        />
-      )}
-      {changeStatus === "Team name changed!" ? (
-        <SuccessHandler>{changeStatus}</SuccessHandler>
-      ) : (
-        <ErrorHandler>{changeStatus}</ErrorHandler>
+        <AlignVert>
+          <FormStructure
+            state={title}
+            setState={setTitle}
+            btnText="Change team name"
+            formTitle="New team name"
+            submitted={changeTeamName}
+            checkPass={false}
+          />
+          {changeTitleState.error && (
+            <ErrorHandler>{changeTitleState.error.response.data}</ErrorHandler>
+          )}
+        </AlignVert>
       )}
     </AlignVert>
   );
 };
 
-export default ChangeTitle;
+export default ChangeTeamTitle;
