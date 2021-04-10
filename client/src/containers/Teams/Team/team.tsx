@@ -79,7 +79,9 @@ const Team = () => {
         <div className={styles.confirmWrapper}>
           <h2>Are you sure that you want delete this team?</h2>
           <div className={styles.confirmModal}>
-            <Button clicked={() => setShowDeleteTeamModal(false)}>Cancel</Button>
+            <Button clicked={() => setShowDeleteTeamModal(false)}>
+              Cancel
+            </Button>
             <DeleteTeam />
           </div>
         </div>
@@ -134,6 +136,11 @@ const Team = () => {
                       ? member.userName
                       : null
                   )}
+                  { isModerator && <div className={styles.addProjWrapper}>
+                    <Button clicked={() => console.log('project')}>
+                      New Project
+                    </Button>
+                  </div> }
                 </CardWithTitle>
 
                 <CardWithTitle title={"Creation date"}>
