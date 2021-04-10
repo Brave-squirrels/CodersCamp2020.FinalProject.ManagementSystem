@@ -1,6 +1,5 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import * as types from "utils/types";
 
 import ViewWithSidebar from "hoc/viewWithSidebar/viewWithSidebar";
@@ -24,6 +23,7 @@ import ChangeOwner from "containers/Teams/changeOwner/changeOwner";
 import LeaveTeam from "containers/Teams/leaveTeam/leaveTeam";
 import DeleteTeam from "containers/Teams/deleteTeam/deleteTeam";
 import CreateProject from "containers/Projects/createProject/createProject";
+import RemoveMembers from "containers/Teams/removeMembers/removeMembers";
 
 import { RootState } from "reduxState/store";
 
@@ -36,6 +36,7 @@ const Team = () => {
   const [showLeaveModal, setShowLeaveModal] = useState(false);
   const [showDeleteTeamModal, setShowDeleteTeamModal] = useState(false);
   const [createProjectModal, setCreateProjectModal] = useState(false);
+  const [showRemoveMemberModal, setShowRemoveMemberModal] = useState(false);
 
   const state = useSelector((state: RootState) => state.singleTeamData);
 
@@ -53,10 +54,6 @@ const Team = () => {
     ))
   );
 
-  const dispatch = useDispatch();
-
-  const { teamId } = useParams<types.TParams>();
-
   const closeHandler = () => {
     setShowModeratorModal(false);
     setShowTitleModal(false);
@@ -67,17 +64,12 @@ const Team = () => {
     setShowLeaveModal(false);
     setShowDeleteTeamModal(false);
     setShowOwnerModal(false);
+    setShowRemoveMemberModal(false);
   };
 
   useEffect(() => {
     closeHandler();
-  }, [
-    teamId,
-    dispatch,
-    changeDesc.success,
-    changeTitleState.success,
-    changeOwner.success,
-  ]);
+  }, [changeDesc.success, changeTitleState.success, changeOwner.success]);
 
   const isModerator = state.team.moderatorsId.includes(
     localStorage.getItem("id")!
@@ -90,7 +82,9 @@ const Team = () => {
       <Modal show={showMemberModal} onClose={closeHandler}>
         <AddMember />
       </Modal>
-
+      <Modal show={showRemoveMemberModal} onClose={closeHandler}>
+        <RemoveMembers />
+      </Modal>
       <Modal
         show={showLeaveModal}
         onClose={closeHandler}
@@ -201,10 +195,16 @@ const Team = () => {
 
               <CardWithTitle title={"Members"}>
                 {isModerator && (
-                  <ChangeButton
-                    title={"Send invite"}
-                    clicked={() => setShowMemberModal(true)}
-                  />
+                  <>
+                    <ChangeButton
+                      title={"Send invite"}
+                      clicked={() => setShowMemberModal(true)}
+                    />
+                    <ChangeButton
+                      title="Remove members"
+                      clicked={() => setShowRemoveMemberModal(true)}
+                    />
+                  </>
                 )}
                 {state.team.members.map((member: types.Member) => (
                   <div key={member.userId}>{member.userName}</div>

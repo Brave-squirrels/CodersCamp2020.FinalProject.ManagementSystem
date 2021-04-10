@@ -36,9 +36,6 @@ const ForgotPassword = React.lazy(
 const CreateTeam = React.lazy(
   () => import("./containers/Teams/createTeam/createTeam")
 );
-const CreateProject = React.lazy(
-  () => import("./containers/Projects/createProject/createProject")
-);
 const TeamInvites = React.lazy(
   () => import("./containers/teamInvites/teamInvites")
 );
@@ -102,9 +99,6 @@ const App = () => {
               path="/teams/:teamId/projects/:projectId"
               component={Project}
             />
-
-            <Route exact path="/createProject" component={CreateProject} />
-            <Route exact path="/teams" render={() => <h1>Teams</h1>} />
             <Route exact path="/confirmed" render={() => <Confirmed />} />
             <Route exact path="/teaminvites" render={() => <TeamInvites />} />
             <Route exact path="/settings" render={() => <UserSettings />} />
