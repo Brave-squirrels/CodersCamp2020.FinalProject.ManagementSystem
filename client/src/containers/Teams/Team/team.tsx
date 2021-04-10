@@ -25,7 +25,6 @@ import LeaveTeam from "containers/Teams/leaveTeam/leaveTeam";
 import DeleteTeam from "containers/Teams/deleteTeam/deleteTeam";
 import CreateProject from "containers/Projects/createProject/createProject";
 
-import { fetchTeam } from "reduxState/teamDataSlice";
 import { RootState } from "reduxState/store";
 
 const Team = () => {
@@ -44,11 +43,7 @@ const Team = () => {
   const changeTitleState = useSelector(
     (state: RootState) => state.changeTeamTitle
   );
-  const addPending = useSelector((state: RootState) => state.addTeamMember);
   const changeOwner = useSelector((state: RootState) => state.changeTeamOwner);
-  const changeModeratorState = useSelector(
-    (state: RootState) => state.changeTeamModerator
-  );
 
   const moderatorsList = state.team.moderatorsId.map((moderatorId: string) =>
     state.team.members.map((member: types.Member) => (
@@ -75,7 +70,6 @@ const Team = () => {
   };
 
   useEffect(() => {
-    dispatch(fetchTeam(teamId));
     closeHandler();
   }, [
     teamId,
@@ -84,10 +78,6 @@ const Team = () => {
     changeTitleState.success,
     changeOwner.success,
   ]);
-
-  useEffect(() => {
-    dispatch(fetchTeam(teamId));
-  }, [addPending.success, dispatch, teamId, changeModeratorState.success]);
 
   const isModerator = state.team.moderatorsId.includes(
     localStorage.getItem("id")!

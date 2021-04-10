@@ -25,6 +25,16 @@ const TeamSidebar = () => {
   const user = useSelector((state: RootState) => state.login.userInformation);
   const userTeam = useSelector((state: RootState) => state.singleTeamData);
 
+  const changeDesc = useSelector((state: RootState) => state.changeTeamDesc);
+  const changeTitleState = useSelector(
+    (state: RootState) => state.changeTeamTitle
+  );
+  const addPending = useSelector((state: RootState) => state.addTeamMember);
+  const changeOwner = useSelector((state: RootState) => state.changeTeamOwner);
+  const changeModeratorState = useSelector(
+    (state: RootState) => state.changeTeamModerator
+  );
+
   // import list of teams and projects of current active team
   const changeTeam = (e: any) => {
     history.push(`/teams/${e.target.id}`);
@@ -32,8 +42,15 @@ const TeamSidebar = () => {
 
   useEffect(() => {
     dispatch(fetchTeam(teamId));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [teamId]);
+  }, [
+    changeDesc.success,
+    changeTitleState.success,
+    changeOwner.success,
+    addPending.success,
+    dispatch,
+    teamId,
+    changeModeratorState.success,
+  ]);
 
   return (
     <SideBar title={"Your teams"}>
