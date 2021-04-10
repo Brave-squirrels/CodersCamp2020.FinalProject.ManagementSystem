@@ -44,9 +44,10 @@ const Team = () => {
   const changeTitleState = useSelector(
     (state: RootState) => state.changeTeamTitle
   );
+  const addPending = useSelector((state: RootState) => state.addTeamMember);
 
   const moderatorsList = state.team.moderatorsId.map((moderatorId: string) =>
-    state.team.members.map((member: any) => (
+    state.team.members.map((member: types.Member) => (
       <div key={member.userId}>
         {member.userId === moderatorId ? member.userName : null}
       </div>
@@ -73,6 +74,10 @@ const Team = () => {
     dispatch(fetchTeam(teamId));
     closeHandler();
   }, [teamId, dispatch, changeDesc.success, changeTitleState.success]);
+
+  useEffect(() => {
+    dispatch(fetchTeam(teamId));
+  }, [addPending.success, dispatch, teamId]);
 
   const isModerator = state.team.moderatorsId.includes(
     localStorage.getItem("id")!
@@ -155,7 +160,7 @@ const Team = () => {
                       clicked={() => setShowOwnerModal(true)}
                     />
                   )}
-                  {state.team.members.map((member: any) =>
+                  {state.team.members.map((member: types.Member) =>
                     member.userId === state.team.ownerId
                       ? member.userName
                       : null
@@ -201,7 +206,7 @@ const Team = () => {
                     clicked={() => setShowMemberModal(true)}
                   />
                 )}
-                {state.team.members.map((member: any) => (
+                {state.team.members.map((member: types.Member) => (
                   <div key={member.userId}>{member.userName}</div>
                 ))}
               </CardWithTitle>

@@ -38,6 +38,8 @@ import changeTeamDesc from './teams/changeDescription';
 import changeTeamTitle from './teams/changeTitle';
 import leaveTeam from './teams/leaveTeam';
 import deleteTeam from './teams/deleteTeam';
+import addTeamMember from './teams/addMember';
+import findUser from './teams/findUser';
 
 import thunk from "redux-thunk";
 
@@ -77,6 +79,8 @@ export const store = configureStore({
     changeTeamTitle,
     leaveTeam,
     deleteTeam,
+    addTeamMember,
+    findUser,
   },
   middleware: [
     ...getDefaultMiddleware({
