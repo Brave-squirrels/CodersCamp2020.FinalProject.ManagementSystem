@@ -45,6 +45,10 @@ const Team = () => {
     (state: RootState) => state.changeTeamTitle
   );
   const addPending = useSelector((state: RootState) => state.addTeamMember);
+  const changeOwner = useSelector((state: RootState) => state.changeTeamOwner);
+  const changeModeratorState = useSelector(
+    (state: RootState) => state.changeTeamModerator
+  );
 
   const moderatorsList = state.team.moderatorsId.map((moderatorId: string) =>
     state.team.members.map((member: types.Member) => (
@@ -73,11 +77,17 @@ const Team = () => {
   useEffect(() => {
     dispatch(fetchTeam(teamId));
     closeHandler();
-  }, [teamId, dispatch, changeDesc.success, changeTitleState.success]);
+  }, [
+    teamId,
+    dispatch,
+    changeDesc.success,
+    changeTitleState.success,
+    changeOwner.success,
+  ]);
 
   useEffect(() => {
     dispatch(fetchTeam(teamId));
-  }, [addPending.success, dispatch, teamId]);
+  }, [addPending.success, dispatch, teamId, changeModeratorState.success]);
 
   const isModerator = state.team.moderatorsId.includes(
     localStorage.getItem("id")!
@@ -87,32 +97,32 @@ const Team = () => {
 
   return (
     <>
-      <Modal show={showMemberModal} onClose={() => closeHandler()}>
+      <Modal show={showMemberModal} onClose={closeHandler}>
         <AddMember />
       </Modal>
 
       <Modal
         show={showLeaveModal}
-        onClose={() => closeHandler()}
+        onClose={closeHandler}
         height={"250px"}
         width={"600px"}
       >
         <div className={styles.confirmWrapper}>
-          <LeaveTeam close={() => closeHandler()} />
+          <LeaveTeam close={closeHandler} />
         </div>
       </Modal>
-      <Modal show={createProjectModal} onClose={() => closeHandler()}>
+      <Modal show={createProjectModal} onClose={closeHandler}>
         <CreateProject />
       </Modal>
 
       <Modal
         show={showDeleteTeamModal}
-        onClose={() => closeHandler()}
+        onClose={closeHandler}
         height={"250px"}
         width={"600px"}
       >
         <div className={styles.confirmWrapper}>
-          <DeleteTeam close={() => closeHandler()} />
+          <DeleteTeam close={closeHandler} />
         </div>
       </Modal>
 
@@ -128,8 +138,8 @@ const Team = () => {
         <ChangeModerator />
       </Modal>
 
-      <Modal show={showOwnerModal} onClose={() => closeHandler()}>
-        <ChangeOwner onClose={() => closeHandler()} />
+      <Modal show={showOwnerModal} onClose={closeHandler}>
+        <ChangeOwner />
       </Modal>
 
       <ViewWithSidebar>

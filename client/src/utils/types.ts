@@ -24,6 +24,7 @@ export interface Member {
   userName: string;
 }
 export interface TeamData {
+  _id: string;
   description: string;
   members: Member[];
   moderatorsId: string[];
@@ -35,6 +36,7 @@ export interface TeamData {
 }
 
 export const baseTeamSetup: TeamData = {
+  _id: '',
   description: "",
   members: [],
   moderatorsId: [],
