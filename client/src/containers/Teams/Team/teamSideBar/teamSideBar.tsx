@@ -37,6 +37,9 @@ const TeamSidebar = () => {
   const removeStages = useSelector(
     (state: RootState) => state.removeTeamMember
   );
+  const removePendingStages = useSelector(
+    (state: RootState) => state.removePendingUser
+  );
 
   // import list of teams and projects of current active team
   const changeTeam = (e: any) => {
@@ -54,6 +57,7 @@ const TeamSidebar = () => {
     teamId,
     changeModeratorState.success,
     removeStages.success,
+    removePendingStages.success,
   ]);
 
   return (

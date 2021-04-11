@@ -58,7 +58,7 @@ export const findUserFetch = (email: string, teamId: string): AppThunk => async 
     })
     .then((res) => {
       dispatch(success(res.data));
-      dispatch(addMemberFetch(teamId,{id: res.data._id}));
+      dispatch(addMemberFetch(teamId,{id: res.data._id, name: res.data.name}));
     })
     .catch((err) => {
       dispatch(failed(err));

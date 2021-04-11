@@ -21,7 +21,14 @@ const teamSchema = new mongoose.Schema({
     required: true,
   },
   pendingUsers: {
-    type: [mongoose.Schema.Types.ObjectId],
+    _id: false,
+    type: [
+      {
+        _id: false,
+        userId: mongoose.Schema.Types.ObjectId,
+        userName: String,
+      },
+    ],
     required: true,
     default: [],
   },
