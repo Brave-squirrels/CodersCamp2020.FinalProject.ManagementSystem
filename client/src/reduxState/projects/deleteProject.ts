@@ -54,9 +54,6 @@ export const deleteProjectFetch = (teamId:string, projectId:string) : AppThunk =
     })
     .then(res=>{
         dispatch(success());
-        setTimeout(() => {
-            dispatch(reset());
-        }, 2000);
     })
     .catch(err=>{
         dispatch(failed(err));

@@ -51,9 +51,6 @@ export const deleteTeamFetch = (teamId: string) : AppThunk => async (dispatch) =
       })
       .then((res) => {
        dispatch(success());
-       setTimeout(() => {
-        dispatch(reset());
-    }, 2000);
       })
       .catch((err) => {
         dispatch(failed(err));

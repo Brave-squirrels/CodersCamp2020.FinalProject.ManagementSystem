@@ -45,6 +45,7 @@ const Team = () => {
     (state: RootState) => state.changeTeamTitle
   );
   const changeOwner = useSelector((state: RootState) => state.changeTeamOwner);
+  const deleteTeam = useSelector((state: RootState) => state.deleteTeam);
 
   const moderatorsList = state.team.moderatorsId.map((moderatorId: string) =>
     state.team.members.map((member: types.Member) => (
@@ -69,7 +70,12 @@ const Team = () => {
 
   useEffect(() => {
     closeHandler();
-  }, [changeDesc.success, changeTitleState.success, changeOwner.success]);
+  }, [
+    changeDesc.success,
+    changeTitleState.success,
+    changeOwner.success,
+    deleteTeam.success,
+  ]);
 
   const isModerator = state.team.moderatorsId.includes(
     localStorage.getItem("id")!
