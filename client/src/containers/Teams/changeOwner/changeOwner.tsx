@@ -63,7 +63,7 @@ const ChangeOwner = () => {
       <div className={styles.wrapper}>
         <div className={styles.members}>
           <h2>Members</h2>
-          {teamMembers.map((member: types.Member) => (
+          {(teamMembers.length > 0) ? teamMembers.map((member: types.Member) => (
             <div key={member.userId}>
               <div>{member.userName}</div>
               <div
@@ -76,7 +76,7 @@ const ChangeOwner = () => {
                 Promote
               </div>
             </div>
-          ))}
+          )) : <p className={styles.noUsers}> No members to promote </p>}
         </div>
       </div>
     </>

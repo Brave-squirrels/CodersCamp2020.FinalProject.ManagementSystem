@@ -32,7 +32,9 @@ const RemoveMembers = () => {
         <Spinner />
       ) : (
         <>
-          {teamData.members
+        <h2>Members</h2>
+        
+          {(teamData.members.length > 1) ? teamData.members
             .filter(
               (member: types.Member) => member.userId !== teamData.ownerId
             )
@@ -45,7 +47,8 @@ const RemoveMembers = () => {
                   onClick={() => removeHandler(member.userId)}
                 />
               </div>
-            ))}
+            )) : <p className={styles.noUsers}>No members in team</p>
+          }
           {removeStages.error && (
             <ErrorHandler>{removeStages.error.response.data}</ErrorHandler>
           )}

@@ -37,7 +37,7 @@ const ChangeModerator = () => {
         <div className={styles.wrapper}>
           <div className={styles.moderators}>
             <h2>Moderators</h2>
-            {state.team.members
+            {(state.team.moderatorsId.length > 1) ? state.team.members
               .filter(
                 (member: types.Member) =>
                   state.team.moderatorsId.includes(member.userId) &&
@@ -53,11 +53,11 @@ const ChangeModerator = () => {
                     Degrade
                   </div>
                 </div>
-              ))}
+              )) : <p className={styles.noUsers}> No moderators to degrade </p>}
           </div>
           <div className={styles.members}>
             <h2>Members</h2>
-            {state.team.members
+            {(state.team.members.length-state.team.moderatorsId.length > 0) ? state.team.members
               .filter(
                 (member: types.Member) =>
                   !state.team.moderatorsId.includes(member.userId) &&
@@ -73,7 +73,8 @@ const ChangeModerator = () => {
                     Promote
                   </div>
                 </div>
-              ))}
+              )) : <p className={styles.noUsers}> No members to promote </p>
+            }
           </div>
         </div>
       )}

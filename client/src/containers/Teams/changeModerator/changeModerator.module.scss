@@ -20,6 +20,7 @@
   padding: 0 30px;
   margin: 0 0px;
   & > div {
+    min-width: 200px;
     padding: 0.4em 0.6em;
     box-shadow: $cardShadow;
     display: flex;
@@ -45,9 +46,17 @@
 .members {
   padding: 0 30px;
   & > div {
+    min-width: 200px;
     box-shadow: $cardShadow;
     padding: 0.4em 0.6em;
     display: flex;
     justify-content: space-between;
   }
+  
+}
+
+.noUsers{
+  font-size: 1.3em;
+  text-align: center;
+  color: $secondFontColor;
 }

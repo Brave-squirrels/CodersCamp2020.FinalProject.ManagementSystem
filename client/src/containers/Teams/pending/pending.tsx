@@ -32,7 +32,8 @@ const Pending = () => {
         <Spinner />
       ) : (
         <>
-          {teamData.pendingUsers.map((member: any) => (
+        <h2>Invited users</h2>
+          {(teamData.pendingUsers.length > 0) ? teamData.pendingUsers.map((member: any) => (
             <div className={styles.memberWrapper}>
               <span className={styles.memberName}>{member.userName}</span>
               <FontAwesomeIcon
@@ -41,7 +42,7 @@ const Pending = () => {
                 onClick={() => removeHandler(member.userId)}
               />
             </div>
-          ))}
+          )): <p className={styles.noUsers}> No invited users </p>}
           {removeStages.error && (
             <ErrorHandler>{removeStages.error.response.data}</ErrorHandler>
           )}
