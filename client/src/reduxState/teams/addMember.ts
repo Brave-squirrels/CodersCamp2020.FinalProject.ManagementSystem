@@ -1,4 +1,3 @@
-import { Satellite } from "@material-ui/icons";
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "../../axios/axiosMain";
 import { AppThunk, RootState } from "../store";

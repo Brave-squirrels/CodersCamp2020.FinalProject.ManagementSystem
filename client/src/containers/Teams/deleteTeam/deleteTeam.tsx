@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import * as types from "utils/types";
@@ -12,7 +12,7 @@ import AlignVert from "hoc/alignVert/alignVert";
 import styles from "./deleteTeam.module.scss";
 
 import { RootState } from "reduxState/store";
-import { deleteTeamFetch } from "reduxState/teams/deleteTeam";
+import { deleteTeamFetch, reset } from "reduxState/teams/deleteTeam";
 
 interface Props {
   close: () => void;
@@ -29,9 +29,14 @@ const DeleteTeam = (props: Props) => {
     dispatch(deleteTeamFetch(teamId));
   };
 
-  if (deleteTeam.success) {
-    history.push("/");
-  }
+  useEffect(() => {
+    return () => {
+      if (deleteTeam.success) {
+        history.push("/");
+        dispatch(reset());
+      }
+    };
+  }, [deleteTeam.success, dispatch, history]);
 
   return (
     <>

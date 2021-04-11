@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useParams } from "react-router-dom";
@@ -10,7 +10,7 @@ import Button from "components/UI/formElements/button/button";
 import AlignVert from "hoc/alignVert/alignVert";
 
 import { RootState } from "reduxState/store";
-import { deleteProjectFetch } from "reduxState/projects/deleteProject";
+import { reset, deleteProjectFetch } from "reduxState/projects/deleteProject";
 
 import styles from "./deleteProject.module.scss";
 
@@ -28,9 +28,14 @@ const DeleteProject = (props: Props) => {
     dispatch(deleteProjectFetch(teamId, projectId));
   };
 
-  if (deleteStages.success) {
-    history.push(`/teams/${teamId}`);
-  }
+  useEffect(() => {
+    return () => {
+      if (deleteStages.success) {
+        history.push("/");
+        dispatch(reset());
+      }
+    };
+  }, [deleteStages.success, dispatch, history]);
 
   return (
     <AlignVert>
