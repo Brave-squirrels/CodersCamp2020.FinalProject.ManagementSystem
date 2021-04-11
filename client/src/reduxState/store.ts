@@ -43,6 +43,7 @@ import findUser from './teams/findUser';
 import changeTeamOwner from './teams/changeOwner';
 import changeTeamModerator from './teams/changeModerators';
 import removeTeamMember from './teams/removeMember';
+import removePendingUser from './teams/removePending';
 
 import thunk from "redux-thunk";
 
@@ -87,6 +88,7 @@ export const store = configureStore({
     changeTeamOwner,
     changeTeamModerator,
     removeTeamMember,
+    removePendingUser,
   },
   middleware: [
     ...getDefaultMiddleware({

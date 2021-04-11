@@ -4,6 +4,7 @@ import { AppThunk, RootState } from "../store";
 
 interface Data {
   id: string;
+  name: string;
 }
 
 interface State {
@@ -36,16 +37,11 @@ export const addTeamMember = createSlice({
       state.loading = false;
       state.error = action.payload;
       state.success = false;
-    },
-    reset: (state)=>{
-      state.loading = false;
-      state.error = null;
-      state.success = false;
     }
   },
 });
 
-export const { start, success, failed, reset } = addTeamMember.actions;
+export const { start, success, failed } = addTeamMember.actions;
 
 export const addMemberFetch = (teamId: string, data: Data): AppThunk => async (
   dispatch
@@ -57,9 +53,6 @@ export const addMemberFetch = (teamId: string, data: Data): AppThunk => async (
     })
     .then((res) => {
       dispatch(success());
-      setTimeout(() => {
-        dispatch(reset());
-      }, 2000);
     })
     .catch((err) => {
       dispatch(failed(err));

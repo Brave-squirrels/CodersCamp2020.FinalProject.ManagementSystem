@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
 import members from "../../interfaces/teamMembers.interface";
+import PendingUser from '../../interfaces/pendingUser.interface';
 
 const addPending = async (req: Request, res: Response) => {
   
@@ -18,9 +19,12 @@ const addPending = async (req: Request, res: Response) => {
   if (membersIdArr.includes(req.body.id))
     return res.status(StatusCodes.BAD_REQUEST).send("User is already in team");
 
+
+  const check = team.pendingUsers.filter((user:PendingUser)=>user.userId==req.body.id)
+
   //check if user is already in pending 
-  if (!team.pendingUsers.includes(req.body.id)) {
-    team.pendingUsers.push(req.body.id);
+  if (check.length < 1) {
+    team.pendingUsers.push({userId: req.body.id, userName: req.body.name});
 
     //Add team to user invitation array 
     user.teamInvitation.push({ _id: false, teamId: team.id, teamName: team.teamName });

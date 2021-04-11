@@ -24,6 +24,7 @@ import LeaveTeam from "containers/Teams/leaveTeam/leaveTeam";
 import DeleteTeam from "containers/Teams/deleteTeam/deleteTeam";
 import CreateProject from "containers/Projects/createProject/createProject";
 import RemoveMembers from "containers/Teams/removeMembers/removeMembers";
+import Pending from "containers/Teams/pending/pending";
 
 import { RootState } from "reduxState/store";
 
@@ -37,6 +38,7 @@ const Team = () => {
   const [showDeleteTeamModal, setShowDeleteTeamModal] = useState(false);
   const [createProjectModal, setCreateProjectModal] = useState(false);
   const [showRemoveMemberModal, setShowRemoveMemberModal] = useState(false);
+  const [showPendingModal, setShowPendingModal] = useState(false);
 
   const state = useSelector((state: RootState) => state.singleTeamData);
 
@@ -66,6 +68,7 @@ const Team = () => {
     setShowDeleteTeamModal(false);
     setShowOwnerModal(false);
     setShowRemoveMemberModal(false);
+    setShowPendingModal(false);
   };
 
   useEffect(() => {
@@ -85,6 +88,9 @@ const Team = () => {
 
   return (
     <>
+      <Modal show={showPendingModal} onClose={closeHandler}>
+        <Pending />
+      </Modal>
       <Modal show={showMemberModal} onClose={closeHandler}>
         <AddMember />
       </Modal>
@@ -209,6 +215,10 @@ const Team = () => {
                     <ChangeButton
                       title="Remove members"
                       clicked={() => setShowRemoveMemberModal(true)}
+                    />
+                    <ChangeButton
+                      title="Remove invite"
+                      clicked={() => setShowPendingModal(true)}
                     />
                   </>
                 )}
