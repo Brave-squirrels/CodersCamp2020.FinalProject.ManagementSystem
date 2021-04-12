@@ -65,15 +65,6 @@ const ForgotPassword = () => {
       {reduxState.loading ? (
         <Spinner />
       ) : reduxState.success ? (
-        <FormStructure
-          state={forgot}
-          setState={setForgot}
-          btnText="RESET"
-          formTitle="Reset password"
-          submitted={sendResetPassword}
-          checkPass={false}
-        />
-      ) : (
         <form
           className={styles.notificationSuccess}
           onSubmit={(e) => goBackHandler(e)}
@@ -85,6 +76,15 @@ const ForgotPassword = () => {
             img={checkMark}
           />
         </form>
+      ) : (
+        <FormStructure
+          state={forgot}
+          setState={setForgot}
+          btnText="RESET"
+          formTitle="Reset password"
+          submitted={sendResetPassword}
+          checkPass={false}
+        />
       )}
 
       {reduxState.error && (
