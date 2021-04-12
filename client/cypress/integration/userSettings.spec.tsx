@@ -19,15 +19,17 @@ Cypress.Commands.add(
   "changePassword",
   (oldPassword, newPasswordFirst, newPasswordSecond = newPasswordFirst) => {
     cy.get(
-      ".userSettings_passwordContainer__263iE > :nth-child(1) > .input_inputContainer__3VTNa > .input_input__1qfDZ"
+      "[class*=passwordContainer]  > :nth-child(1) > [class*=input_inputContainer]  > [class*=input_input] "
     )
       .clear()
       .type(oldPassword);
-    cy.get(":nth-child(2) > .input_inputContainer__3VTNa > .input_input__1qfDZ")
+    cy.get(
+      ":nth-child(2) > [class*=input_inputContainer]  > [class*=input_input] "
+    )
       .clear()
       .type(newPasswordFirst);
     cy.get(
-      ".userSettings_passwordContainer__263iE > :nth-child(3) > .input_inputContainer__3VTNa > .input_input__1qfDZ"
+      "[class*=passwordContainer]  > :nth-child(3) > [class*=input_inputContainer]  > [class*=input_input] "
     )
       .clear()
       .type(newPasswordSecond);
@@ -44,51 +46,45 @@ describe("test the user settings panel", () => {
   });
 
   it("should change button text after click", () => {
-    cy.contains(
-      ".userSettings_btnReset__hianq > .button_button__2FNsC",
-      "EDIT"
-    );
-    cy.get(".userSettings_btnReset__hianq > .button_button__2FNsC").click();
-    cy.contains(
-      ".userSettings_btnShift__dkIzf > .button_button__2FNsC",
-      "SAVE"
-    );
-    cy.get(".userSettings_btnShift__dkIzf > .button_button__2FNsC").click();
+    cy.contains("[class*=btnReset] > [class*=button]", "EDIT");
+    cy.get("[class*=btnReset] > [class*=button]").click();
+    cy.contains("[class*=btnShift] > [class*=button]", "SAVE");
+    cy.get("[class*=btnShift] > [class*=button]").click();
   });
 
   it("should change user name", () => {
     // eslint-disable-next-line jest/valid-expect-in-promise
     cy.get(
-      ".userSettings_name__iFYsG > .input_inputContainer__3VTNa > .input_input__1qfDZ"
+      "[class*=name] > [class*=inputContainer] > [class*=input_input] "
     ).then((res: any) => {
       const prevName = res[0].value;
       // cancel change name
-      cy.get(".userSettings_btnReset__hianq > .button_button__2FNsC").click();
+      cy.get("[class*=btnReset] > [class*=button]").click();
       cy.get(
-        ".userSettings_name__iFYsG > .input_inputContainer__3VTNa > .input_input__1qfDZ"
+        "[class*=name] > [class*=inputContainer] > [class*=input_input] "
       ).type("a");
-      cy.get(".svg-inline--fa").click();
-      cy.get(".userSettings_btnReset__hianq > .button_button__2FNsC").click();
+      cy.get("[class*=svg]").click();
+      cy.get("[class*=btnReset] > [class*=button]").click();
       cy.get(`[value="${prevName}"]`).should("exist");
 
       // change name
       cy.get(
-        ".userSettings_name__iFYsG > .input_inputContainer__3VTNa > .input_input__1qfDZ"
+        "[class*=name] > [class*=inputContainer] > [class*=input_input] "
       ).type("a");
-      cy.get(".userSettings_btnShift__dkIzf > .button_button__2FNsC").click();
+      cy.get("[class*=btnShift] > [class*=button]").click();
 
       // verification of the change
       cy.get(`[value="${prevName}"]`).should("not.exist");
 
       // restore to the previous value
-      cy.get(".userSettings_btnReset__hianq > .button_button__2FNsC").click();
+      cy.get("[class*=btnReset] > [class*=button]").click();
       cy.get(
-        ".userSettings_name__iFYsG > .input_inputContainer__3VTNa > .input_input__1qfDZ"
+        "[class*=name] > [class*=inputContainer] > [class*=input_input] "
       ).clear();
       cy.get(
-        ".userSettings_name__iFYsG > .input_inputContainer__3VTNa > .input_input__1qfDZ"
+        "[class*=name] > [class*=inputContainer] > [class*=input_input] "
       ).type(prevName);
-      cy.get(".userSettings_btnShift__dkIzf > .button_button__2FNsC").click();
+      cy.get("[class*=btnShift] > [class*=button]").click();
     });
   });
 
@@ -99,44 +95,36 @@ describe("test the user settings panel", () => {
     // check for invalid password
     // @ts-ignore
     cy.changePassword("11111111", newPassword);
-    cy.get(
-      ".userSettings_passwordContainer__263iE > .button_button__2FNsC"
-    ).click();
-    cy.contains(".errorHandler_errorContainer__sj49a", "Invalid password.");
+    cy.get("[class*=passwordContainer] > [class*=button]").click();
+    cy.contains("[class*=errorContainer] ", "Invalid password.");
 
     // check for invalid new password
     // @ts-ignore
     cy.changePassword(oldPassword, "11111111", "22222222");
-    cy.get(
-      ".userSettings_passwordContainer__263iE > .button_button__2FNsC"
-    ).click();
+    cy.get("[class*=passwordContainer] > [class*=button]").click();
     cy.contains(
-      ".errorHandler_errorContainer__sj49a",
+      "[class*=errorContainer] ",
       "New password and confirm password must be the same."
     );
 
     // chagne password
     // @ts-ignore
     cy.changePassword(oldPassword, newPassword);
-    cy.get(
-      ".userSettings_passwordContainer__263iE > .button_button__2FNsC"
-    ).click();
-    cy.get(".userSettings_success__1Uzbp").should("exist");
-    cy.get(".userSettings_modal__3md16 > div > .button_button__2FNsC").click();
+    cy.get("[class*=passwordContainer] > [class*=button]").click();
+    cy.get("[class*=success] ").should("exist");
+    cy.get("[class*=modal]  > div > [class*=button] ").click();
 
     // restore to the previous password
     // @ts-ignore
     cy.changePassword(newPassword, oldPassword);
-    cy.get(
-      ".userSettings_passwordContainer__263iE > .button_button__2FNsC"
-    ).click();
-    cy.get(".modal_modalClose__lWcXi").click();
+    cy.get("[class*=passwordContainer] > [class*=button]").click();
+    cy.get("[class*=modalClose] ").click();
   });
 
   it("should display modal when click delete account", () => {
     cy.contains("p", "Delete account").click();
-    cy.get(".userSettings_modal__3md16 > div > :nth-child(1)").click();
+    cy.get("[class*=userSettings_modal]  > div > :nth-child(1)").click();
     cy.contains("p", "Delete account").click();
-    cy.get(".modal_modalClose__lWcXi").click();
+    cy.get("[class*=modalClose] ").click();
   });
 });
