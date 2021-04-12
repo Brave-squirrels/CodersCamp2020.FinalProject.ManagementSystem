@@ -78,45 +78,40 @@ const ResetPassword = () => {
     dispatch(changePasswordLanding(data, token));
   };
 
-  let resetPasswordContent: JSX.Element = (
-    <FormStructure
-      state={password}
-      setState={setPassword}
-      btnText="SEND"
-      formTitle="Change password"
-      submitted={sendChangePasswordMail}
-      checkPass={true}
-    />
-  );
-  if (reduxState.loading) {
-    resetPasswordContent = <Spinner />;
-  }
-  if (reduxState.success) {
-    resetPasswordContent = (
-      <form
-        className={styles.notificationSuccess}
-        onSubmit={(e) => goBackHandler(e)}
-      >
-        <Notification
-          title="You have successfully reset your password"
-          subTitle="Go back to the main page to sign in!"
-          btnText="GO BACK"
-          img={checkMark}
-        />
-      </form>
-    );
-  }
-
   /* Return statement */
   return (
     <div className={styles.forgotContainer}>
       <div className={styles.goBackBtn}>
         <Button clicked={goBackHandler}>Go back</Button>
       </div>
-      {resetPasswordContent}
-      {reduxState.error ? (
+
+      {reduxState.loading ? (
+        <Spinner />
+      ) : reduxState.success ? (
+        <form
+          className={styles.notificationSuccess}
+          onSubmit={(e) => goBackHandler(e)}
+        >
+          <Notification
+            title="You have successfully reset your password"
+            subTitle="Go back to the main page to sign in!"
+            btnText="GO BACK"
+            img={checkMark}
+          />
+        </form>
+      ) : (
+        <FormStructure
+          state={password}
+          setState={setPassword}
+          btnText="SEND"
+          formTitle="Change password"
+          submitted={sendChangePasswordMail}
+          checkPass={true}
+        />
+      )}
+      {reduxState.error && (
         <ErrorHandler>{reduxState.error.response.data}</ErrorHandler>
-      ) : null}
+      )}
     </div>
   );
 };

@@ -5,7 +5,7 @@ import { Request, Response } from "express";
 import validateNote from "./validateNote";
 
 const createNewNote = async (req: Request, res: Response) => {
-  const noteData: Note = { projectId: req.params.projectId, ...req.body };
+  const noteData: Note = { projectId: req.params.projectId, ...req.body, author: {name: req.userInfo.name, id: req.userInfo._id} };
 
   const { error } = validateNote(noteData);
   if (error)

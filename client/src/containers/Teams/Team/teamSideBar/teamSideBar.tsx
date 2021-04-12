@@ -25,6 +25,22 @@ const TeamSidebar = () => {
   const user = useSelector((state: RootState) => state.login.userInformation);
   const userTeam = useSelector((state: RootState) => state.singleTeamData);
 
+  const changeDesc = useSelector((state: RootState) => state.changeTeamDesc);
+  const changeTitleState = useSelector(
+    (state: RootState) => state.changeTeamTitle
+  );
+  const addPending = useSelector((state: RootState) => state.addTeamMember);
+  const changeOwner = useSelector((state: RootState) => state.changeTeamOwner);
+  const changeModeratorState = useSelector(
+    (state: RootState) => state.changeTeamModerator
+  );
+  const removeStages = useSelector(
+    (state: RootState) => state.removeTeamMember
+  );
+  const removePendingStages = useSelector(
+    (state: RootState) => state.removePendingUser
+  );
+
   // import list of teams and projects of current active team
   const changeTeam = (e: any) => {
     history.push(`/teams/${e.target.id}`);
@@ -32,50 +48,63 @@ const TeamSidebar = () => {
 
   useEffect(() => {
     dispatch(fetchTeam(teamId));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [teamId]);
+  }, [
+    changeDesc.success,
+    changeTitleState.success,
+    changeOwner.success,
+    addPending.success,
+    dispatch,
+    teamId,
+    changeModeratorState.success,
+    removeStages.success,
+    removePendingStages.success,
+  ]);
 
   return (
     <SideBar title={"Your teams"}>
       <PrimaryList>
         {user.teams ? (
-          user.teams.map((team: any) => (
-            <>
-              {team.id === teamId ? (
-                <LiItem teamId={team.id}>
-                  <PrimaryActiveItem name={team.name} />
-                  <SecondaryList>
-                    {userTeam.team.projects ? (
-                      userTeam.team.projects.map((project: any) => (
-                        <>
-                          <NavLink
-                            to={`/teams/${teamId}/projects/${project.id}`}
-                            exact
-                            className={classes.navLink}
-                            key={project.id}
-                          >
-                            <SecondaryItem
-                              id={project.id}
-                              name={project.name}
-                            />
-                          </NavLink>
-                        </>
-                      ))
-                    ) : (
-                      <SpinnerLight />
-                    )}
+          user.teams.map((team: any) => {
+            if (team.id === teamId) {
+              return (
+                <LiItem teamId={`${team.id}LiTem`} key={team.id}>
+                  <PrimaryActiveItem name={team.name} key={`${team.id}pri`} />
+
+                  <SecondaryList key={`${team.id}List`}>
+                    {userTeam.team.projects &&
+                      user.projects.map((project: any) => {
+                        if (project.teamId === teamId) {
+                          return (
+                            <NavLink
+                              to={`/teams/${teamId}/projects/${project.id}`}
+                              exact
+                              className={classes.navLink}
+                              key={project.id}
+                            >
+                              <SecondaryItem
+                                id={project.id}
+                                name={project.name}
+                                key={project.id}
+                              />
+                            </NavLink>
+                          );
+                        }
+                        return null;
+                      })}
                   </SecondaryList>
                 </LiItem>
-              ) : (
+              );
+            } else {
+              return (
                 <PrimaryInactiveItem
                   key={team.id}
                   id={team.id}
                   name={team.name}
                   clickHandler={changeTeam}
                 />
-              )}
-            </>
-          ))
+              );
+            }
+          })
         ) : (
           <SpinnerLight />
         )}

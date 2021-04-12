@@ -13,7 +13,7 @@ const validateProject = (project: Project) => {
       name: Joi.string().min(3).max(24).required(),
     }),
     deadline: Joi.date().min(new Date()).required(),
-    description: Joi.string().min(0).max(254),
+    content: Joi.string().min(0).max(254),
   });
 
   return schema.validate(project);

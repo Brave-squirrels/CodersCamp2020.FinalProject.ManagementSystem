@@ -1,0 +1,62 @@
+@import "../../../styles/variables.scss";
+
+.wrapper {
+  color: $secondFontColor;
+  height: 90%;
+  display: grid;
+  & > div {
+    width: 80%;
+  }
+
+  h2 {
+    text-align: center;
+    color: $fontBlue;
+    font-weight: 500;
+    border-bottom: 1px solid $fontBlue;
+  }
+}
+
+.moderators {
+  padding: 0 30px;
+  margin: 0 0px;
+  & > div {
+    min-width: 200px;
+    padding: 0.4em 0.6em;
+    box-shadow: $cardShadow;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.degrade {
+  cursor: pointer;
+  color: $invalidInputBorder;
+  font-weight: 600;
+}
+.promote {
+  margin-left: 30px;
+  cursor: pointer;
+  color: $fontLightGreen;
+  font-weight: 600;
+  &:hover {
+    color: $fontActive;
+  }
+}
+
+.members {
+  padding: 0 30px;
+  & > div {
+    min-width: 200px;
+    box-shadow: $cardShadow;
+    padding: 0.4em 0.6em;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+}
+
+.noUsers{
+  font-size: 1.3em;
+  text-align: center;
+  color: $secondFontColor;
+}

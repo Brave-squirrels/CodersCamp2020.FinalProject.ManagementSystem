@@ -22,6 +22,10 @@ const input: FunctionComponent<Props> = (props) => {
     inputClasses = [styles.inputContainer, styles.invalidInput];
   }
 
+  if (props.validity) {
+    inputClasses = [styles.inputContainer, styles.inputTouched];
+  }
+
   let selectOptions = [];
   if (props.inputType === "select") {
     for (let key in props.stateMain.status.options) {
@@ -39,10 +43,10 @@ const input: FunctionComponent<Props> = (props) => {
             type={props.type}
             value={props.inputValue}
             onChange={props.onChangeInput}
-            required
             disabled={props.turnOff}
             minLength={props.minLength}
             maxLength={props.maxLength}
+            required
           />
           <span className={styles.label}>{props.label}</span>
         </label>
@@ -55,8 +59,8 @@ const input: FunctionComponent<Props> = (props) => {
             className={[styles.input, styles.textarea].join(" ")}
             value={props.inputValue}
             onChange={props.onChangeInput}
-            required
             disabled={props.turnOff}
+            required
           />
           <span className={styles.label}>{props.label}</span>
         </label>
@@ -69,13 +73,17 @@ const input: FunctionComponent<Props> = (props) => {
             name={props.name}
             value={props.inputValue}
             onChange={props.onChangeInput}
-            className={[styles.select, styles.input].join(" ")}
-            required
+            className={[styles.input, styles.select].join(" ")}
             disabled={props.turnOff}
+            required
           >
             {selectOptions.map((option) => {
               return (
-                <option value={option.val} key={option.val}>
+                <option
+                  value={option.val}
+                  key={option.val}
+                  className={styles.option}
+                >
                   {option.name}
                 </option>
               );

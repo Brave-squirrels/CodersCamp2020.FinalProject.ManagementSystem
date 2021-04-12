@@ -51,16 +51,16 @@ export const createUserSlice = createSlice({
     failed: (state, action: PayloadAction<Action>) => {
       state.loading = false;
       state.success = false;
-      state.error = action.payload as any;
+      state.error = action.payload;
     },
   },
 });
 
 export const { create, success, failed } = createUserSlice.actions;
 
-export const createUser = (data: PostData): AppThunk => (dispatch) => {
+export const createUser = (data: PostData): AppThunk => async (dispatch) => {
   dispatch(create());
-  axios
+  await axios
     .post("/users/create", data)
     .then((res) => {
       dispatch(success());

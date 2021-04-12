@@ -2,9 +2,9 @@
 .secondaryList {
   text-align: center;
   list-style: none;
-  color: $secondFontColor;
   margin: 0.5em 0 0 0;
   padding: 0;
+  height: auto;
   & li {
     color: $secondFontColor;
     text-decoration: none;

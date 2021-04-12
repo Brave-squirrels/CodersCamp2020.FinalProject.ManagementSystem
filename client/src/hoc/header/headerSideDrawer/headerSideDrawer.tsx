@@ -25,7 +25,6 @@ const ResHeader: FunctionComponent = () => {
 
   return (
     <div className={attachedClasses.join(" ")}>
-      <img src={logo} alt="Site logo" className={styles.logo} />
       <img
         src={hamburger}
         className={styles.hamburger}
@@ -33,10 +32,28 @@ const ResHeader: FunctionComponent = () => {
         alt="hamburger"
       />
       <ul className={styles.navList}>
-        <NavigationItem path="/teams">Teams</NavigationItem>
-        <NavigationItem path="/teaminvites">Team invites</NavigationItem>
-        <NavigationItem path="/logout">Logout</NavigationItem>
-        <NavigationItem path="/settings">
+        <NavigationItem path="/" clicked={() => dispatch(clickHamburger())}>
+          <img src={logo} alt="Site logo" className={styles.logo} />
+        </NavigationItem>
+        <NavigationItem path="/" clicked={() => dispatch(clickHamburger())}>
+          Home
+        </NavigationItem>
+        <NavigationItem
+          path="/teaminvites"
+          clicked={() => dispatch(clickHamburger())}
+        >
+          Team invites
+        </NavigationItem>
+        <NavigationItem
+          path="/logout"
+          clicked={() => dispatch(clickHamburger())}
+        >
+          Logout
+        </NavigationItem>
+        <NavigationItem
+          path="/settings"
+          clicked={() => dispatch(clickHamburger())}
+        >
           <img
             src={settings}
             alt="User settings"

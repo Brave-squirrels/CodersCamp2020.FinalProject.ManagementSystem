@@ -1,40 +1,19 @@
 const Joi = require("joi-oid");
 import ROLES from '../../enums/projectRoles';
 
-export const validateTaskUsers = (member: Object) => {
-    const schema = Joi.object({
-      member: Joi.object({
-            id: Joi.objectId().required(),
-            name: Joi.string().min(3).max(24).required(),
-            role: Joi.string()
-            .valid(
-                ROLES.BACKENDDEV,
-                ROLES.DESIGNER,
-                ROLES.FRONTENDDEV,
-                ROLES.NORMAL,
-                ROLES.QAENGINEER,
-                ROLES.SCRUMMASTER,
-                ROLES.OWNER
-            ).required()
-        }),
-        delete: Joi.boolean(),
-    })
-    return schema.validate(member);
-};
+import Data from '../../interfaces/taskMemberUpdate.interface';
 
-export const firstPartAuth = (member: Object) => {
+export const firstPartAuth = (data: Data) => {
     const schema = Joi.object({
       member: Joi.object({
         id: Joi.objectId().required(),
         role: Joi.string()
           .valid(
             ROLES.BACKENDDEV,
-            ROLES.DESIGNER,
             ROLES.FRONTENDDEV,
-            ROLES.NORMAL,
-            ROLES.QAENGINEER,
-            ROLES.SCRUMMASTER,
-            ROLES.OWNER
+            ROLES.OWNER,
+            ROLES.DEVOPS,
+            ROLES.DESIGNER,
           )
           .required(),
         name: Joi.string().min(3).max(24),
@@ -42,5 +21,5 @@ export const firstPartAuth = (member: Object) => {
       delete: Joi.boolean(),
     });
   
-    return schema.validate(member);
+    return schema.validate(data);
   };

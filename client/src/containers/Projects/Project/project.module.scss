@@ -1,48 +1,63 @@
 @import "styles/variables.scss";
 
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-
-.rightSideWrapper {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  height: 95%;
-  width: 100%;
-}
-
-.title {
-  color: $secondFontColor;
-  font-weight: 600;
-}
-
 .container {
-  width: 55vmax;
-  height: 35vmax;
+  width: 65vmax;
+  height: 70vh;
   display: grid;
   color: $secondFontColor;
   grid-gap: 0.5em;
   grid-template-columns: 1fr 1fr 1fr;
   text-align: center;
-  
 
-
-& > :first-child {
-  display: grid;
-  grid-gap: 0.5em;
-  grid-template-rows: 1.7fr 1fr 1fr 1fr;
+  & > :last-child {
+    display: grid;
+    grid-gap: 0.5em;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    @media (max-width: 1100px) {
+      padding-bottom: 2em;
+    }
+  }
 }
 
+@media only screen and (max-width: 1100px) {
+  .container {
+    grid-template-rows: 5fr 1fr 3fr;
+    grid-template-columns: 2fr;
+    height: 100%;
+    width: 100%;
+  }
 
-& > :last-child {
-  display: grid;
-  grid-gap: 0.5em;
-  grid-template-rows: 1fr 1fr 1fr;
+  .firstColumn {
+    display: grid;
+    grid-template-rows: 1fr 1fr 2fr;
+  }
 }
 
+a {
+  color: $fontActive;
+  text-decoration: none;
+  &:hover {
+    color: $placeholderColor;
+  }
+}
 
+.memberWrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  padding: 0.2em 2em;
+  .memberRole {
+    color: $fontActive;
+    font-size: 0.9em;
+  }
+}
+
+.buttonsWrapper {
+  position: absolute;
+  @media only screen and (max-height: 700px) {
+    transform: translateY(-5px);
+  }
+  @media only screen and (max-width: 1400px) {
+    transform: translateY(-5px);
+  }
 }

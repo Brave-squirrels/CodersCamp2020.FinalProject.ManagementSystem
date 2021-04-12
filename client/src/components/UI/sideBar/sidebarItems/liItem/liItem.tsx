@@ -2,11 +2,15 @@ import React from "react";
 
 interface Props {
   teamId: string;
-  children: any;
+  children: JSX.Element[];
 }
 
 const liItem = (props: Props) => {
-  return <li id={props.teamId}>{props.children}</li>;
+  return (
+    <li id={props.teamId} key={`${props.teamId}lili`}>
+      {props.children}
+    </li>
+  );
 };
 
 export default liItem;

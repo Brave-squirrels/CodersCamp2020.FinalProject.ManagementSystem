@@ -5,8 +5,9 @@ import styles from "./navigationItem.module.scss";
 
 type Props = {
   path: string;
-  children: any;
+  children: JSX.Element | JSX.Element[] | string;
   activeClass?: string;
+  clicked?: () => void;
 };
 
 const navigationItem: FunctionComponent<Props> = (props) => {
@@ -18,6 +19,7 @@ const navigationItem: FunctionComponent<Props> = (props) => {
         activeClassName={
           props.activeClass ? styles[props.activeClass] : styles.active
         }
+        onClick={props.clicked}
       >
         {props.children}
       </NavLink>

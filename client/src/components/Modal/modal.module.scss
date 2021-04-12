@@ -1,17 +1,15 @@
 @import "../../styles/variables.scss";
 .modalCon {
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
   background: $backgroundModal;
-  justify-content: center;
-  align-items: center;
   @include scrollbar;
   overflow-y: auto;
   display: none;
-  z-index: 1;
+  z-index: 9999;
 }
 .modalContent {
   width: 50%;
@@ -20,11 +18,16 @@
   box-shadow: $cardConShadow;
   border-radius: 4px;
   background: $backgroundDark;
-  position: relative;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   padding: 0.5em;
+  overflow-y: auto;
+  @include scrollbar;
 }
 .display {
-  display: flex;
+  display: block;
 }
 
 .modalClose {

@@ -1,14 +1,17 @@
 import React, { FunctionComponent, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "reduxState/store";
+import * as types from "utils/types";
 
 import Card from "components/UI/Card/card";
 import CardContainer from "components/UI/CardContainer/cardContainer";
-import Button from "components/UI/formElements/button/button";
 import NavigationItem from "components/UI/navigationItem/navigationItem";
 import SpinnerLight from "components/UI/spinnerLight/spinner";
 import Modal from "components/Modal/modal";
 import CreateTeam from "../Teams/createTeam/createTeam";
+import AddNew from "components/UI/addNew/addNew";
+import EmptyNotification from "components/UI/emptyNotification/emptyNotification";
+
 import classes from "./user.module.scss";
 
 const UserTeams: FunctionComponent = () => {
@@ -24,13 +27,16 @@ const UserTeams: FunctionComponent = () => {
         </>
       </Modal>
       <CardContainer title="Your Teams">
+        <div className={classes.createTeamWrapper}>
+          <AddNew clicked={() => setShowModal(true)} title={"New"} />
+        </div>
         <div className={classes.innerWrapper}>
           {userStages.loading ? (
             <SpinnerLight />
           ) : (
             <>
               {user.teams && user.teams.length ? (
-                user.teams.map((el: any) => (
+                user.teams.map((el: types.UserTeam) => (
                   <NavigationItem path={`/teams/${el.id}`} key={el.id}>
                     <Card key={el.id}>
                       <h3 className={classes.cardHeader}>{el.name}</h3>
@@ -38,9 +44,10 @@ const UserTeams: FunctionComponent = () => {
                   </NavigationItem>
                 ))
               ) : (
-                <div>You have not joined any teams yet...</div>
+                <EmptyNotification>
+                  You have not joined any teams yet...
+                </EmptyNotification>
               )}
-              <Button clicked={() => setShowModal(true)}>New Team</Button>
             </>
           )}
         </div>

@@ -5,13 +5,16 @@
   width: 100%;
   font-size: 0.9rem;
   background-color: $backgroundLight;
-  box-shadow: 1px 1px 1px black;
+  box-shadow: $cardShadow;
   display: flex;
   flex-direction: column;
   align-items: center;
   overflow-y: auto;
   scrollbar-width: thin;
   @include scrollbar;
+  @media (max-width: 1100px) {
+    min-height: 200px;
+  }
 }
 
 .tileTitle {
@@ -22,7 +25,17 @@
   padding: 0.3rem 0;
   width: 90%;
 }
+.taskTitle {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5em;
+  text-align: center;
+}
 
 .content {
-  padding: 0.3em;
+  padding: 0.5em;
+  word-break: break-all;
+  width: 100%;
 }

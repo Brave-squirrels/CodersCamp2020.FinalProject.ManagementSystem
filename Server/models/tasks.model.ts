@@ -3,6 +3,24 @@ import { Task } from "../interfaces/task.interface";
 import ROLES from "../enums/projectRoles";
 import TaskSTATUS from '../enums/taskStatus';
 
+const memberSchema = new mongoose.Schema({
+  _id: false,
+      name: {
+        type: String,
+        minlength: 3,
+        maxlength: 24,
+        required: true,
+      },
+      id: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+      },
+      role: {
+        type: ROLES,
+        required: true,
+      },
+})
+
 const taskSchema = new mongoose.Schema({
   projectId: {
     type: mongoose.Schema.Types.ObjectId,
@@ -40,23 +58,7 @@ const taskSchema = new mongoose.Schema({
     default: [],
   },
   members: [
-    {
-      _id: false,
-      name: {
-        type: String,
-        minlength: 3,
-        maxlength: 24,
-        required: true,
-      },
-      id: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-      },
-      role: {
-        type: ROLES,
-        required: true,
-      },
-    },
+    memberSchema
   ],
 });
 

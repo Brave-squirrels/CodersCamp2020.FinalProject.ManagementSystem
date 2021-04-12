@@ -21,6 +21,9 @@ const deleteTeam = async (req: Request, res: Response) => {
 
   //Array of users in team
   const memberArr = teamObj.members;
+
+  //Array of users in pending
+  const pendingArr = teamObj.pendingUsers;
   
   //Array of projects in team     
   const projectsArr : any = teamObj.projects;
@@ -30,6 +33,19 @@ const deleteTeam = async (req: Request, res: Response) => {
     const user = await userModel.findById(member).select("-password");
     return user;
   };
+
+  
+  //Remove invite from user's array
+  pendingArr.forEach((member: any) => {
+    const changedTeam = getUser(member.userId)
+      .then((user: any) => {
+        user.teamInvitation.forEach((teamsId: any, i: number) => {
+          if (teamsId.teamId == teamObj.id) user.teamInvitation.splice(i, 1);
+        });
+        return user;
+      })
+      .then((user) => user.save());
+  });
 
   
   //Remove team and project from user's array

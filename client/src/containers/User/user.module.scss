@@ -12,6 +12,12 @@
   list-style: none;
   padding-bottom: 2rem;
   box-sizing: border-box;
+  li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+  }
 }
 
 .element {
@@ -25,6 +31,7 @@
 }
 
 .cardHeader {
+  word-break: break-all;
   font-size: 1.25rem;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   font-weight: 500;
@@ -32,12 +39,19 @@
 }
 
 .innerWrapper {
+  padding: 0.5em;
   display: grid;
   height: 100%;
   width: 100%;
   grid-template-columns: repeat(2, 1fr);
   grid-auto-rows: 200px;
-  grid-gap: 2em;
+  grid-gap: 4em;
+}
+
+.createTeamWrapper {
+  position: absolute;
+  top: 1em;
+  right: 1em;
 }
 
 @media (max-width: 550px) {

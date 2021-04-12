@@ -21,7 +21,6 @@ const LandingNotLogged = React.lazy(
 const Project = React.lazy(
   () => import("./containers/Projects/Project/project")
 );
-const Teams = React.lazy(() => import("./containers/Teams/Teams/teams"));
 const Team = React.lazy(() => import("./containers/Teams/Team/team"));
 const User = React.lazy(() => import("./containers/User/user"));
 const UserSettings = React.lazy(
@@ -37,12 +36,12 @@ const ForgotPassword = React.lazy(
 const CreateTeam = React.lazy(
   () => import("./containers/Teams/createTeam/createTeam")
 );
-const CreateProject = React.lazy(
-  () => import("./containers/Projects/createProject/createProject")
-);
 const TeamInvites = React.lazy(
   () => import("./containers/teamInvites/teamInvites")
 );
+const Tasks = React.lazy(() => import("./containers/Tasks/tasks"));
+
+const Notes = React.lazy(() => import("./containers/notes/notes"));
 
 const App = () => {
   const loginState = useSelector((state: RootState) => state.login);
@@ -94,18 +93,25 @@ const App = () => {
           <Switch>
             <Route exact path="/" render={() => <User />} />
             <Route exact path="/teams/:teamId" component={Team} />
-            <Route exact path="/teams" component={Teams} />
             <Route exact path="/createTeam" component={CreateTeam} />
             <Route
               exact
               path="/teams/:teamId/projects/:projectId"
               component={Project}
             />
-            <Route exact path="/createProject" component={CreateProject} />
-            <Route exact path="/teams" render={() => <h1>Teams</h1>} />
             <Route exact path="/confirmed" render={() => <Confirmed />} />
             <Route exact path="/teaminvites" render={() => <TeamInvites />} />
             <Route exact path="/settings" render={() => <UserSettings />} />
+            <Route
+              exact
+              path="/teams/:teamId/projects/:projectId/tasks"
+              render={() => <Tasks />}
+            />
+            <Route
+              exact
+              path="/teams/:teamId/projects/:projectId/notes"
+              component={Notes}
+            />
             <Route exact path="/logout" />
             <Route component={ErrorPage} />
           </Switch>

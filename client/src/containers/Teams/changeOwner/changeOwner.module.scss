@@ -1,0 +1,81 @@
+@import "../../../styles/variables.scss";
+
+.confirm {
+  color: $secondFontColor;
+  position: fixed;
+  height: 90%;
+  width: 98%;
+  background-color: $backgroundDark;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.display {
+  display: none;
+}
+
+.confirmWrapper {
+  text-align: center;
+}
+.confirmModal {
+  display: flex;
+  justify-content: space-between;
+  & > Button {
+    margin-left: 10px;
+  }
+}
+
+.wrapper {
+  color: $secondFontColor;
+  height: 90%;
+  display: grid;
+  & > div {
+    width: 80%;
+  }
+
+  h2 {
+    text-align: center;
+    color: $fontBlue;
+    font-weight: 500;
+    border-bottom: 1px solid $fontBlue;
+  }
+}
+
+.moderators {
+  padding: 0 30px;
+  margin: 0 0px;
+  & > div {
+    padding: 5px;
+    box-shadow: $cardShadow;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+.promote {
+  margin-left: 30px;
+  cursor: pointer;
+  color: $fontLightGreen;
+  font-weight: 600;
+  &:hover {
+    color: $fontActive;
+  }
+}
+
+.members {
+  padding: 1em;
+  & > div {
+    padding: 0.4em 0.6em;
+    box-shadow: $cardShadow;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.noUsers{
+  font-size: 1.3em;
+  text-align: center;
+  color: $secondFontColor;
+}

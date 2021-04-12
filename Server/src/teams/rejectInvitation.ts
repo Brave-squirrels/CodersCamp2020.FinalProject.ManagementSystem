@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
+import PendingUser from '../../interfaces/pendingUser.interface';
 
 const removePending = async (req: Request, res: Response) => {
 
@@ -8,8 +9,8 @@ const removePending = async (req: Request, res: Response) => {
   const auth = req.userInfo._id
   
   //Remove user from pending
-  team.pendingUsers.forEach((pendingUser: string, i: number) => {
-    if (pendingUser == auth) team.pendingUsers.splice(i, 1);
+  team.pendingUsers.forEach((pendingUser: PendingUser, i: number) => {
+    if (pendingUser.userId == auth) team.pendingUsers.splice(i, 1);
   });
 
   await team.save();
