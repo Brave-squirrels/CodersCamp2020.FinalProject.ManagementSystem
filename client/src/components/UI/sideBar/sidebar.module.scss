@@ -1,0 +1,66 @@
+@import "../../../styles//variables.scss";
+
+.sideBarHidden {
+  transform: translateX(-90%);
+  & > * {
+    pointer-events: none;
+  }
+  &:hover {
+    cursor: pointer;
+    transform: translateX(-80%);
+    background-color: $sideBarHover;
+    transition: transform 0.1s ease-in;
+
+    @media only screen and (max-width: 800px) {
+      transform: translateX(-90%);
+      background-color: $backgroundLight;
+    }
+  }
+  .sideBarShown {
+    pointer-events: none;
+    transform: translateX(-90%);
+  }
+}
+.sideBarHidden.sideBarShown {
+  overflow: hidden;
+}
+
+.sideBarShown {
+  margin-top: 10%;
+  margin-left: 0.5em;
+  width: 35vh;
+  padding: 0;
+  height: 85vh;
+  max-width: 320px;
+  background-color: $backgroundLight;
+  box-shadow: $cardShadow;
+  transition: transform 0.3s ease-out;
+  word-wrap: break-word;
+  overflow: auto;
+  @include scrollbar;
+  .backCon {
+    box-sizing: border-box;
+    color: $secondFontColor;
+    width: 100%;
+    text-align: right;
+    .backBtn {
+      box-sizing: border-box;
+      padding: 0.3em;
+      font-size: 1.7em;
+      transition: font-size 0.1s ease-in;
+      &:hover {
+        cursor: pointer;
+        font-size: 1.8em;
+      }
+    }
+  }
+  .title {
+    color: $fontActive;
+    text-align: center;
+    margin: 0;
+    padding: 0.5em;
+    font-size: 1.7em;
+    border-bottom: 1px solid $fontActive;
+    text-decoration: none;
+  }
+}

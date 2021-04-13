@@ -1,0 +1,42 @@
+@import "../../../../styles/variables.scss";
+.button {
+  box-sizing: border-box;
+  filter: $buttonFilter;
+  background: $buttonBackground;
+  border: none;
+  border-radius: 6px;
+  font-family: $robotoFont;
+  color: $secondFontColor;
+  font-weight: 400;
+  font-size: 1em;
+  letter-spacing: 2px;
+  height: 2.8em;
+  width: auto;
+  padding: 0.2em 1.2em;
+  outline: none;
+  &:hover {
+    cursor: pointer;
+    background: $buttonBackgroundHover;
+  }
+  &:disabled {
+    background: $buttonBackgroundDisabled;
+    pointer-events: none;
+  }
+}
+.disable {
+  &:disabled {
+    background: $buttonBackground;
+  }
+}
+
+.danger {
+  background: $buttonBackgroundDanger;
+  &:hover {
+    cursor: pointer;
+    background: $buttonBackgroundDangerHover;
+  }
+  &:disabled {
+    background: $buttonBackgroundDisabled;
+    pointer-events: none;
+  }
+}

@@ -1,0 +1,56 @@
+@import "./variables.scss";
+body {
+  margin: 0;
+  padding: 0;
+  font-family: $mainFont;
+  background: $backgroundDark;
+}
+
+html {
+  box-sizing: border-box;
+  @include scrollbar;
+}
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 650px) {
+  :root {
+    font-size: 14px;
+  }
+}
+
+#root {
+  height: 100vh;
+}
+.wrapper {
+  height: 100%;
+  display: grid;
+  grid-template-rows: 65px 1fr;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: none;
+  -webkit-text-fill-color: $secondFontColor;
+  background-color: transparent;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.rec-swipable {
+  overflow: none;
+}
+.rec {
+  width: 63vmax;
+  height: 70vh;
+}

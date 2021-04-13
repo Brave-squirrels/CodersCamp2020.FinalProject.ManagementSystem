@@ -4,13 +4,14 @@ import noteModel from "../../models/notes.model";
 
 const deleteNote = async (req: Request, res: Response) => {
   const note = await noteModel.findByIdAndDelete(req.params.noteId);
+  const project = res.locals.project;
   if (!note) return res.status(StatusCodes.NOT_FOUND).send("Note not found");
 
-  if(req.userInfo._id != note.author!.id){
+  if(req.userInfo._id != note.author!.id && req.userInfo._id != project.owner.id){
     return res.status(StatusCodes.BAD_REQUEST).send("You are not allowed to do that!");
   }
 
-  const project = res.locals.project;
+  
   project.notes.forEach((note: any, i: number) => {
     if (note.id == req.params.noteId) project.notes.splice(i, 1);
   });

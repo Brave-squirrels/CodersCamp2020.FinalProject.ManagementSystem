@@ -1,0 +1,68 @@
+@import "../../../styles/variables.scss";
+.resNavCon {
+  @include scrollbar;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  background: $backgroundLight;
+  transition: transform 0.3s ease-out;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 2em 0;
+  gap: 2em;
+  font-size: 2em;
+  overflow-y: auto;
+  @media (min-width: 650px) {
+    display: none;
+  }
+}
+
+.navList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  height: 100%;
+  font-weight: 600;
+  gap: 3em;
+}
+
+.openResNav {
+  visibility: visible;
+  transform: translateX(0);
+}
+
+.closeResNav {
+  transform: translateX(-100%);
+}
+
+.settingsImg {
+  height: 2.5em;
+  width: auto;
+}
+
+.logo {
+  margin: 0 auto;
+  width: 2.5em;
+  width: 2.5em;
+}
+
+.hamburger {
+  filter: invert(97%) sepia(89%) saturate(434%) hue-rotate(69deg)
+    brightness(99%) contrast(96%);
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+  &:hover {
+    filter: invert(100%) sepia(89%) saturate(434%) hue-rotate(69deg)
+      brightness(99%) contrast(96%);
+    cursor: pointer;
+  }
+  height: 1.5em;
+}

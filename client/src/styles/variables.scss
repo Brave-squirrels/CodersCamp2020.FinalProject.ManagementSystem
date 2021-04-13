@@ -1,0 +1,64 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
+
+$backgroundCard: #4a5060;
+$backgroundCardHover: rgba(108, 115, 148, 0.6);
+$backgroundLight: #414858;
+$backgroundLightBright: #576075;
+$backgroundDark: #3a3d50;
+$backgroundSquare: #4a5060;
+$backgroundCircle: #3d4371;
+$backgroundModal: rgba(0, 0, 0, 0.5);
+$backgroundSideLinkSecond: rgba(0, 0, 0, 0.15);
+$backgroundSecondaryActive: rgba(116, 111, 111, 0.548);
+$backgroundInputUserDisabled: #3a3d50cc;
+
+$sideBarHover: rgba(255, 255, 255, 0.103);
+
+$mainFontColor: #acf7d0;
+$secondFontColor: #f3f9f6;
+$placeholderColor: #f3f9f6aa;
+$fontActive: #1cd8f8;
+$fontBlue: #36b3c8;
+$fontGreen: #1cf859;
+$fontLightGreen: #acf7d0;
+
+$buttonBackgroundDisabled: #36b3c8aa;
+$buttonBackgroundHover: #4ccfe4;
+$buttonBackgroundDangerHover: #f53c64;
+
+$black: #000;
+
+$inputFilter: drop-shadow(4px 4px 14px rgba(0, 0, 0, 0.2));
+$inputActiveBackground: #576075;
+$invalidInputBorder: #f56e69;
+
+$buttonFilter: drop-shadow(5.97778px 5.97778px 20.9222px rgba(0, 0, 0, 0.2));
+$buttonBackground: linear-gradient(90.55deg, #36b3c8 0%, #2ce6c8 99.9%);
+$buttonBackgroundDanger: linear-gradient(90.55deg, #f53c64 0%, #f57e98 99.9%);
+$cardConShadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+  0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+
+$mainFont: "Montserrat", sans-serif;
+$robotoFont: "Roboto", sans-serif;
+
+$cardShadow: 0px 4px 13px rgba(0, 0, 0, 0.25);
+
+@mixin scrollbar(
+  $scrollSize: 4px,
+  $backgroundTrack: #333845,
+  $backgroundThumb: #83868e,
+  $scrollRadius: 0px
+) {
+  scrollbar-width: thin;
+  &::-webkit-scrollbar {
+    width: $scrollSize;
+  }
+  &::-webkit-scrollbar-track {
+    background: $backgroundTrack;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: $backgroundThumb;
+    border-radius: $scrollRadius;
+  }
+}

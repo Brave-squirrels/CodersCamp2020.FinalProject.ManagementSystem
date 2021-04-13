@@ -1,0 +1,22 @@
+@import "../../../styles/variables.scss";
+.navItem {
+  box-sizing: border-box;
+
+  a {
+    text-decoration: none;
+    color: $mainFontColor;
+    width: fit-content;
+    flex: 1;
+
+    &:hover,
+    &:active {
+      color: $fontActive;
+    }
+  }
+}
+
+a.active {
+  color: $fontActive;
+}
+
+/* a.activeSideBar */

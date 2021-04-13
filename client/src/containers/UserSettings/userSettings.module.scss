@@ -1,0 +1,139 @@
+@import "../../styles/variables.scss";
+
+.userSettingsContainer {
+  max-width: 1444px;
+  margin: auto;
+  padding: 2rem 10%;
+  color: $secondFontColor;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  height: 100%;
+
+  h2 {
+    margin-bottom: 0;
+  }
+
+  .settingsLabel {
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+  }
+
+  .settingsContainer {
+    width: 1000%;
+    height: 100%;
+    margin: 0 2rem;
+  }
+
+  .profile {
+    .name {
+      display: flex;
+      justify-content: flex-start;
+
+      .btnContainer {
+        position: relative;
+        display: flex;
+
+        .iconShow {
+          opacity: 1 !important;
+        }
+
+        .icon {
+          font-size: 1.6rem;
+          align-self: center;
+          margin-left: 1rem;
+          color: $fontBlue;
+          position: absolute;
+          opacity: 0;
+          transition: opacity 0.6s ease-out;
+
+          &:hover {
+            filter: brightness(1.2);
+            cursor: pointer;
+          }
+
+          &:active {
+            transform: scale(0.9);
+          }
+        }
+
+        Button {
+          position: absolute;
+          margin-left: 1rem;
+          position: relative;
+        }
+
+        .btnShift {
+          transform: translateX(2.6rem);
+          transition: transform 0.4s ease-in-out;
+        }
+
+        .btnReset {
+          transform: translateX(0);
+          transition: transform 0.4s ease-in-out;
+        }
+      }
+    }
+  }
+
+  .password {
+    margin-top: 3rem;
+
+    .passwordContainer {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+
+      div {
+        margin-right: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      Button {
+        margin-bottom: 2rem;
+      }
+    }
+
+    .error {
+      width: fit-content;
+    }
+  }
+
+  .delete {
+    color: $buttonBackgroundDangerHover;
+    font-weight: 500;
+    cursor: pointer;
+    user-select: none;
+    margin-top: 3rem;
+    width: fit-content;
+
+    p {
+      width: fit-content;
+    }
+
+    p:hover {
+      text-decoration: underline;
+    }
+
+    p:active {
+      filter: brightness(0.9);
+    }
+  }
+
+  .modal {
+    color: $buttonBackgroundDangerHover;
+    padding: 1rem;
+    text-align: center;
+    box-sizing: border-box;
+
+    .success {
+      color: $fontActive;
+    }
+
+    div {
+      display: flex;
+      justify-content: space-around;
+    }
+  }
+}

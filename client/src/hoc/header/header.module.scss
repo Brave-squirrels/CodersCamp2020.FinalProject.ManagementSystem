@@ -1,0 +1,82 @@
+@import "../../styles/variables.scss";
+
+.header {
+  background: $backgroundLight;
+  padding: 0.5em 1.5em;
+  font-size: 1.3em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.navList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  height: 100%;
+  font-weight: 600;
+  gap: 3em;
+}
+
+.hamburger {
+  filter: invert(97%) sepia(89%) saturate(434%) hue-rotate(69deg)
+    brightness(99%) contrast(96%);
+  &:hover {
+    cursor: pointer;
+    filter: invert(100%) sepia(89%) saturate(434%) hue-rotate(69deg)
+      brightness(99%) contrast(96%);
+  }
+  height: 2.3em;
+  @media (min-width: 650px) {
+    display: none;
+  }
+}
+
+.settingsImg {
+  height: 1.9em;
+}
+
+@media (max-width: 650px) {
+  .navDisplay {
+    display: none;
+  }
+}
+
+.logoWrapper {
+  height: 100%;
+  font-weight: 600;
+  a {
+    text-decoration: none;
+    color: $fontActive;
+  }
+}
+
+.logo {
+  vertical-align: middle;
+  height: 1.9em;
+}
+
+.logoTitle {
+  padding-left: 0.5em;
+  @media (max-width: 920px) and (min-width: 650px) {
+    display: none;
+  }
+  @media (max-width: 400px) {
+    font-size: 0.8em;
+  }
+}
+
+.logoList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  height: 100%;
+  gap: 0.5em;
+}

@@ -10,10 +10,26 @@ const changePassword = async (req: Request, res: Response) => {
   if (error)
     return res.status(StatusCodes.BAD_REQUEST).send(error.details[0].message);
 
+  let user = await userModel.findById(req.userInfo._id);
+  if (!user)
+    return res.status(StatusCodes.BAD_REQUEST).send("Invalid  password.");
+
+  if (req.body.password !== req.body.confirmPassword)
+    return res
+      .status(StatusCodes.BAD_REQUEST)
+      .send("New password and confirm password must be the same.");
+
+  const validPassword = await bcrypt.compare(
+    req.body.oldPassword,
+    user.password
+  );
+  if (!validPassword)
+    return res.status(StatusCodes.BAD_REQUEST).send("Invalid  password.");
+
   const salt = await bcrypt.genSalt(10);
   const newPassword = await bcrypt.hash(req.body.password, salt);
 
-  const user = await userModel.findByIdAndUpdate(
+  user = await userModel.findByIdAndUpdate(
     req.userInfo._id,
     { password: newPassword },
     { new: true }

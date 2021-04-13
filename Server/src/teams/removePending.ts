@@ -1,14 +1,20 @@
 import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
+import PendingUser from '../../interfaces/pendingUser.interface';
 
 const removePending = async (req: Request, res: Response) => {
 
   const team = res.locals.team;
   const user = res.locals.user;
+  const authId = req.userInfo._id
+
+  //Checking if user have permissions 
+  if (!team.moderatorsId.includes(authId))
+  return res.status(StatusCodes.UNAUTHORIZED).send("Permission denied");
   
   //Remove user from pending
-  team.pendingUsers.forEach((pendingUser: string, i: number) => {
-    if (pendingUser == req.body.id) team.pendingUsers.splice(i, 1);
+  team.pendingUsers.forEach((pendingUser: PendingUser, i: number) => {
+    if (pendingUser.userId == req.body.id) team.pendingUsers.splice(i, 1);
   });
 
   await team.save();

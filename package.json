@@ -1,0 +1,32 @@
+{
+  "name": "CodersCamp2020.FinalProject.ManagementSystem",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Brave-squirrels/CodersCamp2020.FinalProject.ManagementSystem.git",
+  "author": "Olek <aleksander.atamanczuk@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "client": "cd client && yarn start",
+    "server": "cd Server && yarn dev",
+    "client:i": "cd client && yarn install",
+    "server:i": "cd Server && yarn install",
+    "current:i": "concurrently \"yarn client:i\" \"yarn server:i\"",
+    "client:to": "cd client && yarn cypress:open",
+    "client:tr": "cd client && yarn cypress:run",
+    "cypress:show": "cd client && yarn open",
+    "dev": "concurrently \"yarn server\" \"yarn client\"",
+    "dev:i": "yarn install && yarn current:i",
+    "test:o": "concurrently \"yarn server\" \"yarn client:to\" \"yarn cypress:show\"",
+    "test:r": "concurrently \"yarn server\" \"yarn client:tr\""
+  },
+  "devDependencies": {
+    "@testing-library/cypress": "^7.0.5",
+    "concurrently": "^6.0.0"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.35",
+    "@fortawesome/free-solid-svg-icons": "^5.15.3",
+    "@fortawesome/react-fontawesome": "^0.1.14",
+    "framer-motion": "^4.0.3"
+  }
+}

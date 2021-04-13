@@ -1,0 +1,99 @@
+@import "../../../../styles/variables.scss";
+
+.inputContainer {
+  width: 100%;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .label {
+    transition: 0.1s;
+    position: absolute;
+    transform: translateY(50%);
+    color: $placeholderColor;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  .input {
+    color: $secondFontColor;
+    max-width: 320px;
+    width: 100%;
+    border: 2px solid $secondFontColor;
+    appearance: none;
+    background: transparent;
+    padding: 12px;
+    border-radius: 3px;
+    outline: none;
+    transition: border-color 0.1s ease-out;
+    &:disabled + .label {
+      transition: 0.1s;
+      transform: translateY(-50%);
+      font-size: 0.8em;
+      color: $placeholderColor;
+      background: $backgroundDark;
+      padding: 0 0.8em;
+      pointer-events: none;
+    }
+    &:disabled {
+      cursor: text !important;
+      pointer-events: none;
+      border-color: $placeholderColor;
+      color: $placeholderColor;
+    }
+    @media (max-width: 650px) {
+      width: 90%;
+    }
+    &:focus + .label,
+    &:valid + .label {
+      transition: 0.1s;
+      transform: translateY(-50%);
+      font-size: 0.8em;
+      color: $mainFontColor;
+      background: $backgroundDark;
+      padding: 0 0.8em;
+    }
+    &:focus,
+    &:valid {
+      border-color: $mainFontColor;
+    }
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+.textarea {
+  resize: none;
+  font-family: $robotoFont;
+  font-size: 1em;
+  height: 8em;
+  @include scrollbar;
+}
+
+.select {
+  margin: 0.2em 7px;
+  outline: none;
+  color: $secondFontColor;
+  transition: all 0.4s ease-in;
+  &:hover {
+    cursor: pointer;
+  }
+  background-image: none;
+}
+.option {
+  background: $backgroundLight;
+}
+
+.invalidInput {
+  .input {
+    border-color: $invalidInputBorder;
+    color: $invalidInputBorder;
+    &:focus {
+      border-color: $invalidInputBorder;
+      color: $invalidInputBorder;
+    }
+  }
+  .label {
+    color: $invalidInputBorder !important;
+  }
+}

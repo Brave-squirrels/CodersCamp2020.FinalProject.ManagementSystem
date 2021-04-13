@@ -1,0 +1,28 @@
+@import "styles/variables.scss";
+
+.wrapper {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  .iconRemove {
+    color: $secondFontColor;
+    &:hover {
+      cursor: pointer;
+      color: $invalidInputBorder;
+    }
+  }
+  .name {
+    color: $secondFontColor;
+  }
+  .roleWrapper {
+    display: flex;
+    gap: 0.5em;
+    .role {
+      color: $fontBlue;
+      font-style: italic;
+      font-size: 0.9em;
+    }
+  }
+}

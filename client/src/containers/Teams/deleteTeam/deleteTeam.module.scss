@@ -1,0 +1,10 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  & > :first-child {
+    grid-column: span 2;
+  }
+  width: 60%;
+  grid-gap: 1em;
+}

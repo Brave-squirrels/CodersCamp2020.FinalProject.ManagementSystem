@@ -1,0 +1,38 @@
+@import "styles/variables.scss";
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 0 2em;
+  width: 90%;
+  .memberWrapper {
+    padding: 0.5em;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    .memberName {
+      color: $secondFontColor;
+      font-weight: 600;
+    }
+    .iconRemove {
+      color: $secondFontColor;
+      &:hover {
+        cursor: pointer;
+        color: $invalidInputBorder;
+      }
+    }
+  }
+  h2 {
+    text-align: center;
+    color: $fontBlue;
+    font-weight: 500;
+    border-bottom: 1px solid $fontBlue;
+  }
+  .noUsers{
+    font-size: 1.3em;
+    text-align: center;
+    color: $secondFontColor;
+  }
+}

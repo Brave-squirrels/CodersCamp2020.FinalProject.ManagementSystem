@@ -1,0 +1,6 @@
+@import "../../styles/variables.scss";
+.mainCon {
+  @include scrollbar;
+  background: $backgroundDark;
+  width: 100%;
+}

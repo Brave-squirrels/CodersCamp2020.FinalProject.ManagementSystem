@@ -1,0 +1,74 @@
+@import "../../../../styles/variables.scss";
+
+.inputContainer {
+  box-sizing: border-box;
+  font-family: $robotoFont;
+  max-width: 380px;
+  min-width: 260px;
+  width: 80%;
+  margin: 0 auto;
+  padding: 0.6em 1em;
+  filter: $inputFilter;
+  background: $backgroundLight;
+  display: flex;
+  flex-flow: column;
+  border-bottom: 1.5px solid $fontLightGreen;
+  color: $fontLightGreen;
+  border-radius: 6px 6px 0 0;
+  transition: background 0.4s ease-in;
+  &:focus-within {
+    background: $inputActiveBackground;
+  }
+  &:hover {
+    cursor: pointer;
+  }
+}
+.invalidInput {
+  border: 1.5px solid $invalidInputBorder;
+}
+.input {
+  font-size: 1.2em;
+  padding: 0.2em 10px;
+  border: none;
+  background: transparent;
+  color: $secondFontColor;
+  transition: all 0.4s ease-in;
+  &::placeholder {
+    color: $placeholderColor;
+  }
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.textarea {
+  resize: none;
+  font-family: $robotoFont;
+  font-size: 1em;
+  height: 8em;
+  @include scrollbar;
+}
+
+.label {
+  font-size: 0.9em;
+  padding: 0.2em 10px;
+}
+
+.select {
+  background: $backgroundLight;
+  margin: 0.2em 7px;
+  outline: none;
+  border: none;
+  color: $secondFontColor;
+  transition: all 0.4s ease-in;
+  &:hover {
+    cursor: pointer;
+  }
+  &:focus {
+    background: $inputActiveBackground;
+  }
+  background-image: none;
+}
