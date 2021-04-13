@@ -4,7 +4,6 @@ import {
   Switch,
   withRouter,
   useLocation,
-  Redirect,
   useHistory,
 } from "react-router-dom";
 import { Header, Main, ErrorPage } from "hoc/indexHoc";
