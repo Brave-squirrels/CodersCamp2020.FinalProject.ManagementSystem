@@ -64,7 +64,7 @@ const ForgotPassword = () => {
 
       {reduxState.loading ? (
         <Spinner />
-      ) : reduxState.success ? (
+      ) : !reduxState.success ? (
         <FormStructure
           state={forgot}
           setState={setForgot}

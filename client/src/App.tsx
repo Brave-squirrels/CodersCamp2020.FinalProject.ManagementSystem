@@ -4,7 +4,6 @@ import {
   Switch,
   withRouter,
   useLocation,
-  Redirect,
   useHistory,
 } from "react-router-dom";
 import { Header, Main, ErrorPage } from "hoc/indexHoc";
@@ -67,11 +66,6 @@ const App = () => {
   if (!localStorage.getItem("token")) {
     content = (
       <>
-        {localStorage.getItem("token") ? null : location.pathname ===
-            "/confirmed" ||
-          location.pathname.startsWith("/resetPassword") ? null : (
-          <Redirect to="/" />
-        )}
         <Switch>
           <Route exact path="/" render={() => <LandingNotLogged />} />
           <Route
@@ -81,6 +75,7 @@ const App = () => {
           />
           <Route exact path="/confirmed" render={() => <Confirmed />} />
           <Route path="/resetPassword" render={() => <ResetPassword />} />
+          <Route component={ErrorPage} />
         </Switch>
       </>
     );
