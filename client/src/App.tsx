@@ -76,6 +76,7 @@ const App = () => {
           />
           <Route exact path="/confirmed" render={() => <Confirmed />} />
           <Route path="/resetPassword" render={() => <ResetPassword />} />
+          <Route component={ErrorPage} />
         </Switch>
       </>
     );
