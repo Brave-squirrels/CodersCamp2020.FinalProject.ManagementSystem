@@ -28,7 +28,7 @@ export default async function createUser(req: Request, res: Response) {
   user = await user.save();
 
   const token = user.generateAuthToken();
-  const url = `http://${process.env.ADDRESS}:${process.env.PORT}/users/confirmation/${token}`;
+  const url = `http://${process.env.ADDRESS}/users/confirmation/${token}`;
   const message = await sendEmail(req.body.email, url);
   console.log(message);
 
