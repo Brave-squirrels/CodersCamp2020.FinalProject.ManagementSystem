@@ -13,7 +13,7 @@
 
 ### General Info
 -----------------
-We are proudly announcing, that we have ofiicialy completed our **_ManagmentSystem_** project. Perhaps as a developer you do know what managment systems are, as they are an integral part of programmers every day job.
+We are proudly announcing, that we have ofiicialy completed our **_ManagmentSystem_** project. Perhaps as a developer you do know what managment systems are, as they are an integral part of programmers every day job.<br></br>
 Create your own team, assign roles for the team members and create different projects all in one place! 
 
 **Check it out on youtube!**<br></br>
@@ -70,7 +70,7 @@ If you would like to run tests, you will need to add additional line to your .en
 NODE_ENV=test</br></br>
 Keep in mind that the app will not work when this line is added, it only allows you to run tests.</br></br>
 * *Run command **yarn start***
-* *For tests, run either **yarn test** or **yarn test:c** for tests with coverage!*
+* *For backend tests, move into /Server catalog and run either **yarn test** or **yarn test:c** for tests with coverage!*
 * *If you would like to test frontend, in main directory run command **_yarn test:o_***</br></br>
 * *Enter the local host that was created which should be at **http://localhost:3000/***
 * **_You can now use our fully functional application!_***
