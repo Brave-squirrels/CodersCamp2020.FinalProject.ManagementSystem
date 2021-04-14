@@ -30,6 +30,7 @@ Project is created with:
 * Jest
 * React
 * Redux
+* Redux-Thunk
 * MongoDB
 
 ### Requirements
