@@ -13,8 +13,11 @@
 
 ### General Info
 -----------------
-We are proudly announcing, that we have ofiicialy completed first part of our **_ManagmentSystem_** project. Perhaps as a developer you do know what managment systems are, as they are an integral part of programmers every day job.
+We are proudly announcing, that we have ofiicialy completed our **_ManagmentSystem_** project. Perhaps as a developer you do know what managment systems are, as they are an integral part of programmers every day job.
 Create your own team, assign roles for the team members and create different projects all in one place! 
+
+**Check it out on youtube!**<br></br>
+[![ManagmentSystem by BraveSquirrels](http://img.youtube.com/vi/sxfl5vBYFOk/0.jpg)](http://www.youtube.com/watch?v=sxfl5vBYFOk)
 
 ### Technologies
 -----------------
@@ -23,6 +26,9 @@ Project is created with:
 * Node.js
 * Express.js
 * Jest
+* React
+* Redux
+* MongoDB
 
 ### Requirements
 -----------------
@@ -46,8 +52,7 @@ If you do not know if you have it installed on your computer and you still want 
 #### To run the project locally follow these steps:
 * *Clone this repository*
 * *Open repository in your code editor*
-* *Make sure that you open your terminal in /Server catalog !*
-* *Run command **yarn install***
+* *Run command **yarn dev:i***
 * *Create .env file within the server catalog, this file should contain important information which lack of will cause fatal errors.*</br></br>
 **this is the data that you should add into .env file:**</br></br>
 MONGO_USER=\<you user name></br>
@@ -64,8 +69,9 @@ NODE_ENV=test</br></br>
 Keep in mind that the app will not work when this line is added, it only allows you to run tests.</br></br>
 * *Run command **yarn start***
 * *For tests, run either **yarn test** or **yarn test:c** for tests with coverage!*
-* *Enter the local host that was created which should be at **http://localhost:5000/***
-* **_You can now send API requests to endpoints from rest.http file!_***
+* *If you would like to test frontend, in main directory run command **_yarn test:o_***</br></br>
+* *Enter the local host that was created which should be at **http://localhost:3000/***
+* **_You can now use our fully functional application!_***
 
 ### Documentation
 (You can see every single endpoint in rest.http file, here are some most important examples)
@@ -96,10 +102,10 @@ content-type: application/json</br>
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "teamName": "sample team"</br>
 }</br>
 #### GET TEAM INFO
-* GET http://localhost:5000/teams/604f7b8cc633a147b03b1f5e HTTP/1.1</br>
+* GET http://localhost:5000/teams/teamId HTTP/1.1</br>
 x-auth-token: \<your token></br>
 #### CREATE PROJECT
-* POST http://localhost:5000/teams/604f7b8cc633a147b03b1f5e/projects HTTP/1.1</br>
+* POST http://localhost:5000/teams/teamId/projects HTTP/1.1</br>
 x-auth-token: \<your token></br>
 content-type: application/json</br>
 {</br>
@@ -107,10 +113,10 @@ content-type: application/json</br>
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "deadline" : "2021-03-24T17:06:34.928+00:00"</br>
 }</br>
 #### GET PROJECT INFO
-* GET http://localhost:5000/teams/603ff6c5a7e58805f6daa320/projects/6040c166773cd70129a201e5 HTTP/1.1 </br>
+* GET http://localhost:5000/teams/teamId/projects/projectId HTTP/1.1 </br>
 x-auth-token: \<your token></br>
 #### CREATE TASK
-* POST http://localhost:5000/teams/604f7b8cc633a147b03b1f5e/projects/604f7f65c633a147b03b1f60/tasks HTTP/1.1</br>
+* POST http://localhost:5000/teams/teamId/projects/projectId/tasks HTTP/1.1</br>
 x-auth-token: \<your token></br>
 content-type: application/json</br>
 {</br>
@@ -119,7 +125,7 @@ content-type: application/json</br>
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "deadlineDate": "03/24/2021"</br>
 }</br>
 #### CREATE NOTE
-* POST http://localhost:5000/teams/604f7b8cc633a147b03b1f5e/projects/604f7f65c633a147b03b1f60/notes HTTP/1.1</br>
+* POST http://localhost:5000/teams/teamId/projects/projectId/notes HTTP/1.1</br>
 x-auth-token: \<your token></br>
 content-type: application/json</br>
 {   </br>
@@ -128,7 +134,7 @@ content-type: application/json</br>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"author": {"name": "Maciek", "id": "604f7b21c633a147b03b1f5d"}</br>
 }</br>
 #### CREATE COMMENTS
-* POST http://localhost:5000/teams/604f7b8cc633a147b03b1f5e/projects/604f7f65c633a147b03b1f60/tasks/604f920420ac7b18a00c8958/comments HTTP/1.1</br>
+* POST http://localhost:5000/teams/teamId/projects/projectId/tasks/taskId/comments HTTP/1.1</br>
 x-auth-token: \<your token></br>
 content-type: application/json</br>
 {</br>
