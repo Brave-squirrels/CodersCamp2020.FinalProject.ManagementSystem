@@ -19,6 +19,8 @@ Create your own team, assign roles for the team members and create different pro
 **Check it out on youtube!**<br></br>
 [![ManagmentSystem by BraveSquirrels](http://img.youtube.com/vi/sxfl5vBYFOk/0.jpg)](http://www.youtube.com/watch?v=sxfl5vBYFOk)
 
+**If you don't want to run our project locally, you do not have to read anything more, be our guest, and visit our <a href="https://managementsystem2021.netlify.app/">site!</a>**
+
 ### Technologies
 -----------------
 Project is created with:
