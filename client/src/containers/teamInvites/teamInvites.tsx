@@ -14,7 +14,6 @@ const TeamInvites = () => {
   const reduxState = useSelector(
     (state: RootState) => state.login.userInformation
   );
-
   return (
     <div className={styles.wrapper}>
       <CardContainer title="Team Invites">

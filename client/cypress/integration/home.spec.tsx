@@ -3,8 +3,8 @@ Cypress.Commands.add("login", () => {
     method: "POST",
     url: "http://localhost:5000/login",
     body: {
-      email: "olo.a@wp.pl",
-      password: "12345678",
+      email: "tilabjeden@gazeta.pl",
+      password: "password",
     },
   }).then((res) => {
     localStorage.setItem("token", res.body.token);

@@ -24,6 +24,7 @@ const SingleMemberRemove = (props: Props) => {
   const removeMemberStages = useSelector(
     (state: RootState) => state.updateMemberInProject
   );
+  const teamData = useSelector((state: RootState) => state.singleTeamData);
 
   const { teamId, projectId } = useParams<types.TParams>();
   const removeHandler = () => {
@@ -43,11 +44,13 @@ const SingleMemberRemove = (props: Props) => {
       <span className={styles.name}>{props.userName}</span>
       <div className={styles.roleWrapper}>
         <span className={styles.role}>{props.userRole}</span>
-        <FontAwesomeIcon
-          icon={faTrash}
-          className={styles.iconRemove}
-          onClick={removeHandler}
-        />
+        {teamData.team.ownerId !== props.userId && (
+          <FontAwesomeIcon
+            icon={faTrash}
+            className={styles.iconRemove}
+            onClick={removeHandler}
+          />
+        )}
       </div>
       {removeMemberStages.error && (
         <ErrorHandler>{removeMemberStages.error.response.data}</ErrorHandler>
