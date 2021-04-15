@@ -5,6 +5,7 @@ import {
   withRouter,
   useLocation,
   useHistory,
+  Redirect,
 } from "react-router-dom";
 import { Header, Main, ErrorPage } from "hoc/indexHoc";
 import { useSelector, useDispatch } from "react-redux";
@@ -68,7 +69,7 @@ const App = () => {
       <>
         <Switch>
           <Route exact path="/" render={() => <LandingNotLogged />} />
-          <Route exact path="/logout" render={() => <LandingNotLogged />} />
+          <Route exact path="/logout" render={() => <Redirect to="/" />} />
           <Route
             exact
             path="/forgotpassword"
