@@ -32,6 +32,7 @@ Project is created with:
 * Redux
 * Redux-Thunk
 * MongoDB
+* Cypress
 
 ### Requirements
 -----------------
