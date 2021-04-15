@@ -14,6 +14,7 @@ import SecondaryList from "components/UI/sideBar/sidebarItems/secondaryList/seco
 import LiItem from "components/UI/sideBar/sidebarItems/liItem/liItem";
 import SpinnerLight from "components/UI/spinnerLight/spinner";
 
+import { authUser } from "reduxState/loginSlice";
 import { fetchTeam } from "reduxState/teamDataSlice";
 import { RootState } from "reduxState/store";
 
@@ -40,6 +41,9 @@ const TeamSidebar = () => {
   const removePendingStages = useSelector(
     (state: RootState) => state.removePendingUser
   );
+  const createProjectState = useSelector(
+    (state: RootState) => state.createProjectSlice
+  );
 
   // import list of teams and projects of current active team
   const changeTeam = (e: any) => {
@@ -48,6 +52,7 @@ const TeamSidebar = () => {
 
   useEffect(() => {
     dispatch(fetchTeam(teamId));
+    dispatch(authUser());
   }, [
     changeDesc.success,
     changeTitleState.success,
@@ -58,6 +63,7 @@ const TeamSidebar = () => {
     changeModeratorState.success,
     removeStages.success,
     removePendingStages.success,
+    createProjectState.success,
   ]);
 
   return (

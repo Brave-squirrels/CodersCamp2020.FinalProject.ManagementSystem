@@ -6,8 +6,8 @@ Cypress.Commands.add("login", () => {
     method: "POST",
     url: "http://localhost:5000/login",
     body: {
-      email: "olo.a@wp.pl",
-      password: "12345678",
+      email: "tilabjeden@gazeta.pl",
+      password: "password",
     },
   }).then((res) => {
     localStorage.setItem("token", res.body.token);
@@ -89,8 +89,8 @@ describe("test the user settings panel", () => {
   });
 
   it("should check for changing the password", () => {
-    const oldPassword = "12345678";
-    const newPassword = "123456789";
+    const oldPassword = "password";
+    const newPassword = "password";
 
     // check for invalid password
     // @ts-ignore

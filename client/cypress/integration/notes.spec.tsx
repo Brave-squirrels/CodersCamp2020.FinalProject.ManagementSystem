@@ -6,8 +6,8 @@ Cypress.Commands.add("login", () => {
     method: "POST",
     url: "http://localhost:5000/login",
     body: {
-      email: "olo.a@wp.pl",
-      password: "12345678",
+      email: "tilabjeden@gazeta.pl",
+      password: "password",
     },
   }).then((res) => {
     localStorage.setItem("token", res.body.token);
@@ -21,7 +21,7 @@ describe("test project notes", () => {
     cy.login();
     cy.viewport(1200, 850);
     cy.visit(
-      "/teams/605fa5ce35561f136c8986ba/projects/60603ec1a390ae38a854559f/notes"
+      "/teams/60783285968c4c399c82026e/projects/60783296968c4c399c82026f/notes"
     );
     cy.wait(500);
     cy.get("[class*=addNew_iconWrapper]", { timeout: 2000 }).click();

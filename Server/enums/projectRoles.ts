@@ -3,7 +3,8 @@ enum ROLES {
   BACKENDDEV = "BackendDev",
   OWNER = 'Owner',
   DEVOPS = 'DevOps',
-  DESIGNER = 'Designer'
+  DESIGNER = 'Designer',
+  TEAMOWNER = 'Team Owner',
 }
 
 export default ROLES;

@@ -48,6 +48,9 @@ const Team = () => {
   );
   const changeOwner = useSelector((state: RootState) => state.changeTeamOwner);
   const deleteTeam = useSelector((state: RootState) => state.deleteTeam);
+  const createProjectState = useSelector(
+    (state: RootState) => state.createProjectSlice
+  );
 
   const moderatorsList = state.team.moderatorsId.map((moderatorId: string) =>
     state.team.members.map((member: types.Member) => (
@@ -78,6 +81,7 @@ const Team = () => {
     changeTitleState.success,
     changeOwner.success,
     deleteTeam.success,
+    createProjectState.success,
   ]);
 
   const isModerator = state.team.moderatorsId.includes(
