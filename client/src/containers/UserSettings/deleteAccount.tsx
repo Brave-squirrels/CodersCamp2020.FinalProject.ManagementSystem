@@ -1,20 +1,23 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 
 import { deleteUser } from "reduxState/settingsSlice";
 import Button from "components/UI/formElements/button/button";
 import Modal from "components/Modal/modal";
 import classes from "./userSettings.module.scss";
+import { RootState } from "reduxState/store";
 
 const DeleteAccount = () => {
   const [modalState, setModalState] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
+  const userData = useSelector(
+    (state: RootState) => state.login.userInformation
+  );
 
   const deleteProfile = () => {
-    const id = `${localStorage.getItem("id")}`;
-    dispatch(deleteUser(id));
+    dispatch(deleteUser(userData));
     history.push("/logout");
   };
 

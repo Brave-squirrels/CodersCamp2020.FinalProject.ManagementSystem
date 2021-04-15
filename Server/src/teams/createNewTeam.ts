@@ -5,10 +5,10 @@ import { StatusCodes } from "http-status-codes";
 import Team from "../../interfaces/team.interface";
 
 const createNewTeam = async (req: Request, res: Response) => {
-  
+
   const user = res.locals.user;
-  
-  
+
+
   //Check if team name is unique
   const teams = res.locals.teams;
   const teamNamesArr: string[] = [];
@@ -36,11 +36,11 @@ const createNewTeam = async (req: Request, res: Response) => {
 
   //Add team to user array 
   user.teams.push({ _id: false, id: newTeam.id, name: newTeam.teamName });
-  
+
   await newTeam.save();
   await user.save();
 
-  return res.status(StatusCodes.OK).send(newTeam);  
+  return res.status(StatusCodes.OK).send(newTeam);
 };
 
 export default createNewTeam;

@@ -52,8 +52,8 @@ const App = () => {
   /* Logout handle */
   history.listen((currentLocation) => {
     if (currentLocation.pathname === "/logout") {
-      dispatch(logout());
       currentLocation.pathname = "/";
+      dispatch(logout());
     }
   });
 
@@ -68,6 +68,7 @@ const App = () => {
       <>
         <Switch>
           <Route exact path="/" render={() => <LandingNotLogged />} />
+          <Route exact path="/logout" render={() => <LandingNotLogged />} />
           <Route
             exact
             path="/forgotpassword"
