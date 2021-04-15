@@ -52,8 +52,8 @@ const App = () => {
   /* Logout handle */
   history.listen((currentLocation) => {
     if (currentLocation.pathname === "/logout") {
-      dispatch(logout());
       currentLocation.pathname = "/";
+      dispatch(logout());
     }
   });
 
