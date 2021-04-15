@@ -16,7 +16,7 @@ export default async function sendEmailToUser(req: Request, res: Response) {
   if (!user) return res.status(StatusCodes.NOT_FOUND).send("User not found");
 
   const token = user.generateAuthToken();
-  const url = `http://${process.env.ADDRESS}:${process.env.PORT}/users/confirmation/${token}`;
+  const url = `http://${process.env.ADDRESS}/users/confirmation/${token}`;
   const message = await sendEmail(req.body.email, url);
 
   res.status(StatusCodes.OK).send(message);

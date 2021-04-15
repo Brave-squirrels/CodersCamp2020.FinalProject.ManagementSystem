@@ -1,11 +1,11 @@
-import axios from 'axios';
+import axios from "axios";
 
 const instance = axios.create({
-    baseURL: 'http://localhost:5000',
-    headers: {
-        'Access-Control-Allow-Origin': '*',
-        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE"
-    }
-})
+  baseURL: "https://managementsystem2021.herokuapp.com/",
+  headers: {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE",
+  },
+});
 
 export default instance;

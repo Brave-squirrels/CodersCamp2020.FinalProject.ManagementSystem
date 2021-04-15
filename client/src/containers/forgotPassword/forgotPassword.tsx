@@ -62,7 +62,7 @@ const ForgotPassword = () => {
         <Button clicked={goBackHandler}>Go back</Button>
       </div>
 
-      {reduxState.loading ? (
+       {reduxState.loading ? (
         <Spinner />
       ) : !reduxState.success ? (
         <FormStructure

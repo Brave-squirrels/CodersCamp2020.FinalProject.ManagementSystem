@@ -16,7 +16,7 @@ export default async function sendResetMail(req: Request, res: Response) {
   if (!user) return res.status(StatusCodes.NOT_FOUND).send("User not found");
 
   const token = user.generateAuthToken();
-  const url = `http://localhost:3000/resetPassword/${token}`;
+  const url = `http://${process.env.ADDRESS}/resetPassword/${token}`;
   const message = await sendEmail(req.body.email, url);
 
   res.status(StatusCodes.OK).send(message);
