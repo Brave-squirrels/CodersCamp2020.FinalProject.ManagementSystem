@@ -68,6 +68,7 @@ const App = () => {
       <>
         <Switch>
           <Route exact path="/" render={() => <LandingNotLogged />} />
+          <Route exact path="/logout" render={() => <LandingNotLogged />} />
           <Route
             exact
             path="/forgotpassword"
