@@ -97,23 +97,36 @@ export const changePassword = (data: passwordData): AppThunk => async (
   dispatch
 ) => {
   const token = localStorage.getItem("token");
-    await axios.put("/users/changepassword", data, {
-      headers: { "x-auth-token": `${token}` },
-    })
-    .then(res=>{
+  await axios.put("/users/changepassword", data, {
+    headers: { "x-auth-token": `${token}` },
+  })
+    .then(res => {
       dispatch(setError(""));
       dispatch(resetPassword());
       dispatch(toggleSuccess(true));
     })
-    .catch(err=>{
+    .catch(err => {
       dispatch(setError(err.response.data));
       dispatch(toggleSuccess(false));
     })
 };
 
-export const deleteUser = (data: string): AppThunk => async () => {
+export const deleteUser = (data: any): AppThunk => async () => {
   const token = localStorage.getItem("token");
   try {
+    data.teams.forEach(async (team: any) => {
+      axios.get(`/teams/${team.id}`, {
+        headers: { "x-auth-token": `${token}` }
+      }).then(res => {
+        if (res.data.ownerId === data._id) {
+          axios.delete(`/teams/${res.data._id}`, {
+            headers: { "x-auth-token": `${token}` }
+          }).then(res => {
+            console.log('success');
+          }).catch(e => console.log(e.response.data))
+        }
+      }).catch(e => console.log(e.response.data));
+    })
     await axios.delete(`/users`, {
       headers: { "x-auth-token": `${token}` },
     });

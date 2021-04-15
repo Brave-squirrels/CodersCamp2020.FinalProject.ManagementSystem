@@ -5,6 +5,7 @@ import {
   withRouter,
   useLocation,
   useHistory,
+  Redirect,
 } from "react-router-dom";
 import { Header, Main, ErrorPage } from "hoc/indexHoc";
 import { useSelector, useDispatch } from "react-redux";
@@ -52,8 +53,8 @@ const App = () => {
   /* Logout handle */
   history.listen((currentLocation) => {
     if (currentLocation.pathname === "/logout") {
-      dispatch(logout());
       currentLocation.pathname = "/";
+      dispatch(logout());
     }
   });
 
@@ -68,6 +69,7 @@ const App = () => {
       <>
         <Switch>
           <Route exact path="/" render={() => <LandingNotLogged />} />
+          <Route exact path="/logout" render={() => <Redirect to="/" />} />
           <Route
             exact
             path="/forgotpassword"
