@@ -7,7 +7,7 @@ describe("Test createTeam", () => {
   });
 
   it("Should throw error - user already exist", () => {
-    const mail = "olo.a@wp.pl";
+    const mail = "tilabjeden@gazeta.pl";
     const name = "testName";
     const password = "password";
     const confirmPassword = "password";

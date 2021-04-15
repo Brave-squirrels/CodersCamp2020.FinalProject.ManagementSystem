@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import * as types from "utils/types";
 
 import FormStructure from "components/UI/formLogged/formStructure/formStructure";
@@ -15,7 +15,6 @@ import { RootState } from "reduxState/store";
 
 const CreateProject = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
   const { teamId } = useParams<types.TParams>();
   const createProjectState = useSelector(
     (state: RootState) => state.createProjectSlice
@@ -66,12 +65,6 @@ const CreateProject = () => {
     const data = mutateToAxios(project);
     dispatch(createProject(teamId, data));
   };
-
-  if (createProjectState.success) {
-    history.push(
-      `/teams/${createProjectState.teamId}/projects/${createProjectState.projectId}`
-    );
-  }
 
   return (
     <AlignVert>

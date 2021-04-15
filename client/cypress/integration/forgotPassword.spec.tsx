@@ -7,7 +7,7 @@ describe("Test createTeam", () => {
   });
 
   it("Should send reset password mail", () => {
-    const mail = "test@gmail.com";
+    const mail = "tilabjeden@gazeta.pl";
     cy.get("[class*=input_inputContainer] input")
       .clear({ force: true })
       .type(mail);

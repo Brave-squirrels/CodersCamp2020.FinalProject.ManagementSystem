@@ -81,8 +81,8 @@ const Project = () => {
         <RightSideWrapper title={projectData.project.projectName}>
           {/* Container for project's info */}
           <>
-            {localStorage.getItem("id") ===
-              (projectData.project.owner.id || teamData.team.ownerId) && (
+            {(localStorage.getItem("id") === projectData.project.owner.id ||
+              localStorage.getItem("id") === teamData.team.ownerId) && (
               <div className={styles.buttonsWrapper}>
                 <ChangeButton
                   title={"Delete project"}

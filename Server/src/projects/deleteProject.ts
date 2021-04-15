@@ -11,30 +11,38 @@ const deleteProject = async (req: Request, res: Response) => {
   const project = res.locals.project;
   const team = res.locals.team;
 
-  if(req.userInfo._id != project.owner.id && req.userInfo._id != team.owner.id){
+  if (req.userInfo._id != project.owner.id && req.userInfo._id != team.ownerId) {
     return res.status(StatusCodes.UNAUTHORIZED).send('Permission denied');
   }
-  
+
   await notesModel.deleteMany({ projectId: project._id });
-  
+
   user!.projects!.forEach((userProject: any, i: number) => {
-    if(userProject.id == project.id) user!.projects!.splice(i, 1);
+    if (userProject.id == project.id) user!.projects!.splice(i, 1);
   })
 
   team.projects!.forEach((teamProject: any, i: number) => {
-    if(teamProject.id == project.id) team.projects!.splice(i,1);
+    if (teamProject.id == project.id) team.projects!.splice(i, 1);
   })
 
   const tasks = await tasksModel.find({ projectId: project.id });
-  tasks.forEach(async(task) => {
+  tasks.forEach(async (task) => {
     const comments = await commentsModel.find({ taskId: task._id });
-    comments.forEach(async(comment) => {
+    comments.forEach(async (comment) => {
       await comment.delete();
     })
     await task.delete();
   })
 
   await notesModel.deleteMany({ projectId: project.id });
+
+  project.members.forEach(async (member: any) => {
+    const deleteUser = await userModel.findById(member.id);
+    deleteUser?.projects?.forEach(async (userProject: any, i: number) => {
+      if (userProject.id == project.id) deleteUser.projects?.splice(i, 1);
+    });
+    await deleteUser!.save();
+  })
 
   await user!.save();
   await team.save();
